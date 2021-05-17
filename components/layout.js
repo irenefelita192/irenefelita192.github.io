@@ -8,8 +8,8 @@ import globalStyles from './global-styles/global-styles'
 
 export default function Layout({
     children,
-    title = 'Broadcaster Resmi Liga Inggris 2019-2022',
-    description = 'Live streaming Liga Inggris (EPL) di Mola TV secara online yang juga menayangkan Bundesliga, Carabao Cup, serta Film HBO, dan Movie Series terbaru lainnya',
+    title = 'Lippo Life – We Love You',
+    description = 'Best Protection Solution at Every Stage of Life',
     image = '',
     keywords = '',
     url = '',
@@ -54,26 +54,22 @@ export default function Layout({
                 />
                 <meta
                     name="keywords"
-                    content={
-                        keywords
-                            ? keywords
-                            : `Mola, MolaTV, MolaSport, TV, Sport, Premiere League, ${description}`
-                    }
+                    content={keywords ? keywords : `Lippo Life ${description}`}
                 />
                 <meta
                     name="description"
                     content={
                         description ||
-                        'Live streaming Liga Inggris (EPL) di Mola TV secara online yang juga menayangkan Bundesliga, Carabao Cup, serta Film HBO, dan Movie Series terbaru lainnya'
+                        'Best Protection Solution at Every Stage of Life'
                     }
                 />
                 <title>{title}</title>
-                <meta
+                {/* <meta
                     name="msapplication-TileImage"
                     content={
                         'https://mola01.koicdn.com/assets-global/images/mola-landscape-blue.svg'
                     }
-                />
+                /> */}
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
                 <meta
@@ -124,12 +120,6 @@ export default function Layout({
                     as="script"
                     async=""
                 />
-                {/* <link
-          rel="preconnect"
-          href="//res-mola01.koicdn.com"
-          as="script"
-          async=""
-        /> */}
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link
                     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Nunito:wght@400;600&display=swap"
@@ -222,14 +212,14 @@ export default function Layout({
                     }}
                 />
                 <div className={'noscript-header'}>
-                    <img
+                    {/* <img
                         alt="molatv"
                         src="https://mola01.koicdn.com/assets-global/images/mola_logo_horizontal.png"
                         className={'noscript-logo'}
-                    />
+                    /> */}
                 </div>
                 <div className={'noscript-content-wrapper'}>
-                    <img
+                    {/* <img
                         alt="mola error background"
                         src="https://mola01.koicdn.com/assets-global/images/error/not-found@2x.png"
                         style={{
@@ -237,7 +227,7 @@ export default function Layout({
                             height: '200px',
                             display: 'block',
                         }}
-                    />
+                    /> */}
                     <h2 className={'headline'}>
                         Anda belum mengaktifkan javascript di dalam browser
                     </h2>

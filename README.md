@@ -32,7 +32,7 @@ You will also see any lint errors in the console.
 
 Create file **[page-name].js** under **/pages** folder<br />
 the page name will reflect the accessible name on browser,<br />
-for example pages/sofa-kuning.js can be accessed as stag.mola.tv/micrositev2/sofa-kuning <br />
+for example pages/sofa-kuning.js can be accessed as ...<br />
 (notes: for development temporarily will use /micrositev2 until all microsite finished migrate)
 
 ### Applying styles
