@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import styles from './styles'
 import globalStyles from './global-styles'
 
@@ -67,8 +67,8 @@ const homeData = [
 
 export default function HomeScreen() {
     // const [hoverRef, isHovered] = useHover()
-    const [heroTitle, setHeroTitle] = useState('')
-    const [heroImage, setHeroImage] = useState('/images/Hero-Image-0.webp')
+    const [heroTitle, setHeroTitle] = useState(heroData[0].heroTitle)
+    const [heroImage, setHeroImage] = useState(heroData[0].heroImg)
     const onMouseEnter = (id) => {
         const selData = heroData.find((dt) => {
             return dt.id === id
@@ -81,7 +81,8 @@ export default function HomeScreen() {
     }
 
     const onMouseLeave = () => {
-        setHeroImage('/images/Hero-Image-0.webp')
+        setHeroImage(heroData[0].heroImg)
+        setHeroTitle(heroData[0].heroTitle)
     }
 
     // useEffect(() => {

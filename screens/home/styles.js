@@ -32,7 +32,7 @@ export default css`
         font-size: 58px;
         line-height: 1.07;
         color: #ffffff;
-        width: 684px;
+        width: 47%;
         text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     }
 
@@ -168,5 +168,12 @@ export default css`
         bottom: 0;
         z-index: 0;
         mix-blend-mode: overlay;
+    }
+
+    @media only screen and (max-width: 640px) {
+        .hero-title {
+            width: 85%;
+            font-size: 40px;
+        }
     }
 `

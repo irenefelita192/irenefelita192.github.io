@@ -1,4 +1,3 @@
-import theme from '../../components/theme'
 import css from 'styled-jsx/css'
 
 export default css`
@@ -21,7 +20,7 @@ export default css`
         text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     }
     .wrapper {
-        padding: 57px ${theme.offset.container};
+        padding: 57px 168px;
     }
 
     .menu {

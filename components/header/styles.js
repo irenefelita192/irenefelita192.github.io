@@ -54,7 +54,7 @@ export default css`
     a.navbar-item:hover:after {
         content: '';
         position: absolute;
-        top: 75%;
+        top: 65%;
         display: block;
         width: 100%;
         height: 1px;
@@ -68,7 +68,7 @@ export default css`
     .navbar.bg-white a.navbar-item:hover:after {
         content: '';
         position: absolute;
-        top: 75%;
+        top: 65%;
         display: block;
         width: 100%;
         height: 1px;
@@ -123,4 +123,44 @@ export default css`
         margin-left: 5px;
     }
 
+    .navbar-menu.is-active .navbar-item {
+        color: ${theme.colors.black};
+        background-color: transparent;
+        margin: 15px 30px;
+    }
+
+    .navbar-menu.is-active .navbar-lang {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-menu.is-active .navbar-item.navbar-lang i {
+        display: inline-block;
+    }
+
+    .navbar-menu.is-active a.navbar-item.is-active:before {
+        display: none;
+    }
+
+    .navbar.bg-white .navbar-menu.is-active .navbar-item.is-active {
+        color: ${theme.colors.black};
+    }
+
+    .navbar-item.has-dropdown {
+        margin: 10px 30px;
+    }
+
+    .navbar-item.has-dropdown .navbar-link {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-item.has-dropdown .navbar-dropdown {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar.bg-white .navbar-dropdown .navbar-item:hover:after {
+        display: none;
+    }
     `
