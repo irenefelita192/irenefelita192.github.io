@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
-import NotFound from '../components/not-found'
-import jsxGlobalStyle from '../styles/global.style.js'
+import NotFound from '../screens/not-found'
+// import jsxGlobalStyle from '../styles/global.style.js'
 
 export default function Custom404() {
     const title = 'Page Not Found - TV'
@@ -8,9 +8,9 @@ export default function Custom404() {
     return (
         <Layout title={title} description={description}>
             <NotFound></NotFound>
-            <style jsx global>
+            {/* <style jsx global>
                 {jsxGlobalStyle}
-            </style>
+            </style> */}
         </Layout>
     )
 }

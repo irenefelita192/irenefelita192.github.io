@@ -111,7 +111,7 @@ export default function Layout({
                 <link
                     rel="shortcut icon"
                     type="image/png/ico"
-                    href="http://www.lippolife.co.id/lippolife-content/themes/Lippo/images/favicon.ico"
+                    href="/images/logo/favicon.ico"
                 />
 
                 <link
@@ -122,7 +122,7 @@ export default function Layout({
                 />
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Nunito:wght@400;600&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Nunito:wght@400;600&display=swap"
                     rel="stylesheet"
                 />
             </Head>

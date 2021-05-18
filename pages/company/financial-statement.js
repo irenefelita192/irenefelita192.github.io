@@ -1,10 +1,10 @@
 import Layout from '../../components/layout'
-import CompanyScreen from '../../screens/company/overview'
+import FSScreen from '../../screens/company/financial-statement'
 
 export default function Company() {
     return (
         <Layout activeHeaderId="company">
-            <CompanyScreen />
+            <FSScreen />
         </Layout>
     )
 }

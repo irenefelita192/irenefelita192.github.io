@@ -140,10 +140,17 @@ export default css`
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: transparent;
     }
 
     .footer span {
         z-index: 1;
+    }
+
+    .footer img {
+        z-index: 1;
+        height: 24px;
+        padding-left: 8px;
     }
 
     .background-bottom {
@@ -161,7 +168,7 @@ export default css`
     }
 
     .background-overlay {
-        position: absolute;
+        position: fixed;
         background: #5a5a5a;
         height: 100%;
         width: 100%;
@@ -170,10 +177,47 @@ export default css`
         mix-blend-mode: overlay;
     }
 
-    @media only screen and (max-width: 640px) {
+    @media screen and (max-width: 1024px) {
+        .stats-top,
+        .stats-bottom {
+            min-width: 200px;
+        }
+
+        .stats-top {
+            font-size: 14px;
+        }
+
+        .stats-num {
+            font-size: 34px;
+        }
+
+        .stats-desc {
+            font-size: 14px;
+        }
+
+        .stats-top-desc {
+            bottom: 130px;
+        }
+
+        .stats-wrapper .column {
+            padding: 0 8px 30px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
         .hero-title {
             width: 85%;
             font-size: 40px;
+        }
+
+        .background-bottom {
+            position: fixed;
+            background: linear-gradient(
+                360deg,
+                rgb(0 0 0 / 45%) 16.13%,
+                rgb(0 0 0 / 35%) 57.63%,
+                rgba(0, 0, 0, 0) 100%
+            );
         }
     }
 `
