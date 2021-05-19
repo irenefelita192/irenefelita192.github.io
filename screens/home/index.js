@@ -158,7 +158,7 @@ export default function HomeScreen() {
                 </div>
                 <div className="footer">
                     <span>Terdaftar & Diawasi Oleh:</span>
-                    <img src="/images/logo/Logo-OJK.png" alt="OJK-logo" />
+                    <img src="/images/logo/OJK-Logo.png" alt="OJK-logo" />
                 </div>
             </div>
             <div className="background-overlay" />

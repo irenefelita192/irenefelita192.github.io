@@ -57,7 +57,7 @@ export default function OverviewScreen() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
+            <Footer />
             <style jsx>{styles}</style>
         </>
     )

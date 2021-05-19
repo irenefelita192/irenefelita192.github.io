@@ -99,7 +99,7 @@ export default function Header({ withBg = true, activeId }) {
 
     const brandImg = withBg
         ? '/images/logo/LippoLife-Logo-Black.png'
-        : '/images/logo/LippoLife-Logo-White.png'
+        : '/images/logo/LippoLife-Logo-Red.png'
 
     const selLanguage = languageData.find((lang) => {
         return lang.id === activeLang
