@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from 'react'
+import axios from 'axios'
 import styles from './styles'
 import { getCookie } from '../../util/global-util'
 const headerData = [
@@ -72,6 +73,7 @@ export default function Header({ withBg = true, activeId }) {
     const [isMenuActive, setIsMenuActive] = useState(false)
     const [isPopupLang, setIsPopupLang] = useState(false)
     const [activeLang, setActiveLang] = useState('id')
+    const [activeLangObj, setActiveLangObj] = useState(null)
 
     useEffect(() => {
         if (process.browser) {
@@ -79,7 +81,40 @@ export default function Header({ withBg = true, activeId }) {
                 setIsDesktop(false)
             }
             const langId = getCookie('lang')
-            setActiveLang(langId)
+            if (langId) setActiveLang(langId)
+
+            document.addEventListener('click', (evt) => {
+                const navbarWrapper = document.getElementById('navbarLang')
+                let targetElement = evt.target // clicked element
+
+                do {
+                    if (targetElement == navbarWrapper) {
+                        // This is a click inside. Do nothing, just return.
+
+                        return
+                    }
+                    // Go up the DOM
+                    targetElement = targetElement.parentNode
+                } while (targetElement)
+                setIsPopupLang(false)
+                // This is a click outside.
+            })
+        }
+        const selLanguage = languageData.find((lang) => {
+            return lang.id === activeLang
+        })
+
+        setActiveLangObj(selLanguage)
+        // axios.get('http://localhost:1337/headers').then((response) => {
+        //     console.log(response.data)
+        //     console.log(response.status)
+        //     console.log(response.statusText)
+        //     console.log(response.headers)
+        //     console.log(response.config)
+        // })
+
+        return () => {
+            document.removeEventListener('click', () => {})
         }
     }, [])
 
@@ -101,9 +136,6 @@ export default function Header({ withBg = true, activeId }) {
         ? '/images/logo/LippoLife-Logo-Black.png'
         : '/images/logo/LippoLife-Logo-Red.png'
 
-    const selLanguage = languageData.find((lang) => {
-        return lang.id === activeLang
-    })
     return (
         <>
             <nav
@@ -212,6 +244,7 @@ export default function Header({ withBg = true, activeId }) {
 
                         {/* language start */}
                         <div
+                            id="navbarLang"
                             className="navbar-item navbar-lang"
                             onClick={() => handleLangDropdown()}
                         >
@@ -220,7 +253,9 @@ export default function Header({ withBg = true, activeId }) {
                                     isPopupLang ? 'is-active' : ''
                                 }`}
                             >
-                                <span>{selLanguage.title}</span>
+                                <span>
+                                    {activeLangObj && activeLangObj.title}
+                                </span>
                                 <i />
                                 <div
                                     className="dropdown-menu"

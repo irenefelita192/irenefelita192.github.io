@@ -3,7 +3,7 @@ import CompanyScreen from '../../screens/company/overview'
 
 export default function Company() {
     return (
-        <Layout activeHeaderId="company">
+        <Layout activeHeaderId="company" title="Company">
             <CompanyScreen />
         </Layout>
     )

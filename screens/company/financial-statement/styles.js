@@ -2,13 +2,6 @@ import theme from '../../../components/global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
-    .wrapper {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-gap: 155px;
-        padding: 57px ${theme.offset.container};
-    }
-
     .content-title {
         margin: 0 0 70px;
         font-weight: 300;
@@ -23,7 +16,7 @@ export default css`
 
     .content-item {
         margin-right: 72px;
-        width: 200px;
+        width: 180px;
     }
 
     .content-item img {
@@ -38,5 +31,42 @@ export default css`
         padding-top: 16px;
         color: ${theme.colors.black};
         white-space: nowrap;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .content-title {
+            font-size: 40px;
+        }
+
+        .content-item {
+            margin-right: 54px;
+        }
+
+        .content-item .desc {
+            white-space: normal;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .content-description {
+            flex-direction: column;
+        }
+
+        .content-item {
+            width: 242px;
+            margin-bottom: 54px;
+        }
+
+        .content-item .desc {
+            white-space: normal;
+            font-size: 24px;
+            padding-top: 8px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .content-title {
+            font-size: 35px;
+        }
     }
 `

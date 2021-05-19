@@ -84,7 +84,7 @@ export default css`
     a.navbar-item.is-active:before {
         content: '';
         position: absolute;
-        left: -43%;
+        left: -29px;
         display: block;
         background-color: ${theme.header.activeBgColor};
         color: #ffffff;
@@ -197,5 +197,12 @@ export default css`
 
     .navbar-lang a.dropdown-item.is-active {
         background-color: ${theme.colors.lightGold};
+    }
+
+    @media screen and (max-width: 640px) {
+        .navbar {
+            height: auto;
+            padding: 10px 0;
+        }
     }
 `

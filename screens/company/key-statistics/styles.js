@@ -2,13 +2,6 @@ import theme from '../../../components/global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
-    .wrapper {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-gap: 155px;
-        padding: 57px ${theme.offset.container};
-    }
-
     .content-title {
         margin: 0 0 70px;
         font-weight: 300;
@@ -61,5 +54,34 @@ export default css`
     .card-desc {
         font-size: 16px;
         line-height: 1.5;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .card-item img {
+            width: 240px;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .card-item.card-odd,
+        .card-item.card-even {
+            flex-direction: column;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .card-item img {
+            width: 100%;
+        }
+
+        .card-item.card-odd .card-content,
+        .card-item.card-even .card-content {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .card-item {
+            margin-bottom: 54px;
+        }
     }
 `

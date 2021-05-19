@@ -37,4 +37,12 @@ export default css`
         width: 100%;
         height: 100%;
     }
+
+    @media screen and (max-width: 640px) {
+        .hero-wrapper img {
+            height: 200px;
+            width: auto;
+            object-fit: cover;
+        }
+    }
 `

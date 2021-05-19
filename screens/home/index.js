@@ -106,7 +106,7 @@ export default function HomeScreen() {
         const selImg =
                 selData && (isWebp ? selData.heroImg : selData.heroImgNoWebp),
             selTitle = selData && selData.heroTitle
-        console.log('selImg', selImg)
+
         setHeroImage(selImg)
         setHeroTitle(selTitle)
     }

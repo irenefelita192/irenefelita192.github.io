@@ -1,6 +1,9 @@
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
+import Footer from '../../../components/footer'
+import PageWrapper from '../../../components/layout/page-wrapper'
+
 const data = [
     {
         id: 1,
@@ -39,39 +42,42 @@ export default function KSScreen() {
     return (
         <>
             <Hero title="About LippoLife" />
-            <div className="wrapper">
-                <Sidebar activeId="key-statistics" />
-                <div className="content-wrapper">
-                    <h1 className="content-title">Key Statistics</h1>
-                    <div className="content-description">
-                        {data &&
-                            data.map((dt, index) => (
-                                <div
-                                    key={dt.id}
-                                    className={`card-item ${
-                                        (index + 1) % 2 == 0
-                                            ? 'card-even'
-                                            : 'card-odd'
-                                    }`}
-                                >
-                                    <img src={dt.image} alt={dt.title} />
+            <PageWrapper>
+                <>
+                    <Sidebar activeId="key-statistics" />
+                    <div className="content-wrapper">
+                        <h1 className="content-title">Key Statistics</h1>
+                        <div className="content-description">
+                            {data &&
+                                data.map((dt, index) => (
+                                    <div
+                                        key={dt.id}
+                                        className={`card-item ${
+                                            (index + 1) % 2 == 0
+                                                ? 'card-even'
+                                                : 'card-odd'
+                                        }`}
+                                    >
+                                        <img src={dt.image} alt={dt.title} />
 
-                                    <div className="card-content">
-                                        <div className="card-title">
-                                            {dt.title}
-                                        </div>
-                                        <div className="card-short">
-                                            {dt.shortDescription}
-                                        </div>
-                                        <div className="card-desc">
-                                            {dt.description}
+                                        <div className="card-content">
+                                            <div className="card-title">
+                                                {dt.title}
+                                            </div>
+                                            <div className="card-short">
+                                                {dt.shortDescription}
+                                            </div>
+                                            <div className="card-desc">
+                                                {dt.description}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                        </div>
                     </div>
-                </div>
-            </div>
+                </>
+            </PageWrapper>
+            <Footer />
             <style jsx>{styles}</style>
         </>
     )

@@ -44,4 +44,10 @@ export default css`
         height: 10px;
         margin-left: 8px;
     }
+
+    @media screen and (max-width: 640px) {
+        .menu {
+            display: none;
+        }
+    }
 `

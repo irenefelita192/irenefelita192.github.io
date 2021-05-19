@@ -55,4 +55,15 @@ export default css`
         text-align: right;
         color: #818181;
     }
+
+    @media screen and (max-width: 640px) {
+        footer {
+            padding: 54px;
+            grid-gap: 42px;
+        }
+
+        .ojk-wrapper {
+            text-align: left;
+        }
+    }
 `

@@ -2,13 +2,6 @@ import theme from '../../../components/global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
-    .wrapper {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-gap: 155px;
-        padding: 57px ${theme.offset.container};
-    }
-
     .content-title {
         margin: 0 0 70px;
         font-weight: 300;
@@ -27,5 +20,25 @@ export default css`
         justify-content: center;
         column-gap: 70px;
         margin-top: 70px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .logo-wrapper {
+            margin-top: 42px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .content-title {
+            margin: 0 0 42px;
+        }
+
+        .logo-wrapper {
+            flex-direction: column;
+        }
+
+        .logo-wrapper img {
+            padding: 0 20px 42px;
+        }
     }
 `

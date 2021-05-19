@@ -1,7 +1,10 @@
+import ReactMarkdown from 'react-markdown'
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
-import ReactMarkdown from 'react-markdown'
+import Footer from '../../../components/footer'
+import PageWrapper from '../../../components/layout/page-wrapper'
+
 const data = [
     {
         id: 1,
@@ -40,34 +43,37 @@ export default function BODScreen() {
     return (
         <>
             <Hero title="About LippoLife" />
-            <div className="wrapper">
-                <Sidebar activeId="bod" />
-                <div className="content-wrapper">
-                    <h1 className="content-title">Board of Directors</h1>
-                    <div className="content-description">
-                        {data &&
-                            data.map((dt, index) => (
-                                <div key={dt.id} className={`card-item`}>
-                                    <img src={dt.image} alt={dt.title} />
+            <PageWrapper>
+                <>
+                    <Sidebar activeId="bod" />
+                    <div className="content-wrapper">
+                        <h1 className="content-title">Board of Directors</h1>
+                        <div className="content-description">
+                            {data &&
+                                data.map((dt, index) => (
+                                    <div key={dt.id} className={`card-item`}>
+                                        <img src={dt.image} alt={dt.title} />
 
-                                    <div className="card-content">
-                                        <div className="card-title">
-                                            {dt.title}
-                                        </div>
-                                        <div className="card-short">
-                                            {dt.shortDescription}
-                                        </div>
-                                        <div className="card-desc">
-                                            <ReactMarkdown>
-                                                {dt.description}
-                                            </ReactMarkdown>
+                                        <div className="card-content">
+                                            <div className="card-title">
+                                                {dt.title}
+                                            </div>
+                                            <div className="card-short">
+                                                {dt.shortDescription}
+                                            </div>
+                                            <div className="card-desc">
+                                                <ReactMarkdown>
+                                                    {dt.description}
+                                                </ReactMarkdown>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                        </div>
                     </div>
-                </div>
-            </div>
+                </>
+            </PageWrapper>
+            <Footer />
             <style jsx>{styles}</style>
             <style jsx global>
                 {`

@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
-import yoastSEOPlugin from './yoastSEOPlugin.json'
-import Header from '../components/header'
+import yoastSEOPlugin from '../yoastSEOPlugin.json'
+import Header from '../header'
 
 import normalizeCss from 'normalize.css'
-import globalStyles from './global-styles/global-styles'
+import globalStyles from '../global-styles/global-styles'
 
 export default function Layout({
     children,

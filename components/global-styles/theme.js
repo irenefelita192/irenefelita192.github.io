@@ -8,6 +8,7 @@ const theme = {
     },
     offset: {
         container: '168px',
+        container1024: '',
     },
     header: {
         height: '80px',

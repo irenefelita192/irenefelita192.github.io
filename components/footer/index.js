@@ -23,7 +23,12 @@ export default function Footer() {
         <>
             <footer>
                 <div className="columns">
-                    <div className="column logo-wrapper">
+                    <div
+                        className="column logo-wrapper"
+                        onClick={() => {
+                            window.location.href = '/'
+                        }}
+                    >
                         <img
                             src="/images/logo/LippoLife-Logo-White.png"
                             alt="Lippo-logo"
