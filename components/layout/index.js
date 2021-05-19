@@ -8,34 +8,23 @@ import globalStyles from '../global-styles/global-styles'
 
 export default function Layout({
     children,
-    title = 'Lippo Life – We Love You',
+    title = '',
     description = 'Best Protection Solution at Every Stage of Life',
     image = '',
     keywords = '',
-    url = '',
+
     twitter_card_type = 'summary',
     appLinkUrl = '',
     type = 'website',
-    trackerData,
     markup,
     headerWithBg = true,
     activeHeaderId = '',
 }) {
-    // useEffect(() => {
-    //   if (trackerData) {
-    //     const payload = {
-    //       window,
-    //       userData: trackerData.userData,
-    //       event: "event_pages",
-    //       currentLocation: document.location,
-    //       document: document,
-    //     }
-    //     WebTracker.trackEvent({
-    //       data: payload,
-    //       pubsubConfig: trackerData.pubsubConfig,
-    //     })
-    //   }
-    // }, [])
+    const seoTitle = title
+        ? `${title} | Lippo Life – We Love You`
+        : 'Lippo Life – We Love You'
+
+    const url = process.env.config?.endpoints?.domain ?? ''
 
     return (
         <>
@@ -45,7 +34,7 @@ export default function Layout({
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta
                     name="apple-mobile-web-app-status-bar-style"
-                    content="#0f4a73"
+                    content="#C81A21"
                 />
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta
@@ -63,7 +52,7 @@ export default function Layout({
                         'Best Protection Solution at Every Stage of Life'
                     }
                 />
-                <title>{title}</title>
+                <title>{seoTitle}</title>
                 {/* <meta
                     name="msapplication-TileImage"
                     content={
@@ -72,19 +61,18 @@ export default function Layout({
                 /> */}
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
+
                 <meta
-                    name="google-site-verification"
-                    content="iOSX2B9Y9Mx0cY0ihBPzKY3IyCijmlPx1mMNu0kHz6Q"
+                    property="og:site_name"
+                    content="Lippo Life - We Love You"
                 />
-                <meta property="og:site_name" content="lippolife" />
-                <meta property="og:title" content={title} />
+                <meta property="og:title" content={seoTitle} />
                 <meta property="og:description" content={description} />
                 <meta property="og:image" content={image} />
                 <meta property="og:url" content={url} />
-                <meta property="og:video" content={url} />
                 <meta property="og:type" content={type} />
 
-                <meta property="twitter:text:title" content={title} />
+                <meta property="twitter:text:title" content={seoTitle} />
                 <meta name="twitter:description" content={description} />
                 <meta name="twitter:image:src" content={image} />
                 <meta name="twitter:card" content={twitter_card_type} />
@@ -125,6 +113,19 @@ export default function Layout({
                     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Nunito:wght@400;600&display=swap"
                     rel="stylesheet"
                 />
+                {/*GA Google Analytics @ https://m0n.co/ga - start */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'G-ZB5B3GS21Z', 'auto');
+			ga('send', 'pageview');`,
+                    }}
+                />
+                {/*GA Google Analytics @ https://m0n.co/ga - end */}
             </Head>
             <style jsx global>
                 {normalizeCss}

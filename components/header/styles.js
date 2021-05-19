@@ -199,10 +199,21 @@ export default css`
         background-color: ${theme.colors.lightGold};
     }
 
+    .navbar-lang-mobile > span {
+        padding: 0 10px 0 0;
+    }
+
+    .navbar-lang-mobile > span:after {
+        content: '/';
+        padding: 0 0 0 10px;
+    }
+
+    .navbar-lang-mobile > span:last-child:after {
+        content: '';
+    }
+
     @media screen and (max-width: 640px) {
         .navbar {
-            height: auto;
-            padding: 10px 0;
+            height: 52px;
         }
-    }
 `

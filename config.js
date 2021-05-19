@@ -6,14 +6,14 @@ const options = {
     development: {
         endpoints: {
             domain: 'https://stag.lippo.tv',
-            asset: 'https://cdn.stag.supersoccer.tv/lippo/assets-global',
+            asset: '/images',
             assetPrefix: '',
         },
     },
     staging: {
         endpoints: {
             domain: 'https://stag.lippo.tv',
-            asset: 'https://cdn.stag.supersoccer.tv/lippo/assets-global',
+            asset: '/images',
             assetPrefix:
                 'https://cdn.stag.supersoccer.tv/lippo/assets/microsite',
         },

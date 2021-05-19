@@ -84,8 +84,9 @@ export default function HomeScreen() {
     const defaultHeroImg = isWebp
         ? heroData[0].heroImg
         : heroData[0].heroImgNoWebp
-    const [heroImage, setHeroImage] = useState(defaultHeroImg)
-    const [heroTitle, setHeroTitle] = useState(heroData[0].heroTitle)
+    const [hovHeroId, setHovHeroId] = useState(0)
+    // const [heroTitle, setHeroTitle] = useState('')
+    const [isHovered, setIsHovered] = useState(false)
     useEffect(() => {
         if (process.browser) {
             if (document && document.body.clientWidth < 1024) {
@@ -97,32 +98,52 @@ export default function HomeScreen() {
                 setIsWebp(false)
             }
         }
+        console.log('configg', process.env.config)
     }, [])
 
     const onMouseEnter = (id) => {
         const selData = heroData.find((dt) => {
             return dt.id === id
         })
-        const selImg =
-                selData && (isWebp ? selData.heroImg : selData.heroImgNoWebp),
+        const selId = selData && selData.id,
             selTitle = selData && selData.heroTitle
 
-        setHeroImage(selImg)
-        setHeroTitle(selTitle)
+        setHovHeroId(selId)
+        // setHeroTitle(selTitle)
+        setIsHovered(true)
     }
 
     const onMouseLeave = () => {
-        setHeroImage(defaultHeroImg)
-        setHeroTitle(heroData[0].heroTitle)
+        setHovHeroId(0)
+        // setHeroTitle(heroData[0].heroTitle)
+        setIsHovered(false)
     }
 
     return (
         <>
-            {/* <div className="hero-wrapper"></div> */}
+            {heroData &&
+                heroData.map((dt) => (
+                    <img
+                        key={dt.id}
+                        src={isWebp ? dt.heroImg : dt.heroImgNoWebp}
+                        className={`${dt.id == 0 ? 'default' : ''} hero-img ${
+                            hovHeroId === dt.id ? 'is-active' : ''
+                        }`}
+                    />
+                ))}
 
-            <img src={heroImage} className="hero-img" />
-
-            <div className="hero-title">{heroTitle}</div>
+            {heroData &&
+                heroData.map((dt) => (
+                    <div
+                        key={dt.id}
+                        className={`${dt.id == 0 ? 'default' : ''} hero-title ${
+                            hovHeroId === dt.id ? 'is-active' : ''
+                        }`}
+                    >
+                        {dt.heroTitle}
+                    </div>
+                ))}
+            {/* <div className="hero-title">{heroTitle}</div> */}
             <div className="grid-wrapper">
                 <div className="blank-wrapper" />
                 <div className="stats-wrapper">

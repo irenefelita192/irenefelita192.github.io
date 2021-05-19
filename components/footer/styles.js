@@ -12,17 +12,18 @@ export default css`
 
     footer .title {
         font-weight: 600;
-        font-size: 13px;
+        font-size: 16px;
         line-height: 1.38;
         color: #ffffff;
         margin-bottom: 21px;
     }
 
     footer .list {
-        font-size: 13px;
+        font-size: 16px;
         line-height: 1.38;
         color: #c7c7c7;
         margin-bottom: 14px;
+        display: block;
     }
 
     footer .column:nth-child(2),
@@ -36,7 +37,7 @@ export default css`
     }
 
     .ojk-wrapper {
-        font-size: 10px;
+        font-size: 13px;
         line-height: 1.6;
         color: #ffffff;
         margin-bottom: 6px;

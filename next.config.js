@@ -1,5 +1,5 @@
 const config = require('./config')
-console.log('AAAAAA', config)
+
 module.exports = {
     // assetPrefix: config.endpoints.assetPrefix,
     distDir: 'build',
@@ -12,12 +12,7 @@ module.exports = {
         return process.env.npm_package_version
     },
     poweredByHeader: false,
-    // i18n: {
-    //   // These are all the locales you want to support in
-    //   // your application
-    //   locales: ['en', 'id'],
-    //   defaultLocale: 'en'
-    // },
+
     async headers() {
         return [
             {

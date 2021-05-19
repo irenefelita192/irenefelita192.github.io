@@ -84,11 +84,15 @@ export default function Header({ withBg = true, activeId }) {
             if (langId) setActiveLang(langId)
 
             document.addEventListener('click', (evt) => {
-                const navbarWrapper = document.getElementById('navbarLang')
+                const navbarLang = document.getElementById('navbarLang')
+                const navbarWrapper = document.getElementById('navbarTop')
                 let targetElement = evt.target // clicked element
 
                 do {
-                    if (targetElement == navbarWrapper) {
+                    if (
+                        targetElement == navbarLang ||
+                        targetElement == navbarWrapper
+                    ) {
                         // This is a click inside. Do nothing, just return.
 
                         return
@@ -97,6 +101,7 @@ export default function Header({ withBg = true, activeId }) {
                     targetElement = targetElement.parentNode
                 } while (targetElement)
                 setIsPopupLang(false)
+                setIsMenuActive(false)
                 // This is a click outside.
             })
         }
@@ -139,6 +144,7 @@ export default function Header({ withBg = true, activeId }) {
     return (
         <>
             <nav
+                id="navbarTop"
                 className={`navbar ${withBg ? 'bg-white' : ''}`}
                 role="navigation"
                 aria-label="main navigation"
@@ -165,7 +171,6 @@ export default function Header({ withBg = true, activeId }) {
                 </div>
 
                 <div
-                    id="navbarTop"
                     className={`navbar-menu ${
                         !isDesktop && isMenuActive ? 'is-active' : ''
                     }`}
@@ -243,45 +248,65 @@ export default function Header({ withBg = true, activeId }) {
                         </a> */}
 
                         {/* language start */}
-                        <div
-                            id="navbarLang"
-                            className="navbar-item navbar-lang"
-                            onClick={() => handleLangDropdown()}
-                        >
+                        {isDesktop && (
                             <div
-                                className={`dropdown is-right ${
-                                    isPopupLang ? 'is-active' : ''
-                                }`}
+                                id="navbarLang"
+                                className="navbar-item navbar-lang"
+                                onClick={() => handleLangDropdown()}
                             >
-                                <span>
-                                    {activeLangObj && activeLangObj.title}
-                                </span>
-                                <i />
                                 <div
-                                    className="dropdown-menu"
-                                    id="dropdown-menu"
-                                    role="menu"
+                                    className={`dropdown is-right ${
+                                        isPopupLang ? 'is-active' : ''
+                                    }`}
                                 >
-                                    <div className="dropdown-content">
-                                        {languageData.map((lang) => (
-                                            <a
-                                                key={lang.id}
-                                                onClick={() =>
-                                                    handleChooseLang(lang.id)
-                                                }
-                                                className={`dropdown-item ${
-                                                    activeLang === lang.id
-                                                        ? 'is-active'
-                                                        : ''
-                                                }`}
-                                            >
-                                                {lang.title}
-                                            </a>
-                                        ))}
+                                    <span>
+                                        {activeLangObj && activeLangObj.title}
+                                    </span>
+
+                                    <i />
+                                    <div
+                                        className="dropdown-menu"
+                                        id="dropdown-menu"
+                                        role="menu"
+                                    >
+                                        <div className="dropdown-content">
+                                            {languageData.map((lang) => (
+                                                <a
+                                                    key={lang.id}
+                                                    onClick={() =>
+                                                        handleChooseLang(
+                                                            lang.id
+                                                        )
+                                                    }
+                                                    className={`dropdown-item ${
+                                                        activeLang === lang.id
+                                                            ? 'is-active'
+                                                            : ''
+                                                    }`}
+                                                >
+                                                    {lang.title}
+                                                </a>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
+                        {!isDesktop && (
+                            <>
+                                <div className="navbar-item navbar-lang-mobile">
+                                    {languageData.map((lang) => (
+                                        <span
+                                            onClick={() =>
+                                                handleChooseLang(lang.id)
+                                            }
+                                        >
+                                            {lang.title}
+                                        </span>
+                                    ))}
+                                </div>
+                            </>
+                        )}
                         {/* language end */}
                     </div>
                 </div>

@@ -22,18 +22,58 @@ export default css`
         object-position: top;
         height: 100%;
         width: 100%;
+        opacity: 0;
+        right: -100px;
+        transition: 0.3s opacity ease, 0.4s right ease-in;
+    }
+
+    .hero-img.is-active {
+        opacity: 1;
+        right: 0;
+        /* transition: 0.3s opacity ease, 0.1s right ease-in; */
+        transition: 0.5s opacity ease, 0.1s right ease-in;
+    }
+
+    .hero-img.default {
+        opacity: 0;
+        left: -20px;
+        transition: 0.5s opacity ease, 0.2s left ease-in;
+    }
+
+    .hero-img.default.is-active {
+        opacity: 1;
+        left: 0;
+        transition: 0.3s opacity ease, 0.3s left ease-in;
     }
 
     .hero-title {
         position: absolute;
         top: 100px;
-        left: 30px;
+        left: 300px;
         font-weight: bold;
         font-size: 58px;
         line-height: 1.07;
         color: #ffffff;
         width: 47%;
         text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: 0.3s opacity ease, 0.3s left ease-in;
+    }
+
+    .hero-title.is-active {
+        left: 30px;
+        opacity: 1;
+        transition: 0.3s opacity ease, 0.3s left ease-in;
+    }
+
+    .hero-title.default {
+        opacity: 0;
+        transition: 0.3s opacity ease;
+    }
+
+    .hero-title.default.is-active {
+        opacity: 1;
+        transition: 0.3s opacity ease;
     }
 
     .grid-wrapper {
@@ -58,7 +98,7 @@ export default css`
     }
 
     .stats-wrapper .column {
-        padding: 0 8px;
+        margin: 0 8px;
         position: relative;
         cursor: pointer;
     }
@@ -79,7 +119,7 @@ export default css`
     .stats-top-desc {
         display: none;
         position: absolute;
-        width: calc(100% - 16px);
+        width: 100%;
         bottom: 100px;
         background: rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(50px);
@@ -197,6 +237,7 @@ export default css`
 
         .stats-top-desc {
             bottom: 130px;
+            width: calc(100% - 16px);
         }
 
         .stats-wrapper .column {
@@ -206,8 +247,12 @@ export default css`
 
     @media screen and (max-width: 768px) {
         .hero-title {
-            width: 85%;
+            width: 0;
             font-size: 40px;
+        }
+
+        .hero-title.is-active {
+            width: 85%;
         }
 
         .background-bottom {
@@ -218,6 +263,12 @@ export default css`
                 rgb(0 0 0 / 35%) 57.63%,
                 rgba(0, 0, 0, 0) 100%
             );
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .hero-title {
+            left: 50px;
         }
     }
 `

@@ -2,20 +2,20 @@ import styles from './styles'
 const topicData = {
     title: 'Topics',
     data: [
-        { id: 1, title: 'Company' },
-        { id: 2, title: 'Solutions' },
-        { id: 3, title: 'Careers' },
-        { id: 4, title: 'Contact' },
+        { id: 1, title: 'Company', href: '/company' },
+        { id: 2, title: 'Solutions', href: '/solutions' },
+        { id: 3, title: 'Careers', href: '/careers' },
+        { id: 4, title: 'Contact', href: '/contact' },
     ],
 }
 
 const moreData = {
     title: 'More',
     data: [
-        { id: 1, title: 'Vida' },
-        { id: 2, title: 'Privacy Policy' },
-        { id: 3, title: 'Terms & Conditions' },
-        { id: 4, title: 'Sitemap' },
+        { id: 1, title: 'Vida', href: '/vida' },
+        { id: 2, title: 'Privacy Policy', href: '/privacy-policy' },
+        { id: 3, title: 'Terms & Conditions', href: '/tnc' },
+        { id: 4, title: 'Sitemap', href: '/sitemap' },
     ],
 }
 export default function Footer() {
@@ -37,17 +37,21 @@ export default function Footer() {
                     <div className="column">
                         <div className="title"> {topicData.title}</div>
                         {topicData.data.map((topic) => (
-                            <div className="list" key={topic.id}>
+                            <a
+                                className="list"
+                                key={topic.id}
+                                href={topic.href}
+                            >
                                 {topic.title}
-                            </div>
+                            </a>
                         ))}
                     </div>
                     <div className="column">
                         <div className="title"> {moreData.title}</div>
                         {moreData.data.map((more) => (
-                            <div className="list" key={more.id}>
+                            <a className="list" key={more.id} href={more.href}>
                                 {more.title}
-                            </div>
+                            </a>
                         ))}
                     </div>
                     <div className="column ojk-wrapper">
