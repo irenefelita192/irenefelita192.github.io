@@ -52,4 +52,15 @@ export default css`
         font-size: 14px;
         line-height: 1.57;
     }
+
+    @media screen and (max-width: 900px) {
+        .card-item {
+            flex-direction: column;
+            margin-bottom: 54px;
+        }
+
+        .card-item .card-content {
+            padding: 24px 0 0;
+        }
+    }
 `
