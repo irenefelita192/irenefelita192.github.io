@@ -5,24 +5,23 @@ const ENV = process.env.REACT_APP_ENV
 const options = {
     development: {
         endpoints: {
-            domain: 'https://stag.lippo.tv',
+            domain: 'https://stag.lippo.co.id',
             asset: '/images',
             assetPrefix: '',
         },
     },
     staging: {
         endpoints: {
-            domain: 'https://stag.lippo.tv',
+            domain: 'https://stag.lippo.co.id',
             asset: '/images',
-            assetPrefix:
-                'https://cdn.stag.supersoccer.tv/lippo/assets/microsite',
+            assetPrefix: '',
         },
     },
     production: {
         endpoints: {
-            domain: 'https://lippo.tv',
-            asset: 'https://lippo01.koicdn.com/assets-global',
-            assetPrefix: 'https://lippo01.koicdn.com/assets/microsite',
+            domain: 'http://www.lippolife.co.id',
+            asset: '',
+            assetPrefix: '',
         },
     },
 }
