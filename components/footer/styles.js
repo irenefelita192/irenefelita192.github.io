@@ -57,6 +57,24 @@ export default css`
         color: #818181;
     }
 
+    @media screen and (max-width: 1024px) {
+        footer {
+            padding: 72px;
+            grid-gap: 42px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        footer {
+            padding: 72px;
+            grid-gap: 20px;
+        }
+
+        footer .columns {
+            display: flex;
+        }
+    }
+
     @media screen and (max-width: 640px) {
         footer {
             padding: 54px;
