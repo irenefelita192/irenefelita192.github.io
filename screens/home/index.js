@@ -1,149 +1,87 @@
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getHero, getStats } from '../../services/home'
+import { getCookie } from '../../util/global-util'
+
 import styles from './styles'
-import globalStyles from './global-styles'
-
-const heroData = [
-    {
-        id: 0,
-        heroTitle: 'asasBest Protection Solution at Every Stage of Life',
-        heroTitleEn: 'Best Protection Solution at Every Stage of Life',
-        heroImg: '/images/Hero-Image-0.webp',
-        heroImgNoWebp: '/images/Hero-Image-0.png',
-    },
-    {
-        id: 1,
-        heroTitle: 'sssLippoLife Protects Many Indonesian Families',
-        heroTitleEn: 'Best Protection Solution at Every Stage of Life',
-        heroImg: '/images/Hero-Image-1.webp',
-        heroImgNoWebp: '/images/Hero-Image-1.png',
-    },
-    {
-        id: 2,
-        heroTitle: 'ddddA Life Insurance with Solid Financial Strength',
-        heroTitleEn: 'Best Protection Solution at Every Stage of Life',
-        heroImg: '/images/Hero-Image-2.webp',
-        heroImgNoWebp: '/images/Hero-Image-2.png',
-    },
-    {
-        id: 3,
-        heroTitle: 'asdaThe Company is Well Capitalized to Further Expand',
-        heroTitleEn: 'Best Protection Solution at Every Stage of Life',
-        heroImg: '/images/Hero-Image-3.webp',
-        heroImgNoWebp: '/images/Hero-Image-3.png',
-    },
-    {
-        id: 4,
-        heroTitle:
-            'sadsLippoLife Experience Good Business Growth Over the Years',
-        heroTitleEn: 'Best Protection Solution at Every Stage of Life',
-        heroImg: '/images/Hero-Image-4.webp',
-        heroImgNoWebp: '/images/Hero-Image-4.png',
-    },
-]
-const homeData = [
-    {
-        id: 1,
-        statsDesc:
-            'LippoLife always cares for the people of Indonesia. During this pandemic, LippoLife continues to maintain its commitment to help affected families by paying claims and benefits totaling 27 billion in 2020.',
-        statsTitle: 'Protecting Many Families',
-        statsNum: 'Rp27bn',
-        statsShortDesc: 'Claims & Benefits Paid',
-    },
-    {
-        id: 2,
-
-        statsDesc:
-            'The company has RBC 774% in 2020, far above the limit required by OJK of 120%',
-        statsTitle: 'Solid Financial Strength',
-        statsNum: '774%',
-        statsShortDesc: 'RBC',
-    },
-    {
-        id: 3,
-        statsDesc:
-            'The company has RBC 774% in 2020, far above the limit required by OJK of 120%',
-        statsTitle: 'Solid Financial Strength',
-        statsNum: '774%',
-        statsShortDesc: 'RBC',
-    },
-    {
-        id: 4,
-        statsDesc:
-            'The company has RBC 774% in 2020, far above the limit required by OJK of 120%',
-        statsTitle: 'Solid Financial Strength',
-        statsNum: '774%',
-        statsShortDesc: 'RBC',
-    },
-]
 
 export default function HomeScreen() {
     const [isWebp, setIsWebp] = useState(true)
 
-    const [isDesktop, setIsDesktop] = useState(true)
-
-    const defaultHeroImg = isWebp
-        ? heroData[0].heroImg
-        : heroData[0].heroImgNoWebp
     const [hovHeroId, setHovHeroId] = useState(0)
-    // const [heroTitle, setHeroTitle] = useState('')
-    const [isHovered, setIsHovered] = useState(false)
+    const [heroData, setHeroData] = useState([])
+    const [homeData, setHomeData] = useState([])
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const hero = await getHero(langId ? langId : 'id')
+        const home = await getStats(langId ? langId : 'id')
+        console.log('hero', hero)
+        console.log('home', home)
+        if (!isMounted()) return
+        setHeroData(hero)
+        setHomeData(home)
+    }, [])
+
     useEffect(() => {
         if (process.browser) {
-            if (document && document.body.clientWidth < 1024) {
-                setIsDesktop(false)
-            }
             if (window.Modernizr.webp) {
                 setIsWebp(true)
             } else {
                 setIsWebp(false)
             }
         }
-        console.log('configg', process.env.config)
     }, [])
 
     const onMouseEnter = (id) => {
         const selData = heroData.find((dt) => {
-            return dt.id === id
+            return dt.heroID === id
         })
-        const selId = selData && selData.id,
-            selTitle = selData && selData.heroTitle
+        const selId = selData && selData.heroID
 
         setHovHeroId(selId)
-        // setHeroTitle(selTitle)
-        setIsHovered(true)
     }
 
     const onMouseLeave = () => {
         setHovHeroId(0)
-        // setHeroTitle(heroData[0].heroTitle)
-        setIsHovered(false)
     }
+
+    const assetDomain = process.env.config?.endpoints?.asset ?? ''
 
     return (
         <>
             {heroData &&
                 heroData.map((dt) => (
-                    <img
-                        key={dt.id}
-                        src={isWebp ? dt.heroImg : dt.heroImgNoWebp}
-                        className={`${dt.id == 0 ? 'default' : ''} hero-img ${
-                            hovHeroId === dt.id ? 'is-active' : ''
-                        }`}
-                    />
+                    <Fragment key={dt.heroID}>
+                        <img
+                            src={
+                                isWebp
+                                    ? `${assetDomain}${
+                                          dt.heroImgWebp[0]?.url ?? ''
+                                      }`
+                                    : `${assetDomain}${dt.heroImg[0]?.ur ?? ''}`
+                            }
+                            className={`${
+                                dt.heroID == 0 ? 'default' : ''
+                            } hero-img ${
+                                hovHeroId === dt.heroID ? 'is-active' : ''
+                            }`}
+                        />
+                        <div
+                            className={`${
+                                dt.heroID == 0 ? 'default' : ''
+                            } hero-title ${
+                                hovHeroId === dt.heroID ? 'is-active' : ''
+                            }`}
+                        >
+                            {dt.heroTitle}
+                        </div>
+                    </Fragment>
                 ))}
 
-            {heroData &&
-                heroData.map((dt) => (
-                    <div
-                        key={dt.id}
-                        className={`${dt.id == 0 ? 'default' : ''} hero-title ${
-                            hovHeroId === dt.id ? 'is-active' : ''
-                        }`}
-                    >
-                        {dt.heroTitle}
-                    </div>
-                ))}
-            {/* <div className="hero-title">{heroTitle}</div> */}
             <div className="grid-wrapper">
                 <div className="blank-wrapper" />
                 <div className="stats-wrapper">
@@ -152,10 +90,14 @@ export default function HomeScreen() {
                             homeData.map((dt) => {
                                 return (
                                     <div
-                                        key={dt.id}
+                                        key={dt.statsID}
                                         className="column"
-                                        onMouseEnter={() => onMouseEnter(dt.id)}
-                                        onMouseLeave={() => onMouseLeave(dt.id)}
+                                        onMouseEnter={() =>
+                                            onMouseEnter(dt.statsID)
+                                        }
+                                        onMouseLeave={() =>
+                                            onMouseLeave(dt.statsID)
+                                        }
                                     >
                                         <div className="stats-top-desc">
                                             <span>{dt.statsDesc}</span>
@@ -186,9 +128,6 @@ export default function HomeScreen() {
             <div className="background-bottom" />
 
             <style jsx>{styles}</style>
-            <style jsx global>
-                {globalStyles}
-            </style>
         </>
     )
 }
