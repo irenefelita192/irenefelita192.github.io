@@ -5,15 +5,17 @@ const ENV = process.env.REACT_APP_ENV
 const options = {
     development: {
         endpoints: {
-            domain: 'https://stag.lippo.co.id',
-            asset: '/images',
+            domain: '',
+            api: 'http://localhost:1337',
+            asset: 'http://localhost:1337',
             assetPrefix: '',
         },
     },
     staging: {
         endpoints: {
-            domain: 'https://stag.lippo.co.id',
-            asset: '/images',
+            domain: 'http://www.lippolife.co.id',
+            api: 'https://strapi-y5loyvex6a-et.a.run.app',
+            asset: 'https://strapi-y5loyvex6a-et.a.run.app',
             assetPrefix: '',
         },
     },

@@ -1,5 +1,5 @@
 import Layout from '../../components/layout'
-import FSScreen from '../../screens/company/financial-statement'
+import FSScreen from '../../screens/company/financial-statements'
 
 export default function Company() {
     return (

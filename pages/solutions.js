@@ -1,5 +1,10 @@
 import Layout from '../components/layout'
-// import HomeScreen from '../screens/home'
+import SolutionScreen from '../screens/solutions'
+
 export default function Solutions() {
-    return <Layout activeHeaderId="solutions">Solutions</Layout>
+    return (
+        <Layout>
+            <SolutionScreen />
+        </Layout>
+    )
 }

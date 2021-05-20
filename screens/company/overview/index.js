@@ -1,68 +1,74 @@
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import ReactMarkdown from 'react-markdown'
+import { getOverview } from '../../../services/company'
+import { getCookie } from '../../../util/global-util'
 import styles from './styles'
+
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
 import Footer from '../../../components/footer'
 import PageWrapper from '../../../components/layout/page-wrapper'
 
 export default function OverviewScreen() {
+    const [overviewData, setOverviewData] = useState(null)
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const overviewData = await getOverview(langId ? langId : 'id')
+
+        if (!isMounted()) return
+
+        setOverviewData(overviewData)
+    }, [])
+    const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
         <>
-            <Hero title="About LippoLife" />
-            <PageWrapper>
-                <>
-                    <Sidebar activeId="overview" />
-                    <div className="content-wrapper">
-                        <h1 className="content-title">Overview</h1>
-                        <div className="content-description">
-                            <p>
-                                Established since 2010, NOBU Life which later
-                                changed its name to PT Lippo Life Assurance is a
-                                life insurance company in Indonesia, and a
-                                subsidiary of the Lippo Group, which has
-                                experience in providing life insurance programs,
-                                health insurance, personal accident insurance,
-                                investment-related insurance, employee welfare
-                                programs and credit life insurance.{' '}
-                            </p>
-                            <p>
-                                PT Lippo Life Assurance was built with hard work
-                                and dynamic professionalism, becoming stronger
-                                in the face of increasingly aggressive business
-                                competition. In establishing professional
-                                relationships, the company adheres to trust,
-                                mutually beneficial cooperation and ethical
-                                business values. Supported by a strong capital
-                                structure and excellent experience, the company
-                                is motivated to further increase its commitment
-                                and consistency in understanding customer needs
-                                and providing the best for all stakeholders.
-                            </p>
-                            <div className="logo-wrapper">
-                                <div className="logo-image-wrapper">
-                                    <img
-                                        src="/images/logo/LippoGroup-Logo.png"
-                                        alt="lippo-group"
-                                    />
-                                </div>
-                                <div className="logo-image-wrapper">
-                                    <img
-                                        src="/images/logo/LippoLife-Logo-Black.png"
-                                        alt="lippo-life-group"
-                                    />
-                                </div>
-                                <div className="logo-image-wrapper">
-                                    <img
-                                        src="/images/logo/LippoInsurance-Logo.png"
-                                        alt="lippo-insurance"
-                                    />
+            <Hero id="company" />
+            {overviewData && (
+                <PageWrapper>
+                    <>
+                        <Sidebar activeId="overview" />
+                        <div className="content-wrapper">
+                            <h1 className="content-title">
+                                {overviewData?.title ?? 'Overview'}
+                            </h1>
+
+                            <div className="content-description">
+                                <ReactMarkdown>
+                                    {overviewData?.description ?? ''}
+                                </ReactMarkdown>
+                                <div className="logo-wrapper">
+                                    {overviewData &&
+                                        overviewData.images.map((dt) => (
+                                            <div
+                                                className="logo-image-wrapper"
+                                                key={dt.id}
+                                            >
+                                                <img
+                                                    src={`${assetDomain}${dt.url}`}
+                                                    alt={dt.name}
+                                                />
+                                            </div>
+                                        ))}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </>
-            </PageWrapper>
+                    </>
+                </PageWrapper>
+            )}
             <Footer />
             <style jsx>{styles}</style>
+            <style jsx global>
+                {`
+                    .content-description p {
+                        padding-bottom: 20px;
+                    }
+                `}
+            </style>
         </>
     )
 }

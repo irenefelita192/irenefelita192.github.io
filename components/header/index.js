@@ -1,79 +1,43 @@
 import { Fragment, useState, useEffect } from 'react'
-import axios from 'axios'
-import styles from './styles'
-import { getCookie } from '../../util/global-util'
-const headerData = [
-    {
-        id: 'company',
-        titleID: 'Perusahaan',
-        titleEN: 'Company',
-        href: '/company',
-        subMenu: [
-            {
-                id: 1,
-                title: 'Company Profile',
-                subMenu: [
-                    {
-                        id: 1,
-                        title: 'Overview',
-                    },
-                    {
-                        id: 2,
-                        title: 'Milestones',
-                    },
-                    {
-                        id: 3,
-                        title: 'Key Statistics',
-                    },
-                    {
-                        id: 4,
-                        title: 'Financial Statements',
-                    },
-                    {
-                        id: 5,
-                        title: 'Clients',
-                    },
-                ],
-            },
-            {
-                id: 2,
-                title: 'Leadership',
-                subMenu: [
-                    {
-                        id: 1,
-                        title: 'Board of Commisioners',
-                    },
-                    {
-                        id: 2,
-                        title: 'Board of Directors',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        id: 'solutions',
-        titleID: 'Solusi',
-        titleEN: 'Solutions',
-        href: '/solutions',
-    },
-    // {
-    //     id: 'news',
-    //     title: 'News',
-    //     href: '/news',
-    // },
-]
+import { useAsyncEffect } from 'use-async-effect'
+import { getAllHeader, getLocale } from '../../services/common'
 
-const languageData = [
-    { id: 'id', title: 'Bahasa' },
-    { id: 'en', title: 'English' },
-]
+import { getCookie } from '../../util/global-util'
+
+import styles from './styles'
+
 export default function Header({ withBg = true, activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
     const [isPopupLang, setIsPopupLang] = useState(false)
     const [activeLang, setActiveLang] = useState('id')
     const [activeLangObj, setActiveLangObj] = useState(null)
+
+    const [headerData, setHeaderData] = useState([])
+    const [languageData, setLanguageData] = useState([])
+
+    useAsyncEffect(async (isMounted) => {
+        const locale = await getLocale()
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const headers = await getAllHeader(langId ? langId : 'id')
+
+        if (!isMounted()) return
+        setHeaderData(headers)
+        setLanguageData(locale)
+    }, [])
+
+    useEffect(() => {
+        if (languageData && languageData.length > 0) {
+            const selLanguage = languageData.find((lang) => {
+                return lang.code === activeLang
+            })
+
+            setActiveLangObj(selLanguage)
+        }
+    }, [languageData])
 
     useEffect(() => {
         if (process.browser) {
@@ -105,18 +69,6 @@ export default function Header({ withBg = true, activeId }) {
                 // This is a click outside.
             })
         }
-        const selLanguage = languageData.find((lang) => {
-            return lang.id === activeLang
-        })
-
-        setActiveLangObj(selLanguage)
-        // axios.get('http://localhost:1337/headers').then((response) => {
-        //     console.log(response.data)
-        //     console.log(response.status)
-        //     console.log(response.statusText)
-        //     console.log(response.headers)
-        //     console.log(response.config)
-        // })
 
         return () => {
             document.removeEventListener('click', () => {})
@@ -131,9 +83,9 @@ export default function Header({ withBg = true, activeId }) {
         setIsPopupLang(!isPopupLang)
     }
 
-    const handleChooseLang = (id) => {
-        setActiveLang(id)
-        document.cookie = `lang=${id};path=/`
+    const handleChooseLang = (code) => {
+        setActiveLang(code)
+        document.cookie = `lang=${code};path=/`
         location.reload()
     }
 
@@ -175,9 +127,9 @@ export default function Header({ withBg = true, activeId }) {
                         !isDesktop && isMenuActive ? 'is-active' : ''
                     }`}
                 >
-                    <div className="navbar-end">
-                        {headerData &&
-                            headerData.map((dt) => {
+                    {headerData && (
+                        <div className="navbar-end">
+                            {headerData.map((dt) => {
                                 return (
                                     <Fragment key={dt.id}>
                                         <a
@@ -188,13 +140,7 @@ export default function Header({ withBg = true, activeId }) {
                                             }`}
                                             href={dt.href}
                                         >
-                                            <span>
-                                                {
-                                                    dt[
-                                                        `title${activeLang.toUpperCase()}`
-                                                    ]
-                                                }
-                                            </span>
+                                            <span>{dt.title}</span>
                                         </a>
                                         {!isDesktop && (
                                             <>
@@ -206,12 +152,7 @@ export default function Header({ withBg = true, activeId }) {
                                                                 key={subMenu.id}
                                                                 className="navbar-item has-dropdown"
                                                             >
-                                                                <div
-                                                                    key={
-                                                                        subMenu.id
-                                                                    }
-                                                                    className="navbar-link"
-                                                                >
+                                                                <div className="navbar-link">
                                                                     {
                                                                         subMenu.title
                                                                     }
@@ -227,7 +168,12 @@ export default function Header({ withBg = true, activeId }) {
                                                                                 }
                                                                                 className="navbar-dropdown"
                                                                             >
-                                                                                <a className="navbar-item">
+                                                                                <a
+                                                                                    className="navbar-item"
+                                                                                    href={
+                                                                                        subSubMenu.href
+                                                                                    }
+                                                                                >
                                                                                     {
                                                                                         subSubMenu.title
                                                                                     }
@@ -243,72 +189,76 @@ export default function Header({ withBg = true, activeId }) {
                                     </Fragment>
                                 )
                             })}
-                        {/* <a className="navbar-item navbar-lang">
+                            {/* <a className="navbar-item navbar-lang">
                             EN 
                         </a> */}
 
-                        {/* language start */}
-                        {isDesktop && (
-                            <div
-                                id="navbarLang"
-                                className="navbar-item navbar-lang"
-                                onClick={() => handleLangDropdown()}
-                            >
+                            {/* language start */}
+                            {isDesktop && (
                                 <div
-                                    className={`dropdown is-right ${
-                                        isPopupLang ? 'is-active' : ''
-                                    }`}
+                                    id="navbarLang"
+                                    className="navbar-item navbar-lang"
+                                    onClick={() => handleLangDropdown()}
                                 >
-                                    <span>
-                                        {activeLangObj && activeLangObj.title}
-                                    </span>
-
-                                    <i />
                                     <div
-                                        className="dropdown-menu"
-                                        id="dropdown-menu"
-                                        role="menu"
+                                        className={`dropdown is-right ${
+                                            isPopupLang ? 'is-active' : ''
+                                        }`}
                                     >
-                                        <div className="dropdown-content">
-                                            {languageData.map((lang) => (
-                                                <a
-                                                    key={lang.id}
-                                                    onClick={() =>
-                                                        handleChooseLang(
-                                                            lang.id
-                                                        )
-                                                    }
-                                                    className={`dropdown-item ${
-                                                        activeLang === lang.id
-                                                            ? 'is-active'
-                                                            : ''
-                                                    }`}
-                                                >
-                                                    {lang.title}
-                                                </a>
-                                            ))}
+                                        <span>
+                                            {activeLangObj &&
+                                                activeLangObj.name}
+                                        </span>
+
+                                        {activeLangObj && <i />}
+                                        <div
+                                            className="dropdown-menu"
+                                            id="dropdown-menu"
+                                            role="menu"
+                                        >
+                                            <div className="dropdown-content">
+                                                {languageData.map((lang) => (
+                                                    <a
+                                                        key={lang.id}
+                                                        onClick={() =>
+                                                            handleChooseLang(
+                                                                lang.code
+                                                            )
+                                                        }
+                                                        className={`dropdown-item ${
+                                                            activeLang ===
+                                                            lang.code
+                                                                ? 'is-active'
+                                                                : ''
+                                                        }`}
+                                                    >
+                                                        {lang.name}
+                                                    </a>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        )}
-                        {!isDesktop && (
-                            <>
-                                <div className="navbar-item navbar-lang-mobile">
-                                    {languageData.map((lang) => (
-                                        <span
-                                            onClick={() =>
-                                                handleChooseLang(lang.id)
-                                            }
-                                        >
-                                            {lang.title}
-                                        </span>
-                                    ))}
-                                </div>
-                            </>
-                        )}
-                        {/* language end */}
-                    </div>
+                            )}
+                            {!isDesktop && (
+                                <>
+                                    <div className="navbar-item navbar-lang-mobile">
+                                        {languageData.map((lang) => (
+                                            <span
+                                                key={lang.id}
+                                                onClick={() =>
+                                                    handleChooseLang(lang.code)
+                                                }
+                                            >
+                                                {lang.name}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                            {/* language end */}
+                        </div>
+                    )}
                 </div>
             </nav>
             <style jsx>{styles}</style>

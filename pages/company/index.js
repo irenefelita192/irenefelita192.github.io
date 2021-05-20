@@ -8,9 +8,7 @@ export default function Company() {
     useEffect(() => {
         if (process.browser) {
             url = window.location.href
-            console.log('loca', window.location)
         }
-        console.log('configg', process.env.config)
     }, [])
 
     return (

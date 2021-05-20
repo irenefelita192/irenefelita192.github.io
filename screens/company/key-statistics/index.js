@@ -1,3 +1,8 @@
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getKeyStatistic } from '../../../services/company'
+import { getCookie } from '../../../util/global-util'
+
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
@@ -39,17 +44,31 @@ const data = [
     },
 ]
 export default function KSScreen() {
+    const [keyStatisticData, setKeyStatisticData] = useState(null)
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const ksData = await getKeyStatistic(langId ? langId : 'id')
+        console.log('data', ksData)
+        if (!isMounted()) return
+
+        setKeyStatisticData(ksData)
+    }, [])
+
+    const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
         <>
-            <Hero title="About LippoLife" />
+            <Hero id="company" />
             <PageWrapper>
                 <>
                     <Sidebar activeId="key-statistics" />
                     <div className="content-wrapper">
                         <h1 className="content-title">Key Statistics</h1>
                         <div className="content-description">
-                            {data &&
-                                data.map((dt, index) => (
+                            {keyStatisticData &&
+                                keyStatisticData.map((dt, index) => (
                                     <div
                                         key={dt.id}
                                         className={`card-item ${
@@ -58,7 +77,10 @@ export default function KSScreen() {
                                                 : 'card-odd'
                                         }`}
                                     >
-                                        <img src={dt.image} alt={dt.title} />
+                                        <img
+                                            src={`${assetDomain}${dt.image?.url}`}
+                                            alt={dt.title}
+                                        />
 
                                         <div className="card-content">
                                             <div className="card-title">
