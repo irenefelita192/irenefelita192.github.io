@@ -7,7 +7,7 @@ import PageWrapper from '../../../components/layout/page-wrapper'
 export default function ClientScreen() {
     return (
         <>
-            <Hero title="About LippoLife" />
+            <Hero id="company" />
             <PageWrapper>
                 <>
                     <Sidebar activeId="clients" />

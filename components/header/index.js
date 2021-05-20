@@ -1,10 +1,10 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getAllHeader } from '../../services/menu'
-import { getLocale } from '../../services/locale'
+import { getAllHeader, getLocale } from '../../services/common'
+
+import { getCookie } from '../../util/global-util'
 
 import styles from './styles'
-import { getCookie } from '../../util/global-util'
 
 export default function Header({ withBg = true, activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
@@ -25,7 +25,6 @@ export default function Header({ withBg = true, activeId }) {
         const headers = await getAllHeader(langId ? langId : 'id')
 
         if (!isMounted()) return
-        console.log('headers', headers)
         setHeaderData(headers)
         setLanguageData(locale)
     }, [])

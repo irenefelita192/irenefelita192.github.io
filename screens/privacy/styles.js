@@ -8,41 +8,10 @@ export default css`
         justify-content: space-between;
     }
 
-    .title {
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 1.2;
-        margin-bottom: 14px;
-    }
-
-    .maps-wrapper {
-        font-size: 14px;
-        line-height: 1.3;
-        width: 610px;
-        height: 294px;
-    }
-
-    iframe {
-        width: 100%;
-        height: 100%;
-    }
-
-    .subtitle {
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 1.37;
-        margin: 32px 0 8px;
-    }
-
     @media screen and (max-width: 1024px) {
         .wrapper {
             padding: 57px 72px 100px 72px;
             min-height: 48vh;
-        }
-
-        .maps-wrapper {
-            width: 400px;
-            height: 250px;
         }
     }
 
@@ -51,12 +20,6 @@ export default css`
             display: block;
             padding: 42px;
             min-height: 0;
-        }
-
-        .maps-wrapper {
-            margin-top: 54px;
-            width: 100%;
-            height: 200px;
         }
     }
 `

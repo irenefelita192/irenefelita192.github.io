@@ -41,7 +41,7 @@ const data = [
 export default function BOCScreen() {
     return (
         <>
-            <Hero title="About LippoLife" />
+            <Hero id="company" />
             <PageWrapper>
                 <>
                     <Sidebar activeId="boc" />

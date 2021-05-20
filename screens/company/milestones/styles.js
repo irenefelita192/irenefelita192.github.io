@@ -46,6 +46,10 @@ export default css`
         z-index: -1;
     }
 
+    .timeline-inner .timeline-item:last-child:before {
+        display: none;
+    }
+
     .timeline-inner .timeline-item .timeline-icon {
         position: absolute;
         left: -7px;

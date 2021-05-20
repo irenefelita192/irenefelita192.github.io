@@ -7,6 +7,7 @@ import styles from './styles'
 
 export default function HomeScreen() {
     const [isWebp, setIsWebp] = useState(true)
+    const [isPortrait, setIsPortrait] = useState(false)
 
     const [hovHeroId, setHovHeroId] = useState(0)
     const [heroData, setHeroData] = useState([])
@@ -19,8 +20,7 @@ export default function HomeScreen() {
         }
         const hero = await getHero(langId ? langId : 'id')
         const home = await getStats(langId ? langId : 'id')
-        console.log('hero', hero)
-        console.log('home', home)
+
         if (!isMounted()) return
         setHeroData(hero)
         setHomeData(home)
@@ -32,6 +32,10 @@ export default function HomeScreen() {
                 setIsWebp(true)
             } else {
                 setIsWebp(false)
+            }
+
+            if (window.innerWidth < window.innerHeight) {
+                setIsPortrait(true)
             }
         }
     }, [])
@@ -54,33 +58,40 @@ export default function HomeScreen() {
     return (
         <>
             {heroData &&
-                heroData.map((dt) => (
-                    <Fragment key={dt.heroID}>
-                        <img
-                            src={
-                                isWebp
-                                    ? `${assetDomain}${
-                                          dt.heroImgWebp[0]?.url ?? ''
-                                      }`
-                                    : `${assetDomain}${dt.heroImg[0]?.ur ?? ''}`
-                            }
-                            className={`${
-                                dt.heroID == 0 ? 'default' : ''
-                            } hero-img ${
-                                hovHeroId === dt.heroID ? 'is-active' : ''
-                            }`}
-                        />
-                        <div
-                            className={`${
-                                dt.heroID == 0 ? 'default' : ''
-                            } hero-title ${
-                                hovHeroId === dt.heroID ? 'is-active' : ''
-                            }`}
-                        >
-                            {dt.heroTitle}
-                        </div>
-                    </Fragment>
-                ))}
+                heroData.map((dt) => {
+                    let imgSrc = isWebp
+                        ? `${assetDomain}${dt.heroImgWebp[0]?.url ?? ''}`
+                        : `${assetDomain}${dt.heroImg[0]?.ur ?? ''}`
+
+                    if (isPortrait) {
+                        imgSrc = isWebp
+                            ? `${assetDomain}${
+                                  dt.heroImgWebpMobile[0]?.url ?? ''
+                              }`
+                            : `${assetDomain}${dt.heroImgMobile[0]?.url ?? ''}`
+                    }
+                    return (
+                        <Fragment key={dt.heroID}>
+                            <img
+                                src={imgSrc}
+                                className={`${
+                                    dt.heroID == 0 ? 'default' : ''
+                                } hero-img ${
+                                    hovHeroId === dt.heroID ? 'is-active' : ''
+                                }`}
+                            />
+                            <div
+                                className={`${
+                                    dt.heroID == 0 ? 'default' : ''
+                                } hero-title ${
+                                    hovHeroId === dt.heroID ? 'is-active' : ''
+                                }`}
+                            >
+                                {dt.heroTitle}
+                            </div>
+                        </Fragment>
+                    )
+                })}
 
             <div className="grid-wrapper">
                 <div className="blank-wrapper" />

@@ -30,3 +30,17 @@ export const getAllHeader = async (locale) => {
 
     return response.data
 }
+
+export const getLocale = async () => {
+    const response = await axios.get(`${endpoints}/i18n/locales`)
+    return response.data
+}
+
+export const getHeroTop = async (locale, pageId) => {
+    const locQs = locale ? `?_locale=${locale}` : ''
+    const pageQs = pageId ? `${locQs ? '&' : '?'}pageID=${pageId}` : ''
+    const response = await axios.get(
+        `${endpoints}/hero-page-tops${locQs}${pageQs}`
+    )
+    return response.data
+}

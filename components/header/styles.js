@@ -187,6 +187,10 @@ export default css`
         margin-left: 5px;
     }
 
+    .navbar-lang .dropdown {
+        align-items: center;
+    }
+
     .navbar-lang .dropdown-menu {
         min-width: 132px;
     }

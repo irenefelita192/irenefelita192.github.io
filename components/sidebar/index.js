@@ -1,68 +1,87 @@
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getAllSubMenu } from '../../services/common'
+import { getCookie } from '../../util/global-util'
 import styles from './styles'
-const sidebarData = [
-    {
-        id: '1',
-        title: 'Company Profile',
-        subMenu: [
-            {
-                id: 'overview',
-                title: 'Overview',
-                href: '/company',
-            },
-            {
-                id: 'milestones',
-                title: 'Milestones',
-                href: '/company/milestones',
-            },
-            {
-                id: 'key-statistics',
-                title: 'Key Statistics',
-                href: '/company/key-statistics',
-            },
-            {
-                id: 'financial-statement',
-                title: 'Financial Statement',
-                href: '/company/financial-statement',
-            },
-            {
-                id: 'clients',
-                title: 'Clients',
-                href: '/company/clients',
-            },
-        ],
-    },
-    {
-        id: '2',
-        title: 'Leadership',
-        subMenu: [
-            {
-                id: 'boc',
-                title: 'Board of Commisioners',
-                href: '/company/boc',
-            },
-            {
-                id: 'bod',
-                title: 'Board of Directors',
-                href: '/company/bod',
-            },
-        ],
-    },
-]
-export default function Sidebar({ activeId }) {
+// const sidebarData = [
+//     {
+//         id: '1',
+//         title: 'Company Profile',
+//         subMenu: [
+//             {
+//                 id: 'overview',
+//                 title: 'Overview',
+//                 href: '/company',
+//             },
+//             {
+//                 id: 'milestones',
+//                 title: 'Milestones',
+//                 href: '/company/milestones',
+//             },
+//             {
+//                 id: 'key-statistics',
+//                 title: 'Key Statistics',
+//                 href: '/company/key-statistics',
+//             },
+//             {
+//                 id: 'financial-statement',
+//                 title: 'Financial Statement',
+//                 href: '/company/financial-statement',
+//             },
+//             {
+//                 id: 'clients',
+//                 title: 'Clients',
+//                 href: '/company/clients',
+//             },
+//         ],
+//     },
+//     {
+//         id: '2',
+//         title: 'Leadership',
+//         subMenu: [
+//             {
+//                 id: 'boc',
+//                 title: 'Board of Commisioners',
+//                 href: '/company/boc',
+//             },
+//             {
+//                 id: 'bod',
+//                 title: 'Board of Directors',
+//                 href: '/company/bod',
+//             },
+//         ],
+//     },
+// ]
+export default function Sidebar({ data, activeId }) {
+    const [sidebarData, setSidebarData] = useState(null)
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+
+        const sidebarData = await getAllSubMenu(langId ? langId : 'id')
+
+        if (!isMounted()) return
+
+        setSidebarData(sidebarData)
+    }, [])
     return (
         <>
             <aside className="menu">
                 {sidebarData &&
                     sidebarData.map((dt) => (
                         <Fragment key={dt.id}>
-                            <p className="menu-label">{dt.title}</p>
+                            {!dt.parentMenu && (
+                                <p className="menu-label">{dt.title}</p>
+                            )}
                             <ul className="menu-list">
                                 {dt.subMenu.map((subMenu) => (
                                     <li
                                         key={subMenu.id}
                                         className={
-                                            activeId == subMenu.id
+                                            activeId == subMenu.subID
                                                 ? 'is-active'
                                                 : ''
                                         }
