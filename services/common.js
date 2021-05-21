@@ -4,13 +4,23 @@ const endpoints = process.env.config?.endpoints?.api ?? ''
 
 export const getAllSubMenu = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
-    const response = await axios.get(`${endpoints}/sub-menus${locQs}`)
-    return response.data
+    const response = await axios
+        .get(`${endpoints}/sub-menus${locQs}`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
 }
 export const getAllHeader = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
-    const response = await axios.get(`${endpoints}/headers${locQs}`)
-    const allSubMenu = await getAllSubMenu(locale)
+    const response = await axios
+        .get(`${endpoints}/headers${locQs}`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    const allSubMenu = await getAllSubMenu(locale).catch(function (error) {
+        console.log(error)
+    })
 
     response &&
         response.data &&
@@ -28,19 +38,43 @@ export const getAllHeader = async (locale) => {
                 })
         })
 
-    return response.data
+    return response ? response.data : null
 }
 
 export const getLocale = async () => {
-    const response = await axios.get(`${endpoints}/i18n/locales`)
-    return response.data
+    const response = await axios
+        .get(`${endpoints}/i18n/locales`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
 }
 
 export const getHeroTop = async (locale, pageId) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const pageQs = pageId ? `${locQs ? '&' : '?'}pageID=${pageId}` : ''
-    const response = await axios.get(
-        `${endpoints}/hero-page-tops${locQs}${pageQs}`
-    )
-    return response.data
+    const response = await axios
+        .get(`${endpoints}/hero-page-tops${locQs}${pageQs}`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}
+
+export const getTnc = async () => {
+    const response = await axios
+        .get(`${endpoints}/terms-conditions`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}
+
+export const getPrivacy = async () => {
+    const response = await axios
+        .get(`${endpoints}/privacy`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
 }

@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import ReactMarkdown from 'react-markdown'
-import { getSolutions } from '../../services/solutions'
+import { getSolutions, getSolutionPage } from '../../services/solutions'
 import { getCookie } from '../../util/global-util'
 import styles from './styles'
 
 import Hero from '../../components/hero-header'
 import Footer from '../../components/footer'
-import { set } from 'lodash'
 
 export default function SolutionScreen() {
     const [solutionData, setSolutionData] = useState(null)
+    const [contactData, setContactData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
         let langId
@@ -18,10 +18,12 @@ export default function SolutionScreen() {
             langId = getCookie('lang')
         }
         const sData = await getSolutions(langId ? langId : 'id')
-        console.log('sData', sData)
+        const cData = await getSolutionPage(langId ? langId : 'id')
+
         if (!isMounted()) return
 
         setSolutionData(sData)
+        setContactData(cData)
     }, [])
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
@@ -51,6 +53,19 @@ export default function SolutionScreen() {
                             </div>
                         </div>
                     ))}
+                </div>
+            )}
+            {contactData && (
+                <div className="contact-wrapper">
+                    <div>{contactData.contactDescription}</div>
+                    <button
+                        onClick={() =>
+                            (window.location.href =
+                                contactData.buttonLink || '/contact')
+                        }
+                    >
+                        {contactData.buttonText}
+                    </button>
                 </div>
             )}
             <Footer />

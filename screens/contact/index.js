@@ -6,7 +6,7 @@ import Footer from '../../components/footer'
 export default function ContactScreen() {
     return (
         <>
-            <Hero title="Contact" />
+            <Hero id="contact" />
             <div className="wrapper">
                 <div className="left-wrapper">
                     <div className="title">PT Lippo Life Assurance</div>

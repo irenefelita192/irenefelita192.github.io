@@ -1,3 +1,9 @@
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import ReactMarkdown from 'react-markdown'
+import { getClients } from '../../../services/company'
+import { getCookie } from '../../../util/global-util'
+
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
@@ -5,47 +11,80 @@ import Footer from '../../../components/footer'
 import PageWrapper from '../../../components/layout/page-wrapper'
 
 export default function ClientScreen() {
+    const [clientData, setClientData] = useState(null)
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const clientDt = await getClients(langId ? langId : 'id')
+        console.log('data', clientDt)
+        if (!isMounted()) return
+        setClientData(clientDt)
+    }, [])
+    const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
         <>
             <Hero id="company" />
             <PageWrapper>
                 <>
                     <Sidebar activeId="clients" />
-                    <div className="content-wrapper">
-                        <h1 className="content-title">Clients</h1>
-                        <div className="content-description">
-                            <p>
-                                We have the honour in safeguarding some of the
-                                best companies in Indonesia, protecting those
-                                that matter the most: their customers, employees
-                                and/or management.
-                            </p>
-                            <div className="logo-wrapper">
-                                <div className="logo-image-wrapper">
-                                    <img
-                                        src="/images/company/Siloam-Logo.png"
-                                        alt="siloam-logo"
-                                    />
-                                </div>
-                                <div className="logo-image-wrapper">
-                                    <img
-                                        src="/images/company/Lippo-Logo.png"
-                                        alt="lippo-logo"
-                                    />
-                                </div>
-                                <div className="logo-image-wrapper">
-                                    <img
-                                        src="/images/company/Nobu-Logo.png"
-                                        alt="nobu-logo"
-                                    />
+                    {clientData && (
+                        <div className="content-wrapper">
+                            <h1 className="content-title">
+                                {clientData.title}
+                            </h1>
+                            <div className="content-description">
+                                <ReactMarkdown>
+                                    {clientData.description}
+                                </ReactMarkdown>
+                                <div className="logo-wrapper">
+                                    {clientData.images.map((dt, index) => {
+                                        const imgHov = clientData.imagesHover[
+                                            index
+                                        ]
+                                            ? `${assetDomain}${clientData.imagesHover[index].url}`
+                                            : null
+                                        return (
+                                            <div
+                                                className="logo-image-wrapper"
+                                                key={dt.id}
+                                            >
+                                                <img
+                                                    src={`${assetDomain}${dt.url}`}
+                                                    alt={dt.alternativeText}
+                                                />
+                                                {imgHov && (
+                                                    <img
+                                                        className="img-hover"
+                                                        src={`${assetDomain}${clientData.imagesHover[index].url}`}
+                                                        alt={
+                                                            clientData
+                                                                .imagesHover[
+                                                                index
+                                                            ].alternativeText
+                                                        }
+                                                    />
+                                                )}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </>
             </PageWrapper>
             <Footer />
             <style jsx>{styles}</style>
+            <style jsx global>
+                {`
+                    .content-description p {
+                        padding-bottom: 20px;
+                    }
+                `}
+            </style>
         </>
     )
 }

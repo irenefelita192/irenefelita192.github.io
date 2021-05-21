@@ -1,7 +1,12 @@
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
 import ReactMarkdown from 'react-markdown'
+import { getBOC } from '../../../services/company'
+import { getCookie } from '../../../util/global-util'
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
+import Footer from '../../../components/footer'
 import PageWrapper from '../../../components/layout/page-wrapper'
 
 const data = [
@@ -39,26 +44,44 @@ const data = [
     },
 ]
 export default function BOCScreen() {
+    const [bocData, setBocData] = useState(null)
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const bocDt = await getBOC(langId ? langId : 'id')
+        console.log('data', bocDt)
+        if (!isMounted()) return
+        setBocData(bocDt)
+    }, [])
+    const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
         <>
             <Hero id="company" />
             <PageWrapper>
                 <>
                     <Sidebar activeId="boc" />
-                    <div className="content-wrapper">
-                        <h1 className="content-title">Board of Commisioners</h1>
-                        <div className="content-description">
-                            {data &&
-                                data.map((dt, index) => (
+                    {bocData && (
+                        <div className="content-wrapper">
+                            <h1 className="content-title">
+                                {bocData.title || 'Board of Commisioners'}
+                            </h1>
+                            <div className="content-description">
+                                {bocData.people.map((dt, index) => (
                                     <div key={dt.id} className={`card-item`}>
-                                        <img src={dt.image} alt={dt.title} />
+                                        <img
+                                            src={`${assetDomain}${dt.image.url}`}
+                                            alt={dt.alternativeText}
+                                        />
 
                                         <div className="card-content">
                                             <div className="card-title">
-                                                {dt.title}
+                                                {dt.name}
                                             </div>
                                             <div className="card-short">
-                                                {dt.shortDescription}
+                                                {dt.title}
                                             </div>
                                             <div className="card-desc">
                                                 <ReactMarkdown>
@@ -68,10 +91,12 @@ export default function BOCScreen() {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </>
             </PageWrapper>
+            <Footer />
             <style jsx>{styles}</style>
             <style jsx global>
                 {`

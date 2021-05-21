@@ -81,6 +81,10 @@ export default css`
             grid-gap: 42px;
         }
 
+        footer .columns {
+            display: block;
+        }
+
         .ojk-wrapper {
             text-align: left;
         }

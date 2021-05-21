@@ -50,7 +50,7 @@ export default function OverviewScreen() {
                                             >
                                                 <img
                                                     src={`${assetDomain}${dt.url}`}
-                                                    alt={dt.name}
+                                                    alt={dt.alternativeText}
                                                 />
                                             </div>
                                         ))}

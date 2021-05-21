@@ -3,9 +3,8 @@ import css from 'styled-jsx/css'
 
 export default css`
     .wrapper {
-        display: flex;
-        padding: 57px ${theme.offset.container} ${theme.offset.container};
-        justify-content: space-between;
+        display: block;
+        padding: 57px 300px 126px;
     }
 
     @media screen and (max-width: 1024px) {
@@ -17,7 +16,6 @@ export default css`
 
     @media screen and (max-width: 640px) {
         .wrapper {
-            display: block;
             padding: 42px;
             min-height: 0;
         }

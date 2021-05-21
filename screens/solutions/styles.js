@@ -4,8 +4,7 @@ import css from 'styled-jsx/css'
 export default css`
     .wrapper {
         display: block;
-        padding: 57px 300px ${theme.offset.container};
-        color: ${theme.colors.black};
+        padding: 57px 300px 94px;
     }
 
     .content-item {
@@ -21,6 +20,10 @@ export default css`
         padding-bottom: 84px;
         position: absolute;
         left: 168px;
+    }
+
+    .content-item:last-child:after {
+        display: none;
     }
 
     .title {
@@ -69,6 +72,38 @@ export default css`
         padding: 64px 0 32px;
     }
 
+    .contact-wrapper {
+        background: #f5f7fa;
+        padding: 68px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-wrapper > div {
+        max-width: 630px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.44;
+        text-align: center;
+        margin-bottom: 48px;
+        color: ${theme.colors.black};
+    }
+
+    .contact-wrapper > button {
+        background: #a88836;
+        border-radius: 60px;
+        border: 0;
+        width: 160px;
+        height: 53px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
     @media screen and (max-width: 1024px) {
         .wrapper {
             padding: 57px 72px 100px 72px;
@@ -80,6 +115,11 @@ export default css`
         .wrapper {
             padding: 42px;
             min-height: 0;
+        }
+
+        .contact-wrapper > div {
+            font-size: 16px;
+            margin: 0 36px 48px;
         }
     }
 `
