@@ -2,10 +2,14 @@ FROM node:12-alpine
 
 WORKDIR /app
 
-# ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json yarn.lock next.config.js public ./
+
+RUN yarn
 COPY . ./
+
+RUN yarn build
 
 RUN ls ./
 RUN echo "run ls node modules"
