@@ -4,7 +4,7 @@ import ContactScreen from '../screens/contact'
 export default function Contact() {
     return (
         <Layout>
-            <ContactScreen />
+            <ContactScreen title="ContactUs" />
         </Layout>
     )
 }

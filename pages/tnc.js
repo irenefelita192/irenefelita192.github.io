@@ -11,7 +11,7 @@ import TnCScreen from '../screens/tnc'
 export default function TermsConditions() {
     return (
         <Layout>
-            <TnCScreen />
+            <TnCScreen title="Terms and Conditions" />
         </Layout>
     )
 }

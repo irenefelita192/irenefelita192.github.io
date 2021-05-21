@@ -18,7 +18,7 @@ export default function FSScreen() {
             langId = getCookie('lang')
         }
         const fData = await getFinancialStatement(langId ? langId : 'id')
-        console.log('data', fData)
+
         if (!isMounted()) return
 
         setFSData(fData)
@@ -27,34 +27,41 @@ export default function FSScreen() {
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
         <>
-            <Hero id="company" />s
+            <Hero id="company" />
             <PageWrapper>
                 <>
                     <Sidebar activeId="financial-statement" />
                     <div className="content-wrapper">
-                        <h1 className="content-title">Financial Statement</h1>
                         {fsData && (
-                            <div className="content-description">
-                                {fsData.map((dt) => (
-                                    <div
-                                        className="content-item"
-                                        onClick={() => {
-                                            window.open(
-                                                `${assetDomain}${
-                                                    dt.imageDetail?.url ?? ''
-                                                }`
-                                            )
-                                        }}
-                                    >
-                                        <img
-                                            src={`${assetDomain}${
-                                                dt.image?.url ?? ''
-                                            }`}
-                                        />
-                                        <div className="desc">{dt.title}</div>
-                                    </div>
-                                ))}
-                            </div>
+                            <>
+                                <h1 className="content-title">
+                                    {fsData.title}
+                                </h1>
+                                <div className="content-description">
+                                    {fsData.financialStatements.map((dt) => (
+                                        <div
+                                            key={dt.id}
+                                            className="content-item"
+                                            onClick={() => {
+                                                dt.imageDetail
+                                                    ? window.open(
+                                                          `${assetDomain}${dt.imageDetail.url}`
+                                                      )
+                                                    : ''
+                                            }}
+                                        >
+                                            <img
+                                                src={`${assetDomain}${
+                                                    dt.image?.url ?? ''
+                                                }`}
+                                            />
+                                            <div className="desc">
+                                                {dt.title}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
                         )}
                     </div>
                 </>

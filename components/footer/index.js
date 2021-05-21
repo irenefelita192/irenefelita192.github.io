@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getFooter } from '../../services/common'
+import { getCookie } from '../../util/global-util'
 import styles from './styles'
+
 const topicData = {
     title: 'Topics',
     data: [
@@ -19,6 +24,20 @@ const moreData = {
     ],
 }
 export default function Footer() {
+    const [footerData, setFooterData] = useState(null)
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (process.browser) {
+            langId = getCookie('lang')
+        }
+        const footerDt = await getFooter(langId ? langId : 'id')
+
+        if (!isMounted()) return
+        setFooterData(footerDt)
+    }, [])
+
+    const assetDomain = process.env.config?.endpoints?.asset ?? ''
     return (
         <>
             <footer>
@@ -34,32 +53,53 @@ export default function Footer() {
                             alt="Lippo-logo"
                         />
                     </div>
-                    <div className="column">
-                        <div className="title"> {topicData.title}</div>
-                        {topicData.data.map((topic) => (
-                            <a
-                                className="list"
-                                key={topic.id}
-                                href={topic.href}
-                            >
-                                {topic.title}
-                            </a>
-                        ))}
-                    </div>
-                    <div className="column">
-                        <div className="title"> {moreData.title}</div>
-                        {moreData.data.map((more) => (
-                            <a className="list" key={more.id} href={more.href}>
-                                {more.title}
-                            </a>
-                        ))}
-                    </div>
+                    {footerData && (
+                        <>
+                            <div className="column">
+                                <div className="title">
+                                    {footerData.topicTitle}
+                                </div>
+                                {footerData.topics.map((topic) => (
+                                    <a
+                                        className="list"
+                                        key={topic.id}
+                                        href={topic.href}
+                                    >
+                                        {topic.title}
+                                    </a>
+                                ))}
+                            </div>
+                            <div className="column">
+                                <div className="title">
+                                    {footerData.moreTitle}
+                                </div>
+                                {footerData.more.map((more) => (
+                                    <a
+                                        className="list"
+                                        key={more.id}
+                                        href={more.href}
+                                    >
+                                        {more.title}
+                                    </a>
+                                ))}
+                            </div>
+                        </>
+                    )}
                     <div className="column ojk-wrapper">
-                        <div>Registered & supervised by:</div>
-                        <img
-                            src="/images/logo/OJK-Logo-White.png"
-                            alt="Lippo-logo"
-                        />
+                        {footerData && (
+                            <>
+                                <div>{footerData.ojkText}</div>
+                                <img
+                                    src={`${assetDomain}${
+                                        footerData.ojkImage?.url ?? ''
+                                    }`}
+                                    alt={
+                                        footerData.ojkImage?.alternativeText ??
+                                        ''
+                                    }
+                                />
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="copyright">

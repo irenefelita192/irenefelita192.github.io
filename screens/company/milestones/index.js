@@ -18,7 +18,7 @@ export default function MilestonesScreen() {
             langId = getCookie('lang')
         }
         const msData = await getMilestone(langId ? langId : 'id')
-        console.log('data', msData)
+
         if (!isMounted()) return
 
         setMilestoneData(msData)
@@ -30,25 +30,33 @@ export default function MilestonesScreen() {
                 <>
                     <Sidebar activeId="milestones" />
                     <div className="content-wrapper">
-                        <h1 className="content-title">Milestones</h1>
                         {milestoneData && (
-                            <div className="timeline-container">
-                                <div className="timeline-inner">
-                                    {milestoneData.map((dt) => (
-                                        <div className="timeline-item">
-                                            <i className="timeline-icon" />
-                                            <div className="timeline-content">
-                                                <div className="timeline-title">
-                                                    {dt.title}
-                                                </div>
-                                                <div className="timeline-description">
-                                                    {dt.description}
+                            <>
+                                <h1 className="content-title">
+                                    {milestoneData.title}
+                                </h1>
+
+                                <div className="timeline-container">
+                                    <div className="timeline-inner">
+                                        {milestoneData.milestone.map((dt) => (
+                                            <div
+                                                className="timeline-item"
+                                                key={dt.id}
+                                            >
+                                                <i className="timeline-icon" />
+                                                <div className="timeline-content">
+                                                    <div className="timeline-title">
+                                                        {dt.year}
+                                                    </div>
+                                                    <div className="timeline-description">
+                                                        {dt.description}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            </>
                         )}
                     </div>
                 </>

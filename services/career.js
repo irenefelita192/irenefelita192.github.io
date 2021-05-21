@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const endpoints = process.env.config?.endpoints?.api ?? ''
 
-export const getSolutionPage = async (locale) => {
+export const getCareer = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/solutions-page${locQs}`)
+        .get(`${endpoints}/career-page${locQs}`)
         .catch(function (error) {
             console.error(error)
         })

@@ -11,7 +11,7 @@ import PrivacyScreen from '../screens/privacy'
 export default function Privacy() {
     return (
         <Layout>
-            <PrivacyScreen />
+            <PrivacyScreen  title="Privacy Policy/>
         </Layout>
     )
 }
