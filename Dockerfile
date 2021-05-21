@@ -9,7 +9,7 @@ COPY package.json yarn.lock ./
 
 
 RUN ls
-RUN yarn --development
+RUN yarn --production
 
 COPY . ./
 
@@ -17,4 +17,4 @@ EXPOSE 3000
 
 ENTRYPOINT [ "yarn" ]
 
-CMD [ "dev" ]
+CMD [ "start" ]
