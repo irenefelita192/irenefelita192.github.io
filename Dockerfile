@@ -2,19 +2,19 @@ FROM node:12-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock .npmrc  ./
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json yarn.lock ./
+
+
 
 RUN ls
-RUN yarn --production
+RUN yarn --development
 
-
-
-COPY . .
-
-RUN ls
+COPY . ./
 
 EXPOSE 3000
 
 ENTRYPOINT [ "yarn" ]
 
-CMD [ "start" ]
+CMD [ "dev" ]
