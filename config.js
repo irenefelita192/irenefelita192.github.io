@@ -21,10 +21,8 @@ const options = {
     },
     production: {
         endpoints: {
-            // domain: 'http://www.lippolife.co.id',
-            domain: '',
-            api: 'http://localhost:1337',
-            asset: 'http://localhost:1337',
+            domain: 'http://www.lippolife.co.id',
+            asset: '',
             assetPrefix: '',
         },
     },
