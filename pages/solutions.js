@@ -4,7 +4,7 @@ import SolutionScreen from '../screens/solutions'
 export default function Solutions() {
     return (
         <Layout>
-            <SolutionScreen />
+            <SolutionScreen title="Solutions" />
         </Layout>
     )
 }

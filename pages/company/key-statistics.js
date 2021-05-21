@@ -1,9 +1,9 @@
 import Layout from '../../components/layout'
 import KSScreen from '../../screens/company/key-statistics'
 
-export default function Company() {
+export default function KeyStatistics() {
     return (
-        <Layout activeHeaderId="company">
+        <Layout activeHeaderId="company" title="Key Statistics">
             <KSScreen />
         </Layout>
     )

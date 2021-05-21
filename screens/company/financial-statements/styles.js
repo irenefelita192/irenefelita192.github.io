@@ -17,6 +17,7 @@ export default css`
     .content-item {
         margin-right: 72px;
         width: 180px;
+        cursor: pointer;
     }
 
     .content-item img {

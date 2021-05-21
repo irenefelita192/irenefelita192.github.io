@@ -39,8 +39,13 @@ export default function BODScreen() {
                                     <div key={dt.id} className={`card-item`}>
                                         {dt.image && (
                                             <img
-                                                src={`${assetDomain}${dt.image.url}`}
-                                                alt={dt.alternativeText}
+                                                src={`${assetDomain}${
+                                                    dt.image?.url ?? ''
+                                                }`}
+                                                alt={
+                                                    dt.image?.alternativeText ??
+                                                    ''
+                                                }
                                             />
                                         )}
                                         {/* {!dt.image && <div></div>} placeholder for later*/}

@@ -15,7 +15,7 @@ export const getOverview = async (locale) => {
 export const getMilestone = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/milestones${locQs}`)
+        .get(`${endpoints}/milestones-page${locQs}`)
         .catch(function (error) {
             console.error(error)
         })
@@ -25,7 +25,7 @@ export const getMilestone = async (locale) => {
 export const getKeyStatistic = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/key-statistics${locQs}`)
+        .get(`${endpoints}/key-statistics-page${locQs}`)
         .catch(function (error) {
             console.error(error)
         })
@@ -35,7 +35,7 @@ export const getKeyStatistic = async (locale) => {
 export const getFinancialStatement = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/financial-statements${locQs}`)
+        .get(`${endpoints}/financial-statements-page${locQs}`)
         .catch(function (error) {
             console.error(error)
         })

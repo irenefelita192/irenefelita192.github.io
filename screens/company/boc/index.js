@@ -72,8 +72,12 @@ export default function BOCScreen() {
                                 {bocData.people.map((dt, index) => (
                                     <div key={dt.id} className={`card-item`}>
                                         <img
-                                            src={`${assetDomain}${dt.image.url}`}
-                                            alt={dt.alternativeText}
+                                            src={`${assetDomain}${
+                                                dt.image?.url ?? ''
+                                            }`}
+                                            alt={
+                                                dt.image?.alternativeText ?? ''
+                                            }
                                         />
 
                                         <div className="card-content">

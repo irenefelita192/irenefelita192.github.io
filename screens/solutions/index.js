@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import ReactMarkdown from 'react-markdown'
-import { getSolutions, getSolutionPage } from '../../services/solutions'
+import { getSolutionPage } from '../../services/solutions'
 import { getCookie } from '../../util/global-util'
 import styles from './styles'
 
@@ -10,32 +10,29 @@ import Footer from '../../components/footer'
 
 export default function SolutionScreen() {
     const [solutionData, setSolutionData] = useState(null)
-    const [contactData, setContactData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
         let langId
         if (process.browser) {
             langId = getCookie('lang')
         }
-        const sData = await getSolutions(langId ? langId : 'id')
-        const cData = await getSolutionPage(langId ? langId : 'id')
+        const solData = await getSolutionPage(langId ? langId : 'id')
 
         if (!isMounted()) return
 
-        setSolutionData(sData)
-        setContactData(cData)
+        setSolutionData(solData)
     }, [])
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+
     return (
         <>
             <Hero id="solutions" />
             {solutionData && (
                 <div className="wrapper">
-                    {solutionData.map((dt) => (
-                        <div className="content-item">
+                    {solutionData.solutions.map((dt) => (
+                        <div key={dt.id} className="content-item">
                             <div className="title">
                                 <span>{dt.title}</span>
-                            </div>{' '}
+                            </div>
                             <div className="short-desc">
                                 {dt.shortDescription}
                             </div>
@@ -55,16 +52,16 @@ export default function SolutionScreen() {
                     ))}
                 </div>
             )}
-            {contactData && (
+            {solutionData && (
                 <div className="contact-wrapper">
-                    <div>{contactData.contactDescription}</div>
+                    <div>{solutionData.contactDescription}</div>
                     <button
                         onClick={() =>
                             (window.location.href =
-                                contactData.buttonLink || '/contact')
+                                solutionData.buttonLink || '/contact')
                         }
                     >
-                        {contactData.buttonText}
+                        {solutionData.buttonText}
                     </button>
                 </div>
             )}

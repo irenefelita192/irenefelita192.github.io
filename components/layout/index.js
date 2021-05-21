@@ -43,7 +43,7 @@ export default function Layout({
                 />
                 <meta
                     name="keywords"
-                    content={keywords ? keywords : `Lippo Life ${description}`}
+                    content={keywords ? keywords : `${description}`}
                 />
                 <meta
                     name="description"
@@ -148,100 +148,106 @@ export default function Layout({
                     id="noscript-blank-page"
                     dangerouslySetInnerHTML={{
                         __html: `
-              .noscript-header {
-                display: flex;
-                position: fixed;
-                top: 0;
-                height: 6rem;
-                width: 100%;
-                z-index: 102;
-                background-color: #000;
-              }
 
-              .noscript-logo {
-                display: inline-block;
-                width: 15rem;
-                margin: auto;
-              }
+                    .noscript-wrapper {
+                        position: fixed;
+                        top: 0;
+                        width: 100%;
+                        height: 100vh;
+                        z-index: 102;
+                        background-color: #FFFFFF;
+                    }
 
-              .noscript-content-wrapper {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-                color: white;
-              }
+                    .noscript-header {
+                        display: flex;
+                        height: 80px;
+                    }
 
-              .noscript-content-wrapper .headline {
-                font-size: 2.1rem;
-                font-weight: 600;
-                line-height: 1.3;
-                margin: 0;
-                padding: 1.8rem 0 0 0;
-                color: #FFFFFF;
-                margin: 0 1.6rem;
-                text-align: center;
-              }
+                    .noscript-logo {
+                        display: inline-block;
+                        width: 15rem;
+                        margin: auto;
+                    }
 
-              .noscript-content-wrapper .subheadline {
-                font-size: 1.6rem;
-                line-height: 1.5;
-                color: #C1C2C2;
-                margin: 0;
-                padding: 0.8rem 5rem 0;
-                text-align: center;
-              }
+                    .noscript-content-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                        margin-top: 15%;
+                        color: #2b2b2b;
+                    }
 
-              @media screen and (max-width: 640px) {
-                .noscript-logo {
-                  width: 120px;
-                  margin: auto 16px;
-                }
+                    .noscript-content-wrapper .headline {
+                        font-size: 2.1rem;
+                        font-weight: 600;
+                        line-height: 1.3;
+                        margin: 0;
+                        padding: 1.8rem 0 0 0;
+                        color: #2b2b2b;
+                        margin: 0 1.6rem;
+                        text-align: center;
+                    }
 
-                .noscript-content-wrapper .headline {
-                  font-size: 1.8rem;
-                  padding: 28.8px 0 0 0;
-                  margin: 0 24px;
-                }
+                    .noscript-content-wrapper .subheadline {
+                        font-size: 1.6rem;
+                        line-height: 1.5;
+                        color: #2b2b2b;
+                        margin: 0;
+                        padding: 0.8rem 5rem 0;
+                        text-align: center;
+                    }
 
-                .noscript-content-wrapper .subheadline {
-                  font-size: 1.4rem;
-                }
-              }
-            `,
+                    @media screen and (max-width: 640px) {
+                        .noscript-header {
+                            height: 52px;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        .noscript-logo {
+                            width: 120px;
+                            margin: auto 16px;
+                        }
+
+                        .noscript-content-wrapper .headline {
+                        font-size: 1.8rem;
+                        padding: 28.8px 0 0 0;
+                        margin: 0 24px;
+                        }
+
+                        .noscript-content-wrapper .subheadline {
+                        font-size: 1.4rem;
+                        }
+                    }
+                    `,
                     }}
                 />
-                <div className={'noscript-header'}>
-                    {/* <img
-                        alt="molatv"
-                        src="https://mola01.koicdn.com/assets-global/images/mola_logo_horizontal.png"
-                        className={'noscript-logo'}
-                    /> */}
-                </div>
-                <div className={'noscript-content-wrapper'}>
-                    {/* <img
-                        alt="mola error background"
-                        src="https://mola01.koicdn.com/assets-global/images/error/not-found@2x.png"
-                        style={{
-                            minWidth: '200px',
-                            height: '200px',
-                            display: 'block',
-                        }}
-                    /> */}
-                    <h2 className={'headline'}>
-                        Anda belum mengaktifkan javascript di dalam browser
-                    </h2>
-                    <p className={'subheadline'}>
-                        <a
-                            style={{ textDecoration: 'none', color: '#1f93ff' }}
-                            href="https://www.enablejavascript.io"
-                            target="_blank"
-                        >
-                            Aktifkan
-                        </a>{' '}
-                        javascript untuk bisa menonton
-                    </p>
+                <div className={'noscript-wrapper'}>
+                    <div className={'noscript-header'}>
+                        <img
+                            alt="LippoLife"
+                            src="/images/logo/LippoLife-Logo-Black.png"
+                            className={'noscript-logo'}
+                        />
+                    </div>
+                    <div className={'noscript-content-wrapper'}>
+                        <h2 className={'headline'}>
+                            Anda belum mengaktifkan javascript di dalam browser
+                        </h2>
+                        <p className={'subheadline'}>
+                            <a
+                                style={{
+                                    textDecoration: 'none',
+                                    color: '#1f93ff',
+                                }}
+                                href="https://www.enablejavascript.io"
+                                target="_blank"
+                            >
+                                Aktifkan
+                            </a>{' '}
+                            javascript untuk bisa mengakses website
+                        </p>
+                    </div>
                 </div>
             </noscript>
         </>

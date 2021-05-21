@@ -61,18 +61,30 @@ export const getHeroTop = async (locale, pageId) => {
     return response ? response.data : null
 }
 
-export const getTnc = async () => {
+export const getTnc = async (locale) => {
+    const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/terms-conditions`)
+        .get(`${endpoints}/terms-conditions${locQs}`)
         .catch(function (error) {
             console.error(error)
         })
     return response ? response.data : null
 }
 
-export const getPrivacy = async () => {
+export const getPrivacy = async (locale) => {
+    const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/privacy`)
+        .get(`${endpoints}/privacy${locQs}`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}
+
+export const getFooter = async (locale) => {
+    const locQs = locale ? `?_locale=${locale}` : ''
+    const response = await axios
+        .get(`${endpoints}/footer${locQs}`)
         .catch(function (error) {
             console.error(error)
         })
