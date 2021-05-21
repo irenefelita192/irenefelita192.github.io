@@ -4,8 +4,7 @@ import css from 'styled-jsx/css'
 export default css`
     .wrapper {
         display: block;
-        padding: 57px 300px ${theme.offset.container};
-        color: ${theme.colors.black};
+        padding: 57px 300px 94px;
     }
 
     .content-item {
@@ -83,7 +82,7 @@ export default css`
     }
 
     .contact-wrapper > div {
-        width: 630px;
+        max-width: 630px;
         font-weight: 500;
         font-size: 18px;
         line-height: 1.44;
@@ -116,6 +115,11 @@ export default css`
         .wrapper {
             padding: 42px;
             min-height: 0;
+        }
+
+        .contact-wrapper > div {
+            font-size: 16px;
+            margin: 0 36px 48px;
         }
     }
 `

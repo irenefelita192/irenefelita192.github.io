@@ -60,3 +60,21 @@ export const getHeroTop = async (locale, pageId) => {
         })
     return response ? response.data : null
 }
+
+export const getTnc = async () => {
+    const response = await axios
+        .get(`${endpoints}/terms-conditions`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}
+
+export const getPrivacy = async () => {
+    const response = await axios
+        .get(`${endpoints}/privacy`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}

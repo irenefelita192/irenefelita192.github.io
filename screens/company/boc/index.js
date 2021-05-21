@@ -6,6 +6,7 @@ import { getCookie } from '../../../util/global-util'
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
+import Footer from '../../../components/footer'
 import PageWrapper from '../../../components/layout/page-wrapper'
 
 const data = [
@@ -95,6 +96,7 @@ export default function BOCScreen() {
                     )}
                 </>
             </PageWrapper>
+            <Footer />
             <style jsx>{styles}</style>
             <style jsx global>
                 {`

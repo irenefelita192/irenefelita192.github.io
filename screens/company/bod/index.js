@@ -6,6 +6,7 @@ import { getCookie } from '../../../util/global-util'
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
+import Footer from '../../../components/footer'
 import PageWrapper from '../../../components/layout/page-wrapper'
 
 export default function BODScreen() {
@@ -36,10 +37,13 @@ export default function BODScreen() {
                             <div className="content-description">
                                 {bodData.people.map((dt, index) => (
                                     <div key={dt.id} className={`card-item`}>
-                                        <img
-                                            src={`${assetDomain}${dt.image.url}`}
-                                            alt={dt.alternativeText}
-                                        />
+                                        {dt.image && (
+                                            <img
+                                                src={`${assetDomain}${dt.image.url}`}
+                                                alt={dt.alternativeText}
+                                            />
+                                        )}
+                                        {/* {!dt.image && <div></div>} placeholder for later*/}
 
                                         <div className="card-content">
                                             <div className="card-title">
@@ -61,6 +65,7 @@ export default function BODScreen() {
                     )}
                 </>
             </PageWrapper>
+            <Footer />
             <style jsx>{styles}</style>
             <style jsx global>
                 {`

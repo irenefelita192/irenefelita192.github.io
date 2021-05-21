@@ -34,7 +34,7 @@ export default function Hero({ id }) {
 
     const assetDomain = process.env.config?.endpoints?.asset ?? '',
         heroImg = isWebp
-            ? heroData?.heroImgWebp?.url ?? ''
+            ? heroData?.heroImgWebp?.url ?? heroData?.heroImg?.url ?? ''
             : heroData?.heroImg?.url ?? ''
 
     return (
