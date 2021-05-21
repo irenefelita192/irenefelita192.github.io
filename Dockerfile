@@ -23,4 +23,4 @@ EXPOSE 3000
 
 ENTRYPOINT [ "yarn" ]
 
-CMD [ "start" ]
+CMD [ "dev" ]
