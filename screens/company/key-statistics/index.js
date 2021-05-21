@@ -79,7 +79,7 @@ export default function KSScreen() {
                                     >
                                         <img
                                             src={`${assetDomain}${dt.image?.url}`}
-                                            alt={dt.title}
+                                            alt={dt.alternativeText}
                                         />
 
                                         <div className="card-content">

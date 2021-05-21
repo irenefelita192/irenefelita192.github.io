@@ -25,7 +25,7 @@ export default css`
     }
 
     .card-item .card-content {
-        padding-left: 54px;
+        padding: 0 0 0 54px;
     }
 
     .card-item img {

@@ -32,4 +32,26 @@ export default css`
         column-gap: 70px;
         margin-top: 70px;
     }
+
+    .logo-image-wrapper {
+        position: relative;
+    }
+
+    .logo-image-wrapper img {
+        opacity: 1;
+        transition: 0.3s opacity ease-in-out;
+    }
+
+    .logo-image-wrapper img.img-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 0.3s opacity ease-in-out;
+    }
+
+    .logo-image-wrapper img:hover.img-hover {
+        opacity: 1;
+        transition: 0.3s opacity ease-in-out;
+    }
 `

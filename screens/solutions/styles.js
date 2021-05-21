@@ -23,6 +23,10 @@ export default css`
         left: 168px;
     }
 
+    .content-item:last-child:after {
+        display: none;
+    }
+
     .title {
         font-weight: 600;
         font-size: 32px;
@@ -67,6 +71,38 @@ export default css`
         font-size: 24px;
         line-height: 1.17;
         padding: 64px 0 32px;
+    }
+
+    .contact-wrapper {
+        background: #f5f7fa;
+        padding: 68px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contact-wrapper > div {
+        width: 630px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.44;
+        text-align: center;
+        margin-bottom: 48px;
+        color: ${theme.colors.black};
+    }
+
+    .contact-wrapper > button {
+        background: #a88836;
+        border-radius: 60px;
+        border: 0;
+        width: 160px;
+        height: 53px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        cursor: pointer;
     }
 
     @media screen and (max-width: 1024px) {

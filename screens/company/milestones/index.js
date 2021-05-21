@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-
 import { getMilestone } from '../../../services/company'
 import { getCookie } from '../../../util/global-util'
 import styles from './styles'
