@@ -16,7 +16,7 @@ export default function ContactScreen() {
             langId = getCookie('lang')
         }
         const contactDt = await getContact(langId ? langId : 'id')
-        console.log('contactDt', contactDt)
+
         if (!isMounted()) return
 
         setContactData(contactDt)

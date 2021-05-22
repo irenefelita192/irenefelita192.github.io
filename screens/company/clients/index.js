@@ -19,7 +19,7 @@ export default function ClientScreen() {
             langId = getCookie('lang')
         }
         const clientDt = await getClients(langId ? langId : 'id')
-        console.log('data', clientDt)
+
         if (!isMounted()) return
         setClientData(clientDt)
     }, [])
