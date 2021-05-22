@@ -52,7 +52,7 @@ export default function BOCScreen() {
             langId = getCookie('lang')
         }
         const bocDt = await getBOC(langId ? langId : 'id')
-        console.log('data', bocDt)
+
         if (!isMounted()) return
         setBocData(bocDt)
     }, [])

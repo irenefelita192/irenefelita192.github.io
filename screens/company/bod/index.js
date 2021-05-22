@@ -18,7 +18,7 @@ export default function BODScreen() {
             langId = getCookie('lang')
         }
         const bodDt = await getBOD(langId ? langId : 'id')
-        console.log('data', bodDt)
+
         if (!isMounted()) return
         setBodData(bodDt)
     }, [])
