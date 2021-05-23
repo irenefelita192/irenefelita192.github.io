@@ -41,9 +41,13 @@ export default function Hero({ id }) {
         <>
             {heroData && (
                 <div className="hero-wrapper">
-                    <img src={`${assetDomain}${heroImg}`} />
-                    <div className="background-bottom" />
-                    <div className="background-overlay" />
+                    {heroImg && (
+                        <>
+                            <img src={`${assetDomain}${heroImg}`} />
+                            <div className="background-bottom" />
+                            <div className="background-overlay" />
+                        </>
+                    )}
                     <span> {heroData?.heroTitle ?? ''}</span>
                 </div>
             )}

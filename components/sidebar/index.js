@@ -52,7 +52,7 @@ import styles from './styles'
 //         ],
 //     },
 // ]
-export default function Sidebar({ data, activeId }) {
+export default function Sidebar({ activeId }) {
     const [sidebarData, setSidebarData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
@@ -62,7 +62,7 @@ export default function Sidebar({ data, activeId }) {
         }
 
         const sidebarData = await getAllSubMenu(langId ? langId : 'id')
-
+        console.log('sidebar', sidebarData)
         if (!isMounted()) return
 
         setSidebarData(sidebarData)
@@ -77,20 +77,25 @@ export default function Sidebar({ data, activeId }) {
                                 <p className="menu-label">{dt.title}</p>
                             )}
                             <ul className="menu-list">
-                                {dt.subMenu.map((subMenu) => (
-                                    <li
-                                        key={subMenu.id}
-                                        className={
-                                            activeId == subMenu.subID
-                                                ? 'is-active'
-                                                : ''
-                                        }
-                                    >
-                                        <a href={subMenu.href}>
-                                            {subMenu.title}
-                                        </a>
-                                    </li>
-                                ))}
+                                {dt.subMenu.length > 0 &&
+                                    dt.subMenu
+                                        .sort(function (a, b) {
+                                            return a.sortNum - b.sortNum
+                                        })
+                                        .map((subMenu) => (
+                                            <li
+                                                key={subMenu.id}
+                                                className={
+                                                    activeId == subMenu.subID
+                                                        ? 'is-active'
+                                                        : ''
+                                                }
+                                            >
+                                                <a href={subMenu.href}>
+                                                    {subMenu.title}
+                                                </a>
+                                            </li>
+                                        ))}
                             </ul>
                         </Fragment>
                     ))}

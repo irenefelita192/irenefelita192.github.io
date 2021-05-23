@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css'
-import theme from '../../components/global-styles/theme'
+
 export default css`
     .hero-wrapper {
         position: relative;
@@ -7,6 +7,8 @@ export default css`
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 300px;
+        background-color: black;
     }
 
     .hero-wrapper span {
@@ -40,7 +42,7 @@ export default css`
 
     @media screen and (max-width: 640px) {
         .hero-wrapper img {
-            height: 200px;
+            min-height: 200px;
             width: auto;
             object-fit: cover;
         }

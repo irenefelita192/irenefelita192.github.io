@@ -26,9 +26,10 @@ export default function SolutionScreen() {
     return (
         <>
             <Hero id="solutions" />
-            {solutionData && (
-                <div className="wrapper">
-                    {solutionData.solutions.map((dt) => (
+
+            <div className="wrapper">
+                {solutionData &&
+                    solutionData.solutions.map((dt) => (
                         <div key={dt.id} className="content-item">
                             <div className="title">
                                 <span>{dt.title}</span>
@@ -50,8 +51,8 @@ export default function SolutionScreen() {
                             </div>
                         </div>
                     ))}
-                </div>
-            )}
+            </div>
+
             {solutionData && (
                 <div className="contact-wrapper">
                     <div>{solutionData.contactDescription}</div>

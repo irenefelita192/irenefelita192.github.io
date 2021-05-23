@@ -4,13 +4,17 @@ const endpoints = process.env.config?.endpoints?.api ?? ''
 
 export const getAllSubMenu = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
+    const sortQs = `${locQs ? '&' : '?'}_sort=sortNum:ASC`
+
     const response = await axios
-        .get(`${endpoints}/sub-menus${locQs}`)
+        .get(`${endpoints}/sub-menus${locQs}${sortQs}`)
         .catch(function (error) {
             console.error(error)
         })
+
     return response ? response.data : null
 }
+
 export const getAllHeader = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
@@ -31,10 +35,18 @@ export const getAllHeader = async (locale) => {
                         return sm.id == subMenu.id
                     })
 
-                    subMenu.subMenu =
-                        menuData && menuData.subMenu
-                            ? [...menuData.subMenu]
-                            : []
+                    let subMenuSort = null
+                    if (
+                        menuData &&
+                        menuData.subMenu &&
+                        menuData.subMenu.length > 0
+                    ) {
+                        subMenuSort = menuData.subMenu.sort(function (a, b) {
+                            return a.sortNum - b.sortNum
+                        })
+                    }
+
+                    subMenu.subMenu = subMenuSort ? [...subMenuSort] : []
                 })
         })
 
