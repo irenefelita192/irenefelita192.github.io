@@ -1,4 +1,5 @@
 import theme from '../../components/global-styles/theme'
+import Footer from '../../components/footer'
 
 export default function NotFoundScreen() {
     const handleClickButton = () => {
@@ -6,22 +7,25 @@ export default function NotFoundScreen() {
         window.location.href = domain
     }
     return (
-        <div className="container">
-            <div className="content-container">
-                <h2 className="not-found-title">
-                    We can't find the page you're looking for.
-                </h2>
-                <p className="not-found-description">
-                    Please check the URL or go back to Home.
-                </p>
-                <button
-                    type="button"
-                    className="button"
-                    onClick={handleClickButton}
-                >
-                    Back To Home
-                </button>
+        <>
+            <div className="container">
+                <div className="content-container">
+                    <h2 className="not-found-title">
+                        We can't find the page you're looking for.
+                    </h2>
+                    <p className="not-found-description">
+                        Please check the URL or go back to Home.
+                    </p>
+                    <button
+                        type="button"
+                        className="button"
+                        onClick={handleClickButton}
+                    >
+                        Back To Home
+                    </button>
+                </div>
             </div>
+
             <style jsx>{`
                 .container {
                     height: calc(100vh - ${theme.header.height});
@@ -86,6 +90,7 @@ export default function NotFoundScreen() {
                     cursor: pointer;
                 }
             `}</style>
-        </div>
+            <Footer />
+        </>
     )
 }

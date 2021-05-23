@@ -4,6 +4,7 @@ import yoastSEOPlugin from '../yoastSEOPlugin.json'
 import Header from '../header'
 
 import normalizeCss from 'normalize.css'
+import styles from './styles'
 import globalStyles from '../global-styles/global-styles'
 
 export default function Layout({
@@ -131,17 +132,14 @@ export default function Layout({
                 {normalizeCss}
             </style>
             <style jsx global>
+                {styles}
+            </style>
+            <style jsx global>
                 {globalStyles}
             </style>
 
             <Header withBg={headerWithBg} activeId={activeHeaderId} />
-            <div
-                style={{
-                    fontFamily: `Inter, sans-serif`,
-                }}
-            >
-                {children}
-            </div>
+            <div className="children-wrapper">{children}</div>
 
             <noscript>
                 <style

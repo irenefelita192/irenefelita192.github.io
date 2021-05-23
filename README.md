@@ -28,29 +28,27 @@ You will also see any lint errors in the console.
 
 ## Create new microsite page
 
-### Create [page-name].js
+### Create pages
 
 Create file **[page-name].js** under **/pages** folder<br />
+or folder **/pages/[page-name]/index.js <br/>
 the page name will reflect the accessible name on browser,<br />
-for example pages/sofa-kuning.js can be accessed as ...<br />
-(notes: for development temporarily will use /micrositev2 until all microsite finished migrate)
+for example pages/overview.js can be accessed as ...<br />
+<br/><br/>
+then create folder **[page-name]** under **/screen\*\* with index.js and styles inside
 
 ### Applying styles
 
-On your [page-name].js import below:
+On your [page-name].js on /screen you can create custom jsx style per page under /styles folder, <br />
 
-`import jsxGlobalStyle from "../styles/global.style.js" //this is required as default style and reset css`
-
-and you can create custom jsx style per page under /styles folder, <br />consider the following pattern **[page-name].style.js** to make it easy
-
-`import jsxStyle from "../styles/sofa-kuning.style.js"`
+`import styles from "./styles.js"`
 
 then put below code:
 
 ```
- <style jsx>{jsxStyle}</style>
+ <style jsx>{styles}</style>
  <style jsx global>
-    {jsxGlobalStyle}
+    {globalStyles}
  </style>
 ```
 
@@ -69,77 +67,6 @@ Always wrap you page with Layout.js component <br />
 
 If you need to make a component with its own state or can be import dynamically, <br />
 create **[component-name].js** under **/components** folder
-If the component don't have state or not needed at other pages, please put in the same [page-name].js <br />
-example:
-
-```
-export const ButtonSK = ({
-  handleClick,
-  height,
-  secondary,
-  isMobile,
-  text,
-}) => {
-...
-}
-
-class SofaKuning extends React.Component {
-...
-    render() {
-        ...
-        <ButtonSK
-          text="Cara Main"
-          height={61}
-          handleClick={this.onClickCaraBermain}
-        />
-        ...
-    }
-}
-```
-
-If you need to make a component with dynamic import please consider code at _Player.js_
-<br />
-
-### Calling API
-
-getServerSideProps function can be used to call api
-this is server call
-so please use internal ip
-
-```
-export async function getServerSideProps() {
-  console.log("Running Server Side")
-  const URL = `${process.env.CONFIG_API_URL}/alrez/r/web/microsite/sofa-kuning?app_id=${process.env.APP_ID}`
-
-  const rawResponse = await Axios({
-    timeout: 5000,
-    method: "get",
-    url: URL,
-    headers: {
-      host: "config.core.sstv.local",
-    },
-  })
-    .then((response) => _get(response, "data.data", null))
-    .catch((e) => null)
-
-  if (!rawResponse) console.log(`API TIMEOUT: ${URL}`)
-  const content = _get(rawResponse, "attributes.response.data", null)
-
-  return {
-    props: {
-      data: content,
-    },
-  }
-}
-```
-
-the function will return as props, so can be called like this:
-
-`const { data } = this.props`
-<br />
-<br />
-<br />
-<br />
 
 ## Learn More
 

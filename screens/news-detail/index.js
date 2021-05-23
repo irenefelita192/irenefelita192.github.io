@@ -38,60 +38,68 @@ export default function NewsDetailScreen({ newsId }) {
     const locale = { en: enUS, id: id }
     return (
         <>
-            {newsData && (
-                <div className="wrapper">
-                    <div className="content-wrapper">
-                        <div className="title">{newsData.title}</div>
-                        {newsData.publishDate && (
-                            <div className="date">
-                                {format(
-                                    new Date(newsData.publishDate),
-                                    'dd MMMM yyyy',
-                                    { locale: locale[newsData.locale] }
-                                )}
+            <div className="wrapper">
+                {' '}
+                {newsData && (
+                    <>
+                        <div className="content-wrapper">
+                            <div className="title">{newsData.title}</div>
+                            {newsData.publishDate && (
+                                <div className="date">
+                                    {format(
+                                        new Date(newsData.publishDate),
+                                        'dd MMMM yyyy',
+                                        { locale: locale[newsData.locale] }
+                                    )}
+                                </div>
+                            )}
+                            {newsData.image && (
+                                <div className="image-wrapper">
+                                    <img
+                                        src={`${assetDomain}${newsData.image.url}`}
+                                    />
+                                </div>
+                            )}
+                            <div className="content">
+                                <ReactMarkdown>
+                                    {newsData.content}
+                                </ReactMarkdown>
                             </div>
-                        )}
-                        {newsData.image && (
-                            <div className="image-wrapper">
-                                <img
-                                    src={`${assetDomain}${newsData.image.url}`}
-                                />
+                        </div>
+                        <div className="more-wrapper">
+                            <div className="more-top-title">
+                                {newsData.locale == 'en'
+                                    ? 'More News'
+                                    : 'Berita Lainnya'}
                             </div>
-                        )}
-                        <div className="content">
-                            <ReactMarkdown>{newsData.content}</ReactMarkdown>
-                        </div>
-                    </div>
-                    <div className="more-wrapper">
-                        <div className="more-top-title">
-                            {newsData.locale == 'en'
-                                ? 'More News'
-                                : 'Berita Lainnya'}
-                        </div>
-                        {newsMoreData &&
-                            newsMoreData.map((moreDt) => {
-                                return (
-                                    <div className="more-content">
-                                        <div className="more-title">
-                                            {moreDt.title}
+                            {newsMoreData &&
+                                newsMoreData.map((moreDt) => {
+                                    return (
+                                        <div className="more-content">
+                                            <div className="more-title">
+                                                {moreDt.title}
+                                            </div>
+                                            <div className="more-date">
+                                                {format(
+                                                    new Date(
+                                                        moreDt.publishDate
+                                                    ),
+                                                    'dd MMMM yyyy',
+                                                    {
+                                                        locale: locale[
+                                                            newsData.locale
+                                                        ],
+                                                    }
+                                                )}
+                                            </div>
                                         </div>
-                                        <div className="more-date">
-                                            {format(
-                                                new Date(moreDt.publishDate),
-                                                'dd MMMM yyyy',
-                                                {
-                                                    locale: locale[
-                                                        newsData.locale
-                                                    ],
-                                                }
-                                            )}
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                    </div>
-                </div>
-            )}
+                                    )
+                                })}
+                        </div>
+                    </>
+                )}
+            </div>
+
             <Footer />
             <style jsx>{styles}</style>
             <style jsx global>

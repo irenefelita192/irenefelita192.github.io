@@ -58,9 +58,10 @@ export default function NewsScreen() {
                     </div>
                 </div>
             )}
-            {newsData && (
-                <div className="wrapper">
-                    {newsData.map((dt) => {
+
+            <div className="wrapper">
+                {newsData &&
+                    newsData.map((dt) => {
                         const publishDate = format(
                             new Date(dt.publishDate),
                             'dd MMMM yyyy',
@@ -78,8 +79,8 @@ export default function NewsScreen() {
                             </a>
                         )
                     })}
-                </div>
-            )}
+            </div>
+
             <Footer />
             <style jsx>{styles}</style>
         </>

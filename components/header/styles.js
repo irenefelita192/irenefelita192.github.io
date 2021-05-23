@@ -216,7 +216,7 @@ export default css`
         content: '';
     }
 
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 768px) {
         .navbar {
             height: 52px;
         }
