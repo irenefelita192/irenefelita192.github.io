@@ -11,6 +11,10 @@ export default css`
         background-color: black;
     }
 
+    .hero-wrapper.has-image {
+        min-height: 0;
+    }
+
     .hero-wrapper span {
         z-index: 1;
         position: absolute;
@@ -38,6 +42,18 @@ export default css`
         );
         width: 100%;
         height: 100%;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .hero-wrapper {
+            min-height: 210px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .hero-wrapper {
+            min-height: 160px;
+        }
     }
 
     @media screen and (max-width: 640px) {

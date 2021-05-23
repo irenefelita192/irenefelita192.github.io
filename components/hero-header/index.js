@@ -40,7 +40,7 @@ export default function Hero({ id }) {
     return (
         <>
             {heroData && (
-                <div className="hero-wrapper">
+                <div className={`hero-wrapper ${heroImg ? 'has-image' : ''}`}>
                     {heroImg && (
                         <>
                             <img src={`${assetDomain}${heroImg}`} />

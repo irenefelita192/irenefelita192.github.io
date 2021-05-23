@@ -34,10 +34,15 @@ export default function NewsScreen() {
             {newsHero && (
                 <div className="hero-wrapper">
                     {newsHero.heroImage && (
-                        <img src={`${assetDomain}${newsHero.heroImage.url}`} />
+                        <>
+                            <img
+                                src={`${assetDomain}${newsHero.heroImage.url}`}
+                            />
+
+                            <div className="background-bottom" />
+                            <div className="background-overlay" />
+                        </>
                     )}
-                    <div className="background-bottom" />
-                    <div className="background-overlay" />
                     <div className="hero-content">
                         <div className="hero-title">
                             {newsHero?.title ?? ''}
@@ -73,7 +78,11 @@ export default function NewsScreen() {
                                 className="grid-column"
                                 href={`/news/${dt.id}`}
                             >
-                                <img src={`${assetDomain}${dt.image.url}`} />
+                                {dt.image && (
+                                    <img
+                                        src={`${assetDomain}${dt.image.url}`}
+                                    />
+                                )}
                                 <div className="date">{publishDate}</div>
                                 <div className="title">{dt.title}</div>
                             </a>
