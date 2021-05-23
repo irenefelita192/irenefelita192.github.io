@@ -63,7 +63,7 @@ export default function Footer() {
                                     <a
                                         className="list"
                                         key={topic.id}
-                                        href={topic.href}
+                                        href={topic.link}
                                     >
                                         {topic.title}
                                     </a>
@@ -77,7 +77,7 @@ export default function Footer() {
                                     <a
                                         className="list"
                                         key={more.id}
-                                        href={more.href}
+                                        href={more.link}
                                     >
                                         {more.title}
                                     </a>
