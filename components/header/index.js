@@ -88,10 +88,12 @@ export default function Header({ withBg = true, activeId }) {
         document.cookie = `lang=${code};path=/`
         location.reload()
     }
-
-    const brandImg = withBg
-        ? '/images/logo/LippoLife-Logo-Black.png'
-        : '/images/logo/LippoLife-Logo-Red.png'
+    const assetPublic = process.env.config?.endpoints?.assetPublic ?? '',
+        brandImg = `${assetPublic}${
+            withBg
+                ? '/images/logo/LippoLife-Logo-Black.png'
+                : '/images/logo/LippoLife-Logo-Red.png'
+        }`
 
     return (
         <>

@@ -1,11 +1,10 @@
 require('dotenv').config()
 
-const ENV = process.env.REACT_APP_ENV
+const ENV = process.env.REACT_APP_ENV || 'staging'
 
 const options = {
     development: {
         endpoints: {
-            domain: '',
             api: 'http://localhost:1337',
             asset: 'http://localhost:1337',
             assetPrefix: '',
@@ -13,17 +12,17 @@ const options = {
     },
     staging: {
         endpoints: {
-            domain: 'http://www.lippolife.co.id',
             api: 'https://strapi-y5loyvex6a-et.a.run.app',
             asset: 'https://strapi-y5loyvex6a-et.a.run.app',
-            assetPrefix: '',
+            assetPublic: '.',
+            assetPrefix: '.',
         },
     },
     production: {
         endpoints: {
-            domain: 'http://www.lippolife.co.id',
-            asset: '',
-            assetPrefix: '',
+            api: 'https://strapi-y5loyvex6a-et.a.run.app',
+            asset: 'https://strapi-y5loyvex6a-et.a.run.app',
+            assetPrefix: '.',
         },
     },
 }

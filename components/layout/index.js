@@ -25,7 +25,8 @@ export default function Layout({
         ? `${title} | Lippo Life – We Love You`
         : 'Lippo Life – We Love You'
 
-    const url = process.env.config?.endpoints?.domain ?? ''
+    const url = process.env.config?.endpoints?.domain ?? '',
+        assetPublic = process.env.config?.endpoints?.assetPublic ?? ''
 
     return (
         <>
@@ -90,7 +91,7 @@ export default function Layout({
                     }}
                 />
 
-                <script src="/js/modernizr-custom.js" />
+                <script src={`${assetPublic}/js/modernizr-custom.js`} />
 
                 <link
                     rel="stylesheet"

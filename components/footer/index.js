@@ -37,7 +37,8 @@ export default function Footer() {
         setFooterData(footerDt)
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.endpoints?.asset ?? '',
+        assetPublic = process.env.config?.endpoints?.assetPublic ?? ''
     return (
         <>
             <footer>
@@ -49,7 +50,7 @@ export default function Footer() {
                         }}
                     >
                         <img
-                            src="/images/logo/LippoLife-Logo-White.png"
+                            src={`${assetPublic}/images/logo/LippoLife-Logo-White.png`}
                             alt="Lippo-logo"
                         />
                     </div>

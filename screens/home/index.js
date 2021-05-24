@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import { getHero, getStats } from '../../services/home'
+import { getFooter } from '../../services/common'
 import { getCookie } from '../../util/global-util'
 
 import styles from './styles'
@@ -12,6 +13,7 @@ export default function HomeScreen() {
     const [hovHeroId, setHovHeroId] = useState(0)
     const [heroData, setHeroData] = useState([])
     const [homeData, setHomeData] = useState([])
+    const [footerData, setFooterData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
         let langId
@@ -20,10 +22,12 @@ export default function HomeScreen() {
         }
         const hero = await getHero(langId ? langId : 'id')
         const home = await getStats(langId ? langId : 'id')
+        const footerDt = await getFooter(langId ? langId : 'id')
 
         if (!isMounted()) return
         setHeroData(hero)
         setHomeData(home)
+        setFooterData(footerDt)
     }, [])
 
     useEffect(() => {
@@ -130,10 +134,17 @@ export default function HomeScreen() {
                             })}
                     </div>
                 </div>
-                <div className="footer">
-                    <span>Terdaftar & Diawasi Oleh:</span>
-                    <img src="/images/logo/OJK-Logo.png" alt="OJK-logo" />
-                </div>
+                {footerData && (
+                    <div className="footer">
+                        <span>{footerData.ojkText}</span>
+                        {footerData.ojkImageHome && (
+                            <img
+                                src={`${assetDomain}${footerData.ojkImageHome.url}`}
+                                alt="OJK-logo"
+                            />
+                        )}
+                    </div>
+                )}
             </div>
             <div className="background-overlay" />
             <div className="background-bottom" />
