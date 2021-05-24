@@ -6,7 +6,7 @@ export default css.global`
         min-height: 48vh;
     }
 
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 1024px) {
         .children-wrapper .wrapper {
             min-height: 60vh;
         }
