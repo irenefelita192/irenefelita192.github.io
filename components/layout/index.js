@@ -26,7 +26,7 @@ export default function Layout({
         : 'Lippo Life – We Love You'
 
     const url = process.env.config?.endpoints?.domain ?? '',
-        assetPublic = process.env.config?.endpoints?.assetPublic ?? ''
+        assetPrefix = process.env.config?.endpoints?.assetPrefix ?? ''
 
     return (
         <>
@@ -91,7 +91,7 @@ export default function Layout({
                     }}
                 />
 
-                <script src={`${assetPublic}/js/modernizr-custom.js`} />
+                <script src={`${assetPrefix}/js/modernizr-custom.js`} />
 
                 <link
                     rel="stylesheet"

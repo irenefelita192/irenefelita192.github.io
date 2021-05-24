@@ -88,8 +88,8 @@ export default function Header({ withBg = true, activeId }) {
         document.cookie = `lang=${code};path=/`
         location.reload()
     }
-    const assetPublic = process.env.config?.endpoints?.assetPublic ?? '',
-        brandImg = `${assetPublic}${
+    const assetPrefix = process.env.config?.endpoints?.assetPrefix ?? '',
+        brandImg = `${assetPrefix}${
             withBg
                 ? '/images/logo/LippoLife-Logo-Black.png'
                 : '/images/logo/LippoLife-Logo-Red.png'

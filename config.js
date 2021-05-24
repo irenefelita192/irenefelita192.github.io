@@ -14,8 +14,7 @@ const options = {
         endpoints: {
             api: 'https://strapi-y5loyvex6a-et.a.run.app',
             asset: 'https://strapi-y5loyvex6a-et.a.run.app',
-            assetPublic: '.',
-            assetPrefix: '.',
+            assetPrefix: 'https://lla.haloida.dev',
         },
     },
     production: {
