@@ -30,6 +30,10 @@ export default css`
         padding-bottom: 20px;
     }
 
+    .image-wrapper img {
+        border-radius: 6px;
+    }
+
     .content {
         font-weight: normal;
         font-size: 16px;
@@ -38,6 +42,9 @@ export default css`
 
     .more-content {
         padding: 16px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .more-top-title {
@@ -59,6 +66,13 @@ export default css`
         font-size: 12px;
         line-height: 1.5;
         color: ${theme.colors.gray};
+    }
+
+    .more-content img {
+        width: 74px;
+        height: 74px;
+        object-fit: cover;
+        border-radius: 6px;
     }
 
     @media screen and (max-width: 1024px) {

@@ -104,6 +104,10 @@ export default css`
         cursor: pointer;
     }
 
+    .contact-wrapper > button:hover {
+        background: #8e815e;
+    }
+
     @media screen and (max-width: 1024px) {
         .wrapper {
             padding: 57px 72px 100px 72px;

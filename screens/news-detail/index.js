@@ -78,22 +78,29 @@ export default function NewsDetailScreen({ newsId }) {
                                             key={moreDt.id}
                                             className="more-content"
                                         >
-                                            <div className="more-title">
-                                                {moreDt.title}
+                                            <div className="more-left">
+                                                <div className="more-title">
+                                                    {moreDt.title}
+                                                </div>
+                                                <div className="more-date">
+                                                    {format(
+                                                        new Date(
+                                                            moreDt.publishDate
+                                                        ),
+                                                        'dd MMMM yyyy',
+                                                        {
+                                                            locale: locale[
+                                                                newsData.locale
+                                                            ],
+                                                        }
+                                                    )}
+                                                </div>
                                             </div>
-                                            <div className="more-date">
-                                                {format(
-                                                    new Date(
-                                                        moreDt.publishDate
-                                                    ),
-                                                    'dd MMMM yyyy',
-                                                    {
-                                                        locale: locale[
-                                                            newsData.locale
-                                                        ],
-                                                    }
-                                                )}
-                                            </div>
+                                            {moreDt.image && (
+                                                <img
+                                                    src={`${assetDomain}${moreDt.image.url}`}
+                                                />
+                                            )}
                                         </div>
                                     )
                                 })}

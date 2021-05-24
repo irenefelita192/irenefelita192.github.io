@@ -58,6 +58,10 @@ export default css`
         cursor: pointer;
     }
 
+    .hero-link:hover {
+        background: #8e815e;
+    }
+
     .hero-wrapper img {
         z-index: 1;
         width: 100%;
@@ -96,6 +100,10 @@ export default css`
     .hero-link {
         width: 130px;
         height: 36px;
+    }
+
+    .grid-column img {
+        border-radius: 6px;
     }
 
     @media screen and (max-width: 1024px) {
