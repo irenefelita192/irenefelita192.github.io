@@ -43,6 +43,10 @@ jobs:
       - name: Build VuePress site
         run: yarn build && yarn export
 
+      # create CNAME
+      - name: Create CNAME
+        run: echo "lla.haloida.dev" > out/CNAME
+
       # # copy YAML
       # - name : Copy Cloud Build YAML
       #   run: cp cloudbuild.yaml vuepress/.vuepress/dist/
