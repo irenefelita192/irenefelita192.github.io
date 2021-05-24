@@ -39,7 +39,6 @@ export default function NewsDetailScreen({ newsId }) {
     return (
         <>
             <div className="wrapper">
-                {' '}
                 {newsData && (
                     <>
                         <div className="content-wrapper">
@@ -75,7 +74,10 @@ export default function NewsDetailScreen({ newsId }) {
                             {newsMoreData &&
                                 newsMoreData.map((moreDt) => {
                                     return (
-                                        <div className="more-content">
+                                        <div
+                                            key={moreDt.id}
+                                            className="more-content"
+                                        >
                                             <div className="more-title">
                                                 {moreDt.title}
                                             </div>

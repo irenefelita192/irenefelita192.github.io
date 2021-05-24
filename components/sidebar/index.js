@@ -62,7 +62,7 @@ export default function Sidebar({ activeId }) {
         }
 
         const sidebarData = await getAllSubMenu(langId ? langId : 'id')
-        console.log('sidebar', sidebarData)
+
         if (!isMounted()) return
 
         setSidebarData(sidebarData)
