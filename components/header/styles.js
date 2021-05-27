@@ -208,7 +208,7 @@ export default css`
     }
 
     .navbar-lang-mobile > span:after {
-        content: '/';
+        content: '|';
         padding: 0 0 0 10px;
     }
 

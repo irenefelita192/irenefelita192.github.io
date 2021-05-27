@@ -23,7 +23,7 @@ export const getAllHeader = async (locale) => {
             console.error(error)
         })
     const allSubMenu = await getAllSubMenu(locale).catch(function (error) {
-        console.log(error)
+        console.error(error)
     })
 
     response &&
