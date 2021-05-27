@@ -13,6 +13,7 @@ export default css`
 
     .hero-wrapper.has-image {
         min-height: 0;
+        background-color: transparent;
     }
 
     .hero-wrapper span {
