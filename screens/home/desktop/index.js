@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import { getHero, getStats } from '../../../services/home'
 import { getFooter } from '../../../services/common'
@@ -10,7 +10,6 @@ import globalStyles from './global-styles'
 
 export default function HomeScreen() {
     const [isWebp, setIsWebp] = useState(true)
-    const [isWide, setIsWide] = useState(false)
 
     const [hovHeroId, setHovHeroId] = useState(0)
     const [heroData, setHeroData] = useState([])
@@ -38,10 +37,6 @@ export default function HomeScreen() {
                 setIsWebp(true)
             } else {
                 setIsWebp(false)
-            }
-
-            if (window.innerWidth / window.innerHeight > 2) {
-                setIsWide(true)
             }
         }
     }, [])
@@ -84,9 +79,7 @@ export default function HomeScreen() {
                     >
                         <img
                             src={defaultImgSrc}
-                            className={`default-hero-img ${
-                                isWide ? 'is-wide' : ''
-                            }`}
+                            className={`default-hero-img`}
                         />
                     </CSSTransition>
                     <CSSTransition
@@ -94,52 +87,10 @@ export default function HomeScreen() {
                         timeout={100}
                         classNames="img-transition"
                     >
-                        <img
-                            src={imgSrc}
-                            className={`hero-img ${isWide ? 'is-wide' : ''}`}
-                        />
+                        <img src={imgSrc} className={`hero-img`} />
                     </CSSTransition>
                     <div className="background-overlay" />
                     <div className="background-bottom" />
-                    {/* <img
-                            src={defaultImgSrc}
-                            className={`default-hero-img ${
-                                hovHeroId === 0 ? 'is-active' : ''
-                            }`}
-                        />
-                    <img
-                            src={imgSrc}
-                            className={`hero-img ${
-                                hovHeroId !== 0 ? 'is-active' : ''
-                            }`}
-                        /> */}
-                    {/* <SwitchTransition mode="out-in"> */}
-
-                    {/* <CSSTransition
-                        in={hovHeroId != 0}
-                        timeout={100}
-                        // key={hovHeroId}
-                        // addEndListener={(node, done) =>
-                        //     node.addEventListener('transitionend', done, false)
-                        // }
-                        classNames="default-img-transition"
-                    >
-                        <img
-                            src={defaultImgSrc}
-                            className={`default-hero-img `}
-                        />
-                    </CSSTransition>
-
-                    <CSSTransition
-                        in={hovHeroId != 0}
-                        timeout={300}
-                        s
-                        classNames="img-transition"
-                    >
-                        <img src={imgSrc} className={`hero-img `} />
-                    </CSSTransition> */}
-
-                    {/* </SwitchTransition> */}
                 </div>
             )}
 

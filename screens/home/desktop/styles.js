@@ -220,6 +220,7 @@ export default css`
         position: absolute;
         top: 0;
         left: 0;
+        height: auto !important;
     }
 
     .img-transition-enter {
@@ -268,13 +269,6 @@ export default css`
         opacity: 0;
         transition: 0.3s opacity ease, 0.2s transform ease-in;
     }
-    /* 
-    .hero-img.is-wide,
-    .default-hero-img.is-wide {
-        width: 100%;
-        height: 100%;
-    } */
-
     @media screen and (max-width: 1024px) {
         .hero-title {
             width: 50%;
@@ -343,12 +337,4 @@ export default css`
             max-height: initial;
         }
     }
-
-    /* @media screen and (min-width: 1200px) and (max-height: 800px) {
-        .default-hero-img,
-        .hero-img {
-            width: 100%;
-            height: auto;
-        }
-    } */
 `
