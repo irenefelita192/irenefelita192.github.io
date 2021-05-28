@@ -19,9 +19,13 @@ export default css`
 
     .card-item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         color: ${theme.colors.black};
         margin-bottom: 80px;
+    }
+
+    .card-content-mobile {
+        display: none;
     }
 
     .card-item .card-content {

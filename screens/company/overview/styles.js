@@ -35,6 +35,9 @@ export default css`
 
         .logo-wrapper {
             flex-direction: column;
+            max-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .logo-wrapper img {

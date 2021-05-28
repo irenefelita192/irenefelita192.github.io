@@ -54,4 +54,32 @@ export default css`
         opacity: 1;
         transition: 0.3s opacity ease-in-out;
     }
+
+    @media screen and (max-width: 640px) {
+        .content-description {
+            width: 100%;
+        }
+
+        .logo-wrapper {
+            display: block;
+        }
+
+        .logo-image-wrapper {
+            position: relative;
+            max-width: 160px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 42px;
+        }
+
+        .logo-image-wrapper img {
+            display: none;
+        }
+
+        .logo-image-wrapper img.img-hover {
+            opacity: 1;
+            display: block;
+            position: relative;
+        }
+    }
 `
