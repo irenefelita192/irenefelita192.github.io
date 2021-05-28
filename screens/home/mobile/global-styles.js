@@ -9,7 +9,7 @@ export default css.global`
     }
 
     .slider-slide img {
-        height: 100%;
+        height: 100vh;
     }
 
     .slider-control-centerright div,
