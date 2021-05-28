@@ -1,16 +1,17 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
+import Carousel from 'nuka-carousel'
 import { getHero, getStats } from '../../../services/home'
 import { getFooter } from '../../../services/common'
 import { getCookie } from '../../../util/global-util'
 
 import styles from './styles'
+import globalStyles from './global-styles'
 
 export default function HomeScreen() {
     const [isWebp, setIsWebp] = useState(true)
     const [isPortrait, setIsPortrait] = useState(false)
 
-    const [hovHeroId, setHovHeroId] = useState(0)
     const [heroData, setHeroData] = useState([])
     const [homeData, setHomeData] = useState([])
     const [footerData, setFooterData] = useState(null)
@@ -44,86 +45,47 @@ export default function HomeScreen() {
         }
     }, [])
 
-    const onMouseEnter = (id) => {
-        const selData = heroData.find((dt) => {
-            return dt.heroID === id
-        })
-        const selId = selData && selData.heroID
-
-        setHovHeroId(selId)
-    }
-
-    const onMouseLeave = () => {
-        setHovHeroId(0)
-    }
-
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
-
     return (
         <>
-            {heroData &&
-                heroData.map((dt) => {
-                    let imgSrc = isWebp
-                        ? `${assetDomain}${dt.heroImgWebp?.url ?? ''}`
-                        : `${assetDomain}${dt.heroImg?.ur ?? ''}`
-
-                    if (isPortrait) {
-                        imgSrc = isWebp
+            <Carousel
+                autoplay
+                renderCenterLeftControls={({ previousSlide }) => (
+                    <div onClick={previousSlide}></div>
+                )}
+                renderCenterRightControls={({ nextSlide }) => (
+                    <div onClick={nextSlide}></div>
+                )}
+            >
+                {heroData &&
+                    heroData.map((dt, index) => {
+                        let imgSrc = isWebp
                             ? `${assetDomain}${dt.heroImgWebpMobile?.url ?? ''}`
                             : `${assetDomain}${dt.heroImgMobile?.url ?? ''}`
-                    }
-                    return (
-                        <Fragment key={dt.heroID}>
-                            <img
-                                src={imgSrc}
-                                className={`${
-                                    dt.heroID == 0 ? 'default' : ''
-                                } hero-img ${
-                                    hovHeroId === dt.heroID ? 'is-active' : ''
-                                }`}
-                            />
-                            <div
-                                className={`${
-                                    dt.heroID == 0 ? 'default' : ''
-                                } hero-title ${
-                                    hovHeroId === dt.heroID ? 'is-active' : ''
-                                }`}
-                            >
-                                {dt.heroTitle}
-                            </div>
-                        </Fragment>
-                    )
-                })}
+                        let statsData = null
+                        if (homeData && homeData.length > 0 && index > 0) {
+                            statsData = homeData[index - 1]
+                        }
 
-            <div className="grid-wrapper">
-                <div className="blank-wrapper" />
-                <div className="stats-wrapper">
-                    <div className="columns">
-                        {homeData &&
-                            homeData.map((dt) => {
-                                return (
-                                    <div
-                                        key={dt.statsID}
-                                        className="column"
-                                        onMouseEnter={() =>
-                                            onMouseEnter(dt.statsID)
-                                        }
-                                        onMouseLeave={() =>
-                                            onMouseLeave(dt.statsID)
-                                        }
-                                    >
+                        return (
+                            <div key={dt.id}>
+                                <img src={imgSrc} />
+                                <div className="background-bottom" />
+                                <div className="hero-title">{dt.heroTitle}</div>
+                                {statsData && index > 0 && (
+                                    <div className="stats-wrapper">
                                         <div className="stats-top-desc">
-                                            <span>{dt.statsDesc}</span>
+                                            <span>{statsData.statsDesc}</span>
                                         </div>
                                         <div className="stats-top">
-                                            {dt.statsTitle}
+                                            {statsData.statsTitle}
                                         </div>
                                         <div className="stats-bottom">
                                             <div className="stats-num">
-                                                {dt.statsNum}
+                                                {statsData.statsNum}
                                             </div>
                                             <div className="stats-desc">
-                                                {dt.statsShortDesc}
+                                                {statsData.statsShortDesc}
                                             </div>
                                             <i
                                                 onClick={() =>
@@ -133,26 +95,15 @@ export default function HomeScreen() {
                                             ></i>
                                         </div>
                                     </div>
-                                )
-                            })}
-                    </div>
-                </div>
-                {footerData && (
-                    <div className="footer">
-                        <span>{footerData.ojkText}</span>
-                        {footerData.ojkImageHome && (
-                            <img
-                                src={`${assetDomain}${footerData.ojkImageHome.url}`}
-                                alt="OJK-logo"
-                            />
-                        )}
-                    </div>
-                )}
-            </div>
-            {/* <div className="background-overlay" /> */}
-            <div className="background-bottom" />
-
+                                )}
+                            </div>
+                        )
+                    })}
+            </Carousel>
             <style jsx>{styles}</style>
+            <style jsx global>
+                {globalStyles}
+            </style>
         </>
     )
 }
