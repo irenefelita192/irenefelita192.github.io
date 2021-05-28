@@ -149,7 +149,7 @@ export default function HomeScreen() {
                     </div>
                 )}
             </div>
-            <div className="background-overlay" />
+            {/* <div className="background-overlay" /> */}
             <div className="background-bottom" />
 
             <style jsx>{styles}</style>
