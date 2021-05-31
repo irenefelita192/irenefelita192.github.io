@@ -37,6 +37,10 @@ export default css`
         transition: 0.3s opacity ease, 0.2s transform ease-in;
     }
 
+    .hero-img.is-active {
+        display: block;
+    }
+
     .hero-title {
         position: absolute;
         top: 152px;
@@ -223,26 +227,26 @@ export default css`
         height: auto !important;
     }
 
-    .img-transition-enter {
+    .img-transition-enter.is-active {
         display: block;
         opacity: 0;
         transform: translateX(30px);
     }
-    .img-transition-enter-active {
+    .img-transition-enter-active.is-active {
         opacity: 0;
         transition: 0.3s opacity ease, 0.2s transform ease-in;
     }
-    .img-transition-enter-done {
+    .img-transition-enter-done.is-active {
         display: block;
         opacity: 1;
         transform: translateX(0);
         transition: 0.3s opacity ease, 0.2s transform ease-in;
     }
-    .img-transition-exit {
+    .img-transition-exit.is-active {
         opacity: 1;
         transition: 0.3s opacity ease, 0.2s transform ease-in;
     }
-    .img-transition-exit-active {
+    .img-transition-exit-active.is-active {
         opacity: 0;
         transition: 0.3s opacity ease, 0.2s transform ease-in;
     }

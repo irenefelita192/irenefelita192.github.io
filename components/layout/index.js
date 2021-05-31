@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
 import yoastSEOPlugin from '../yoastSEOPlugin.json'
 import Header from '../header'
@@ -55,12 +54,7 @@ export default function Layout({
                     }
                 />
                 <title>{seoTitle}</title>
-                {/* <meta
-                    name="msapplication-TileImage"
-                    content={
-                        'https://mola01.koicdn.com/assets-global/images/mola-landscape-blue.svg'
-                    }
-                /> */}
+
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
 
@@ -127,7 +121,6 @@ export default function Layout({
 			ga('send', 'pageview');`,
                     }}
                 />
-                {/*GA Google Analytics @ https://m0n.co/ga - end */}
             </Head>
             <style jsx global>
                 {normalizeCss}

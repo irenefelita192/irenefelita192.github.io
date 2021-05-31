@@ -209,7 +209,7 @@ export default function Header({ withBg = true, activeId }) {
                                     >
                                         <span>
                                             {activeLangObj &&
-                                                activeLangObj.name}
+                                                activeLangObj.code.toUpperCase()}
                                         </span>
 
                                         {activeLangObj && <i />}
@@ -251,8 +251,14 @@ export default function Header({ withBg = true, activeId }) {
                                                 onClick={() =>
                                                     handleChooseLang(lang.code)
                                                 }
+                                                className={
+                                                    activeLang === lang.code
+                                                        ? 'is-active'
+                                                        : ''
+                                                }
                                             >
-                                                {lang.name}
+                                                {lang?.code?.toUpperCase() ??
+                                                    ''}
                                             </span>
                                         ))}
                                     </div>

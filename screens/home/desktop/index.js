@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
+import { CSSTransition } from 'react-transition-group'
+
 import { getHero, getStats } from '../../../services/home'
 import { getFooter } from '../../../services/common'
 import { getCookie } from '../../../util/global-util'
 
-import { CSSTransition } from 'react-transition-group'
+import Loader from '../../../components/loader'
+
 import styles from './styles'
 import globalStyles from './global-styles'
 
@@ -12,8 +15,8 @@ export default function HomeScreen() {
     const [isWebp, setIsWebp] = useState(true)
 
     const [hovHeroId, setHovHeroId] = useState(0)
-    const [heroData, setHeroData] = useState([])
-    const [homeData, setHomeData] = useState([])
+    const [heroData, setHeroData] = useState(null)
+    const [homeData, setHomeData] = useState(null)
     const [footerData, setFooterData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
@@ -64,12 +67,58 @@ export default function HomeScreen() {
             : `${assetDomain}${heroData[0]?.heroImg?.ur ?? ''}`
         imgSrc = isWebp
             ? `${assetDomain}${heroData[hovHeroId]?.heroImgWebp?.url ?? ''}`
-            : `${assetDomain}${heroData[hovHeroId]?.heroImg?.ur ?? ''}`
+            : `${assetDomain}${heroData[hovHeroId]?.heroImg?.url ?? ''}`
 
         heroTitle = heroData[hovHeroId]?.heroTitle ?? ''
     }
+
+    if (!homeData) {
+        return <Loader />
+    }
+
     return (
         <>
+            {heroData && heroData.length > 0 && (
+                <div className="hero-img-wrapper">
+                    <CSSTransition
+                        in={hovHeroId == 0}
+                        timeout={100}
+                        classNames="default-img-transition"
+                    >
+                        <img
+                            src={defaultImgSrc}
+                            className={`default-hero-img`}
+                        />
+                    </CSSTransition>
+                    {heroData.map((hrDt) => {
+                        let imgSrcA = isWebp
+                            ? `${assetDomain}${hrDt.heroImgWebp?.url ?? ''}`
+                            : `${assetDomain}${hrDt.heroImg?.url ?? ''}`
+
+                        if (hrDt.heroID > 0) {
+                            return (
+                                <Fragment key={hrDt.id}>
+                                    <CSSTransition
+                                        in={hovHeroId != 0}
+                                        timeout={100}
+                                        classNames={`img-transition`}
+                                    >
+                                        <img
+                                            src={imgSrcA}
+                                            className={`hero-img  ${
+                                                hrDt.heroID == hovHeroId
+                                                    ? 'is-active'
+                                                    : ''
+                                            }`}
+                                        />
+                                    </CSSTransition>
+                                </Fragment>
+                            )
+                        }
+                    })}
+                </div>
+            )}
+            {/*         
             {imgSrc && (
                 <div className="hero-img-wrapper">
                     <CSSTransition
@@ -91,7 +140,7 @@ export default function HomeScreen() {
                     </CSSTransition>
                     <div className="background-bottom" />
                 </div>
-            )}
+            )} */}
 
             <CSSTransition
                 in={hovHeroId != 0}

@@ -4,6 +4,7 @@ import Carousel from 'nuka-carousel'
 import { getHero, getStats } from '../../../services/home'
 import { getFooter } from '../../../services/common'
 import { getCookie } from '../../../util/global-util'
+import Loader from '../../../components/loader'
 
 import styles from './styles'
 import globalStyles from './global-styles'
@@ -12,8 +13,8 @@ export default function HomeScreen() {
     const [isWebp, setIsWebp] = useState(true)
     const [isPortrait, setIsPortrait] = useState(false)
 
-    const [heroData, setHeroData] = useState([])
-    const [homeData, setHomeData] = useState([])
+    const [heroData, setHeroData] = useState(null)
+    const [homeData, setHomeData] = useState(null)
     const [footerData, setFooterData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
@@ -46,10 +47,15 @@ export default function HomeScreen() {
     }, [])
 
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
+
+    if (!homeData) {
+        return <Loader />
+    }
     return (
         <>
             <Carousel
-                autoplay
+                // autoplay
+                wrapAround={true}
                 renderCenterLeftControls={({ previousSlide }) => (
                     <div onClick={previousSlide}></div>
                 )}
@@ -74,9 +80,9 @@ export default function HomeScreen() {
                                 <div className="hero-title">{dt.heroTitle}</div>
                                 {statsData && index > 0 && (
                                     <div className="stats-wrapper">
-                                        <div className="stats-top-desc">
+                                        {/* <div className="stats-top-desc">
                                             <span>{statsData.statsDesc}</span>
-                                        </div>
+                                        </div> */}
                                         <div className="stats-top">
                                             {statsData.statsTitle}
                                         </div>
@@ -96,10 +102,24 @@ export default function HomeScreen() {
                                         </div>
                                     </div>
                                 )}
+                                {index == 0 && footerData && (
+                                    <div className="footer-wrapper">
+                                        <div className="footer">
+                                            <span>{footerData.ojkText}</span>
+                                            {footerData.ojkImageHome && (
+                                                <img
+                                                    src={`${assetDomain}${footerData.ojkImageHome.url}`}
+                                                    alt="OJK-logo"
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         )
                     })}
             </Carousel>
+
             <style jsx>{styles}</style>
             <style jsx global>
                 {globalStyles}

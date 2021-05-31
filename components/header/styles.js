@@ -136,7 +136,7 @@ export default css`
     .navbar-menu.is-active .navbar-item.has-dropdown .navbar-link {
         margin: 0;
         padding: 0;
-        color: #a88836;
+        color: ${theme.colors.black};
     }
 
     .navbar-link.is-active,
@@ -210,6 +210,12 @@ export default css`
     .navbar-lang-mobile > span:after {
         content: '|';
         padding: 0 0 0 10px;
+        color: ${theme.colors.black};
+        font-size: 18px;
+    }
+
+    .navbar-lang-mobile .is-active {
+        color: #b9a05e;
     }
 
     .navbar-lang-mobile > span:last-child:after {
@@ -220,4 +226,22 @@ export default css`
         .navbar {
             height: 52px;
         }
+
+        .navbar-item {
+            margin: 0 16px;
+        }
+
+        .navbar-brand a.navbar-item img {
+            height: 16px;
+        }
+
+        .navbar-burger {
+            color: #ffffff;
+            background-color: transparent;
+        }
+
+        .navbar-burger span {
+            height: 2px;
+        }
+    }
 `
