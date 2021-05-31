@@ -54,7 +54,7 @@ export default function HomeScreen() {
     return (
         <>
             <Carousel
-                // autoplay
+                autoplay
                 wrapAround={true}
                 renderCenterLeftControls={({ previousSlide }) => (
                     <div onClick={previousSlide}></div>
