@@ -89,7 +89,6 @@ export default function HomeScreen() {
                     >
                         <img src={imgSrc} className={`hero-img`} />
                     </CSSTransition>
-                    <div className="background-overlay" />
                     <div className="background-bottom" />
                 </div>
             )}
@@ -158,8 +157,6 @@ export default function HomeScreen() {
                     </div>
                 )}
             </div>
-            {/* <div className="background-overlay" /> */}
-            {/* <div className="background-bottom" /> */}
 
             <style jsx>{styles}</style>
             <style jsx global>
