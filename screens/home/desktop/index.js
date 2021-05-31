@@ -58,16 +58,15 @@ export default function HomeScreen() {
     }
 
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
-    let imgSrc = null,
-        defaultImgSrc = null,
+    let defaultImgSrc = null,
         heroTitle = ''
     if (heroData && heroData.length > 0) {
         defaultImgSrc = isWebp
             ? `${assetDomain}${heroData[0]?.heroImgWebp?.url ?? ''}`
             : `${assetDomain}${heroData[0]?.heroImg?.ur ?? ''}`
-        imgSrc = isWebp
-            ? `${assetDomain}${heroData[hovHeroId]?.heroImgWebp?.url ?? ''}`
-            : `${assetDomain}${heroData[hovHeroId]?.heroImg?.url ?? ''}`
+        // imgSrc = isWebp
+        //     ? `${assetDomain}${heroData[hovHeroId]?.heroImgWebp?.url ?? ''}`
+        //     : `${assetDomain}${heroData[hovHeroId]?.heroImg?.url ?? ''}`
 
         heroTitle = heroData[hovHeroId]?.heroTitle ?? ''
     }
@@ -91,7 +90,7 @@ export default function HomeScreen() {
                         />
                     </CSSTransition>
                     {heroData.map((hrDt) => {
-                        let imgSrcA = isWebp
+                        let imgSrc = isWebp
                             ? `${assetDomain}${hrDt.heroImgWebp?.url ?? ''}`
                             : `${assetDomain}${hrDt.heroImg?.url ?? ''}`
 
@@ -104,7 +103,7 @@ export default function HomeScreen() {
                                         classNames={`img-transition`}
                                     >
                                         <img
-                                            src={imgSrcA}
+                                            src={imgSrc}
                                             className={`hero-img  ${
                                                 hrDt.heroID == hovHeroId
                                                     ? 'is-active'
@@ -116,6 +115,7 @@ export default function HomeScreen() {
                             )
                         }
                     })}
+                    <div className="background-bottom" />
                 </div>
             )}
             {/*         
