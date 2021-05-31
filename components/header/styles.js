@@ -240,6 +240,11 @@ export default css`
             background-color: transparent;
         }
 
+        .bg-white .navbar-burger {
+            color: ${theme.colors.black};
+            background-color: transparent;
+        }
+
         .navbar-burger span {
             height: 2px;
         }

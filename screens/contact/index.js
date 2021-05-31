@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { getContact } from '../../services/contact'
 import { getCookie } from '../../util/global-util'
 import styles from './styles'
+import Loader from '../../components/loader'
 import Hero from '../../components/hero-header'
 import Footer from '../../components/footer'
 
@@ -22,6 +23,7 @@ export default function ContactScreen() {
         setContactData(contactDt)
     }, [])
 
+    if (!contactData) return <Loader />
     return (
         <>
             <Hero id="contact" />

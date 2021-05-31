@@ -3,6 +3,7 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getFinancialStatement } from '../../../services/company'
 import { getCookie } from '../../../util/global-util'
 
+import Loader from '../../../components/loader'
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
@@ -25,6 +26,7 @@ export default function FSScreen() {
     }, [])
 
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    if (!fsData) return <Loader />
     return (
         <>
             <Hero id="company" />

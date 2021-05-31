@@ -5,6 +5,7 @@ import { getPrivacy } from '../../services/common'
 import { getCookie } from '../../util/global-util'
 import styles from './styles'
 
+import Loader from '../../components/loader'
 import Hero from '../../components/hero-header'
 import Footer from '../../components/footer'
 
@@ -21,6 +22,8 @@ export default function TnCScreen() {
         if (!isMounted()) return
         setPrivacyData(privacyDt)
     }, [])
+
+    if (!privacyData) return <Loader />
     return (
         <>
             <Hero id="privacy" />

@@ -3,6 +3,8 @@ import { useAsyncEffect } from 'use-async-effect'
 import ReactMarkdown from 'react-markdown'
 import { getBOD } from '../../../services/company'
 import { getCookie } from '../../../util/global-util'
+
+import Loader from '../../../components/loader'
 import styles from './styles'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
@@ -22,7 +24,10 @@ export default function BODScreen() {
         if (!isMounted()) return
         setBodData(bodDt)
     }, [])
+
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
+
+    if (!bodData) return <Loader />
     return (
         <>
             <Hero id="company" />

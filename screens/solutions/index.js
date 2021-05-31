@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { getSolutionPage } from '../../services/solutions'
 import { getCookie } from '../../util/global-util'
 import styles from './styles'
-
+import Loader from '../../components/loader'
 import Hero from '../../components/hero-header'
 import Footer from '../../components/footer'
 
@@ -22,7 +22,7 @@ export default function SolutionScreen() {
 
         setSolutionData(solData)
     }, [])
-
+    if (!solutionData) return <Loader />
     return (
         <>
             <Hero id="solutions" />

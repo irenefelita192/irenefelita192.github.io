@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { getOverview } from '../../../services/company'
 import { getCookie } from '../../../util/global-util'
 import styles from './styles'
-
+import Loader from '../../../components/loader'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
 import Footer from '../../../components/footer'
@@ -25,6 +25,8 @@ export default function OverviewScreen() {
         setOverviewData(overviewData)
     }, [])
     const assetDomain = process.env.config?.endpoints?.asset ?? ''
+
+    if (!overviewData) return <Loader />
     return (
         <>
             <Hero id="company" />

@@ -3,7 +3,7 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getMilestone } from '../../../services/company'
 import { getCookie } from '../../../util/global-util'
 import styles from './styles'
-
+import Loader from '../../../components/loader'
 import Sidebar from '../../../components/sidebar'
 import Hero from '../../../components/hero-header'
 import Footer from '../../../components/footer'
@@ -23,6 +23,8 @@ export default function MilestonesScreen() {
 
         setMilestoneData(msData)
     }, [])
+
+    if (!milestoneData) return <Loader />
     return (
         <>
             <Hero id="company" />
