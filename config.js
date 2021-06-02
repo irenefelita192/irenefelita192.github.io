@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const ENV = process.env.REACT_APP_ENV || 'development'
+const ENV = process.env.REACT_APP_ENV || 'staging'
 
 const options = {
     development: {
