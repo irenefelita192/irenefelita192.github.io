@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const ENV = process.env.REACT_APP_ENV || 'staging'
+const ENV = process.env.REACT_APP_ENV || 'development'
 
 const options = {
     development: {
@@ -14,7 +14,7 @@ const options = {
         endpoints: {
             api: 'https://strapi-y5loyvex6a-et.a.run.app',
             asset: 'https://strapi-y5loyvex6a-et.a.run.app',
-            assetPrefix: 'https://lla.haloida.dev',
+            assetPrefix: 'https://lippolife.github.io/web',
         },
     },
     production: {

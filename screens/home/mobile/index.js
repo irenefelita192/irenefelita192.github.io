@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import Carousel from 'nuka-carousel'
 import { getHero, getStats } from '../../../services/home'
@@ -79,10 +79,13 @@ export default function HomeScreen() {
                                 <div className="background-bottom" />
                                 <div className="hero-title">{dt.heroTitle}</div>
                                 {statsData && index > 0 && (
-                                    <div className="stats-wrapper">
-                                        {/* <div className="stats-top-desc">
-                                            <span>{statsData.statsDesc}</span>
-                                        </div> */}
+                                    <div
+                                        className="stats-wrapper"
+                                        onClick={() =>
+                                            (window.location.href =
+                                                '/solutions')
+                                        }
+                                    >
                                         <div className="stats-top">
                                             {statsData.statsTitle}
                                         </div>
@@ -93,12 +96,7 @@ export default function HomeScreen() {
                                             <div className="stats-desc">
                                                 {statsData.statsShortDesc}
                                             </div>
-                                            <i
-                                                onClick={() =>
-                                                    (window.location.href =
-                                                        '/solutions')
-                                                }
-                                            ></i>
+                                            <i></i>
                                         </div>
                                     </div>
                                 )}
