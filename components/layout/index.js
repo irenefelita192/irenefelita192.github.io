@@ -23,8 +23,7 @@ export default function Layout({
     const seoTitle = title
         ? `${title} | Lippo Life – We Love You`
         : 'Lippo Life – We Love You'
-    const url = location?.origin ?? '',
-        assetPrefix = process.env.config?.assetPrefix ?? ''
+    const url = process.env.config?.assetPrefix ?? ''
 
     return (
         <>
@@ -84,7 +83,7 @@ export default function Layout({
                     }}
                 />
 
-                <script src={`${assetPrefix}/js/modernizr-custom.js`} />
+                <script src={`${url}/js/modernizr-custom.js`} />
 
                 <link
                     rel="stylesheet"
