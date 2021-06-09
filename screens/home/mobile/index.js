@@ -46,7 +46,7 @@ export default function HomeScreen() {
         }
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
 
     if (!homeData) {
         return <Loader />

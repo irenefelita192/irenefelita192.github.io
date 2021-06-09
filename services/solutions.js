@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const endpoints = process.env.config?.endpoints?.api ?? ''
+const endpoints = process.env.config?.baseEndpoint ?? ''
 
 export const getSolutionPage = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''

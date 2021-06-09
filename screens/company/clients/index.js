@@ -24,7 +24,7 @@ export default function ClientScreen() {
         if (!isMounted()) return
         setClientData(clientDt)
     }, [])
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
     if (!clientData) return <Loader />
     return (
         <>

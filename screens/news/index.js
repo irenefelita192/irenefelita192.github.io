@@ -27,7 +27,7 @@ export default function NewsScreen() {
         if (!isMounted()) return
         setNewsData(newsDt)
     }, [])
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
     const locale = { en: enUS, id: id }
     return (
         <>

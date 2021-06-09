@@ -25,7 +25,7 @@ export default function BODScreen() {
         setBodData(bodDt)
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
 
     if (!bodData) return <Loader />
     return (

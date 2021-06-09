@@ -57,7 +57,7 @@ export default function HomeScreen() {
         setHovHeroId(0)
     }
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
     let defaultImgSrc = null,
         heroTitle = ''
     if (heroData && heroData.length > 0) {

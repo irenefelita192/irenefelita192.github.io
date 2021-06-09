@@ -23,7 +23,7 @@ export default function KSScreen() {
         setKeyStatisticData(ksData)
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
 
     if (!keyStatisticData) return <Loader />
     return (

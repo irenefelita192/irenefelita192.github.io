@@ -23,9 +23,8 @@ export default function Layout({
     const seoTitle = title
         ? `${title} | Lippo Life – We Love You`
         : 'Lippo Life – We Love You'
-
-    const url = process.env.config?.endpoints?.domain ?? '',
-        assetPrefix = process.env.config?.endpoints?.assetPrefix ?? ''
+    const url = location?.origin ?? '',
+        assetPrefix = process.env.config?.assetPrefix ?? ''
 
     return (
         <>

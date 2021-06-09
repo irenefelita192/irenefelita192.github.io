@@ -32,7 +32,7 @@ export default function Hero({ id }) {
         }
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? '',
+    const assetDomain = process.env.config?.baseEndpoint ?? '',
         heroImg = isWebp
             ? heroData?.heroImgWebp?.url ?? heroData?.heroImg?.url ?? ''
             : heroData?.heroImg?.url ?? ''

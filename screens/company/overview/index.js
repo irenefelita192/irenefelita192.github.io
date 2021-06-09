@@ -24,7 +24,7 @@ export default function OverviewScreen() {
 
         setOverviewData(overviewData)
     }, [])
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
 
     if (!overviewData) return <Loader />
     return (

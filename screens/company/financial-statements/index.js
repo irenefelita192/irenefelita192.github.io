@@ -25,7 +25,7 @@ export default function FSScreen() {
         setFSData(fData)
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
     if (!fsData) return <Loader />
     return (
         <>

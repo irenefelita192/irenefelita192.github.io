@@ -37,8 +37,8 @@ export default function Footer() {
         setFooterData(footerDt)
     }, [])
 
-    const assetDomain = process.env.config?.endpoints?.asset ?? '',
-        assetPrefix = process.env.config?.endpoints?.assetPrefix ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? '',
+        assetPrefix = process.env.config?.assetPrefix ?? ''
     return (
         <>
             <footer>

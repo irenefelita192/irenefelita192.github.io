@@ -1,7 +1,7 @@
 const config = require('./config')
 
 module.exports = {
-    assetPrefix: config.endpoints.assetPrefix,
+    assetPrefix: config.assetPrefix,
     distDir: 'build',
     trailingSlash: true,
     env: {

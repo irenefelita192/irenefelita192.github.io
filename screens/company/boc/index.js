@@ -24,7 +24,7 @@ export default function BOCScreen() {
         if (!isMounted()) return
         setBocData(bocDt)
     }, [])
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
 
     if (!bocData) return <Loader />
     return (

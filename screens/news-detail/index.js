@@ -34,7 +34,7 @@ export default function NewsDetailScreen({ newsId }) {
         },
         [newsId]
     )
-    const assetDomain = process.env.config?.endpoints?.asset ?? ''
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
     const locale = { en: enUS, id: id }
     return (
         <>
