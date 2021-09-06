@@ -92,23 +92,33 @@ export default function Layout({
                 {/* <link rel="manifest" href="/site.webmanifest" /> */}
                 <link
                     rel="shortcut icon"
+                    href="/images/logo/favicon.ico"
+                    type="image/x-icon"
+                />
+                <link
+                    rel="icon"
+                    href="/images/logo/favicon.ico"
+                    type="image/x-icon"
+                />
+                {/* <link
+                    rel="shortcut icon"
                     type="image/png/ico"
                     href="/images/logo/favicon.ico"
-                />
+                /> */}
 
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
                     rel="preconnect"
-                    href="//cdn.jsdelivr.net"
-                    as="script"
-                    async=""
+                    href="https://fonts.gstatic.com"
+                    crossorigin
                 />
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Nunito:wght@400;600&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap"
                     rel="stylesheet"
                 />
+
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}
-                <script
+                {/* <script
                     dangerouslySetInnerHTML={{
                         __html: `
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -118,7 +128,7 @@ export default function Layout({
 			ga('create', 'G-ZB5B3GS21Z', 'auto');
 			ga('send', 'pageview');`,
                     }}
-                />
+                /> */}
             </Head>
             <style jsx global>
                 {normalizeCss}

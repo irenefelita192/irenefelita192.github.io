@@ -1,12 +1,11 @@
 {
   "@context": "http://schema.org",
   "@type": "Organization",
-  "name": "lippolife",
-  "url": "https://lippolife.co.id",
+  "name": "vida",
+  "url": "https://vida.co.id",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "/search/?q={search_term_string}",
     "query-input": "required name=search_term_string"
-  },
-  "logo": "http://www.lippolife.co.id/lippolife-content/uploads/2016/01/logo.png"
+  }
 }

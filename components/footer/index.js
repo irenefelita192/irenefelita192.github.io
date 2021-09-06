@@ -49,10 +49,10 @@ export default function Footer() {
                             window.location.href = '/'
                         }}
                     >
-                        <img
+                        {/* <img
                             src={`${assetPrefix}/images/logo/LippoLife-Logo-White.png`}
                             alt="Lippo-logo"
-                        />
+                        /> */}
                     </div>
                     {footerData && (
                         <>

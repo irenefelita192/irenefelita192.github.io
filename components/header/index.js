@@ -89,17 +89,13 @@ export default function Header({ withBg = true, activeId }) {
         location.reload()
     }
     const assetPrefix = process.env.config?.assetPrefix ?? '',
-        brandImg = `${assetPrefix}${
-            withBg
-                ? '/images/logo/LippoLife-Logo-Black.png'
-                : '/images/logo/LippoLife-Logo-Red.png'
-        }`
+        brandImg = `${assetPrefix}${'/images/logo/logo-Vida.png'}`
 
     return (
         <>
             <nav
                 id="navbarTop"
-                className={`navbar ${withBg ? 'bg-white' : ''}`}
+                className={`navbar`}
                 role="navigation"
                 aria-label="main navigation"
             >
@@ -115,7 +111,6 @@ export default function Header({ withBg = true, activeId }) {
                         }`}
                         aria-label="menu"
                         aria-expanded="false"
-                        data-target="navbarBasicExample"
                         onClick={() => handleBurgerMenuClick()}
                     >
                         <span aria-hidden="true"></span>
@@ -130,7 +125,7 @@ export default function Header({ withBg = true, activeId }) {
                     }`}
                 >
                     {headerData && (
-                        <div className="navbar-end">
+                        <div className="navbar-start">
                             {headerData.map((dt) => {
                                 return (
                                     <Fragment key={dt.id}>

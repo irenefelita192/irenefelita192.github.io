@@ -1,36 +1,77 @@
-import React, { useState, useEffect, Suspense } from 'react'
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getKeyStatistic } from '../../services/company'
+import { getCookie } from '../../util/global-util'
 import Loader from '../../components/loader'
-// import HomeDesktop from './desktop'
-// import HomeMobile from './mobile'
+import styles from './styles'
+import Sidebar from '../../components/sidebar'
+import Hero from '../../components/hero-header'
+import Footer from '../../components/footer'
+import PageWrapper from '../../components/layout/page-wrapper'
 
 export default function HomeScreen() {
-    const [isPortrait, setIsPortrait] = useState(null)
-
-    useEffect(() => {
+    const [keyStatisticData, setKeyStatisticData] = useState(null)
+    useAsyncEffect(async (isMounted) => {
+        let langId
         if (process.browser) {
-            if (window.innerWidth < window.innerHeight) {
-                setIsPortrait(true)
-            } else {
-                setIsPortrait(false)
-            }
+            langId = getCookie('lang')
         }
+        const ksData = await getKeyStatistic(langId ? langId : 'id')
+
+        if (!isMounted()) return
+
+        setKeyStatisticData(ksData)
     }, [])
 
-    if (isPortrait) {
-        const HomeMobile = React.lazy(() => import('./mobile'))
-        return (
-            <Suspense fallback={<Loader />}>
-                <HomeMobile />
-            </Suspense>
-        )
-    } else if (!isPortrait && isPortrait != null) {
-        const HomeDesktop = React.lazy(() => import('./desktop'))
-        return (
-            <Suspense fallback={<Loader />}>
-                <HomeDesktop />
-            </Suspense>
-        )
-    }
-    return null
-    // return <HomeDesktop />
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
+
+    if (!keyStatisticData) return <Loader />
+    return (
+        <>
+            <Hero id="company" />
+
+            <div className="content-wrapper">
+                {keyStatisticData && (
+                    <>
+                        <h1 className="content-title">
+                            {keyStatisticData.title}
+                        </h1>
+                        <div className="content-description">
+                            {keyStatisticData.keyStatistics.map((dt, index) => (
+                                <div
+                                    key={dt.id}
+                                    className={`card-item ${
+                                        (index + 1) % 2 == 0
+                                            ? 'card-even'
+                                            : 'card-odd'
+                                    }`}
+                                >
+                                    <img
+                                        src={`${assetDomain}${
+                                            dt.image?.url ?? ''
+                                        }`}
+                                        alt={dt.image?.alternativeText ?? ''}
+                                    />
+
+                                    <div className="card-content">
+                                        <div className="card-title">
+                                            {dt.title}
+                                        </div>
+                                        <div className="card-short">
+                                            {dt.shortDescription}
+                                        </div>
+                                        <div className="card-desc">
+                                            {dt.description}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+            <Footer />
+            <style jsx>{styles}</style>
+        </>
+    )
 }

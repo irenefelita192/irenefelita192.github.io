@@ -5,15 +5,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can add .env.local
 
 ```
-NODE_ENV=development
-CONFIG_API_URL=http://10.220.0.6
+REACT_APP_ENV=production
+BASE_API=https://strapi-y5loyvex6a-et.a.run.app
+ASSET_PREFIX=
 ```
-
-**then comment this script at next.config.js as this is only needed for staging and production**
-
-`//assetPrefix: ${CDN_PATH}/assets/microsite,`
-
-**don't forget to uncomment when deloying to staging and production, until found solution to handle on local and stag/prod**
 
 then you can run:
 

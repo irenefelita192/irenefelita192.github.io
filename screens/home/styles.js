@@ -1,7 +1,11 @@
-import theme from '../../../components/global-styles/theme'
+import theme from '../../components/global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
+    .content-wrapper {
+        padding: 0 224px;
+    }
+
     .content-title {
         margin: 0 0 70px;
         font-weight: 300;

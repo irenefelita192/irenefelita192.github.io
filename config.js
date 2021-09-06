@@ -2,9 +2,10 @@ require('dotenv').config()
 
 const ENV = process.env.REACT_APP_ENV || 'staging'
 
+console.log(' process.env.ASSET_PREFIX ', process.env.ASSET_PREFIX)
 var endpointConfig = {
     baseEndpoint: process.env.BASE_API,
-    assetPrefix: process.env.ASSET_PREFIX,
+    assetPrefix: process.env.ASSET_PREFIX || '',
 }
 // const options = {
 //     development: {
