@@ -3,23 +3,22 @@ import theme from '../../components/global-styles/theme'
 
 export default css`
     .content {
+        background-color: ${theme.colors['vida-brokenwhite']};
+    }
+
+    .question-container {
         position: relative;
         width: 100%;
         height: 2000px;
-        background-color: ${theme.colors['vida-brokenwhite']};
-    }
-    .question-container {
-        display: block;
-        height: calc(100vh - 140px);
-        position: relative;
     }
 
     .question-text {
         position: absolute;
         /* top: 50%; */
         bottom: 0;
-        left: 50%;
-        transform: translate(-50%, -80px);
+        right: 8%;
+        text-align: right;
+        /* transform: translate(0, -60px); */
         color: ${theme.colors['vida-black']};
         font-family: 'Inter', sans-serif;
         font-weight: bold;
@@ -33,6 +32,11 @@ export default css`
         /* animation: floatmove 4s ease-in-out; */
     }
 
+    .question-text > span {
+        display: block;
+        text-align: right;
+    }
+
     #q1 {
         position: absolute;
         z-index: 2;
@@ -42,15 +46,37 @@ export default css`
 
     .question-show {
         /* animation: 0.4s slideUp; */
+        /* transition: opacity 0.3s ease-in-out; */
         opacity: 1;
     }
 
-    @keyframes floatmove {
+    .animate-text {
+        animation: movetop 8s ease-in forwards;
+    }
+
+    .animate-portrait {
+        animation: moveback 8s ease-in forwards;
+    }
+
+    .animate-bubble {
+        animation: float 12s linear infinite;
+    }
+
+    @keyframes moveback {
         0% {
-            transform: translate(-50%, 0px);
+            transform: translate(0, 0px);
         }
         100% {
-            transform: translate(-50%, -50px);
+            transform: translate(-50px, 40px);
+        }
+    }
+
+    @keyframes movetop {
+        0% {
+            transform: translate(0, 0px);
+        }
+        100% {
+            transform: translate(0, -50px);
         }
     }
 
@@ -68,7 +94,7 @@ export default css`
             transform: rotate(0);
         }
         50% {
-            transform: rotate(16.48deg);
+            transform: rotate(-20deg);
         }
         100% {
             transform: rotate(0);
@@ -76,7 +102,28 @@ export default css`
     }
 
     .bubble {
-        animation: float 20s ease-in-out infinite;
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: -20%;
+        opacity: 0;
+        /* transition: opacity 0.3s ease-in-out; */
+    }
+
+    #bubble1 {
+        opacity: 1;
+    }
+
+    .portrait {
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        opacity: 0;
+        /* transition: opacity 0.3s ease-in-out; */
+    }
+
+    #portrait1 {
+        opacity: 1;
     }
 
     .q-container {
@@ -90,15 +137,22 @@ export default css`
         display: block;
     }
 
-    #bubble1 {
-        position: absolute;
-        z-index: 1;
-        /* right: 25%; */
-        top: 100px;
-    }
-
     .q-img {
         transition: all 0.1s linear;
+    }
+
+    .bottom-section {
+        height: 579px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+    }
+
+    .bottom-gradient {
+        background: linear-gradient(180deg, #f6f4f1 0%, #9c9c9c 197.41%);
     }
 
     @media screen and (max-width: 640px) {
