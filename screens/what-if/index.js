@@ -300,9 +300,9 @@ export default function WhatIf({ location }) {
 
     const setElementPortraitPosition = (id, scrollAt = 0) => {
         const cleanHeight = screenHeight - marginTop
-        const imgHeight = (cleanHeight * 70) / 100
+        const imgHeight = (cleanHeight * 87) / 100
         document.getElementById(id).style.height = `${imgHeight}px`
-        const imgTop = cleanHeight - imgHeight + scrollAt
+        const imgTop = cleanHeight - imgHeight + 50 + scrollAt
         document.getElementById(id).style.top = `${imgTop}px`
     }
 
@@ -332,7 +332,7 @@ export default function WhatIf({ location }) {
             opacity = 1.2 - Math.abs(x)
         // const x = (scrollTop - topDistance * 2) * (0.80 / topDistance), //0.007,
         // console.log('scrollDistance masuk', scrollDistance)
-        console.log('opacity two', opacity)
+
         document.getElementById('q2').style.opacity = opacity
         document.getElementById('portrait2').style.opacity = opacity
         document.getElementById('bubble2').style.opacity = opacity
@@ -343,9 +343,9 @@ export default function WhatIf({ location }) {
     const animateQuestionThree = (scrollTop, scrollAt) => {
         const x = (scrollTop - scrollAt) * (0.85 / topDistance), //0.007,
             opacity = 1.2 - Math.abs(x)
-        console.log('scrollDistance', x)
+
         // console.log('opacity', opacity)
-        console.log('opacity three', opacity)
+
         document.getElementById('q3').style.opacity = opacity
         document.getElementById('portrait3').style.opacity = opacity
         document.getElementById('bubble3').style.opacity = opacity
@@ -401,7 +401,7 @@ export default function WhatIf({ location }) {
     const handleScroll = (e) => {
         let scrollTop = window.pageYOffset
 
-        console.log('scrollTop', scrollTop)
+        // console.log('scrollTop', scrollTop)
         const opacityOne = animateQuestionOne(scrollTop)
         let opacityTwo, opacityThree, opacityFour
 
@@ -427,6 +427,23 @@ export default function WhatIf({ location }) {
             document
                 .getElementById('bubble2')
                 .classList.add('question-show', 'animate-bubble')
+
+            if (opacityOne <= 0) {
+                //reset q1
+                document.getElementById('q1').classList.remove('animate-text')
+                document
+                    .getElementById('portrait1')
+                    .classList.remove('animate-portrait')
+                document
+                    .getElementById('bubble1')
+                    .classList.remove('animate-bubble')
+            }
+        } else {
+            document.getElementById('q1').classList.add('animate-text')
+            document
+                .getElementById('portrait1')
+                .classList.add('animate-portrait')
+            document.getElementById('bubble1').classList.add('animate-bubble')
         }
 
         opacityTwo = animateQuestionTwo(scrollTop, q2ScrollGap)
@@ -452,6 +469,17 @@ export default function WhatIf({ location }) {
             document
                 .getElementById('bubble3')
                 .classList.add('question-show', 'animate-bubble')
+
+            if (opacityTwo <= 0) {
+                //reset q2
+                document.getElementById('q2').classList.remove('animate-text')
+                document
+                    .getElementById('portrait2')
+                    .classList.remove('animate-portrait')
+                document
+                    .getElementById('bubble2')
+                    .classList.remove('animate-bubble')
+            }
         }
 
         opacityThree = animateQuestionThree(scrollTop, q3ScrollGap)
@@ -477,8 +505,30 @@ export default function WhatIf({ location }) {
             document
                 .getElementById('bubble4')
                 .classList.add('question-show', 'animate-text')
+
+            if (opacityThree <= 0) {
+                //reset q2
+                document.getElementById('q3').classList.remove('animate-text')
+                document
+                    .getElementById('portrait3')
+                    .classList.remove('animate-portrait')
+                document
+                    .getElementById('bubble3')
+                    .classList.remove('animate-bubble')
+            }
         }
         opacityFour = animateQuestionFour(scrollTop, q4ScrollGap)
+
+        if (opacityFour <= 0) {
+            //reset q2
+            document.getElementById('q4').classList.remove('animate-text')
+            document
+                .getElementById('portrait4')
+                .classList.remove('animate-portrait')
+            document
+                .getElementById('bubble4')
+                .classList.remove('animate-bubble')
+        }
     }
 
     return (

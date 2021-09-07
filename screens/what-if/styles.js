@@ -51,7 +51,7 @@ export default css`
     }
 
     .animate-text {
-        animation: movetop 8s ease-in forwards;
+        animation: movetop 6s ease-in forwards;
     }
 
     .animate-portrait {
@@ -105,7 +105,7 @@ export default css`
         position: absolute;
         z-index: 2;
         bottom: 0;
-        left: -20%;
+        left: -10%;
         opacity: 0;
         /* transition: opacity 0.3s ease-in-out; */
     }
