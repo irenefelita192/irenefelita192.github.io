@@ -1,69 +1,108 @@
 name: docs-push-to-pages
 
 on:
-    # trigger deployment on every push to main branch
-    push:
-        branches: [main]
-    # trigger deployment manually
-    workflow_dispatch:
+  push:
+    branches: [ dev ]
 
 jobs:
-    docs:
+
+    deploy:
+
+        name: Setup Gcloud Account
         runs-on: ubuntu-latest
-
+        env:
+          IMAGE_NAME: gcr.io/${{ secrets.DEV_GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
         steps:
-            - uses: actions/checkout@v2
-              with:
-                  # fetch all commits to get last updated time or other git log info
-                  fetch-depth: 0
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v1
-              with:
-                  # choose node.js version to use
-                  node-version: '14'
+        - name: Login
+          uses: google-github-actions/setup-gcloud@master
+          with:
+            project_id: ${{ secrets.DEV_GCP_PROJECT_ID }}
+            service_account_email: ${{ secrets.DEV_GCP_EMAIL }}
+            service_account_key: ${{ secrets.DEV_GCP_CREDENTIALS }}
 
-            # cache node_modules
-            - name: Cache dependencies
-              uses: actions/cache@v2
-              id: yarn-cache
-              with:
-                  path: |
-                      **/node_modules
-                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-yarn-
+        - name: Configure Docker
+          run: gcloud auth configure-docker --quiet
 
-            # install dependencies if the cache did not hit
-            - name: Install dependencies
-              if: steps.yarn-cache.outputs.cache-hit != 'true'
-              run: yarn --frozen-lockfile
+        - name: Checkout repository
+          uses: actions/checkout@v2
 
-            # run build script
-            - name: Build VuePress site
-              run: yarn build && yarn export
+        - name: Build Docker image
+          run: docker build . -t $IMAGE_NAME
 
-            # create CNAME
-            - name: Create CNAME
-              run: echo "lla.haloida.dev" > out/CNAME
+        # - name: Test Docker image
+        #   run: docker run $IMAGE_NAME sh -c "go test -v"
 
-            - name: Add .nojekyll file
-              run: touch ./out/.nojekyll
+        - name: Push Docker image
+          run: docker push $IMAGE_NAME
 
-            # # copy YAML
-            # - name : Copy Cloud Build YAML
-            #   run: cp cloudbuild.yaml vuepress/.vuepress/dist/
-            # - name : Copy App YAML
-            #   run: cp app.yaml vuepress/.vuepress/dist/
+        - name: Deploy Docker image
+          run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
 
-            # please check out the docs of the workflow for more details
-            # @see https://github.com/crazy-max/ghaction-github-pages
-            - name: Build dist to pages branch
-              uses: crazy-max/ghaction-github-pages@v2
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  # deploy to gh-pages branch
-                  target_branch: gh-pages
-                  # deploy the default output dir of VuePress
-                  build_dir: out
+# on:
+#     # trigger deployment on every push to main branch
+#     push:
+#         branches: [main]
+#     # trigger deployment manually
+#     workflow_dispatch:
+
+# jobs:
+#     docs:
+#         runs-on: ubuntu-latest
+
+#         steps:
+#             - uses: actions/checkout@v2
+#               with:
+#                   # fetch all commits to get last updated time or other git log info
+#                   fetch-depth: 0
+
+#             - name: Setup Node.js
+#               uses: actions/setup-node@v1
+#               with:
+#                   # choose node.js version to use
+#                   node-version: '14'
+
+#             # cache node_modules
+#             - name: Cache dependencies
+#               uses: actions/cache@v2
+#               id: yarn-cache
+#               with:
+#                   path: |
+#                       **/node_modules
+#                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#                   restore-keys: |
+#                       ${{ runner.os }}-yarn-
+
+#             # install dependencies if the cache did not hit
+#             - name: Install dependencies
+#               if: steps.yarn-cache.outputs.cache-hit != 'true'
+#               run: yarn --frozen-lockfile
+
+#             # run build script
+#             - name: Build VuePress site
+#               run: yarn build && yarn export
+
+#             # create CNAME
+#             - name: Create CNAME
+#               run: echo "lla.haloida.dev" > out/CNAME
+
+#             - name: Add .nojekyll file
+#               run: touch ./out/.nojekyll
+
+#             # # copy YAML
+#             # - name : Copy Cloud Build YAML
+#             #   run: cp cloudbuild.yaml vuepress/.vuepress/dist/
+#             # - name : Copy App YAML
+#             #   run: cp app.yaml vuepress/.vuepress/dist/
+
+#             # please check out the docs of the workflow for more details
+#             # @see https://github.com/crazy-max/ghaction-github-pages
+#             - name: Build dist to pages branch
+#               uses: crazy-max/ghaction-github-pages@v2
+#               env:
+#                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#               with:
+#                   # deploy to gh-pages branch
+#                   target_branch: gh-pages
+#                   # deploy the default output dir of VuePress
+#                   build_dir: out
