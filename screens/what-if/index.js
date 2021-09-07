@@ -192,14 +192,20 @@ const questionsDummy = [
         questionText: '"What if my health condition changes?"',
         questionTextOne: '"What if my health',
         questionTextTwo: 'condition changes?"',
-        bubble: '../../images/parallax/bubble-green.png',
+        bubble: '../../images/parallax/bubble1.png',
+        bubbleId: 'bubble1',
+        portrait: '../../images/parallax/portrait-01.png',
+        portraitId: 'portrait1',
     },
     {
         id: 'q2',
         questionText: `"It's common to get lung cancer. What if i already get one?"`,
         questionTextOne: `"It's common to get lung cancer.`,
         questionTextTwo: 'What if i already get one?"',
-        bubble: '../../images/parallax/bubble-green.png',
+        bubble: '../../images/parallax/bubble2.png',
+        bubbleId: 'bubble2',
+        portrait: '../../images/parallax/portrait-02.png',
+        portraitId: 'portrait2',
     },
     {
         id: 'q3',
@@ -207,14 +213,20 @@ const questionsDummy = [
             '"I lost my sight at 30. What if the same thing happen to you?"',
         questionTextOne: `"I lost my sight at 30. What if the`,
         questionTextTwo: 'same thing happen to you?"',
-        bubble: '../../images/parallax/bubble-green.png',
+        bubble: '../../images/parallax/bubble3.png',
+        bubbleId: 'bubble3',
+        portrait: '../../images/parallax/portrait-03.png',
+        portraitId: 'portrait3',
     },
     {
         id: 'q4',
-        questionText: '"I wish I could use it"',
+        questionText: '"I wish I had insurance"',
         questionTextOne: `"I lost my sight at 30. What if the`,
         questionTextTwo: 'same thing happen to you?"',
-        bubble: '../../images/parallax/bubble-green.png',
+        bubble: '../../images/parallax/bubble1.png',
+        bubbleId: 'bubble4',
+        portrait: '../../images/parallax/portrait-01.png',
+        portraitId: 'portrait4',
     },
 ]
 
@@ -239,17 +251,32 @@ export default function WhatIf({ location }) {
         }
 
         let firstQuestion = ''
-        if (document) {
+        if (window) {
             heroHeight = document.getElementById('hero')?.offsetHeight ?? 0
-            screenWidth = screen.width
-            screenHeight = screen.height
+            screenWidth = window.innerWidth
+            screenHeight = window.innerHeight
             topDistance = (screenHeight - marginTop) / 4 //jarak dari middle ke 1/4 screen
 
             firstQuestion =
                 questionsDummy && questionsDummy.length > 0
-                    ? questionsDummy[0].id
-                    : ''
-            setElementPosition(firstQuestion)
+                    ? questionsDummy[0]
+                    : null
+            if (firstQuestion) {
+                setElementPosition(firstQuestion.id)
+                setElementPortraitPosition(firstQuestion.portraitId)
+                document
+                    .getElementById(firstQuestion.portraitId)
+                    .classList.add('animate-portrait')
+
+                document
+                    .getElementById(firstQuestion.id)
+                    .classList.add('animate-text')
+
+                setElementBubblePosition(firstQuestion.bubbleId)
+                document
+                    .getElementById(firstQuestion.bubbleId)
+                    .classList.add('animate-bubble')
+            }
             //posisi question ambil dari tengah2 (screen height /2 ), dikurangin height question
             // document.getElementById('q1').style.transform = `translate()`
         }
@@ -271,54 +298,78 @@ export default function WhatIf({ location }) {
         return elPosition
     }
 
+    const setElementPortraitPosition = (id, scrollAt = 0) => {
+        const cleanHeight = screenHeight - marginTop
+        const imgHeight = (cleanHeight * 70) / 100
+        document.getElementById(id).style.height = `${imgHeight}px`
+        const imgTop = cleanHeight - imgHeight + scrollAt
+        document.getElementById(id).style.top = `${imgTop}px`
+    }
+
+    const setElementBubblePosition = (id, scrollAt = 0) => {
+        const cleanHeight = screenHeight - marginTop
+        const imgHeight = (cleanHeight * 88) / 100
+        document.getElementById(id).style.height = `${imgHeight}px`
+
+        const imgTop = (cleanHeight * 11) / 100 + scrollAt
+        document.getElementById(id).style.top = `${imgTop}px`
+    }
+
     const animateQuestionOne = (scrollTop) => {
         // console.log('topDistance', topDistance, ' res', 0.84 / topDistance)
         const x = scrollTop * (0.85 / topDistance), //0.007,
-            opacity = 1 - x
+            opacity = 1.2 - Math.abs(x)
         // console.log('opacity', opacity)
         document.getElementById('q1').style.opacity = opacity
+        document.getElementById('portrait1').style.opacity = opacity
+        document.getElementById('bubble1').style.opacity = opacity
 
         return opacity
     }
 
     const animateQuestionTwo = (scrollTop, scrollAt) => {
         const x = (scrollTop - scrollAt) * (0.85 / topDistance), //0.007,
-            opacity = 1 - Math.abs(x)
-        // const x = (scrollTop - topDistance * 2) * (0.85 / topDistance), //0.007,
+            opacity = 1.2 - Math.abs(x)
+        // const x = (scrollTop - topDistance * 2) * (0.80 / topDistance), //0.007,
         // console.log('scrollDistance masuk', scrollDistance)
         console.log('opacity two', opacity)
         document.getElementById('q2').style.opacity = opacity
+        document.getElementById('portrait2').style.opacity = opacity
+        document.getElementById('bubble2').style.opacity = opacity
 
         return opacity
     }
 
     const animateQuestionThree = (scrollTop, scrollAt) => {
         const x = (scrollTop - scrollAt) * (0.85 / topDistance), //0.007,
-            opacity = 1 - Math.abs(x)
+            opacity = 1.2 - Math.abs(x)
         console.log('scrollDistance', x)
         // console.log('opacity', opacity)
         console.log('opacity three', opacity)
         document.getElementById('q3').style.opacity = opacity
+        document.getElementById('portrait3').style.opacity = opacity
+        document.getElementById('bubble3').style.opacity = opacity
 
         return opacity
     }
 
     const animateQuestionFour = (scrollTop, scrollAt) => {
         const x = (scrollTop - scrollAt) * (0.85 / topDistance), //0.007,
-            opacity = 1 - Math.abs(x)
+            opacity = 1.2 - Math.abs(x)
         // console.log('scrollDistance', x)
         // console.log('opacity', opacity)
         document.getElementById('q4').style.opacity = opacity
+        document.getElementById('portrait4').style.opacity = opacity
+        document.getElementById('bubble4').style.opacity = opacity
 
         return opacity
     }
     const animateQuestion = (id, scrollTop, scrollAt = 0) => {
-        const x = (scrollTop - scrollAt) * (0.85 / topDistance), //0.007,
-            opacity = 1 - Math.abs(x)
-        // const x = (scrollTop - topDistance * 2) * (0.85 / topDistance), //0.007,
-        // console.log('scrollDistance masuk', scrollDistance)
-        console.log('opacity two', opacity)
-        document.getElementById('q2').style.opacity = opacity
+        const x = scrollTop * (0.85 / topDistance),
+            opacity = 1.2 - Math.abs(x)
+        document.getElementById('q1').style.opacity = opacity
+        document.getElementById('portrait1').style.opacity = opacity
+        document.getElementById('bubble1').style.opacity = opacity
 
         return opacity
     }
@@ -360,8 +411,22 @@ export default function WhatIf({ location }) {
             if (q2ScrollAt == 0) q2ScrollAt = scrollTop
             q2ScrollGap = q2ScrollAt + 100
             setElementPosition('q2', q2ScrollGap)
+            setElementPortraitPosition('portrait2', q2ScrollGap)
+            document.getElementById('portrait2').style.bottom = 'auto'
+            document.getElementById('portrait2').classList.add('question-show')
             document.getElementById('q2').style.bottom = 'auto'
-            document.getElementById('q2').classList.add('question-show')
+            document
+                .getElementById('q2')
+                .classList.add('question-show', 'animate-text')
+            document
+                .getElementById('portrait2')
+                .classList.add('animate-portrait')
+
+            setElementBubblePosition('bubble2', q2ScrollGap)
+            document.getElementById('bubble2').style.bottom = 'auto'
+            document
+                .getElementById('bubble2')
+                .classList.add('question-show', 'animate-bubble')
         }
 
         opacityTwo = animateQuestionTwo(scrollTop, q2ScrollGap)
@@ -370,28 +435,55 @@ export default function WhatIf({ location }) {
             if (q3ScrollAt == 0) q3ScrollAt = scrollTop
             q3ScrollGap = q3ScrollAt + 100
             setElementPosition('q3', q3ScrollGap)
+            setElementPortraitPosition('portrait3', q3ScrollGap)
 
+            document.getElementById('portrait3').style.bottom = 'auto'
+            document.getElementById('portrait3').classList.add('question-show')
             document.getElementById('q3').style.bottom = 'auto'
-            document.getElementById('q3').classList.add('question-show')
+            document
+                .getElementById('q3')
+                .classList.add('question-show', 'animate-text')
+            document
+                .getElementById('portrait3')
+                .classList.add('animate-portrait')
+
+            setElementBubblePosition('bubble3', q3ScrollGap)
+            document.getElementById('bubble3').style.bottom = 'auto'
+            document
+                .getElementById('bubble3')
+                .classList.add('question-show', 'animate-bubble')
         }
 
         opacityThree = animateQuestionThree(scrollTop, q3ScrollGap)
 
-        if (opacityTwo < 0.18 && opacityThree < 0.18) {
+        if (opacityOne < 0.18 && opacityTwo < 0.18 && opacityThree < 0.18) {
             if (q4ScrollAt == 0) q4ScrollAt = scrollTop
             q4ScrollGap = q4ScrollAt + 100
             setElementPosition('q4', q4ScrollGap)
+            setElementPortraitPosition('portrait4', q4ScrollGap)
 
+            document.getElementById('portrait4').style.bottom = 'auto'
+            document.getElementById('portrait4').classList.add('question-show')
             document.getElementById('q4').style.bottom = 'auto'
-            document.getElementById('q4').classList.add('question-show')
+            document
+                .getElementById('q4')
+                .classList.add('question-show', 'animate-text')
+            document
+                .getElementById('portrait4')
+                .classList.add('animate-portrait')
+
+            setElementBubblePosition('bubble4', q4ScrollGap)
+            document.getElementById('bubble4').style.bottom = 'auto'
+            document
+                .getElementById('bubble4')
+                .classList.add('question-show', 'animate-text')
         }
         opacityFour = animateQuestionFour(scrollTop, q4ScrollGap)
     }
 
     return (
-        <div>
-            <div className="content">
-                {/* <div className="question-container"> */}
+        <div className="content">
+            <div className="question-container">
                 {questionsDummy.map((q, index) => (
                     <>
                         {/* <img
@@ -408,16 +500,27 @@ export default function WhatIf({ location }) {
                             {/* <div>{q.questionTextOne}</div>
                             <div> {q.questionTextTwo}</div> */}
                         </div>
-                        {/* <img
-                            src={'../../images/parallax/bubble-green.png'}
-                            id="bubble"
+                        <img
+                            src={q.bubble}
+                            id={q.bubbleId}
                             className="bubble"
-                        /> */}
+                        />
+                        <img
+                            src={q.portrait}
+                            id={q.portraitId}
+                            className="portrait"
+                        />
                     </>
                 ))}
             </div>
-            {/* </div> */}
-            <div>Footer</div>
+
+            <div className="bottom-section">
+                <div>It's good to think - just not too much</div>
+                <div>
+                    Will you take a better chance to control your health
+                    journey?
+                </div>
+            </div>
             <style jsx>{styles}</style>
         </div>
     )
