@@ -116,6 +116,7 @@ export default function Layout({
                     href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap"
                     rel="stylesheet"
                 />
+                <script>history.scrollRestoration = "manual"</script>
 
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}
                 {/* <script
