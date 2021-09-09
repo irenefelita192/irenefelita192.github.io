@@ -27,17 +27,13 @@ export default css`
         width: 100%;
         padding: 0 10px;
         z-index: 3;
+        display: none;
     }
 
     .question-text > span {
         display: block;
         text-align: center;
     }
-
-    .is-show {
-        opacity: 1;
-    }
-
     .animate-text {
         animation: movetop 6s ease-in forwards;
     }
@@ -94,12 +90,8 @@ export default css`
         z-index: 2;
         bottom: 0;
         opacity: 0;
-        /* transition: opacity 0.3s ease-in-out; */
+        display: none;
     }
-    /* 
-    #bubble1 {
-        opacity: 1;
-    } */
 
     .portrait {
         position: absolute;
@@ -107,13 +99,17 @@ export default css`
         bottom: 0;
         opacity: 0;
         width: auto;
-        /* transition: opacity 0.3s ease-in-out; */
+        display: none;
     }
 
     .portrait img,
     .bubble img {
         width: 100%;
         height: 100%;
+    }
+
+    .is-show {
+        display: block;
     }
 
     .bottom-section {

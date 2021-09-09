@@ -2,12 +2,16 @@ import css from 'styled-jsx/css'
 import theme from '../global-styles/theme'
 
 export default css.global`
+    body {
+        font-family: 'Bree Serif', serif;
+    }
+
     .children-wrapper {
         margin-top: ${theme.header.height};
     }
 
     .children-wrapper .wrapper {
-        font-family: Inter, sans-serif;
+        font-family: 'Bree Serif', serif;
         min-height: 48vh;
     }
 

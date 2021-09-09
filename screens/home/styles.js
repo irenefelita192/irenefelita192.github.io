@@ -3,7 +3,7 @@ import css from 'styled-jsx/css'
 
 export default css`
     .content-wrapper {
-        padding: 0 224px;
+        padding: 149px 16% 137px;
     }
 
     .content-title {
@@ -38,7 +38,7 @@ export default css`
     }
 
     .card-item img {
-        width: 296px;
+        width: 485px;
         height: auto;
     }
 
