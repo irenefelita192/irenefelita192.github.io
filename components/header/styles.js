@@ -210,7 +210,7 @@ export default css`
 
     @media screen and (max-width: 768px) {
         .navbar {
-            height: 52px;
+            /* height: 52px; */
         }
 
         .navbar-item {

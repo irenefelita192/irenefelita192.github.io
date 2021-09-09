@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css'
-import theme from '../../components/global-styles/theme'
+import theme from '../../../components/global-styles/theme'
 
 export default css`
     .content {
@@ -14,22 +14,19 @@ export default css`
 
     .question-text {
         position: absolute;
-        /* top: 50%; */
         bottom: 0;
         right: 8%;
         text-align: right;
-        /* transform: translate(0, -60px); */
         color: ${theme.colors['vida-black']};
         font-family: 'Inter', sans-serif;
         font-weight: bold;
         font-size: 48px;
         line-height: 1.17;
         z-index: 10;
-        text-align: center;
         transition: all 0.1s linear;
         opacity: 0;
         max-width: 600px;
-        /* animation: floatmove 4s ease-in-out; */
+        z-index: 3;
     }
 
     .question-text > span {
@@ -37,16 +34,7 @@ export default css`
         text-align: right;
     }
 
-    #q1 {
-        position: absolute;
-        z-index: 2;
-        opacity: 1;
-        /* animation: 1.5s fadeIn; */
-    }
-
-    .question-show {
-        /* animation: 0.4s slideUp; */
-        /* transition: opacity 0.3s ease-in-out; */
+    .is-show {
         opacity: 1;
     }
 
@@ -80,15 +68,6 @@ export default css`
         }
     }
 
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-
     @keyframes float {
         0% {
             transform: rotate(0);
@@ -110,10 +89,6 @@ export default css`
         /* transition: opacity 0.3s ease-in-out; */
     }
 
-    #bubble1 {
-        opacity: 1;
-    }
-
     .portrait {
         position: absolute;
         z-index: 3;
@@ -122,23 +97,10 @@ export default css`
         /* transition: opacity 0.3s ease-in-out; */
     }
 
-    #portrait1 {
-        opacity: 1;
-    }
-
-    .q-container {
-        position: absolute;
+    .portrait img,
+    .bubble img {
         width: 100%;
-        display: none;
-    }
-
-    #q1-container,
-    #q2-container {
-        display: block;
-    }
-
-    .q-img {
-        transition: all 0.1s linear;
+        height: 100%;
     }
 
     .bottom-section {
