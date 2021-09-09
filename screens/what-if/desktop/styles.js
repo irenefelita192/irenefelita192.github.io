@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css'
-import theme from '../../components/global-styles/theme'
+import theme from '../../../components/global-styles/theme'
 
 export default css`
     .content {
@@ -23,7 +23,6 @@ export default css`
         font-size: 48px;
         line-height: 1.17;
         z-index: 10;
-        text-align: center;
         transition: all 0.1s linear;
         opacity: 0;
         max-width: 600px;
@@ -89,10 +88,6 @@ export default css`
         opacity: 0;
         /* transition: opacity 0.3s ease-in-out; */
     }
-    /* 
-    #bubble1 {
-        opacity: 1;
-    } */
 
     .portrait {
         position: absolute;
@@ -102,14 +97,10 @@ export default css`
         /* transition: opacity 0.3s ease-in-out; */
     }
 
-    /* #portrait1 {
-        opacity: 1;
-    } */
-
-    .q-container {
-        position: absolute;
+    .portrait img,
+    .bubble img {
         width: 100%;
-        display: none;
+        height: 100%;
     }
 
     .bottom-section {
