@@ -33,18 +33,6 @@ export default css`
         height: auto;
     }
 
-    .hero-wrapper .background-bottom {
-        position: absolute;
-        z-index: 1;
-        background: linear-gradient(
-            360deg,
-            rgba(0, 0, 0, 0.3) 53.17%,
-            rgba(0, 0, 0, 0) 100%
-        );
-        width: 100%;
-        height: 100%;
-    }
-
     @media screen and (max-width: 1024px) {
         .hero-wrapper {
             min-height: 210px;

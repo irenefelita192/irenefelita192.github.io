@@ -20,9 +20,12 @@ export default function Layout({
     headerWithBg = true,
     activeHeaderId = '',
 }) {
+    const temTitle = ' Vida - Live for today, Create a better tomorrow',
+        temDesc = 'Live for today, Create a better tomorrow'
     const seoTitle = title
-        ? `${title} | Lippo Life – We Love You`
-        : 'Lippo Life – We Love You'
+        ? `${title} |${temTitle}
+        `
+        : temTitle
     const url = process.env.config?.assetPrefix ?? ''
 
     return (
@@ -56,10 +59,7 @@ export default function Layout({
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
 
-                <meta
-                    property="og:site_name"
-                    content="Lippo Life - We Love You"
-                />
+                <meta property="og:site_name" content={temTitle} />
                 <meta property="og:title" content={seoTitle} />
                 <meta property="og:description" content={description} />
                 <meta property="og:image" content={image} />
@@ -116,7 +116,6 @@ export default function Layout({
                     href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;600;700&display=swap"
                     rel="stylesheet"
                 />
-                <script>history.scrollRestoration = "manual"</script>
 
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}
                 {/* <script
@@ -141,7 +140,7 @@ export default function Layout({
                 {globalStyles}
             </style>
 
-            <Header withBg={headerWithBg} activeId={activeHeaderId} />
+            <Header activeId={activeHeaderId} />
             <div className="children-wrapper">{children}</div>
 
             <noscript>

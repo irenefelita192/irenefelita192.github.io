@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import globalStyles from '../global-styles'
 import styles from './styles'
 
@@ -195,7 +195,7 @@ export default function ParallaxDesktop({ location, data }) {
             <div className="question-container" id="container">
                 {data &&
                     data.map((q) => (
-                        <div key={q.id}>
+                        <Fragment key={q.id}>
                             <div
                                 className="question-text"
                                 id={`question-${q.id}`}
@@ -208,7 +208,7 @@ export default function ParallaxDesktop({ location, data }) {
                             <div id={`portrait-${q.id}`} className="portrait">
                                 <img src={q.portraitImg} />
                             </div>
-                        </div>
+                        </Fragment>
                     ))}
             </div>
             <div className="bottom-section">

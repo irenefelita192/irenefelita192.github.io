@@ -3,10 +3,9 @@ import theme from '../global-styles/theme'
 
 export default css`
     .navbar {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 600;
-        font-size: 15px;
-        line-height: 1.2;
+        font-family: 'Bree Serif', serif;
+        font-size: 14ps;
+        line-height: 1.43;
         background-color: #ffffff;
         color: ${theme.colors.black};
         height: ${theme.header.height};
@@ -92,7 +91,8 @@ export default css`
     }
 
     .navbar-brand a.navbar-item img {
-        height: 24px;
+        height: 44px;
+        max-height: none;
     }
 
     .navbar-brand a.navbar-item:hover:after {

@@ -48,12 +48,7 @@ export default function Footer() {
                         onClick={() => {
                             window.location.href = '/'
                         }}
-                    >
-                        {/* <img
-                            src={`${assetPrefix}/images/logo/LippoLife-Logo-White.png`}
-                            alt="Lippo-logo"
-                        /> */}
-                    </div>
+                    ></div>
                     {footerData && (
                         <>
                             <div className="column">
@@ -104,8 +99,8 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="copyright">
-                    All Rights Reserved © 2021 PT. Lippo Life Assurance - We
-                    Love You
+                    {footerData?.copyrightText ??
+                        'All Rights Reserved © 2021 Vida'}
                 </div>
             </footer>
             <style jsx>{styles}</style>

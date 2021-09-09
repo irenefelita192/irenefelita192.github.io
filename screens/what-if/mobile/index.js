@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import globalStyles from '../global-styles'
 import styles from './styles'
 
@@ -77,22 +77,7 @@ export default function ParallaxMobile({ location, data }) {
         const imgTop = cleanHeight - imgHeight + scrollAt
         el.style.height = `${imgHeight}px`
         const imgEl = document.querySelector(`#${id} > img`)
-        if (imgEl.complete) {
-            const imgWidth =
-                (imgEl.naturalWidth / imgEl.naturalHeight) * imgHeight
 
-            el.style.width = `${imgWidth}px`
-            const leftPos = (screenWidth - imgWidth) / 2
-            el.style.left = `${leftPos}px`
-        } else {
-            imgEl.onload = () => {
-                const imgWidth =
-                    (imgEl.naturalWidth / imgEl.naturalHeight) * imgHeight
-                el.style.width = `${imgWidth}px`
-                const leftPos = (screenWidth - imgWidth) / 2
-                el.style.left = `${leftPos}px`
-            }
-        }
         el.style.top = `${imgTop}px`
         el.style.bottom = 'auto'
         el.classList.add('is-show', 'animate-portrait')
@@ -236,7 +221,7 @@ export default function ParallaxMobile({ location, data }) {
             <div className="question-container" id="container">
                 {data &&
                     data.map((q) => (
-                        <div key={q.id}>
+                        <Fragment key={q.id}>
                             <div
                                 className="question-text"
                                 id={`question-${q.id}`}
@@ -249,7 +234,7 @@ export default function ParallaxMobile({ location, data }) {
                             <div id={`portrait-${q.id}`} className="portrait">
                                 <img src={q.portraitImg} />
                             </div>
-                        </div>
+                        </Fragment>
                     ))}
             </div>
             <div className="bottom-section">

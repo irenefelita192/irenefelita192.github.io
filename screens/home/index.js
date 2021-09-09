@@ -33,9 +33,6 @@ export default function HomeScreen() {
             <div className="content-wrapper">
                 {keyStatisticData && (
                     <>
-                        <h1 className="content-title">
-                            {keyStatisticData.title}
-                        </h1>
                         <div className="content-description">
                             {keyStatisticData.keyStatistics.map((dt, index) => (
                                 <div

@@ -27,15 +27,12 @@ export default css`
         opacity: 0;
         max-width: 600px;
         z-index: 3;
+        display: none;
     }
 
     .question-text > span {
         display: block;
         text-align: right;
-    }
-
-    .is-show {
-        opacity: 1;
     }
 
     .animate-text {
@@ -86,6 +83,7 @@ export default css`
         bottom: 0;
         left: -10%;
         opacity: 0;
+        display: none;
         /* transition: opacity 0.3s ease-in-out; */
     }
 
@@ -94,6 +92,7 @@ export default css`
         z-index: 3;
         bottom: 0;
         opacity: 0;
+        display: none;
         /* transition: opacity 0.3s ease-in-out; */
     }
 
@@ -115,6 +114,10 @@ export default css`
 
     .bottom-gradient {
         background: linear-gradient(180deg, #f6f4f1 0%, #9c9c9c 197.41%);
+    }
+
+    .is-show {
+        display: block;
     }
 
     @media screen and (max-width: 640px) {

@@ -44,8 +44,6 @@ export default function Hero({ id }) {
                     {heroImg && (
                         <>
                             <img src={`${assetDomain}${heroImg}`} />
-                            <div className="background-bottom" />
-                            <div className="background-overlay" />
                         </>
                     )}
                     <span> {heroData?.heroTitle ?? ''}</span>
