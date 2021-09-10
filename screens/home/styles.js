@@ -185,7 +185,12 @@ export default css`
         box-sizing: border-box;
         border-radius: 16px;
         color: ${theme.colors['vida-black']};
-        width: 100%d;
+        width: 100%;
+        margin-top: 32px;
+    }
+
+    .hero-single-button a {
+        color: ${theme.colors['vida-black']};
     }
 
     .hero-wrapper.is-portrait .hero-single-button {
@@ -265,6 +270,14 @@ export default css`
             font-family: 'Bree Serif', serif;
             padding: 0 24px;
             text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .hero-desc {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.37;
         }
     }
 `
