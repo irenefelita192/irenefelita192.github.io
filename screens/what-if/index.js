@@ -3,8 +3,6 @@ import ParallaxDesktop from './desktop'
 import ParallaxMobile from './mobile'
 
 export default function WhatIf() {
-    const [isPortrait, setIsPortrait] = useState(false)
-
     const questionsDummy = [
         {
             id: '1',
@@ -48,6 +46,8 @@ export default function WhatIf() {
             portraitId: 'portrait4',
         },
     ]
+
+    const [isPortrait, setIsPortrait] = useState(false)
 
     useEffect(() => {
         if (process.browser) {

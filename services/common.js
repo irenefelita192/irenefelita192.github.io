@@ -7,7 +7,7 @@ export const getAllSubMenu = async (locale) => {
     const sortQs = `${locQs ? '&' : '?'}_sort=sortNum:ASC`
 
     const response = await axios
-        .get(`${endpoints}/sub-menus${locQs}${sortQs}`)
+        .get(`${endpoints}/vida-sub-menus${locQs}${sortQs}`)
         .catch(function (error) {
             console.error(error)
         })
@@ -18,7 +18,7 @@ export const getAllSubMenu = async (locale) => {
 export const getAllHeader = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/headers${locQs}`)
+        .get(`${endpoints}/vida-menus${locQs}`)
         .catch(function (error) {
             console.error(error)
         })
