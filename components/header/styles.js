@@ -208,30 +208,12 @@ export default css`
         content: '';
     }
 
-    @media screen and (max-width: 768px) {
-        .navbar {
-            padding: 0;
-        }
-        .navbar-brand,
-        .navbar-tabs {
-            min-height: ${theme.header.height};
-        }
-
-        .navbar-item {
-            margin: 0;
-            margin-left: 24px;
-        }
-
-        .navbar-brand a.navbar-item img {
-            height: 36px;
-        }
-
+    @media screen and (max-width: 1024px) {
         .navbar-burger {
             color: ${theme.colors.black};
             background-color: transparent;
             height: ${theme.header.height};
-            margin-right: 36px;
-            width: auto;
+            margin-right: 12px;
         }
 
         .navbar-burger span {
@@ -249,6 +231,29 @@ export default css`
 
         .navbar-burger span:nth-child(3) {
             top: calc(50% + 5px);
+        }
+
+        .navbar-burger.is-active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .navbar {
+            padding: 0;
+        }
+        .navbar-brand,
+        .navbar-tabs {
+            min-height: ${theme.header.height};
+        }
+
+        .navbar-item {
+            margin: 0;
+            margin-left: 24px;
+        }
+
+        .navbar-brand a.navbar-item img {
+            height: 36px;
         }
     }
 `
