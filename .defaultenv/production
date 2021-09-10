@@ -1,0 +1,3 @@
+REACT_APP_ENV=production
+BASE_API=https://strapi-y5loyvex6a-et.a.run.app
+ASSET_PREFIX=https://haloida.co.id
