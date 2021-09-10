@@ -99,32 +99,22 @@ export default function BrochureScreen() {
         return <Loader />
     }
 
-    const onDocumentLoadSuccess = ({ numPages }) => {
-        const pagesArray = Array.from(Array(numPages), (e, i) => i + 1)
-        setNumPages(pagesArray)
-    }
-
-    const dataDummy = './Solusi Asuransi Kesehatan_v2.pdf'
-
     return (
         <div>
             {brochureData.status == 'success' && (
                 <>
-                    PDF Viewer
-                    <Document
-                        loading=""
-                        file={dataDummy}
-                        // file={brochureData.data.brochureLink}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                    >
-                        {numPages &&
-                            numPages.map((pageNumber) => (
-                                <Page
-                                    key={pageNumber}
-                                    pageNumber={pageNumber}
-                                />
-                            ))}
-                    </Document>
+                    Iframe Google Viewer
+                    <iframe
+                        src={`https://docs.google.com/viewer?url=${brochureData.data.brochureLink}&embedded=true`}
+                        // style="width:600px; height:500px;"
+                        width="100%"
+                        height={wHeight}
+                    ></iframe>
+                    {/* <iframe
+                        src={brochureData.data.brochureLink}
+                        width="100%"
+                        height={wHeight}
+                    ></iframe> */}
                 </>
             )}
         </div>
