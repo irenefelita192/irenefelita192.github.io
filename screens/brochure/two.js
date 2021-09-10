@@ -77,7 +77,7 @@ export default function BrochureScreen() {
         const brc = await getBrochure()
 
         if (!isMounted()) return
-
+        console.log('brc', brc)
         if (brc) {
             setBrochureData({
                 status: 'success',
@@ -110,21 +110,12 @@ export default function BrochureScreen() {
         <div>
             {brochureData.status == 'success' && (
                 <>
-                    PDF Viewer
-                    <Document
-                        loading=""
-                        file={dataDummy}
-                        // file={brochureData.data.brochureLink}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                    >
-                        {numPages &&
-                            numPages.map((pageNumber) => (
-                                <Page
-                                    key={pageNumber}
-                                    pageNumber={pageNumber}
-                                />
-                            ))}
-                    </Document>
+                    Iframe biasa
+                    <iframe
+                        src={brochureData.data.brochureLink}
+                        width="100%"
+                        height={wHeight}
+                    ></iframe>
                 </>
             )}
         </div>
