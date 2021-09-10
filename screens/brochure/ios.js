@@ -57,66 +57,21 @@
 //     )
 // }
 
-import React, { useState } from 'react'
-import { Document, Page } from 'react-pdf'
+import React from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import { getBrochure } from '../../services/brochure'
-import Loader from '../../components/loader'
 
+/* for ios webview */
 export default function BrochureScreen() {
-    const [numPages, setNumPages] = useState(null)
-    // const [pageNumber, setPageNumber] = useState(1)
-
-    const [wHeight, setWHeight] = useState(0)
-    const [brochureData, setBrochureData] = useState({
-        status: 'loading',
-        data: null,
-    })
-
     useAsyncEffect(async (isMounted) => {
         const brc = await getBrochure()
 
         if (!isMounted()) return
 
         if (brc) {
-            setBrochureData({
-                status: 'success',
-                data: brc,
-            })
-        } else {
-            setBrochureData({
-                status: 'error',
-                data: null,
-            })
-        }
-
-        if (process.browser) {
-            setWHeight(window.innerHeight)
+            window.location.href = brc.brochureLink
         }
     }, [])
 
-    if (brochureData.status === 'loading') {
-        return <Loader />
-    }
-
-    return (
-        <div>
-            {brochureData.status == 'success' && (
-                <>
-                    Iframe Google Viewer
-                    <iframe
-                        src={`https://docs.google.com/viewer?url=${brochureData.data.brochureLink}&embedded=true`}
-                        // style="width:600px; height:500px;"
-                        width="100%"
-                        height={wHeight}
-                    ></iframe>
-                    {/* <iframe
-                        src={brochureData.data.brochureLink}
-                        width="100%"
-                        height={wHeight}
-                    ></iframe> */}
-                </>
-            )}
-        </div>
-    )
+    return <div></div>
 }
