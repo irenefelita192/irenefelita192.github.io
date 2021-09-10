@@ -3,7 +3,8 @@ import theme from '../global-styles/theme'
 
 export default css.global`
     body {
-        font-family: 'Bree Serif', serif;
+        font-family: 'Inter', sans-serif;
+        color: ${theme.colors.black};
     }
 
     .children-wrapper {
@@ -11,7 +12,6 @@ export default css.global`
     }
 
     .children-wrapper .wrapper {
-        font-family: 'Bree Serif', serif;
         min-height: 48vh;
     }
 

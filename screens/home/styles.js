@@ -2,8 +2,66 @@ import theme from '../../components/global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
+    /* Hero Header - start */
+    .hero-wrapper {
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 540px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-family: 'Bree Serif', serif;
+        font-size: 48px;
+        line-height: 1.12;
+    }
+
+    .hero-desc {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.37;
+        padding-top: 20px;
+        max-width: 530px;
+        text-align: center;
+    }
+
+    .hero-button-text {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1;
+        padding: 40px 0 12px;
+    }
+
+    .hero-button {
+        display: flex;
+    }
+
+    .hero-button a {
+        font-family: 'Bree Serif', serif;
+        font-size: 14px;
+        line-height: 1.43;
+        padding: 13px 28px;
+        background-color: #ffffff;
+        border: 1px solid #f6f4f1;
+        box-sizing: border-box;
+        border-radius: 16px;
+        color: ${theme.colors['vida-black']};
+        margin-right: 12px;
+    }
+
+    .hero-button a:last-child {
+        margin-right: 0;
+    }
+    /* Hero Header - end */
+
     .content-wrapper {
         padding: 149px 16% 137px;
+        position: relative;
     }
 
     .content-title {
@@ -14,11 +72,28 @@ export default css`
         color: ${theme.colors.black};
     }
 
+    .static-blob {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 64px;
+    }
+
+    .content-cards {
+        position: relative;
+        z-index: 2;
+    }
+
     .card-item {
         display: flex;
         align-items: center;
         color: ${theme.colors.black};
-        margin-bottom: 80px;
+        margin-bottom: 140px;
+    }
+
+    .card-content {
+        padding: 0;
+        margin: 0;
     }
 
     .card-item.card-odd {
@@ -26,7 +101,7 @@ export default css`
     }
 
     .card-item.card-odd .card-content {
-        padding-left: 32px;
+        padding-left: 48px;
     }
 
     .card-item.card-even {
@@ -34,35 +109,106 @@ export default css`
     }
 
     .card-item.card-even .card-content {
-        padding-right: 32px;
+        padding-right: 48px;
+    }
+
+    .card-item:last-child {
+        margin-bottom: 0;
     }
 
     .card-item img {
         width: 485px;
         height: auto;
+        border-radius: 24px;
     }
 
     .card-title {
-        font-weight: bold;
-        font-size: 26px;
-        line-height: 1.15;
-        padding-bottom: 12px;
+        font-family: 'Bree Serif', serif;
+        font-size: 44px;
+        line-height: 1.09;
     }
 
-    .card-short {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.2;
-        padding-bottom: 16px;
-    }
     .card-desc {
-        font-size: 16px;
-        line-height: 1.5;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.33;
+        margin-top: 16px;
     }
+
+    .card-link {
+        font-family: 'Bree Serif', serif;
+        font-size: 16px;
+        line-height: 1.25;
+        margin-top: 16px;
+        display: block;
+        color: ${theme.colors.black};
+        text-decoration: underline;
+    }
+
+    /*Bottom Section - start*/
+
+    .bottom-section {
+        background-color: #f3ebe4;
+        height: 266px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Bree Serif', serif;
+    }
+
+    .bottom-title {
+        font-size: 28px;
+        line-height: 1.21;
+    }
+
+    .bottom-button a {
+        display: block;
+        background: ${theme.colors['vida-black']};
+        color: ${theme.colors['vida-brokenwhite']};
+        box-sizing: border-box;
+        border-radius: 16px;
+        font-size: 14px;
+        line-height: 1.43;
+        padding: 13px 62px;
+        margin-top: 16px;
+    }
+
+    .hero-single-button {
+        display: none;
+        font-family: 'Bree Serif', serif;
+        font-size: 14px;
+        line-height: 1.43;
+        padding: 17px 28px;
+        background-color: #ffffff;
+        border: 1px solid #f6f4f1;
+        box-sizing: border-box;
+        border-radius: 16px;
+        color: ${theme.colors['vida-black']};
+        width: 100%d;
+    }
+
+    .hero-wrapper.is-portrait .hero-single-button {
+        display: block;
+    }
+
+    .hero-wrapper.is-portrait .hero-button,
+    .hero-wrapper.is-portrait .hero-button-text {
+        display: none;
+    }
+    /*Bottom Section - end*/
 
     @media screen and (max-width: 1024px) {
         .card-item img {
-            width: 240px;
+            width: 348px;
+        }
+
+        .card-item.card-odd .card-content {
+            padding-left: 32px;
+        }
+
+        .card-item.card-even .card-content {
+            padding-right: 32px;
         }
     }
 
@@ -74,6 +220,27 @@ export default css`
     }
 
     @media screen and (max-width: 768px) {
+        .content-wrapper {
+            padding: 56px 24px;
+            position: relative;
+        }
+
+        .hero-wrapper {
+            justify-content: flex-end;
+            padding: 0 18px 56px;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            line-height: 1.04;
+        }
+
+        .hero-desc {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.37;
+        }
+
         .card-item img {
             width: 100%;
         }
@@ -86,6 +253,18 @@ export default css`
 
         .card-item {
             margin-bottom: 54px;
+        }
+
+        .bottom-section {
+            background-color: #f3ebe4;
+            height: 266px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bree Serif', serif;
+            padding: 0 24px;
+            text-align: center;
         }
     }
 `

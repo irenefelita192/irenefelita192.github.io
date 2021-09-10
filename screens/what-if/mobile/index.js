@@ -77,7 +77,22 @@ export default function ParallaxMobile({ location, data }) {
         const imgTop = cleanHeight - imgHeight + scrollAt
         el.style.height = `${imgHeight}px`
         const imgEl = document.querySelector(`#${id} > img`)
+        if (imgEl.complete) {
+            const imgWidth =
+                (imgEl.naturalWidth / imgEl.naturalHeight) * imgHeight
 
+            el.style.width = `${imgWidth}px`
+            const leftPos = (screenWidth - imgWidth) / 2
+            el.style.left = `${leftPos}px`
+        } else {
+            imgEl.onload = () => {
+                const imgWidth =
+                    (imgEl.naturalWidth / imgEl.naturalHeight) * imgHeight
+                el.style.width = `${imgWidth}px`
+                const leftPos = (screenWidth - imgWidth) / 2
+                el.style.left = `${leftPos}px`
+            }
+        }
         el.style.top = `${imgTop}px`
         el.style.bottom = 'auto'
         el.classList.add('is-show', 'animate-portrait')

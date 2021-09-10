@@ -7,6 +7,7 @@ const theme = {
         gray: '#F1EFEB',
         white: '#FFFFFF',
         brand: '#0A9188',
+        yellow: 'F3E69E',
     },
     offset: {
         container: '168px',

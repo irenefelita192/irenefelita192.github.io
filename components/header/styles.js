@@ -4,7 +4,7 @@ import theme from '../global-styles/theme'
 export default css`
     .navbar {
         font-family: 'Bree Serif', serif;
-        font-size: 14ps;
+        font-size: 14px;
         line-height: 1.43;
         background-color: #ffffff;
         color: ${theme.colors.black};
@@ -20,6 +20,7 @@ export default css`
         color: ${theme.colors.black};
         padding: 0;
         margin: 0 30px;
+        text-transform: uppercase;
     }
 
     a.navbar-item i.caret-down {
@@ -43,7 +44,6 @@ export default css`
     a.navbar-item:focus,
     a.navbar-item:active {
         background-color: transparent;
-        color: #ffffff;
     }
 
     a.navbar-item:hover:after {
@@ -210,24 +210,45 @@ export default css`
 
     @media screen and (max-width: 768px) {
         .navbar {
-            /* height: 52px; */
+            padding: 0;
+        }
+        .navbar-brand,
+        .navbar-tabs {
+            min-height: ${theme.header.height};
         }
 
         .navbar-item {
-            margin: 0 16px;
+            margin: 0;
+            margin-left: 24px;
         }
 
         .navbar-brand a.navbar-item img {
-            height: 16px;
+            height: 36px;
         }
 
         .navbar-burger {
             color: ${theme.colors.black};
             background-color: transparent;
+            height: ${theme.header.height};
+            margin-right: 36px;
+            width: auto;
         }
 
         .navbar-burger span {
             height: 2px;
+            width: 24px;
+        }
+
+        .navbar-burger span:nth-child(1) {
+            top: calc(50% - 7px);
+        }
+
+        .navbar-burger span:nth-child(2) {
+            top: calc(50% - 1px);
+        }
+
+        .navbar-burger span:nth-child(3) {
+            top: calc(50% + 5px);
         }
     }
 `
