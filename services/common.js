@@ -96,7 +96,7 @@ export const getPrivacy = async (locale) => {
 export const getFooter = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : ''
     const response = await axios
-        .get(`${endpoints}/footer${locQs}`)
+        .get(`${endpoints}/vida-footer${locQs}`)
         .catch(function (error) {
             console.error(error)
         })

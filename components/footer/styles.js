@@ -3,58 +3,152 @@ import css from 'styled-jsx/css'
 
 export default css`
     footer {
-        background-color: #393e46;
-        padding: 60px 168px 24px;
-        display: grid;
-        color: #ffffff;
-        grid-gap: 62px;
+        background-color: #f1efeb;
+        padding: 40px 10%;
+        color: ${theme.colors['vida-black']};
+        /* display: grid;
+        grid-gap: 62px; */
     }
 
     footer .title {
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 1.38;
-        color: #ffffff;
-        margin-bottom: 21px;
+        font-weight: 500;
+        font-family: 'Bree Serif', serif;
+        font-size: 14px;
+        line-height: 1.43;
+        margin-bottom: 16px;
+        text-transform: uppercase;
     }
 
     footer .list {
-        font-size: 16px;
-        line-height: 1.38;
-        color: #c7c7c7;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.43;
         margin-bottom: 14px;
         display: block;
+        color: ${theme.colors['vida-black']};
     }
 
-    footer .column:nth-child(2),
-    footer .column:nth-child(3) {
-        flex-grow: 0.5;
+    .flex {
+        display: flex;
     }
 
-    .logo-wrapper img {
-        height: 24px;
+    .first-column {
+        width: 34%;
+        padding-right: 65px;
+    }
+
+    .second-column {
+        width: 66%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-menu {
+        display: flex;
+    }
+
+    .footer-submenu {
+        flex-basis: 100%;
+    }
+
+    .vida-logo {
+        height: 56px;
         width: auto;
     }
 
-    .ojk-wrapper {
+    .vida-logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    .first-row .text {
         font-size: 13px;
-        line-height: 1.6;
-        color: #ffffff;
-        margin-bottom: 6px;
-        text-align: right;
-        flex-grow: 1.5;
+        line-height: 1.38;
+        padding-top: 12px;
     }
 
-    .ojk-wrapper img {
-        height: 42px;
+    .second-row {
+        display: flex;
+        padding-top: 44px;
+    }
+
+    .second-row-wrapper {
+        margin-right: 40px;
+    }
+
+    .second-row-wrapper:last-child {
+        margin-right: 0;
+    }
+
+    .second-row-wrapper .text {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .lippo-logo,
+    .ojk-logo {
+        height: 36px;
         width: auto;
+    }
+
+    .lippo-logo img,
+    .ojk-logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    .download {
+        text-align: right;
+        padding-top: 30px;
+    }
+
+    .download a {
+        display: inline-block;
+        height: 40px;
+        width: auto;
+        padding-right: 14px;
+    }
+
+    .download a:last-child {
+        padding-right: 0;
+    }
+
+    .download a img {
+        width: auto;
+        height: 100%;
+    }
+
+    .footer-bottom {
+        display: flex;
+        padding-top: 32px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .left-column {
+        display: flex;
+        align-items: center;
+    }
+
+    .left-column a {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.43;
+        color: ${theme.colors['vida-black']};
+    }
+
+    .left-column span {
+        margin: 0 30px;
+        height: 31px;
+        border-right: 1px solid rgba(95, 95, 95, 0.15);
     }
 
     .copyright {
-        font-size: 11px;
-        line-height: 1.36;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.43;
         text-align: right;
-        color: #818181;
     }
 
     @media screen and (max-width: 1024px) {
@@ -70,7 +164,7 @@ export default css`
             grid-gap: 20px;
         }
 
-        footer .columns {
+        .footer-columns {
             display: flex;
         }
     }
@@ -81,7 +175,7 @@ export default css`
             grid-gap: 42px;
         }
 
-        footer .columns {
+        .footer-columns {
             display: block;
         }
 
