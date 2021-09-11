@@ -14,6 +14,17 @@ export default css`
         width: 100%;
         top: 0;
         left: 0;
+        min-height: 0;
+    }
+
+    .navbar.scroll-down {
+        transform: translate(0, -82px);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar.scroll-up {
+        transform: translate(0, 0);
+        transition: transform 0.3s ease-in-out;
     }
 
     .navbar-item {

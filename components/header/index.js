@@ -16,6 +16,7 @@ export default function Header({ activeId }) {
     const [headerData, setHeaderData] = useState([])
     const [languageData, setLanguageData] = useState([])
 
+    let navbar = null
     useAsyncEffect(async (isMounted) => {
         const locale = await getLocale()
         let langId
@@ -41,6 +42,8 @@ export default function Header({ activeId }) {
 
     useEffect(() => {
         if (process.browser) {
+            navbar = document.getElementById('navbarTop')
+            window.addEventListener('scroll', handleScroll)
             if (document && document.body.clientWidth < 1024) {
                 setIsDesktop(false)
             }
@@ -72,8 +75,47 @@ export default function Header({ activeId }) {
 
         return () => {
             document.removeEventListener('click', () => {})
+            window.removeEventListener('scroll', handleScroll)
         }
     }, [])
+
+    const scrollUp = 'scroll-up',
+        scrollDown = 'scroll-down'
+    let scrollTimer = null,
+        lastScroll = 0
+
+    const handleScroll = (e) => {
+        if (scrollTimer != null) clearTimeout(scrollTimer)
+
+        scrollTimer = window.setTimeout(scrollFinished, 500)
+
+        const currentScroll = window.pageYOffset
+
+        if (currentScroll <= 0) {
+            navbar.classList.remove(scrollUp)
+            return
+        }
+
+        if (currentScroll > lastScroll) {
+            //down
+            navbar.classList.add(scrollDown)
+            navbar.classList.remove(scrollUp)
+        } else if (
+            currentScroll < lastScroll &&
+            navbar.classList.contains(scrollDown)
+        ) {
+            // up
+            navbar.classList.remove(scrollDown)
+            navbar.classList.add(scrollUp)
+        }
+        lastScroll = currentScroll
+    }
+
+    const scrollFinished = () => {
+        if (navbar) {
+            navbar.classList.add(scrollUp)
+        }
+    }
 
     const handleBurgerMenuClick = () => {
         setIsMenuActive(!isMenuActive)
@@ -88,6 +130,7 @@ export default function Header({ activeId }) {
         document.cookie = `lang=${code};path=/`
         location.reload()
     }
+
     const assetPrefix = process.env.config?.assetPrefix ?? '',
         brandImg = `${assetPrefix}${'/images/logo/logo-Vida.png'}`
 
