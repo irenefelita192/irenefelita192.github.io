@@ -136,7 +136,7 @@ export default css`
     }
 
     .navbar-menu.is-active .navbar-item.has-dropdown {
-        margin: 10px 30px 10px 50px;
+        /* margin: 10px 30px 10px 50px; */
     }
 
     .navbar-menu.is-active .navbar-item.has-dropdown .navbar-link {
@@ -171,6 +171,97 @@ export default css`
         padding: 0;
     }
 
+    /* submenu start*/
+
+    .submenu-wrapper {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        height: 0;
+
+        /* height: 180px; */
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        transition: height 0.3s ease-in;
+    }
+
+    .submenu-inner {
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        transition: opacity 0.25s ease-in;
+        pointer-events: none;
+    }
+
+    .submenu-item {
+        width: 200px;
+        margin-right: 20px;
+        border: 1px solid ${theme.colors.gray};
+        background-color: ${theme.colors['vida-brokenwhite']};
+        border-radius: 16px;
+        color: #000000;
+        text-transform: none;
+    }
+
+    .submenu-item:last-child {
+        margin-right: 0;
+    }
+
+    .submenu-icon {
+        height: 40px;
+        width: auto;
+        text-align: right;
+    }
+
+    .submenu-icon img {
+        height: 100%;
+        width: auto;
+    }
+
+    .submenu-title {
+        font-size: 14px;
+    }
+
+    .submenu-desc {
+        font-family: 'Inter', serif;
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 400;
+    }
+
+    .navbar-item.has-dropdown:hover .submenu-wrapper {
+        height: 200px;
+        transition: height 0.3s ease-out;
+    }
+
+    .navbar-item.has-dropdown:hover .submenu-inner {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.4s ease-in;
+    }
+
+    .navbar-item.has-dropdown,
+    .navbar-start,
+    .navbar-menu {
+        position: unset;
+    }
+
+    .navbar-link:not(.is-arrowless)::after {
+        border-color: #000000;
+        border-radius: 1px;
+        border-width: 2px;
+    }
+
+    .navbar-link {
+        color: ${theme.colors.black};
+    }
+    /* submenu end*/
+
+    /* language start*/
     .navbar-lang {
         cursor: pointer;
     }
@@ -219,6 +310,8 @@ export default css`
         content: '';
     }
 
+    /* language end*/
+
     @media screen and (max-width: 1024px) {
         .navbar-burger {
             color: ${theme.colors.black};
@@ -253,6 +346,7 @@ export default css`
         .navbar {
             padding: 0;
         }
+
         .navbar-brand,
         .navbar-tabs {
             min-height: ${theme.header.height};

@@ -4,10 +4,7 @@ import { getHomeData } from '../../services/home'
 import { getCookie } from '../../util/global-util'
 import Loader from '../../components/loader'
 import styles from './styles'
-import Sidebar from '../../components/sidebar'
-import Hero from '../../components/hero-header'
 import Footer from '../../components/footer'
-import PageWrapper from '../../components/layout/page-wrapper'
 
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
@@ -90,39 +87,37 @@ export default function HomeScreen() {
             )}
 
             <div className="content-wrapper">
-                <div className="static-blob">
-                    <img src="./images/blob/blob-home.png" />
-                </div>
+                {!isPortrait && (
+                    <div className="static-blob">
+                        <img src="./images/blob/blob-home.png" />
+                    </div>
+                )}
                 <div className="content-cards">
                     {homeData.key.map((dt, index) => (
-                        <>
-                            <div
-                                key={dt.id}
-                                className={`card-item ${
-                                    (index + 1) % 2 == 0
-                                        ? 'card-even'
-                                        : 'card-odd'
-                                }`}
-                            >
-                                <img
-                                    src={`${assetDomain}${dt.image?.url ?? ''}`}
-                                    alt={dt.image?.alternativeText ?? ''}
-                                />
+                        <div
+                            key={dt.id}
+                            className={`card-item ${
+                                (index + 1) % 2 == 0 ? 'card-even' : 'card-odd'
+                            }`}
+                        >
+                            <img
+                                src={`${assetDomain}${dt.image?.url ?? ''}`}
+                                alt={dt.image?.alternativeText ?? ''}
+                            />
 
-                                <div className="card-content">
-                                    <div className="card-title">{dt.title}</div>
+                            <div className="card-content">
+                                <div className="card-title">{dt.title}</div>
 
-                                    <div className="card-desc">
-                                        {dt.description}
-                                    </div>
-                                    {dt.linkText && (
-                                        <a className="card-link" href={dt.link}>
-                                            {dt.linkText}
-                                        </a>
-                                    )}
+                                <div className="card-desc">
+                                    {dt.description}
                                 </div>
+                                {dt.linkText && (
+                                    <a className="card-link" href={dt.link}>
+                                        {dt.linkText}
+                                    </a>
+                                )}
                             </div>
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>

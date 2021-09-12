@@ -1,4 +1,4 @@
-import theme from '../global-styles/theme'
+import theme from '../../global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
@@ -141,7 +141,7 @@ export default css`
     .left-column span {
         margin: 0 30px;
         height: 31px;
-        border-right: 1px solid rgba(95, 95, 95, 0.15);
+        border-right: 1px solid #5f5f5f;
     }
 
     .copyright {
