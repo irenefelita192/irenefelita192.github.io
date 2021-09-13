@@ -15,10 +15,4 @@ export default css.global`
     .pdf-page canvas {
         margin: 0 auto;
     }
-
-    @media screen and (max-width: 640px) {
-        .pdf-document {
-            padding-top: 120px;
-        }
-    }
 `

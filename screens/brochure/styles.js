@@ -38,19 +38,57 @@ export default css`
         background-repeat: no-repeat;
     }
 
-    @media screen and (max-width: 640px) {
-        .toolbar {
-            height: 120px;
-        }
+    // Progress Bar
+    // -------------------------
 
+    .wrapper {
+        width: calc(100% - 80px);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin: 0 40px;
+        z-index: 5;
+    }
+
+    .progress-bar {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 0;
+        border-radius: 16px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+
+    .progress-bar-text {
+        font-family: Arial;
+        font-size: 12px;
+        position: absolute;
+        left: 50%;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        transform: translate(-50%, 0);
+        color: #000000;
+    }
+
+    .progress-bar-fill {
+        display: block;
+        height: 20px;
+        background-color: #00a59b;
+        border-radius: 16px;
+        transition: width 500ms ease-in-out;
+    }
+
+    @media screen and (max-width: 640px) {
         .download-link {
-            width: 96px;
-            height: 96px;
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
         }
 
         .download-link i {
-            width: 48px;
-            height: 48px;
+            width: 22px;
+            height: 22px;
         }
     }
 `
