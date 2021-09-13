@@ -3,13 +3,19 @@ import theme from '../../../components/global-styles/theme'
 
 export default css`
     .content {
-        background-color: ${theme.colors['vida-brokenwhite']};
+        /* background-color: ${theme.colors['vida-brokenwhite']}; */
     }
 
     .question-container {
         position: relative;
         width: 100%;
         height: 2000px;
+        background: linear-gradient(
+            180deg,
+            #fff3e0 0%,
+            #f6f4f1 78.65%,
+            #ffffff 100%
+        );
     }
 
     .question-text {
@@ -103,6 +109,7 @@ export default css`
     }
 
     .bottom-section {
+        background: linear-gradient(180deg, #ffffff 0%, #cfb287 174.32%);
         height: 579px;
         width: 100%;
         display: flex;

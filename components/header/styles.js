@@ -9,7 +9,7 @@ export default css`
         background-color: #ffffff;
         color: ${theme.colors.black};
         height: ${theme.header.height};
-        padding: 0 150px;
+        padding: 0 10%;
         position: fixed;
         width: 100%;
         top: 0;
@@ -313,6 +313,10 @@ export default css`
     /* language end*/
 
     @media screen and (max-width: 1024px) {
+        .navbar {
+            padding: 0 10px;
+        }
+
         .navbar-burger {
             color: ${theme.colors.black};
             background-color: transparent;
