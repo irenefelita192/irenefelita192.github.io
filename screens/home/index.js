@@ -9,6 +9,10 @@ import Footer from '../../components/footer'
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
     const [isPortrait, setIsPortrait] = useState(false)
+    const [isIos, setIsIos] = useState(false)
+    const [heroHeight, setHeroHeight] = useState(null)
+
+    let headerHeight = 80
 
     useAsyncEffect(async (isMounted) => {
         let langId
@@ -22,21 +26,14 @@ export default function HomeScreen() {
         }
         const homeDt = await getHomeData(langId ? langId : 'id')
 
+        const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
+        setIsIos(ios)
+        setHeroHeight(window.innerHeight - headerHeight)
+
         if (!isMounted()) return
 
         setHomeData(homeDt)
     }, [])
-
-    const navigateAway = () => {
-        try {
-            document.location =
-                'intent://mola.tv/watch?v=vd75881280#Intent;scheme=molaapp;end'
-            document.location = 'molaapp://mola.tv/watch?v=vd75881280'
-        } catch (e) {
-            console.log('deeplink failed watch?v=vd75881280')
-        } finally {
-        }
-    }
 
     const assetDomain = process.env.config?.baseEndpoint ?? ''
 
@@ -51,6 +48,8 @@ export default function HomeScreen() {
             ? `${assetDomain}${header.mobileImage.url}`
             : ''
     }
+
+    console.log('heroHeight', heroHeight)
     return (
         <>
             {header && (
@@ -58,29 +57,43 @@ export default function HomeScreen() {
                     className={`hero-wrapper ${
                         isPortrait ? 'is-portrait' : ''
                     }`}
-                    style={{ backgroundImage: `url(${heroImg})` }}
+                    style={{
+                        backgroundImage: `url(${heroImg})`,
+                        height: `${heroHeight}px`,
+                    }}
                 >
                     <div className="hero-title"> {header?.title ?? ''}</div>
                     <div className="hero-desc">{header?.description ?? ''}</div>
-                    <div className="hero-button-text">
-                        {header?.buttonHeaderText ?? ''}
-                    </div>
-                    <div className="hero-button">
-                        {header.AppStoreText && (
-                            <a href={header.AppStoreLink}>
-                                {header.AppStoreText}
-                            </a>
-                        )}
-                        {header.PlayStoreText && (
-                            <a href={header.PlayStoreLink}>
-                                {header.PlayStoreText}
-                            </a>
-                        )}
-                    </div>
-
+                    {!isPortrait && (
+                        <>
+                            <div className="hero-button-text">
+                                {header?.buttonHeaderText ?? ''}
+                            </div>
+                            <div className="hero-button">
+                                {header.AppStoreText && (
+                                    <a href={header.AppStoreLink}>
+                                        {header.AppStoreText}
+                                    </a>
+                                )}
+                                {header.PlayStoreText && (
+                                    <a href={header.PlayStoreLink}>
+                                        {header.PlayStoreText}
+                                    </a>
+                                )}
+                            </div>
+                        </>
+                    )}
                     {header.buttonLink && (
                         <div className="hero-single-button">
-                            <a href={header.buttonLink}>{header.buttonText}</a>
+                            <a
+                                href={
+                                    isIos
+                                        ? header.AppStoreLink
+                                        : header.PlayStoreLink
+                                }
+                            >
+                                {header.buttonText}
+                            </a>
                         </div>
                     )}
                 </div>

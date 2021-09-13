@@ -6,6 +6,7 @@ export default css`
     .hero-wrapper {
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
         min-height: 540px;
         color: #ffffff;
         display: flex;
