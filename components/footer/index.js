@@ -2,34 +2,22 @@ import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import { getFooter } from '../../services/common'
 import { getCookie } from '../../util/global-util'
-import styles from './styles'
+import FooterDesktop from './desktop'
+import FooterMobile from './mobile'
 
-const topicData = {
-    title: 'Topics',
-    data: [
-        { id: 1, title: 'Company', href: '/company' },
-        { id: 2, title: 'Solutions', href: '/solutions' },
-        { id: 3, title: 'Careers', href: '/careers' },
-        { id: 4, title: 'Contact', href: '/contact' },
-    ],
-}
-
-const moreData = {
-    title: 'More',
-    data: [
-        { id: 1, title: 'Vida', href: '/vida' },
-        { id: 2, title: 'Privacy Policy', href: '/privacy-policy' },
-        { id: 3, title: 'Terms & Conditions', href: '/tnc' },
-        { id: 4, title: 'Sitemap', href: '/sitemap' },
-    ],
-}
 export default function Footer() {
+    const [isPortrait, setIsPortrait] = useState(false)
     const [footerData, setFooterData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
         let langId
         if (process.browser) {
             langId = getCookie('lang')
+            if (window.innerWidth < window.innerHeight) {
+                setIsPortrait(true)
+            } else {
+                setIsPortrait(false)
+            }
         }
         const footerDt = await getFooter(langId ? langId : 'id')
 
@@ -37,73 +25,10 @@ export default function Footer() {
         setFooterData(footerDt)
     }, [])
 
-    const assetDomain = process.env.config?.baseEndpoint ?? '',
-        assetPrefix = process.env.config?.assetPrefix ?? ''
     return (
         <>
-            <footer>
-                <div className="columns">
-                    <div
-                        className="column logo-wrapper"
-                        onClick={() => {
-                            window.location.href = '/'
-                        }}
-                    ></div>
-                    {footerData && (
-                        <>
-                            <div className="column">
-                                <div className="title">
-                                    {footerData.topicTitle}
-                                </div>
-                                {footerData.topics.map((topic) => (
-                                    <a
-                                        className="list"
-                                        key={topic.id}
-                                        href={topic.link}
-                                    >
-                                        {topic.title}
-                                    </a>
-                                ))}
-                            </div>
-                            <div className="column">
-                                <div className="title">
-                                    {footerData.moreTitle}
-                                </div>
-                                {footerData.more.map((more) => (
-                                    <a
-                                        className="list"
-                                        key={more.id}
-                                        href={more.link}
-                                    >
-                                        {more.title}
-                                    </a>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                    <div className="column ojk-wrapper">
-                        {footerData && (
-                            <>
-                                <div>{footerData.ojkText}</div>
-                                <img
-                                    src={`${assetDomain}${
-                                        footerData.ojkImage?.url ?? ''
-                                    }`}
-                                    alt={
-                                        footerData.ojkImage?.alternativeText ??
-                                        ''
-                                    }
-                                />
-                            </>
-                        )}
-                    </div>
-                </div>
-                <div className="copyright">
-                    {footerData?.copyrightText ??
-                        'All Rights Reserved © 2021 Vida'}
-                </div>
-            </footer>
-            <style jsx>{styles}</style>
+            {isPortrait && <FooterMobile data={footerData} />}
+            {!isPortrait && <FooterDesktop data={footerData} />}
         </>
     )
 }

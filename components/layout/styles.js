@@ -5,6 +5,7 @@ export default css.global`
     body {
         font-family: 'Inter', sans-serif;
         color: ${theme.colors.black};
+        scroll-behavior: smooth;
     }
 
     .children-wrapper {

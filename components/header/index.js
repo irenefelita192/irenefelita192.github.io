@@ -16,6 +16,9 @@ export default function Header({ activeId }) {
     const [headerData, setHeaderData] = useState([])
     const [languageData, setLanguageData] = useState([])
 
+    // const [activeMenu, setActiveMenu] = useState(nu;;)
+
+    let navbar = null
     useAsyncEffect(async (isMounted) => {
         const locale = await getLocale()
         let langId
@@ -23,7 +26,7 @@ export default function Header({ activeId }) {
             langId = getCookie('lang')
         }
         const headers = await getAllHeader(langId ? langId : 'id')
-
+        console.log('header', headers)
         if (!isMounted()) return
         setHeaderData(headers)
         setLanguageData(locale)
@@ -41,6 +44,8 @@ export default function Header({ activeId }) {
 
     useEffect(() => {
         if (process.browser) {
+            navbar = document.getElementById('navbarTop')
+            window.addEventListener('scroll', handleScroll)
             if (document && document.body.clientWidth < 1024) {
                 setIsDesktop(false)
             }
@@ -72,8 +77,47 @@ export default function Header({ activeId }) {
 
         return () => {
             document.removeEventListener('click', () => {})
+            window.removeEventListener('scroll', handleScroll)
         }
     }, [])
+
+    const scrollUp = 'scroll-up',
+        scrollDown = 'scroll-down'
+    let scrollTimer = null,
+        lastScroll = 0
+
+    const handleScroll = (e) => {
+        if (scrollTimer != null) clearTimeout(scrollTimer)
+
+        scrollTimer = window.setTimeout(scrollFinished, 500)
+
+        const currentScroll = window.pageYOffset
+
+        if (currentScroll <= 0) {
+            navbar.classList.remove(scrollUp)
+            return
+        }
+
+        if (currentScroll > lastScroll) {
+            //down
+            navbar.classList.add(scrollDown)
+            navbar.classList.remove(scrollUp)
+        } else if (
+            currentScroll < lastScroll &&
+            navbar.classList.contains(scrollDown)
+        ) {
+            // up
+            navbar.classList.remove(scrollDown)
+            navbar.classList.add(scrollUp)
+        }
+        lastScroll = currentScroll
+    }
+
+    const scrollFinished = () => {
+        if (navbar) {
+            navbar.classList.add(scrollUp)
+        }
+    }
 
     const handleBurgerMenuClick = () => {
         setIsMenuActive(!isMenuActive)
@@ -88,9 +132,10 @@ export default function Header({ activeId }) {
         document.cookie = `lang=${code};path=/`
         location.reload()
     }
+
     const assetPrefix = process.env.config?.assetPrefix ?? '',
         brandImg = `${assetPrefix}${'/images/logo/logo-Vida.png'}`
-
+    const assetDomain = process.env.config?.baseEndpoint ?? ''
     return (
         <>
             <nav
@@ -128,63 +173,72 @@ export default function Header({ activeId }) {
                         <>
                             <div className="navbar-start">
                                 {headerData.map((dt) => {
+                                    const hasSubMenu =
+                                        dt.subMenus && dt.subMenus.length > 0
                                     return (
                                         <Fragment key={dt.id}>
-                                            <a
-                                                className={`navbar-item ${
-                                                    activeId === dt.id
-                                                        ? 'is-active'
-                                                        : ''
-                                                }`}
-                                                href={dt.href}
-                                            >
-                                                <span>{dt.title}</span>
-                                            </a>
-                                            {!isDesktop && (
-                                                <>
-                                                    {dt.subMenu &&
-                                                        dt.subMenu.length > 0 &&
-                                                        dt.subMenu.map(
-                                                            (subMenu) => (
-                                                                <div
-                                                                    key={
-                                                                        subMenu.id
-                                                                    }
-                                                                    className="navbar-item has-dropdown"
-                                                                >
-                                                                    <div className="navbar-link">
-                                                                        {
-                                                                            subMenu.title
-                                                                        }
-                                                                    </div>
-                                                                    {subMenu.subMenu &&
-                                                                        subMenu.subMenu.map(
-                                                                            (
-                                                                                subSubMenu
-                                                                            ) => (
-                                                                                <div
-                                                                                    key={
-                                                                                        subSubMenu.id
-                                                                                    }
-                                                                                    className="navbar-dropdown"
-                                                                                >
-                                                                                    <a
-                                                                                        className="navbar-item"
-                                                                                        href={
-                                                                                            subSubMenu.href
-                                                                                        }
-                                                                                    >
-                                                                                        {
-                                                                                            subSubMenu.title
-                                                                                        }
-                                                                                    </a>
-                                                                                </div>
-                                                                            )
-                                                                        )}
-                                                                </div>
-                                                            )
-                                                        )}
-                                                </>
+                                            {hasSubMenu && (
+                                                <div className="navbar-item has-dropdown">
+                                                    <a
+                                                        className={`navbar-link ${
+                                                            activeId === dt.id
+                                                                ? 'is-active'
+                                                                : ''
+                                                        }`}
+                                                        href={dt.href}
+                                                    >
+                                                        <span>{dt.title}</span>
+                                                    </a>
+                                                    {isDesktop && (
+                                                        <div className="submenu-wrapper">
+                                                            <div className="submenu-inner columns">
+                                                                {dt.subMenus.map(
+                                                                    (
+                                                                        subMenu
+                                                                    ) => (
+                                                                        <a
+                                                                            key={
+                                                                                subMenu.id
+                                                                            }
+                                                                            href=""
+                                                                            className="submenu-item column"
+                                                                        >
+                                                                            <div className="submenu-icon">
+                                                                                {subMenu.icon && (
+                                                                                    <img
+                                                                                        src={`${assetDomain}${subMenu.icon.url}`}
+                                                                                    />
+                                                                                )}
+                                                                            </div>
+                                                                            <div className="submenu-title">
+                                                                                {
+                                                                                    subMenu.title
+                                                                                }
+                                                                            </div>
+                                                                            <div className="submenu-desc">
+                                                                                {
+                                                                                    subMenu.description
+                                                                                }
+                                                                            </div>
+                                                                        </a>
+                                                                    )
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                            {!hasSubMenu && (
+                                                <a
+                                                    className={`navbar-item ${
+                                                        activeId === dt.id
+                                                            ? 'is-active'
+                                                            : ''
+                                                    }`}
+                                                    href={dt.href}
+                                                >
+                                                    <span>{dt.title}</span>
+                                                </a>
                                             )}
                                         </Fragment>
                                     )

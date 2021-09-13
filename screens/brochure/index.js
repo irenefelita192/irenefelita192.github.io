@@ -27,8 +27,9 @@ import fileDownload from 'js-file-download'
 export default function BrochureScreen() {
     const [numPages, setNumPages] = useState(null)
     const [pdfLoadSuccess, setPdfLoadSuccess] = useState(false)
+    const [progressPercent, setProgressPercent] = useState(0)
 
-    const [wHeight, setWHeight] = useState(0)
+    const [windowWidth, setWindowWidth] = useState(0)
     const [brochureData, setBrochureData] = useState({
         status: 'loading',
         data: null,
@@ -52,7 +53,7 @@ export default function BrochureScreen() {
         }
 
         if (process.browser) {
-            setWHeight(window.innerHeight)
+            setWindowWidth(window.innerWidth)
         }
     }, [])
 
@@ -74,36 +75,58 @@ export default function BrochureScreen() {
 
     const dataDummy = './Solusi Asuransi Kesehatan_v2.pdf'
 
+    const handleLoadProgress = ({ loaded, total }) => {
+        if (loaded <= total) setProgressPercent((loaded / total) * 100)
+    }
+
     return (
         <div>
             {brochureData.status == 'success' && (
                 <>
-                    {pdfLoadSuccess && (
-                        <div className="toolbar">
-                            <a
-                                className="download-link"
-                                onClick={handleDownload}
-                            >
-                                <i />
-                            </a>
+                    {progressPercent !== 100 && pdfLoadSuccess && (
+                        <div className="wrapper">
+                            <div className="progress-bar">
+                                <span className="progress-bar-text">
+                                    {Math.round(progressPercent)}%
+                                </span>
+                                <span
+                                    className="progress-bar-fill"
+                                    style={{ width: `${progressPercent}%` }}
+                                ></span>
+                            </div>
                         </div>
                     )}
-                    <Document
-                        loading=""
-                        file={dataDummy}
-                        // file={brochureData.data.brochureLink}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                        className="pdf-document"
-                    >
-                        {numPages &&
-                            numPages.map((pageNumber) => (
-                                <Page
-                                    className="pdf-page"
-                                    key={pageNumber}
-                                    pageNumber={pageNumber}
-                                />
-                            ))}
-                    </Document>
+
+                    <>
+                        {progressPercent == 100 && (
+                            <div className="toolbar">
+                                <a
+                                    className="download-link"
+                                    onClick={handleDownload}
+                                >
+                                    <i />
+                                </a>
+                            </div>
+                        )}
+                        <Document
+                            loading=""
+                            file={dataDummy}
+                            // file={brochureData.data.brochureLink}
+                            onLoadProgress={handleLoadProgress}
+                            onLoadSuccess={onDocumentLoadSuccess}
+                            className="pdf-document"
+                        >
+                            {numPages &&
+                                numPages.map((pageNumber) => (
+                                    <Page
+                                        width={windowWidth}
+                                        className="pdf-page"
+                                        key={pageNumber}
+                                        pageNumber={pageNumber}
+                                    />
+                                ))}
+                        </Document>
+                    </>
                 </>
             )}
             <style jsx>{styles}</style>
