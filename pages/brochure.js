@@ -1,5 +1,5 @@
-import Layout from '../components/layout/webview-layout'
-import BrochureScreen from '../screens/brochure'
+import Layout from 'components/layout/webview-layout'
+import BrochureScreen from 'screens/brochure'
 
 export default function Contact() {
     return (

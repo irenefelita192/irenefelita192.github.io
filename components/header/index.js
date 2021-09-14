@@ -1,8 +1,9 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getAllHeader, getLocale } from '../../services/common'
-
-import { getCookie } from '../../util/global-util'
+import { getAllHeader, getLocale, getFooter } from 'services/common'
+import Accordion from 'components/accordion'
+import DownloadButton from 'components/download-button'
+import { getCookie } from 'utils/global-util'
 
 import styles from './styles'
 
@@ -14,11 +15,17 @@ export default function Header({ activeId }) {
     const [activeLangObj, setActiveLangObj] = useState(null)
 
     const [headerData, setHeaderData] = useState([])
+    const [footerData, setFooterData] = useState(null)
+
     const [languageData, setLanguageData] = useState([])
+    const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
+    const [mobileMenuHeight, setMobileMenuHeight] = useState(null)
 
     // const [activeMenu, setActiveMenu] = useState(nu;;)
 
-    let navbar = null
+    let navbar = null,
+        headerHeight = 80
+
     useAsyncEffect(async (isMounted) => {
         const locale = await getLocale()
         let langId
@@ -26,9 +33,15 @@ export default function Header({ activeId }) {
             langId = getCookie('lang')
         }
         const headers = await getAllHeader(langId ? langId : 'id')
-        console.log('header', headers)
+        let footerDt
+        if (window.innerWidth <= 1024) {
+            footerDt = await getFooter(langId ? langId : 'id')
+            console.log('footerdt', footerDt)
+        }
+
         if (!isMounted()) return
         setHeaderData(headers)
+        if (footerDt) setFooterData(footerDt)
         setLanguageData(locale)
     }, [])
 
@@ -46,8 +59,9 @@ export default function Header({ activeId }) {
         if (process.browser) {
             navbar = document.getElementById('navbarTop')
             window.addEventListener('scroll', handleScroll)
-            if (document && document.body.clientWidth < 1024) {
+            if (window.innerWidth <= 1024) {
                 setIsDesktop(false)
+                setMobileMenuHeight(window.innerHeight - headerHeight)
             }
             const langId = getCookie('lang')
             if (langId) setActiveLang(langId)
@@ -120,6 +134,13 @@ export default function Header({ activeId }) {
     }
 
     const handleBurgerMenuClick = () => {
+        if (document) {
+            if (isMenuActive) {
+                document.documentElement.style.overflow = 'auto'
+            } else {
+                document.documentElement.style.overflow = 'hidden'
+            }
+        }
         setIsMenuActive(!isMenuActive)
     }
 
@@ -132,6 +153,143 @@ export default function Header({ activeId }) {
         document.cookie = `lang=${code};path=/`
         location.reload()
     }
+
+    const handleOpenSubmenu = (isOpen) => {
+        setIsSubmenuOpen(isOpen)
+    }
+
+    const renderSubMenuMobile = (menu) => {
+        return (
+            <>
+                <Accordion>
+                    <Accordion.Container>
+                        <Accordion.Header
+                            id={menu.id}
+                            onClick={handleOpenSubmenu}
+                        >
+                            <a
+                                className={`navbar-link ${
+                                    activeId === menu.id ? 'is-active' : ''
+                                }`}
+                                href={menu.href}
+                            >
+                                <span>{menu.title}</span>
+                            </a>
+                        </Accordion.Header>
+                        {menu.subMenus && (
+                            <>
+                                <Accordion.Body>
+                                    {menu.subMenus.map((subMenu) => (
+                                        <div className="submenu-content">
+                                            {subMenu.title}
+                                        </div>
+                                    ))}
+                                </Accordion.Body>
+                            </>
+                        )}
+                    </Accordion.Container>
+                </Accordion>
+                <style jsx>{styles}</style>
+            </>
+        )
+    }
+
+    const renderSubMenuDesktop = (menu) => {
+        return (
+            <>
+                <a
+                    className={`navbar-link ${
+                        activeId === menu.id ? 'is-active' : ''
+                    }`}
+                    href={menu.href}
+                >
+                    <span>{menu.title}</span>
+                </a>
+                <div className="submenu-wrapper">
+                    <div className="submenu-inner columns">
+                        {menu.subMenus.map((subMenu) => (
+                            <a
+                                key={subMenu.id}
+                                href=""
+                                className="submenu-item column"
+                            >
+                                <div className="submenu-icon">
+                                    {subMenu.icon && (
+                                        <img
+                                            src={`${assetDomain}${subMenu.icon.url}`}
+                                        />
+                                    )}
+                                </div>
+                                <div className="submenu-title">
+                                    {subMenu.title}
+                                </div>
+                                <div className="submenu-desc">
+                                    {subMenu.description}
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+                <style jsx>{styles}</style>
+            </>
+        )
+    }
+    // {languageData.map(
+    //     (lang) => (
+    //         <a
+    //             key={lang.id}
+    //             onClick={() =>
+    //                 handleChooseLang(
+    //                     lang.code
+    //                 )
+    //             }
+    //             className={`dropdown-item ${
+    //                 activeLang ===
+    //                 lang.code
+    //                     ? 'is-active'
+    //                     : ''
+    //             }`}
+    //         >
+    //             {lang.name}
+    //         </a>
+    //     )
+    // )}
+
+    // const renderLangMobile = (menu) => {
+    //     return (
+    //         <>
+    //             <Accordion>
+    //                 <Accordion.Container>
+    //                     <Accordion.Header
+    //                         id={menu.id}
+    //                         onClick={handleOpenSubmenu}
+    //                     >
+    //                         <a
+    //                             className={`navbar-link ${
+    //                                 activeId === menu.id ? 'is-active' : ''
+    //                             }`}
+    //                             href={menu.href}
+    //                         >
+    //                             <span>{menu.title}</span>
+    //                         </a>
+    //                     </Accordion.Header>
+    //                     {menu.subMenus && (
+    //                         <>
+    //                             <Accordion.Body>
+    //                                 {menu.subMenus.map((subMenu) => (
+    //                                     <div className="submenu-content">
+    //                                         {subMenu.title}
+    //                                     </div>
+    //                                 ))}
+    //                             </Accordion.Body>
+    //                         </>
+    //                     )}
+    //                 </Accordion.Container>
+    //             </Accordion>
+    //             <style jsx>{styles}</style>
+    //         </>
+    //     )
+    // }
 
     const assetPrefix = process.env.config?.assetPrefix ?? '',
         brandImg = `${assetPrefix}${'/images/logo/logo-Vida.png'}`
@@ -168,6 +326,7 @@ export default function Header({ activeId }) {
                     className={`navbar-menu ${
                         !isDesktop && isMenuActive ? 'is-active' : ''
                     }`}
+                    style={{ minHeight: `${mobileMenuHeight}px` || 'auto' }}
                 >
                     {headerData && (
                         <>
@@ -178,54 +337,19 @@ export default function Header({ activeId }) {
                                     return (
                                         <Fragment key={dt.id}>
                                             {hasSubMenu && (
-                                                <div className="navbar-item has-dropdown">
-                                                    <a
-                                                        className={`navbar-link ${
-                                                            activeId === dt.id
-                                                                ? 'is-active'
-                                                                : ''
-                                                        }`}
-                                                        href={dt.href}
-                                                    >
-                                                        <span>{dt.title}</span>
-                                                    </a>
-                                                    {isDesktop && (
-                                                        <div className="submenu-wrapper">
-                                                            <div className="submenu-inner columns">
-                                                                {dt.subMenus.map(
-                                                                    (
-                                                                        subMenu
-                                                                    ) => (
-                                                                        <a
-                                                                            key={
-                                                                                subMenu.id
-                                                                            }
-                                                                            href=""
-                                                                            className="submenu-item column"
-                                                                        >
-                                                                            <div className="submenu-icon">
-                                                                                {subMenu.icon && (
-                                                                                    <img
-                                                                                        src={`${assetDomain}${subMenu.icon.url}`}
-                                                                                    />
-                                                                                )}
-                                                                            </div>
-                                                                            <div className="submenu-title">
-                                                                                {
-                                                                                    subMenu.title
-                                                                                }
-                                                                            </div>
-                                                                            <div className="submenu-desc">
-                                                                                {
-                                                                                    subMenu.description
-                                                                                }
-                                                                            </div>
-                                                                        </a>
-                                                                    )
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                    )}
+                                                <div
+                                                    className={`navbar-item has-dropdown ${
+                                                        isSubmenuOpen
+                                                            ? 'submenu-open'
+                                                            : ''
+                                                    }`}
+                                                >
+                                                    {!isDesktop &&
+                                                        renderSubMenuMobile(dt)}
+                                                    {isDesktop &&
+                                                        renderSubMenuDesktop(
+                                                            dt
+                                                        )}
                                                 </div>
                                             )}
                                             {!hasSubMenu && (
@@ -243,33 +367,28 @@ export default function Header({ activeId }) {
                                         </Fragment>
                                     )
                                 })}
-
-                                {!isDesktop && (
-                                    <>
-                                        <div className="navbar-item navbar-lang-mobile">
-                                            {languageData.map((lang) => (
-                                                <span
-                                                    key={lang.id}
-                                                    onClick={() =>
-                                                        handleChooseLang(
-                                                            lang.code
-                                                        )
-                                                    }
-                                                    className={
-                                                        activeLang === lang.code
-                                                            ? 'is-active'
-                                                            : ''
-                                                    }
-                                                >
-                                                    {lang?.code?.toUpperCase() ??
-                                                        ''}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </>
-                                )}
-                                {/* language end */}
                             </div>
+
+                            {/* language mobile start */}
+                            {!isDesktop && (
+                                <div className="navbar-end">
+                                    {/* <div>EN | ID</div> */}
+                                    {footerData && (
+                                        <>
+                                            <div className="download">
+                                                <DownloadButton
+                                                    data={footerData}
+                                                />
+                                            </div>
+                                            <div className="copyright">
+                                                <span>
+                                                    {footerData.copyrightText}
+                                                </span>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            )}
                             {/* language start */}
                             {isDesktop && (
                                 <div className="navbar-end">

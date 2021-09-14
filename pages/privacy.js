@@ -1,5 +1,5 @@
-import Layout from '../components/layout'
-import PrivacyScreen from '../screens/privacy'
+import Layout from 'components/layout'
+import PrivacyScreen from 'screens/privacy'
 
 // export async function getStaticProps({ locale }) {
 //     console.log('locale', locale)

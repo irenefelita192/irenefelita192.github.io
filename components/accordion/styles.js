@@ -1,4 +1,3 @@
-import theme from '../global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`

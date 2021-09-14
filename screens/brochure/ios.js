@@ -1,5 +1,5 @@
 import { useAsyncEffect } from 'use-async-effect'
-import { getBrochure } from '../../services/brochure'
+import { getBrochure } from 'services/brochure'
 
 /* for ios webview */
 export default function BrochureScreen() {

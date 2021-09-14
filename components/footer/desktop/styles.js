@@ -1,4 +1,4 @@
-import theme from '../../global-styles/theme'
+import theme from 'components/global-styles/theme'
 import css from 'styled-jsx/css'
 
 export default css`
@@ -107,7 +107,9 @@ export default css`
         display: inline-block;
         height: 40px;
         width: auto;
-        padding-right: 14px;
+        margin-right: 14px;
+        border: 1px solid ${theme.colors['vida-black']};
+        border-radius: 6px;
     }
 
     .download a:last-child {

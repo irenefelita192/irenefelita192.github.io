@@ -49,6 +49,32 @@ export default function WhatIf() {
 
     const [isPortrait, setIsPortrait] = useState(false)
 
+    // useAsyncEffect(async (isMounted) => {
+    //     const brc = await getBrochure()
+
+    //     if (!isMounted()) return
+
+    //     if (brc) {
+    //         setBrochureData({
+    //             status: 'success',
+    //             data: brc,
+    //         })
+    //     } else {
+    //         setBrochureData({
+    //             status: 'error',
+    //             data: null,
+    //         })
+    //     }
+
+    //     if (process.browser) {
+    //         setWindowWidth(window.innerWidth)
+    //     }
+    // }, [])
+
+    // if (brochureData.status === 'loading') {
+    //     return <Loader />
+    // }
+
     useEffect(() => {
         if (process.browser) {
             if (window.innerWidth < window.innerHeight) {
@@ -58,7 +84,7 @@ export default function WhatIf() {
             }
         }
 
-        //jangan lupa sort by id
+        //ga perlu sort id karena bisa diurutin by strapi
     }, [])
 
     // if (isPortrait) {

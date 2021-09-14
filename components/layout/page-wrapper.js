@@ -1,4 +1,4 @@
-import theme from '../global-styles/theme'
+import theme from 'components/global-styles/theme'
 export default function PageWrapper({ children }) {
     return (
         <>
