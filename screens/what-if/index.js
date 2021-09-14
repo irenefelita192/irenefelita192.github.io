@@ -57,6 +57,8 @@ export default function WhatIf() {
                 setIsPortrait(false)
             }
         }
+
+        //jangan lupa sort by id
     }, [])
 
     // if (isPortrait) {

@@ -1,7 +1,5 @@
 import Head from 'next/head'
 
-import normalizeCss from 'normalize.css'
-
 export default function WebviewLayout({ children }) {
     return (
         <>
@@ -19,9 +17,6 @@ export default function WebviewLayout({ children }) {
                     content="width=device-width, initial-scale=1"
                 />
             </Head>
-            <style jsx global>
-                {normalizeCss}
-            </style>
             <div>{children}</div>
         </>
     )

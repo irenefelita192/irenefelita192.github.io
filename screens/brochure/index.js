@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useAsyncEffect } from 'use-async-effect'
 import { getBrochure, getBlob } from '../../services/brochure'
@@ -116,7 +116,13 @@ export default function BrochureScreen() {
                             onLoadSuccess={onDocumentLoadSuccess}
                             className="pdf-document"
                         >
-                            {numPages &&
+                            <Page
+                                width={windowWidth}
+                                className="pdf-page"
+                                key={1}
+                                pageNumber={1}
+                            />
+                            {/* {numPages &&
                                 numPages.map((pageNumber) => (
                                     <Page
                                         width={windowWidth}
@@ -124,7 +130,7 @@ export default function BrochureScreen() {
                                         key={pageNumber}
                                         pageNumber={pageNumber}
                                     />
-                                ))}
+                                ))} */}
                         </Document>
                     </>
                 </>
