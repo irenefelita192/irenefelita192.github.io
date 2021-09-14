@@ -177,7 +177,7 @@ export default function ParallaxDesktop({ location, data }) {
                     scrollAt[nextId] + scrollGap
                 )
 
-                if (opacityEl[q.id] < 0) {
+                if (opacityEl[q.id] < -0.1) {
                     resetAnimation(q.id)
                 }
             } else if (q.id == 1) {

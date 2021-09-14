@@ -8,6 +8,7 @@ import Footer from '../../components/footer'
 
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
+    const [isMobile, setIsMobile] = useState(false)
     const [isPortrait, setIsPortrait] = useState(false)
     const [isIos, setIsIos] = useState(false)
     const [heroHeight, setHeroHeight] = useState(null)
@@ -18,17 +19,25 @@ export default function HomeScreen() {
         let langId
         if (process.browser) {
             langId = getCookie('lang')
-            if (window.innerWidth < window.innerHeight) {
+            const mob =
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                    navigator.userAgent
+                )
+            console.log('ismobile', mob)
+            setIsMobile(mob)
+
+            if (window.innerWidth <= 768) {
                 setIsPortrait(true)
+                setHeroHeight(window.innerHeight - headerHeight)
             } else {
                 setIsPortrait(false)
+                setHeroHeight(0)
             }
+
+            const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
+            setIsIos(ios)
         }
         const homeDt = await getHomeData(langId ? langId : 'id')
-
-        const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
-        setIsIos(ios)
-        setHeroHeight(window.innerHeight - headerHeight)
 
         if (!isMounted()) return
 
@@ -49,22 +58,19 @@ export default function HomeScreen() {
             : ''
     }
 
-    console.log('heroHeight', heroHeight)
     return (
         <>
             {header && (
                 <div
-                    className={`hero-wrapper ${
-                        isPortrait ? 'is-portrait' : ''
-                    }`}
+                    className={`hero-wrapper`}
                     style={{
                         backgroundImage: `url(${heroImg})`,
-                        height: `${heroHeight}px`,
+                        height: isPortrait ? `${heroHeight}px` : 'auto',
                     }}
                 >
                     <div className="hero-title"> {header?.title ?? ''}</div>
                     <div className="hero-desc">{header?.description ?? ''}</div>
-                    {!isPortrait && (
+                    {!isMobile && (
                         <>
                             <div className="hero-button-text">
                                 {header?.buttonHeaderText ?? ''}
@@ -83,7 +89,7 @@ export default function HomeScreen() {
                             </div>
                         </>
                     )}
-                    {header.buttonLink && (
+                    {isMobile && (
                         <div className="hero-single-button">
                             <a
                                 href={

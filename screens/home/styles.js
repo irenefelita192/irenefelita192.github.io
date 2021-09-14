@@ -14,6 +14,7 @@ export default css`
         align-items: center;
         justify-content: center;
         text-align: center;
+        padding: 0 20%;
     }
 
     .hero-title {
@@ -176,7 +177,6 @@ export default css`
     }
 
     .hero-single-button {
-        display: none;
         font-family: 'Bree Serif', serif;
         font-size: 14px;
         line-height: 1.43;
@@ -192,15 +192,6 @@ export default css`
 
     .hero-single-button a {
         color: ${theme.colors['vida-black']};
-    }
-
-    .hero-wrapper.is-portrait .hero-single-button {
-        display: block;
-    }
-
-    .hero-wrapper.is-portrait .hero-button,
-    .hero-wrapper.is-portrait .hero-button-text {
-        display: none;
     }
     /*Bottom Section - end*/
 
@@ -255,6 +246,8 @@ export default css`
         .card-item.card-even .card-content {
             padding-left: 0;
             padding-right: 0;
+            text-align: center;
+            padding-top: 24px;
         }
 
         .card-item {
@@ -279,6 +272,18 @@ export default css`
             font-weight: 500;
             font-size: 16px;
             line-height: 1.37;
+        }
+
+        .card-title {
+            font-size: 32px;
+            line-height: 1.12;
+        }
+
+        .card-desc {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.37;
+            margin-top: 12px;
         }
     }
 `
