@@ -116,13 +116,7 @@ export default function BrochureScreen() {
                             onLoadSuccess={onDocumentLoadSuccess}
                             className="pdf-document"
                         >
-                            <Page
-                                width={windowWidth}
-                                className="pdf-page"
-                                key={1}
-                                pageNumber={1}
-                            />
-                            {/* {numPages &&
+                            {numPages &&
                                 numPages.map((pageNumber) => (
                                     <Page
                                         width={windowWidth}
@@ -130,7 +124,7 @@ export default function BrochureScreen() {
                                         key={pageNumber}
                                         pageNumber={pageNumber}
                                     />
-                                ))} */}
+                                ))}
                         </Document>
                     </>
                 </>
