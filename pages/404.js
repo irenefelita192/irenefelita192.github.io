@@ -1,4 +1,4 @@
-import Layout from '../components/layout'
+import Layout from 'components/layout'
 import NotFound from '../screens/not-found'
 
 export default function Custom404() {

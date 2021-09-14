@@ -1,5 +1,5 @@
-import Layout from '../components/layout'
-import TnCScreen from '../screens/tnc'
+import Layout from 'components/layout'
+import TnCScreen from 'screens/tnc'
 
 // export async function getStaticProps({ locale }) {
 //     console.log('locale', locale)

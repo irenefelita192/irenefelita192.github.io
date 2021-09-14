@@ -1,5 +1,5 @@
-import theme from '../../components/global-styles/theme'
-import Footer from '../../components/footer'
+import theme from 'components/global-styles/theme'
+import Footer from 'components/footer'
 
 export default function NotFoundScreen() {
     const handleClickButton = () => {

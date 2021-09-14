@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getAllSubMenu } from '../../services/common'
-import { getCookie } from '../../util/global-util'
+import { getAllSubMenu } from 'services/common'
+import { getCookie } from 'utils/global-util'
 import styles from './styles'
 // const sidebarData = [
 //     {

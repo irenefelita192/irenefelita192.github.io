@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getFooter } from '../../services/common'
-import { getCookie } from '../../util/global-util'
+import { getFooter } from 'services/common'
+import { getCookie } from 'utils/global-util'
 import FooterDesktop from './desktop'
 import FooterMobile from './mobile'
 

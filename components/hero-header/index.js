@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getHeroTop } from '../../services/common'
-import { getCookie } from '../../util/global-util'
+import { getHeroTop } from 'services/common'
+import { getCookie } from 'utils/global-util'
 
 import styles from './styles'
 

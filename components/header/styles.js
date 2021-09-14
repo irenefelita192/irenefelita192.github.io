@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css'
-import theme from '../global-styles/theme'
+import theme from 'components/global-styles/theme'
 
 export default css`
     .navbar {
@@ -309,8 +309,22 @@ export default css`
     .navbar-lang-mobile > span:last-child:after {
         content: '';
     }
-
     /* language end*/
+
+    .download {
+        margin: 28px 40px;
+    }
+
+    .copyright {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 1.43;
+        color: ${theme.colors['vida-black']};
+        opacity: 0.8;
+        padding: 12px;
+        text-align: center;
+        box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
+    }
 
     @media screen and (max-width: 1024px) {
         .navbar {
@@ -344,6 +358,42 @@ export default css`
         .navbar-burger.is-active span:nth-child(3) {
             transform: translateY(-7px) rotate(-45deg);
         }
+
+        .navbar-link:not(.is-arrowless)::after {
+            display: none;
+        }
+
+        .navbar-menu.is-active {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .navbar-menu.is-active .navbar-item {
+            margin: 0 24px;
+            padding: 12px 14px;
+            border-radius: 24px;
+            transition: background-color 0.3s ease-in-out;
+            background-color: transparent;
+            font-size: 18px;
+        }
+
+        .navbar-menu.is-active .navbar-item.has-dropdown.submenu-open {
+            background-color: #f3ebe4;
+            border-radius: 24px;
+        }
+
+        .submenu-content {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 1.53;
+            font-family: 'Inter', sans-serif;
+            padding: 18px 18px 0;
+            text-transform: none;
+        }
     }
 
     @media screen and (max-width: 768px) {
@@ -356,10 +406,10 @@ export default css`
             min-height: ${theme.header.height};
         }
 
-        .navbar-item {
+        /* .navbar-item {
             margin: 0;
             margin-left: 24px;
-        }
+        } */
 
         .navbar-brand a.navbar-item img {
             height: 36px;

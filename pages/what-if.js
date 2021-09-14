@@ -1,5 +1,5 @@
-import Layout from '../components/layout'
-import WhatIfScreen from '../screens/what-if'
+import Layout from 'components/layout'
+import WhatIfScreen from 'screens/what-if'
 
 export default function WhatIf() {
     return (

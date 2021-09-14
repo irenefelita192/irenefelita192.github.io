@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import Accordion from '../../accordion'
+import Accordion from 'components/accordion'
+import DownloadButton from 'components/download-button'
 import styles from './styles'
 
 export default function FooterMobile({ data }) {
     const assetDomain = process.env.config?.baseEndpoint ?? ''
-    const [isIos, setIsIos] = useState(false)
     return (
         <>
             {data && (
@@ -75,31 +74,7 @@ export default function FooterMobile({ data }) {
                     </div>
 
                     <div className="fourth-row download">
-                        {isIos && (
-                            <a href={data.AppStoreLink}>
-                                <img
-                                    src={`${assetDomain}${
-                                        data.AppStoreIcon?.url ?? ''
-                                    }`}
-                                    alt={
-                                        data.AppStoreIcon?.alternativeText ?? ''
-                                    }
-                                />
-                            </a>
-                        )}
-                        {!isIos && (
-                            <a href={data.PlayStoreLink}>
-                                <img
-                                    src={`${assetDomain}${
-                                        data.PlayStoreIcon?.url ?? ''
-                                    }`}
-                                    alt={
-                                        data.PlayStoreIcon?.alternativeText ??
-                                        ''
-                                    }
-                                />
-                            </a>
-                        )}
+                        <DownloadButton data={data} />
                     </div>
 
                     <div className="fifth-row">

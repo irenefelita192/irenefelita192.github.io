@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import ReactMarkdown from 'react-markdown'
-import { getPrivacy } from '../../services/common'
-import { getCookie } from '../../util/global-util'
+import { getPrivacy } from 'services/common'
+import { getCookie } from 'utils/global-util'
 import styles from './styles'
 
-import Loader from '../../components/loader'
-import Hero from '../../components/hero-header'
-import Footer from '../../components/footer'
+import Loader from 'components/loader'
+import Hero from 'components/hero-header'
+import Footer from 'components/footer'
 
 export default function TnCScreen() {
     const [privacyData, setPrivacyData] = useState(null)

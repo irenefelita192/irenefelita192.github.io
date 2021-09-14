@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getHomeData } from '../../services/home'
-import { getCookie } from '../../util/global-util'
-import Loader from '../../components/loader'
+import { getHomeData } from 'services/home'
+import { getCookie } from 'utils/global-util'
+import Loader from 'components/loader'
 import styles from './styles'
-import Footer from '../../components/footer'
+import Footer from 'components/footer'
 
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
     const [isPortrait, setIsPortrait] = useState(false)
     const [isIos, setIsIos] = useState(false)
-    const [heroHeight, setHeroHeight] = useState(null)
+    const [heroHeight, setHeroHeight] = useState(0)
 
     let headerHeight = 80
 
@@ -29,9 +29,6 @@ export default function HomeScreen() {
             if (window.innerWidth <= 768) {
                 setIsPortrait(true)
                 setHeroHeight(window.innerHeight - headerHeight)
-            } else {
-                setIsPortrait(false)
-                setHeroHeight(0)
             }
 
             const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)

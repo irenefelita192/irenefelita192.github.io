@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getAboutData } from '../../services/about'
-import { getCookie } from '../../util/global-util'
-import Loader from '../../components/loader'
+import { getAboutData } from 'services/about'
+import { getCookie } from 'utils/global-util'
+import Loader from 'components/loader'
 import styles from './styles'
-import Footer from '../../components/footer'
+import Footer from 'components/footer'
 
 export default function HomeScreen() {
     const [aboutData, setAboutData] = useState(null)

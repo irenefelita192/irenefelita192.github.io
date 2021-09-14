@@ -1,5 +1,5 @@
-import Layout from '../components/layout'
-import HomeScreen from '../screens/home'
+import Layout from 'components/layout'
+import HomeScreen from 'screens/home'
 
 // export async function getStaticProps({ locale }) {
 //     console.log('locale', locale)
