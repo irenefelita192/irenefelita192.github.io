@@ -4,6 +4,7 @@ const theme = {
         'vida-black': '#272727',
         'vida-gray': '#6B6B6B',
         'vida-brokenwhite': '#F6F4F1',
+        'vida-green': '#00BBB0',
         gray: '#F1EFEB',
         white: '#FFFFFF',
         brand: '#0A9188',

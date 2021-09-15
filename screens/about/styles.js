@@ -93,8 +93,22 @@ export default css`
     .static-blob {
         position: absolute;
         z-index: 1;
+        right: -80px;
+        top: -120px;
+    }
+
+    .static-blob-left {
+        position: absolute;
+        z-index: 1;
         left: 0;
-        top: 64px;
+        top: 678px;
+    }
+
+    .static-blob-right {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 273px;
     }
 
     .content-cards {

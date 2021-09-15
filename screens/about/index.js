@@ -8,7 +8,7 @@ import Footer from 'components/footer'
 
 export default function HomeScreen() {
     const [aboutData, setAboutData] = useState(null)
-    const [isPortrait, setIsPortrait] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
     const [heroHeight, setHeroHeight] = useState(null)
     let headerHeight = 80
 
@@ -18,10 +18,10 @@ export default function HomeScreen() {
             langId = getCookie('lang')
 
             if (window.innerWidth <= 768) {
-                setIsPortrait(true)
+                setIsMobile(true)
                 setHeroHeight(window.innerHeight - headerHeight)
             } else {
-                setIsPortrait(false)
+                setIsMobile(false)
                 setHeroHeight(0)
             }
         }
@@ -40,7 +40,7 @@ export default function HomeScreen() {
     let heroImg = aboutData.desktopHeroImage
         ? `${assetDomain}${aboutData.desktopHeroImage.url}`
         : ''
-    if (isPortrait) {
+    if (isMobile) {
         heroImg = aboutData.mobileHeroImage
             ? `${assetDomain}${aboutData.mobileHeroImage.url}`
             : ''
@@ -53,7 +53,7 @@ export default function HomeScreen() {
                         className={`hero-wrapper`}
                         style={{
                             backgroundImage: `url(${heroImg})`,
-                            height: isPortrait ? `${heroHeight}px` : 'auto',
+                            height: isMobile ? `${heroHeight}px` : 'auto',
                         }}
                     >
                         <div className="hero-text">
@@ -76,7 +76,7 @@ export default function HomeScreen() {
                             <div className="hero-title">
                                 {aboutData?.heroDescription ?? ''}
                             </div>
-                            {!isPortrait && (
+                            {!isMobile && (
                                 <>
                                     <div className="founder-name">
                                         {aboutData?.founderName ?? ''}
@@ -88,7 +88,7 @@ export default function HomeScreen() {
                             )}
                         </div>
 
-                        {isPortrait && (
+                        {isMobile && (
                             <div className="portrait-founder">
                                 <div className="founder-name">
                                     {aboutData?.founderName ?? ''}
@@ -101,7 +101,7 @@ export default function HomeScreen() {
                     </div>
 
                     <div className="content-wrapper vision-mission">
-                        {!isPortrait && (
+                        {!isMobile && (
                             <div className="static-blob">
                                 <img
                                     src={`${assetPrefix}/images/blob/blob-about-1.png`}
@@ -109,7 +109,7 @@ export default function HomeScreen() {
                             </div>
                         )}
                         <div className="content-cards">
-                            <div className="card-item card-odd">
+                            <div className="card-item card-even">
                                 <img
                                     src={`${assetDomain}${
                                         aboutData.visionImage?.url ?? ''
@@ -131,7 +131,7 @@ export default function HomeScreen() {
                                 </div>
                             </div>
 
-                            <div className="card-item card-even">
+                            <div className="card-item card-odd">
                                 <img
                                     src={`${assetDomain}${
                                         aboutData.missionImage?.url ?? ''
@@ -167,6 +167,20 @@ export default function HomeScreen() {
                         </div>
                     </div>
                     <div className="content-wrapper vida-value">
+                        {!isMobile && (
+                            <>
+                                <div className="static-blob-left">
+                                    <img
+                                        src={`${assetPrefix}/images/blob/blob-about-3.png`}
+                                    />
+                                </div>
+                                <div className="static-blob-right">
+                                    <img
+                                        src={`${assetPrefix}/images/blob/blob-about-2.png`}
+                                    />
+                                </div>
+                            </>
+                        )}
                         <div className="value-title">
                             {aboutData.valueTitle}
                         </div>

@@ -6,6 +6,7 @@ export default css.global`
         font-family: 'Inter', sans-serif;
         color: ${theme.colors.black};
         scroll-behavior: smooth;
+        overflow-x: hidden;
     }
 
     .children-wrapper {
