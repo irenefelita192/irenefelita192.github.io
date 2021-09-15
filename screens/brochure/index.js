@@ -68,10 +68,10 @@ export default function BrochureScreen() {
         setPdfLoadSuccess(true)
     }
 
-    const handleDownload = () => {
-        // const blob = getBlob(brochureData.data.brochureLink)
-        // // console.log('blob', blob)
-        // fileDownload(blob, 'test.pdf')
+    const handleDownload = async () => {
+        const blob = await getBlob(brochureData.data.brochureLink)
+        console.log('blob', blob)
+        if (blob) fileDownload(blob, 'test.pdf')
     }
 
     const dataDummy = './Solusi Asuransi Kesehatan_v2.pdf'

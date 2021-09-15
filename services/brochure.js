@@ -12,11 +12,11 @@ export const getBrochure = async () => {
 }
 
 export const getBlob = async (url) => {
-    // const response = await axios
-    //     .get(url, { responseType: 'blob' })
-    //     .catch(function (error) {
-    //         console.error(error)
-    //     })
+    const response = await axios
+        .get(url, { responseType: 'blob' })
+        .catch(function (error) {
+            console.error(error)
+        })
     // return response ? response.data : null
     // const testURL =
     //     'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
@@ -30,5 +30,5 @@ export const getBlob = async (url) => {
     //         console.log(e)
     //     }
     // )
-    // return response ? response.data : null
+    return response ? response.data : null
 }
