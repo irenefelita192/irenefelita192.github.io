@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useAsyncEffect } from 'use-async-effect'
 import { getBrochure, getBlob } from 'services/brochure'
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import Loader from 'components/loader'
 import styles from './styles'
 import globalStyles from './global-styles'
@@ -108,24 +109,39 @@ export default function BrochureScreen() {
                                 </a>
                             </div>
                         )}
-                        <Document
-                            loading=""
-                            file={dataDummy}
-                            // file={brochureData.data.brochureLink}
-                            onLoadProgress={handleLoadProgress}
-                            onLoadSuccess={onDocumentLoadSuccess}
-                            className="pdf-document"
+
+                        <TransformWrapper
+                            initialScale={1}
+                            initialPositionX={0}
+                            initialPositionY={0}
                         >
-                            {numPages &&
-                                numPages.map((pageNumber) => (
-                                    <Page
-                                        width={windowWidth}
-                                        className="pdf-page"
-                                        key={pageNumber}
-                                        pageNumber={pageNumber}
-                                    />
-                                ))}
-                        </Document>
+                            {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                                <>
+                                    <TransformComponent>
+                                        <Document
+                                            loading=""
+                                            file={dataDummy}
+                                            // file={brochureData.data.brochureLink}
+                                            onLoadProgress={handleLoadProgress}
+                                            onLoadSuccess={
+                                                onDocumentLoadSuccess
+                                            }
+                                            className="pdf-document"
+                                        >
+                                            {numPages &&
+                                                numPages.map((pageNumber) => (
+                                                    <Page
+                                                        width={windowWidth}
+                                                        className="pdf-page"
+                                                        key={pageNumber}
+                                                        pageNumber={pageNumber}
+                                                    />
+                                                ))}
+                                        </Document>
+                                    </TransformComponent>
+                                </>
+                            )}
+                        </TransformWrapper>
                     </>
                 </>
             )}
