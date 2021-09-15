@@ -26,6 +26,11 @@ export default css`
         margin-bottom: 14px;
         display: block;
         color: ${theme.colors['vida-black']};
+        transition: color 0.2s ease-in-out;
+    }
+
+    footer .list:hover {
+        color: ${theme.colors['vida-green']};
     }
 
     .flex {
@@ -151,6 +156,12 @@ export default css`
         font-size: 14px;
         line-height: 1.43;
         text-align: right;
+    }
+
+    @media screen and (max-width: 1200px) {
+        footer {
+            padding: 40px 60px;
+        }
     }
 
     @media screen and (max-width: 1024px) {

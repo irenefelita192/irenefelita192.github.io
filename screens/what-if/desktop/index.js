@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import globalStyles from '../global-styles'
 import styles from './styles'
 
@@ -13,7 +13,7 @@ let heroHeight = 400,
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function ParallaxDesktop({ location, data }) {
+export default function ParallaxDesktop({ data }) {
     useEffect(() => {
         let firstQuestion = ''
         if (window) {

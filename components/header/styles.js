@@ -32,6 +32,7 @@ export default css`
         padding: 0;
         margin: 0 30px;
         text-transform: uppercase;
+        transition: color 0.2s ease-in-out;
     }
 
     a.navbar-item i.caret-down {
@@ -392,7 +393,7 @@ export default css`
 
         .navbar-menu.is-active .navbar-item {
             margin: 0 24px;
-            padding: 12px 14px;
+            padding: 14px;
             border-radius: 24px;
             transition: background-color 0.3s ease-in-out;
             background-color: transparent;
@@ -412,6 +413,16 @@ export default css`
             font-family: 'Inter', sans-serif;
             padding: 18px 18px 0;
             text-transform: none;
+        }
+
+        .navbar-menu.is-active .navbar-item.is-active span {
+            position: relative;
+            color: ${theme.colors['vida-green']};
+        }
+
+        .navbar-menu.is-active .navbar-item.is-active span:after {
+            display: block;
+            width: 100%;
         }
     }
 
