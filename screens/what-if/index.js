@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getWhatIfData } from 'services/what-if'
+import { getCookie } from 'utils/global-util'
+
 import ParallaxDesktop from './desktop'
 import ParallaxMobile from './mobile'
+import GoodThing from './good-thing'
 
 export default function WhatIf() {
     const questionsDummy = [
@@ -47,44 +52,23 @@ export default function WhatIf() {
         },
     ]
 
-    const [isPortrait, setIsPortrait] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    const [whatIfData, setWhatIfData] = useState(null)
 
-    // useAsyncEffect(async (isMounted) => {
-    //     const brc = await getBrochure()
-
-    //     if (!isMounted()) return
-
-    //     if (brc) {
-    //         setBrochureData({
-    //             status: 'success',
-    //             data: brc,
-    //         })
-    //     } else {
-    //         setBrochureData({
-    //             status: 'error',
-    //             data: null,
-    //         })
-    //     }
-
-    //     if (process.browser) {
-    //         setWindowWidth(window.innerWidth)
-    //     }
-    // }, [])
-
-    // if (brochureData.status === 'loading') {
-    //     return <Loader />
-    // }
-
-    useEffect(() => {
+    useAsyncEffect(async (isMounted) => {
+        let langId
         if (process.browser) {
-            if (window.innerWidth < window.innerHeight) {
-                setIsPortrait(true)
+            langId = getCookie('lang')
+            if (window.innerWidth <= 1024) {
+                setIsMobile(true)
             } else {
-                setIsPortrait(false)
+                setIsMobile(false)
             }
         }
+        const whatIfDt = await getWhatIfData(langId ? langId : 'id')
 
-        //ga perlu sort id karena bisa diurutin by strapi
+        if (!isMounted()) return
+        setWhatIfData(whatIfDt)
     }, [])
 
     // if (isPortrait) {
@@ -104,8 +88,15 @@ export default function WhatIf() {
     // }
     return (
         <>
-            {isPortrait && <ParallaxMobile data={questionsDummy} />}
-            {!isPortrait && <ParallaxDesktop data={questionsDummy} />}
+            {whatIfData && whatIfData.questions && (
+                <>
+                    {isMobile && <ParallaxMobile data={whatIfData.questions} />}
+                    {!isMobile && (
+                        <ParallaxDesktop data={whatIfData.questions} />
+                    )}
+                </>
+            )}
+            {whatIfData && <GoodThing data={whatIfData} />}
         </>
     )
     // return <HomeDesktop />
