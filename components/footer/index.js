@@ -6,17 +6,17 @@ import FooterDesktop from './desktop'
 import FooterMobile from './mobile'
 
 export default function Footer() {
-    const [isPortrait, setIsPortrait] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
     const [footerData, setFooterData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
         let langId
         if (process.browser) {
             langId = getCookie('lang')
-            if (window.innerWidth < window.innerHeight) {
-                setIsPortrait(true)
+            if (window.innerWidth <= 1024) {
+                setIsMobile(true)
             } else {
-                setIsPortrait(false)
+                setIsMobile(false)
             }
         }
         const footerDt = await getFooter(langId ? langId : 'id')
@@ -27,8 +27,8 @@ export default function Footer() {
 
     return (
         <>
-            {isPortrait && <FooterMobile data={footerData} />}
-            {!isPortrait && <FooterDesktop data={footerData} />}
+            {isMobile && <FooterMobile data={footerData} />}
+            {!isMobile && <FooterDesktop data={footerData} />}
         </>
     )
 }

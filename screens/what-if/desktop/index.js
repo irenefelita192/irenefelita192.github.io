@@ -5,19 +5,19 @@ import styles from './styles'
 let heroHeight = 400,
     screenWidth = 1440,
     screenHeight = 700,
-    questionLeaveId = '',
-    scrollDistance = 0,
-    distanceToTwo = 450,
     topDistance = 0,
     marginTop = 80,
     scrollAt = {},
     opacityEl = {},
     scrollGap = 100
 
+const assetDomain = process.env.config?.baseEndpoint ?? ''
+
 export default function ParallaxDesktop({ location, data }) {
     useEffect(() => {
         let firstQuestion = ''
         if (window) {
+            console.log('masuk sini? window', data)
             window.addEventListener('scroll', handleScroll)
             // setTimeout(function(){ alert("Hello"); }, 3000);
             window.scrollTo(0, 0)
@@ -26,17 +26,19 @@ export default function ParallaxDesktop({ location, data }) {
             screenHeight = window.innerHeight
             topDistance = (screenHeight - marginTop) / 4 //jarak dari middle ke 1/4 screen
 
-            firstQuestion = data && data.length > 0 ? data[0] : null
-            if (firstQuestion) {
-                setTextPosition(`question-${firstQuestion.id}`)
-                setPortraitPosition(`portrait-${firstQuestion.id}`)
-                setBubblePosition(`bubble-${firstQuestion.id}`)
-                addAnimation(firstQuestion.id)
-                setOpacity(firstQuestion.id)
+            if (data) {
+                firstQuestion = data && data.length > 0 ? data[0] : null
+                if (firstQuestion) {
+                    setTextPosition(`question-${firstQuestion.id}`)
+                    setPortraitPosition(`portrait-${firstQuestion.id}`)
+                    setBubblePosition(`bubble-${firstQuestion.id}`)
+                    addAnimation(firstQuestion.id)
+                    setOpacity(firstQuestion.id)
+                }
+                document.getElementById(`container`).style.height = `${
+                    (screenHeight / 2) * data.length + marginTop
+                }px`
             }
-            document.getElementById(`container`).style.height = `${
-                (screenHeight / 2) * data.length + marginTop
-            }px`
         }
 
         scrollAt = {
@@ -203,20 +205,21 @@ export default function ParallaxDesktop({ location, data }) {
                                 <span>{q.questionText}</span>
                             </div>
                             <div id={`bubble-${q.id}`} className="bubble">
-                                <img src={q.bubbleImg} />
+                                <img
+                                    src={`${assetDomain}${
+                                        q.bubbleImg?.url ?? ''
+                                    }`}
+                                />
                             </div>
                             <div id={`portrait-${q.id}`} className="portrait">
-                                <img src={q.portraitImg} />
+                                <img
+                                    src={`${assetDomain}${
+                                        q.portraitImg?.url ?? ''
+                                    }`}
+                                />
                             </div>
                         </Fragment>
                     ))}
-            </div>
-            <div className="bottom-section">
-                <div>It's good to think - just not too much</div>
-                <div>
-                    Will you take a better chance to control your health
-                    journey?
-                </div>
             </div>
             <style jsx>{styles}</style>
             <style jsx global>

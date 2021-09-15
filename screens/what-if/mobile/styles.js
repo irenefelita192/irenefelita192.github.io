@@ -122,10 +122,6 @@ export default css`
         font-size: 32px;
     }
 
-    .bottom-gradient {
-        background: linear-gradient(180deg, #f6f4f1 0%, #9c9c9c 197.41%);
-    }
-
     @media screen and (min-width: 640px) {
         .question-text {
             font-size: 48px;

@@ -11,6 +11,8 @@ let heroHeight = 400,
     opacityEl = {},
     scrollGap = 100
 
+const assetDomain = process.env.config?.baseEndpoint ?? ''
+
 export default function ParallaxMobile({ location, data }) {
     useEffect(() => {
         let firstQuestion = ''
@@ -23,21 +25,21 @@ export default function ParallaxMobile({ location, data }) {
             screenHeight = window.innerHeight
             topDistance = (screenHeight - marginTop) / 5 //jarak dari middle ke 1/4 screen
 
-            firstQuestion = data && data.length > 0 ? data[0] : null
-            if (firstQuestion) {
-                setTextPosition(`question-${firstQuestion.id}`)
-                setPortraitPosition(`portrait-${firstQuestion.id}`)
-                setBubblePosition(`bubble-${firstQuestion.id}`)
-                addAnimation(firstQuestion.id)
-                setOpacity(firstQuestion.id)
+            if (data) {
+                firstQuestion = data && data.length > 0 ? data[0] : null
+                if (firstQuestion) {
+                    setTextPosition(`question-${firstQuestion.id}`)
+                    setPortraitPosition(`portrait-${firstQuestion.id}`)
+                    setBubblePosition(`bubble-${firstQuestion.id}`)
+                    addAnimation(firstQuestion.id)
+                    setOpacity(firstQuestion.id)
+                }
+
+                document.getElementById(`container`).style.height = `${
+                    (screenHeight / 2) * data.length + marginTop
+                }px`
             }
-
-            document.getElementById(`container`).style.height = `${
-                (screenHeight / 2) * data.length + marginTop
-            }px`
         }
-
-        //nanti sort questionnya dari id terkecil, siapa tau ga urut
 
         scrollAt = {
             ...scrollAt,
@@ -244,20 +246,21 @@ export default function ParallaxMobile({ location, data }) {
                                 <span>{q.questionText}</span>
                             </div>
                             <div id={`bubble-${q.id}`} className="bubble">
-                                <img src={q.bubbleImg} />
+                                <img
+                                    src={`${assetDomain}${
+                                        q.bubbleImg?.url ?? ''
+                                    }`}
+                                />
                             </div>
                             <div id={`portrait-${q.id}`} className="portrait">
-                                <img src={q.portraitImg} />
+                                <img
+                                    src={`${assetDomain}${
+                                        q.portraitImg?.url ?? ''
+                                    }`}
+                                />
                             </div>
                         </Fragment>
                     ))}
-            </div>
-            <div className="bottom-section">
-                <div>It's good to think - just not too much</div>
-                <div>
-                    Will you take a better chance to control your health
-                    journey?
-                </div>
             </div>
             <style jsx>{styles}</style>
             <style jsx global>

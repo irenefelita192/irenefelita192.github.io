@@ -12,6 +12,7 @@ export default function DownloadButton({ data }) {
         }
     }, [])
 
+    if (!data) return <></>
     return (
         <>
             {isIos && (

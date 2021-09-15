@@ -108,21 +108,6 @@ export default css`
         height: 100%;
     }
 
-    .bottom-section {
-        background: linear-gradient(180deg, #ffffff 0%, #cfb287 174.32%);
-        height: 579px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-    }
-
-    .bottom-gradient {
-        background: linear-gradient(180deg, #f6f4f1 0%, #9c9c9c 197.41%);
-    }
-
     .is-show {
         display: block;
     }

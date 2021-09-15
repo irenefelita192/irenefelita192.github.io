@@ -2,8 +2,8 @@ import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
 import styles from './styles'
 
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterMobile({ data }) {
-    const assetDomain = process.env.config?.baseEndpoint ?? ''
     return (
         <>
             {data && (
