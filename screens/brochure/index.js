@@ -70,11 +70,9 @@ export default function BrochureScreen() {
 
     const handleDownload = async () => {
         const blob = await getBlob(brochureData.data.brochureLink)
-        console.log('blob', blob)
-        if (blob) fileDownload(blob, 'test.pdf')
-    }
 
-    const dataDummy = './Solusi Asuransi Kesehatan_v2.pdf'
+        if (blob) fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
+    }
 
     const handleLoadProgress = ({ loaded, total }) => {
         if (loaded <= total) setProgressPercent((loaded / total) * 100)
@@ -120,8 +118,9 @@ export default function BrochureScreen() {
                                     <TransformComponent>
                                         <Document
                                             loading=""
-                                            file={dataDummy}
-                                            // file={brochureData.data.brochureLink}
+                                            file={
+                                                brochureData.data.brochureLink
+                                            }
                                             onLoadProgress={handleLoadProgress}
                                             onLoadSuccess={
                                                 onDocumentLoadSuccess
