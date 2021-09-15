@@ -58,7 +58,7 @@ export default function Header({ activeId }) {
     useEffect(() => {
         if (process.browser) {
             navbar = document.getElementById('navbarTop')
-            window.addEventListener('scroll', handleScroll)
+            // window.addEventListener('scroll', handleScroll)
             if (window.innerWidth <= 1024) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
@@ -91,47 +91,47 @@ export default function Header({ activeId }) {
 
         return () => {
             document.removeEventListener('click', () => {})
-            window.removeEventListener('scroll', handleScroll)
+            // window.removeEventListener('scroll', handleScroll)
         }
     }, [])
 
-    const scrollUp = 'scroll-up',
-        scrollDown = 'scroll-down'
-    let scrollTimer = null,
-        lastScroll = 0
+    // const scrollUp = 'scroll-up',
+    //     scrollDown = 'scroll-down'
+    // let scrollTimer = null,
+    //     lastScroll = 0
 
-    const handleScroll = (e) => {
-        if (scrollTimer != null) clearTimeout(scrollTimer)
+    // const handleScroll = (e) => {
+    //     if (scrollTimer != null) clearTimeout(scrollTimer)
 
-        scrollTimer = window.setTimeout(scrollFinished, 500)
+    //     scrollTimer = window.setTimeout(scrollFinished, 500)
 
-        const currentScroll = window.pageYOffset
+    //     const currentScroll = window.pageYOffset
 
-        if (currentScroll <= 0) {
-            navbar.classList.remove(scrollUp)
-            return
-        }
+    //     if (currentScroll <= 0) {
+    //         navbar.classList.remove(scrollUp)
+    //         return
+    //     }
 
-        if (currentScroll > lastScroll) {
-            //down
-            navbar.classList.add(scrollDown)
-            navbar.classList.remove(scrollUp)
-        } else if (
-            currentScroll < lastScroll &&
-            navbar.classList.contains(scrollDown)
-        ) {
-            // up
-            navbar.classList.remove(scrollDown)
-            navbar.classList.add(scrollUp)
-        }
-        lastScroll = currentScroll
-    }
+    //     if (currentScroll > lastScroll) {
+    //         //down
+    //         navbar.classList.add(scrollDown)
+    //         navbar.classList.remove(scrollUp)
+    //     } else if (
+    //         currentScroll < lastScroll &&
+    //         navbar.classList.contains(scrollDown)
+    //     ) {
+    //         // up
+    //         navbar.classList.remove(scrollDown)
+    //         navbar.classList.add(scrollUp)
+    //     }
+    //     lastScroll = currentScroll
+    // }
 
-    const scrollFinished = () => {
-        if (navbar) {
-            navbar.classList.add(scrollUp)
-        }
-    }
+    // const scrollFinished = () => {
+    //     if (navbar) {
+    //         navbar.classList.add(scrollUp)
+    //     }
+    // }
 
     const handleBurgerMenuClick = () => {
         if (document) {
