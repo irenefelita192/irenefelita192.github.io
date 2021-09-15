@@ -3,6 +3,7 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getWhatIfData } from 'services/what-if'
 import { getCookie } from 'utils/global-util'
 
+import Footer from 'components/footer'
 import ParallaxDesktop from './desktop'
 import ParallaxMobile from './mobile'
 import GoodThing from './good-thing'
@@ -97,6 +98,7 @@ export default function WhatIf() {
                 </>
             )}
             {whatIfData && <GoodThing data={whatIfData} />}
+            <Footer />
         </>
     )
     // return <HomeDesktop />

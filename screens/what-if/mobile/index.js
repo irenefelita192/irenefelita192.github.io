@@ -84,15 +84,15 @@ export default function ParallaxMobile({ location, data }) {
                 (imgEl.naturalWidth / imgEl.naturalHeight) * imgHeight
 
             el.style.width = `${imgWidth}px`
-            const leftPos = (screenWidth - imgWidth) / 2
-            el.style.left = `${leftPos}px`
+            // const leftPos = (screenWidth - imgWidth) / 2
+            // el.style.left = `${leftPos}px`
         } else {
             imgEl.onload = () => {
                 const imgWidth =
                     (imgEl.naturalWidth / imgEl.naturalHeight) * imgHeight
                 el.style.width = `${imgWidth}px`
-                const leftPos = (screenWidth - imgWidth) / 2
-                el.style.left = `${leftPos}px`
+                // const leftPos = (screenWidth - imgWidth) / 2
+                // el.style.left = `${leftPos}px`
             }
         }
         el.style.top = `${imgTop}px`

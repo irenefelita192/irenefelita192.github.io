@@ -10,6 +10,7 @@ import styles from './styles'
 export default function Header({ activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
+    const [activeMenu, setActiveMenu] = useState(null)
     const [isPopupLang, setIsPopupLang] = useState(false)
     const [activeLang, setActiveLang] = useState('id')
     const [activeLangObj, setActiveLangObj] = useState(null)
@@ -19,7 +20,7 @@ export default function Header({ activeId }) {
 
     const [languageData, setLanguageData] = useState([])
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
-    const [mobileMenuHeight, setMobileMenuHeight] = useState(null)
+    const [mobileMenuHeight, setMobileMenuHeight] = useState(0)
 
     // const [activeMenu, setActiveMenu] = useState(nu;;)
 
@@ -28,19 +29,23 @@ export default function Header({ activeId }) {
 
     useAsyncEffect(async (isMounted) => {
         const locale = await getLocale()
-        let langId
+        let langId, activePath
         if (process.browser) {
             langId = getCookie('lang')
+            const pathArr = (window.location?.pathname ?? '').split('/')
+            console.log('pathArr', pathArr)
+            activePath = `/${pathArr.length > 2 ? pathArr[1] : ''}`
+            console.log('activepath', activePath)
         }
         const headers = await getAllHeader(langId ? langId : 'id')
         let footerDt
-        if (window.innerWidth <= 1024) {
+        if (window.innerWidth < 1024) {
             footerDt = await getFooter(langId ? langId : 'id')
-            console.log('footerdt', footerDt)
         }
 
         if (!isMounted()) return
         setHeaderData(headers)
+        setActiveMenu(activePath)
         if (footerDt) setFooterData(footerDt)
         setLanguageData(locale)
     }, [])
@@ -59,7 +64,7 @@ export default function Header({ activeId }) {
         if (process.browser) {
             navbar = document.getElementById('navbarTop')
             // window.addEventListener('scroll', handleScroll)
-            if (window.innerWidth <= 1024) {
+            if (window.innerWidth < 1024) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
             }
@@ -91,47 +96,8 @@ export default function Header({ activeId }) {
 
         return () => {
             document.removeEventListener('click', () => {})
-            // window.removeEventListener('scroll', handleScroll)
         }
     }, [])
-
-    // const scrollUp = 'scroll-up',
-    //     scrollDown = 'scroll-down'
-    // let scrollTimer = null,
-    //     lastScroll = 0
-
-    // const handleScroll = (e) => {
-    //     if (scrollTimer != null) clearTimeout(scrollTimer)
-
-    //     scrollTimer = window.setTimeout(scrollFinished, 500)
-
-    //     const currentScroll = window.pageYOffset
-
-    //     if (currentScroll <= 0) {
-    //         navbar.classList.remove(scrollUp)
-    //         return
-    //     }
-
-    //     if (currentScroll > lastScroll) {
-    //         //down
-    //         navbar.classList.add(scrollDown)
-    //         navbar.classList.remove(scrollUp)
-    //     } else if (
-    //         currentScroll < lastScroll &&
-    //         navbar.classList.contains(scrollDown)
-    //     ) {
-    //         // up
-    //         navbar.classList.remove(scrollDown)
-    //         navbar.classList.add(scrollUp)
-    //     }
-    //     lastScroll = currentScroll
-    // }
-
-    // const scrollFinished = () => {
-    //     if (navbar) {
-    //         navbar.classList.add(scrollUp)
-    //     }
-    // }
 
     const handleBurgerMenuClick = () => {
         if (document) {
@@ -167,12 +133,7 @@ export default function Header({ activeId }) {
                             id={menu.id}
                             onClick={handleOpenSubmenu}
                         >
-                            <a
-                                className={`navbar-link ${
-                                    activeId === menu.id ? 'is-active' : ''
-                                }`}
-                                href={menu.href}
-                            >
+                            <a className={`navbar-link`} href={menu.href}>
                                 <span>{menu.title}</span>
                             </a>
                         </Accordion.Header>
@@ -355,7 +316,7 @@ export default function Header({ activeId }) {
                                             {!hasSubMenu && (
                                                 <a
                                                     className={`navbar-item ${
-                                                        activeId === dt.id
+                                                        activeMenu == dt.href
                                                             ? 'is-active'
                                                             : ''
                                                     }`}

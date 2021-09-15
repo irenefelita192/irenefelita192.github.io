@@ -53,11 +53,17 @@ export default css`
 
     a.navbar-item:hover,
     a.navbar-item:focus,
-    a.navbar-item:active {
+    a.navbar-item:active,
+    .navbar-item.has-dropdown:hover .navbar-link {
         background-color: transparent;
+        color: ${theme.colors['vida-green']};
     }
 
-    a.navbar-item:hover:after {
+    .navbar-item.has-dropdown:hover .navbar-link:after {
+        border-color: ${theme.colors['vida-green']};
+    }
+
+    /* a.navbar-item:hover:after {
         content: '';
         position: absolute;
         top: 65%;
@@ -65,13 +71,22 @@ export default css`
         width: 100%;
         height: 1px;
         background: #ffffff;
-    }
+    } */
 
     .navbar .navbar-item.is-active {
-        color: #ffffff;
+        color: ${theme.colors['vida-green']};
     }
 
-    .navbar a.navbar-item:hover:after {
+    .navbar-item.is-active span:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        left: 0;
+        border: 1px solid ${theme.colors['vida-green']};
+        z-index: 1;
+    }
+    /* .navbar a.navbar-item:hover:after {
         content: '';
         position: absolute;
         top: 65%;
@@ -79,14 +94,14 @@ export default css`
         width: 100%;
         height: 1px;
         background: ${theme.colors.black};
-    }
+    } */
 
-    .navbar a.navbar-item.is-active:hover:after,
+    /* .navbar a.navbar-item.is-active:hover:after,
     .navbar .navbar-brand a.navbar-item:hover:after {
         display: none;
-    }
+    } */
 
-    a.navbar-item.is-active:before {
+    /* a.navbar-item.is-active:before {
         content: '';
         position: absolute;
         left: -29px;
@@ -99,6 +114,10 @@ export default css`
         box-sizing: content-box;
         border-radius: 60px;
         z-index: 1;
+    } */
+
+    .navbar-item.has-dropdown .navbar-link {
+        padding-left: 0;
     }
 
     .navbar-brand a.navbar-item img {
