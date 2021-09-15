@@ -79,6 +79,13 @@ export default css`
         transition: width 500ms ease-in-out;
     }
 
+    .pdf-error-message {
+        font-family: Arial;
+        width: 80%;
+        margin: 0 auto;
+        line-height: 1.2;
+    }
+
     @media screen and (max-width: 640px) {
         .download-link {
             width: 40px;

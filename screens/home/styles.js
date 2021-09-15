@@ -49,11 +49,18 @@ export default css`
         line-height: 1.43;
         padding: 13px 28px;
         background-color: #ffffff;
-        border: 1px solid #f6f4f1;
+        border: 1px solid #cecece;
         box-sizing: border-box;
         border-radius: 16px;
         color: ${theme.colors['vida-black']};
         margin-right: 12px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .hero-button a:hover {
+        background: #00a59b;
+        border: 1px solid #21837d;
+        color: ${theme.colors['vida-brokenwhite']};
     }
 
     .hero-button a:last-child {
@@ -167,6 +174,7 @@ export default css`
     .bottom-button a {
         display: block;
         background: ${theme.colors['vida-black']};
+        border: 1px solid #000000;
         color: ${theme.colors['vida-brokenwhite']};
         box-sizing: border-box;
         border-radius: 16px;
@@ -174,6 +182,13 @@ export default css`
         line-height: 1.43;
         padding: 13px 62px;
         margin-top: 16px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .bottom-button a:hover {
+        background: #00a59b;
+        border: 1px solid #21837d;
+        color: ${theme.colors['vida-brokenwhite']};
     }
 
     .hero-single-button {
@@ -182,7 +197,7 @@ export default css`
         line-height: 1.43;
         padding: 17px 28px;
         background-color: #ffffff;
-        border: 1px solid #f6f4f1;
+        border: 1px solid #cecece;
         box-sizing: border-box;
         border-radius: 16px;
         color: ${theme.colors['vida-black']};

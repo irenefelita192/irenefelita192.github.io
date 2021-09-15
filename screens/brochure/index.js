@@ -126,6 +126,12 @@ export default function BrochureScreen() {
                                                 onDocumentLoadSuccess
                                             }
                                             className="pdf-document"
+                                            error={
+                                                <div className="pdf-error-message">
+                                                    Sorry, an error occured.
+                                                    Please try again later.
+                                                </div>
+                                            }
                                         >
                                             {numPages &&
                                                 numPages.map((pageNumber) => (
