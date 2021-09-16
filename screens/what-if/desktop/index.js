@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import globalStyles from '../global-styles'
 import styles from './styles'
 
@@ -14,13 +14,17 @@ let heroHeight = 400,
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 
 export default function ParallaxDesktop({ data }) {
+    const [isLoaded, setIsLoaded] = useState(false)
+
     useEffect(() => {
         let firstQuestion = ''
         if (window) {
-            console.log('masuk sini? window', data)
             window.addEventListener('scroll', handleScroll)
-            // setTimeout(function(){ alert("Hello"); }, 3000);
-            window.scrollTo(0, 0)
+            setTimeout(function () {
+                window.scrollTo(0, 0)
+                setIsLoaded(true)
+            }, 200)
+
             heroHeight = document.getElementById('hero')?.offsetHeight ?? 0
             screenWidth = window.innerWidth
             screenHeight = window.innerHeight
@@ -194,7 +198,10 @@ export default function ParallaxDesktop({ data }) {
 
     return (
         <div className="content">
-            <div className="question-container" id="container">
+            <div
+                className={`question-container ${isLoaded ? 'is-loaded' : ''}`}
+                id="container"
+            >
                 {data &&
                     data.map((q) => (
                         <Fragment key={q.id}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import { getWhatIfData } from 'services/what-if'
 import { getCookie } from 'utils/global-util'
@@ -7,6 +7,8 @@ import Footer from 'components/footer'
 import ParallaxDesktop from './desktop'
 import ParallaxMobile from './mobile'
 import GoodThing from './good-thing'
+
+import Loader from 'components/loader'
 
 export default function WhatIf() {
     const [isMobile, setIsMobile] = useState(false)
@@ -28,6 +30,8 @@ export default function WhatIf() {
         setWhatIfData(whatIfDt)
     }, [])
 
+    if (!whatIfData) return <Loader />
+
     return (
         <>
             {whatIfData && whatIfData.questions && (
@@ -42,5 +46,4 @@ export default function WhatIf() {
             <Footer />
         </>
     )
-    // return <HomeDesktop />
 }

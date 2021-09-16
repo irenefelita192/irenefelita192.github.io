@@ -13,13 +13,17 @@ let heroHeight = 400,
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function ParallaxMobile({ location, data }) {
+export default function ParallaxMobile({ data }) {
+    const [isLoaded, setIsLoaded] = useState(false)
     useEffect(() => {
         let firstQuestion = ''
         if (window) {
             window.addEventListener('scroll', handleScroll)
-            // setTimeout(function(){ alert("Hello"); }, 3000);
-            window.scrollTo(0, 0)
+            setTimeout(function () {
+                window.scrollTo(0, 0)
+                setIsLoaded(true)
+            }, 200)
+
             heroHeight = document.getElementById('hero')?.offsetHeight ?? 0
             screenWidth = window.innerWidth
             screenHeight = window.innerHeight
@@ -235,7 +239,10 @@ export default function ParallaxMobile({ location, data }) {
 
     return (
         <div className="content">
-            <div className="question-container" id="container">
+            <div
+                className={`question-container ${isLoaded ? 'is-loaded' : ''}`}
+                id="container"
+            >
                 {data &&
                     data.map((q) => (
                         <Fragment key={q.id}>
