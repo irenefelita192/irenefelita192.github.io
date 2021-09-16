@@ -34,7 +34,7 @@ export default css`
         font-size: 48px;
         line-height: 1.17;
         z-index: 10;
-        transition: all 0.2s linear;
+        transition: all 0.1s linear;
         opacity: 0;
         max-width: 600px;
         z-index: 3;

@@ -6,6 +6,7 @@ import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
 
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
@@ -40,8 +41,6 @@ export default function HomeScreen() {
 
         setHomeData(homeDt)
     }, [])
-
-    const assetDomain = process.env.config?.baseEndpoint ?? ''
 
     if (!homeData) return <Loader />
 

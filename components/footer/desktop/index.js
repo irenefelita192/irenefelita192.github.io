@@ -1,8 +1,7 @@
 import styles from './styles'
 
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterDesktop({ data }) {
-    const assetDomain = process.env.config?.baseEndpoint ?? ''
-
     return (
         <>
             {data && (

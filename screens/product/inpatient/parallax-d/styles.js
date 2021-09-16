@@ -13,7 +13,7 @@ export default css`
     }
 
     .question-container {
-        display: none;
+        /* display: none; */
         width: 100%;
         height: 2000px;
     }
@@ -23,10 +23,14 @@ export default css`
         display: block;
     }
 
+    .question-group {
+        padding: 30px 0;
+    }
+
     .question-text {
-        position: absolute;
+        /* position: absolute;
         bottom: 0;
-        right: 8%;
+        right: 8%; */
         text-align: right;
         color: ${theme.colors['vida-black']};
         font-family: 'Inter', sans-serif;
@@ -34,7 +38,7 @@ export default css`
         font-size: 48px;
         line-height: 1.17;
         z-index: 10;
-        transition: all 0.2s linear;
+        transition: all 0.1s linear;
         opacity: 0;
         max-width: 600px;
         z-index: 3;
@@ -89,32 +93,71 @@ export default css`
     }
 
     .bubble {
-        position: absolute;
+        /* position: absolute; */
         z-index: 2;
         bottom: 0;
         left: -10%;
-        opacity: 0;
-        display: none;
+        /* opacity: 0; */
+        /* display: none; */
         /* transition: opacity 0.3s ease-in-out; */
     }
 
     .portrait {
-        position: absolute;
+        /* position: absolute; */
+        height: 400px;
+        width: auto;
         z-index: 3;
         bottom: 0;
         opacity: 0;
-        display: none;
+        /* display: none; */
         /* transition: opacity 0.3s ease-in-out; */
     }
 
     .portrait img,
     .bubble img {
-        width: 100%;
+        width: auto;
         height: 100%;
     }
 
     .is-show {
         display: block;
+    }
+
+    .question-group.animate-fadein .portrait {
+        opacity: 1;
+        animation: fadein 3s ease-in forwards, movex 3s ease-in forwards;
+    }
+
+    .question-group.animate-fadeout .portrait {
+        opacity: 0;
+        animation: fadeout 3s ease-in forwards;
+    }
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeout {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes movex {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(50px, -50px);
+        }
     }
 
     @media screen and (max-width: 640px) {

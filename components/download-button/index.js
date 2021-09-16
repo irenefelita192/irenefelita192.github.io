@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import styles from './styles'
 
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function DownloadButton({ data }) {
-    const assetDomain = process.env.config?.baseEndpoint ?? ''
     const [isIos, setIsIos] = useState(false)
 
     useEffect(() => {
