@@ -84,7 +84,7 @@ export default function BrochureScreen() {
     const handleLoadProgress = ({ loaded, total }) => {
         if (loaded <= total) setProgressPercent((loaded / total) * 100)
     }
-
+    // const dataDummy = 'Solusi Asuransi Kesehatan_v2.pdf'
     return (
         <div>
             {brochureData.status == 'success' && (
@@ -128,6 +128,7 @@ export default function BrochureScreen() {
                                             file={
                                                 brochureData.data.brochureLink
                                             }
+                                            // file={dataDummy}
                                             onLoadProgress={handleLoadProgress}
                                             onLoadSuccess={
                                                 onDocumentLoadSuccess
