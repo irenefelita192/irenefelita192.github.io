@@ -1,5 +1,3 @@
-import { Fragment, useState, useEffect } from 'react'
-
 import styles from './styles'
 
 export default function ParallaxDesktop({ data }) {
