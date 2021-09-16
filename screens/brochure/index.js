@@ -71,7 +71,14 @@ export default function BrochureScreen() {
     const handleDownload = async () => {
         const blob = await getBlob(brochureData.data.brochureLink)
 
-        if (blob) fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
+        if (blob) {
+            fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
+            if (JavascriptChannel) {
+                JavascriptChannel.postMessage(
+                    `downloadbrochure_${brochureData.data.brochureLink}`
+                )
+            }
+        }
     }
 
     const handleLoadProgress = ({ loaded, total }) => {
