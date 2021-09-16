@@ -218,12 +218,18 @@ export default css`
     }
 
     .submenu-item {
-        width: 200px;
+        width: 224px;
+        height: 160px;
         margin-right: 20px;
-        border: 1px solid ${theme.colors.gray};
-        background-color: ${theme.colors['vida-brokenwhite']};
+        border: 1px solid #cfcfcf;
+        background: linear-gradient(
+            180deg,
+            rgba(193, 208, 188, 0.4) 0%,
+            rgba(231, 233, 255, 0.4) 100%
+        );
         border-radius: 16px;
-        color: #000000;
+        color: ${theme.colors['vida-black']};
+        padding: 13px;
         text-transform: none;
     }
 
@@ -231,8 +237,18 @@ export default css`
         margin-right: 0;
     }
 
+    .submenu-item:hover {
+        padding: 12px;
+        border: 2px solid #7dcac7;
+        background: linear-gradient(
+            180deg,
+            rgba(182, 255, 242, 0.4) 0%,
+            rgba(173, 242, 213, 0.4) 100%
+        );
+    }
+
     .submenu-icon {
-        height: 40px;
+        height: 61px;
         width: auto;
         text-align: right;
     }
@@ -240,17 +256,20 @@ export default css`
     .submenu-icon img {
         height: 100%;
         width: auto;
+        max-height: initial;
     }
 
     .submenu-title {
-        font-size: 14px;
+        font-size: 18px;
+        line-height: 1.33;
     }
 
     .submenu-desc {
         font-family: 'Inter', serif;
         font-size: 12px;
-        line-height: 1.2;
+        line-height: 1.33;
         font-weight: 400;
+        margin-top: 8px;
     }
 
     .navbar-item.has-dropdown:hover .submenu-wrapper {
