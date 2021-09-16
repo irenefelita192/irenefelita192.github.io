@@ -15,4 +15,8 @@ export default css.global`
     .pdf-page canvas {
         margin: 0 auto;
     }
+
+    .react-transform-wrapper {
+        height: 100vh;
+    }
 `
