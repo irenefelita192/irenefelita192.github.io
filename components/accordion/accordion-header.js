@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import styles from './styles'
 
 export default function AccordionHeader({ id, children, onClick }) {
+    const [isOpen, setIsOpen] = useState(false)
     const handleClick = () => {
+        setIsOpen(document.getElementById(id).checked)
         if (onClick) {
             onClick(document.getElementById(id).checked)
         }
@@ -14,7 +17,10 @@ export default function AccordionHeader({ id, children, onClick }) {
                 onClick={() => handleClick()}
                 id={id}
             />
-            <label className="accordion-label" for={id}>
+            <label
+                className={`accordion-label ${isOpen ? 'is-open' : ''}`}
+                for={id}
+            >
                 {children}
             </label>
 

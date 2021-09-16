@@ -3,9 +3,13 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getAllHeader, getLocale, getFooter } from 'services/common'
 import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
+import LangPopup from './lang'
 import { getCookie } from 'utils/global-util'
 
 import styles from './styles'
+
+const assetPrefix = process.env.config?.assetPrefix ?? '',
+    assetDomain = process.env.config?.baseEndpoint ?? ''
 
 export default function Header({ activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
@@ -33,9 +37,7 @@ export default function Header({ activeId }) {
         if (process.browser) {
             langId = getCookie('lang')
             const pathArr = (window.location?.pathname ?? '').split('/')
-            console.log('pathArr', pathArr)
             activePath = `/${pathArr.length > 2 ? pathArr[1] : ''}`
-            console.log('activepath', activePath)
         }
         const headers = await getAllHeader(langId ? langId : 'id')
         let footerDt
@@ -51,16 +53,6 @@ export default function Header({ activeId }) {
     }, [])
 
     useEffect(() => {
-        if (languageData && languageData.length > 0) {
-            const selLanguage = languageData.find((lang) => {
-                return lang.code === activeLang
-            })
-
-            setActiveLangObj(selLanguage)
-        }
-    }, [languageData])
-
-    useEffect(() => {
         if (process.browser) {
             navbar = document.getElementById('navbarTop')
             // window.addEventListener('scroll', handleScroll)
@@ -68,19 +60,13 @@ export default function Header({ activeId }) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
             }
-            const langId = getCookie('lang')
-            if (langId) setActiveLang(langId)
 
             document.addEventListener('click', (evt) => {
-                const navbarLang = document.getElementById('navbarLang')
                 const navbarWrapper = document.getElementById('navbarTop')
                 let targetElement = evt.target // clicked element
 
                 do {
-                    if (
-                        targetElement == navbarLang ||
-                        targetElement == navbarWrapper
-                    ) {
+                    if (targetElement == navbarWrapper) {
                         // This is a click inside. Do nothing, just return.
 
                         return
@@ -88,7 +74,7 @@ export default function Header({ activeId }) {
                     // Go up the DOM
                     targetElement = targetElement.parentNode
                 } while (targetElement)
-                setIsPopupLang(false)
+
                 setIsMenuActive(false)
                 // This is a click outside.
             })
@@ -110,16 +96,6 @@ export default function Header({ activeId }) {
         setIsMenuActive(!isMenuActive)
     }
 
-    const handleLangDropdown = () => {
-        setIsPopupLang(!isPopupLang)
-    }
-
-    const handleChooseLang = (code) => {
-        setActiveLang(code)
-        document.cookie = `lang=${code};path=/`
-        location.reload()
-    }
-
     const handleOpenSubmenu = (isOpen) => {
         setIsSubmenuOpen(isOpen)
     }
@@ -133,17 +109,20 @@ export default function Header({ activeId }) {
                             id={menu.id}
                             onClick={handleOpenSubmenu}
                         >
-                            <a className={`navbar-link`} href={menu.href}>
+                            <div className={`navbar-link`} href={menu.href}>
                                 <span>{menu.title}</span>
-                            </a>
+                            </div>
                         </Accordion.Header>
                         {menu.subMenus && (
                             <>
                                 <Accordion.Body>
                                     {menu.subMenus.map((subMenu) => (
-                                        <div className="submenu-content">
+                                        <a
+                                            className="submenu-content"
+                                            href={subMenu.href}
+                                        >
                                             {subMenu.title}
-                                        </div>
+                                        </a>
                                     ))}
                                 </Accordion.Body>
                             </>
@@ -158,20 +137,20 @@ export default function Header({ activeId }) {
     const renderSubMenuDesktop = (menu) => {
         return (
             <>
-                <a
+                <div
                     className={`navbar-link ${
                         activeId === menu.id ? 'is-active' : ''
                     }`}
-                    href={menu.href}
+                    // href={menu.href}
                 >
                     <span>{menu.title}</span>
-                </a>
+                </div>
                 <div className="submenu-wrapper">
                     <div className="submenu-inner columns">
                         {menu.subMenus.map((subMenu) => (
                             <a
                                 key={subMenu.id}
-                                href=""
+                                href={subMenu.href}
                                 className="submenu-item column"
                             >
                                 <div className="submenu-icon">
@@ -195,66 +174,8 @@ export default function Header({ activeId }) {
             </>
         )
     }
-    // {languageData.map(
-    //     (lang) => (
-    //         <a
-    //             key={lang.id}
-    //             onClick={() =>
-    //                 handleChooseLang(
-    //                     lang.code
-    //                 )
-    //             }
-    //             className={`dropdown-item ${
-    //                 activeLang ===
-    //                 lang.code
-    //                     ? 'is-active'
-    //                     : ''
-    //             }`}
-    //         >
-    //             {lang.name}
-    //         </a>
-    //     )
-    // )}
 
-    // const renderLangMobile = (menu) => {
-    //     return (
-    //         <>
-    //             <Accordion>
-    //                 <Accordion.Container>
-    //                     <Accordion.Header
-    //                         id={menu.id}
-    //                         onClick={handleOpenSubmenu}
-    //                     >
-    //                         <a
-    //                             className={`navbar-link ${
-    //                                 activeId === menu.id ? 'is-active' : ''
-    //                             }`}
-    //                             href={menu.href}
-    //                         >
-    //                             <span>{menu.title}</span>
-    //                         </a>
-    //                     </Accordion.Header>
-    //                     {menu.subMenus && (
-    //                         <>
-    //                             <Accordion.Body>
-    //                                 {menu.subMenus.map((subMenu) => (
-    //                                     <div className="submenu-content">
-    //                                         {subMenu.title}
-    //                                     </div>
-    //                                 ))}
-    //                             </Accordion.Body>
-    //                         </>
-    //                     )}
-    //                 </Accordion.Container>
-    //             </Accordion>
-    //             <style jsx>{styles}</style>
-    //         </>
-    //     )
-    // }
-
-    const assetPrefix = process.env.config?.assetPrefix ?? '',
-        brandImg = `${assetPrefix}${'/images/logo/logo-Vida.png'}`
-    const assetDomain = process.env.config?.baseEndpoint ?? ''
+    const brandImg = `${assetPrefix}${'/images/logo/logo-Vida.svg'}`
     return (
         <>
             <nav
@@ -265,7 +186,7 @@ export default function Header({ activeId }) {
             >
                 <div className="navbar-brand">
                     <a className="navbar-item" href="/">
-                        <img src={brandImg} alt="lippo-life-logo" />
+                        <img src={brandImg} alt="vida-logo" />
                     </a>
 
                     <a
@@ -300,6 +221,10 @@ export default function Header({ activeId }) {
                                             {hasSubMenu && (
                                                 <div
                                                     className={`navbar-item has-dropdown ${
+                                                        activeMenu == dt.href
+                                                            ? 'is-active'
+                                                            : ''
+                                                    } ${
                                                         isSubmenuOpen
                                                             ? 'submenu-open'
                                                             : ''
@@ -330,10 +255,12 @@ export default function Header({ activeId }) {
                                 })}
                             </div>
 
-                            {/* language mobile start */}
                             {!isDesktop && (
                                 <div className="navbar-end">
-                                    {/* <div>EN | ID</div> */}
+                                    <LangPopup
+                                        isDesktop={isDesktop}
+                                        languageData={languageData}
+                                    />
                                     {footerData && (
                                         <>
                                             <div className="download">
@@ -350,55 +277,13 @@ export default function Header({ activeId }) {
                                     )}
                                 </div>
                             )}
-                            {/* language start */}
+
                             {isDesktop && (
                                 <div className="navbar-end">
-                                    <div
-                                        id="navbarLang"
-                                        className="navbar-item navbar-lang"
-                                        onClick={() => handleLangDropdown()}
-                                    >
-                                        <div
-                                            className={`dropdown is-right ${
-                                                isPopupLang ? 'is-active' : ''
-                                            }`}
-                                        >
-                                            <span>
-                                                {activeLangObj &&
-                                                    activeLangObj.code.toUpperCase()}
-                                            </span>
-
-                                            {activeLangObj && <i />}
-                                            <div
-                                                className="dropdown-menu"
-                                                id="dropdown-menu"
-                                                role="menu"
-                                            >
-                                                <div className="dropdown-content">
-                                                    {languageData.map(
-                                                        (lang) => (
-                                                            <a
-                                                                key={lang.id}
-                                                                onClick={() =>
-                                                                    handleChooseLang(
-                                                                        lang.code
-                                                                    )
-                                                                }
-                                                                className={`dropdown-item ${
-                                                                    activeLang ===
-                                                                    lang.code
-                                                                        ? 'is-active'
-                                                                        : ''
-                                                                }`}
-                                                            >
-                                                                {lang.name}
-                                                            </a>
-                                                        )
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <LangPopup
+                                        isDesktop={isDesktop}
+                                        languageData={languageData}
+                                    />
                                 </div>
                             )}
                         </>

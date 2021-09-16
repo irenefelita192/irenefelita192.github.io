@@ -83,8 +83,11 @@ export default css`
         position: absolute;
         display: block;
         width: 100%;
+        height: 2px;
         left: 0;
-        border: 1px solid ${theme.colors['vida-green']};
+        background-color: #00bbb0;
+        z-index: 1;
+        border-radius: 16px;
         z-index: 1;
     }
     /* .navbar a.navbar-item:hover:after {
@@ -119,6 +122,7 @@ export default css`
 
     .navbar-item.has-dropdown .navbar-link {
         padding-left: 0;
+        padding-right: 30px;
     }
 
     .navbar-brand a.navbar-item img {
@@ -189,6 +193,11 @@ export default css`
     .navbar-menu.is-active .navbar-item.has-dropdown .navbar-dropdown {
         margin: 0;
         padding: 0;
+    }
+
+    .navbar-item.has-dropdown.is-active .navbar-link {
+        background-color: transparent;
+        color: ${theme.colors['vida-green']};
     }
 
     /* submenu start*/
@@ -293,6 +302,11 @@ export default css`
         border-color: #000000;
         border-radius: 1px;
         border-width: 2px;
+        right: 5px;
+    }
+
+    .navbar-item.has-dropdown.is-active .navbar-link:not(.is-arrowless)::after {
+        border-color: ${theme.colors['vida-green']};
     }
 
     .navbar-link {
@@ -305,6 +319,24 @@ export default css`
         cursor: pointer;
     }
 
+    .navbar-lang .dropdown.is-right:before {
+        border: 2px solid #000000;
+        border-radius: 1px;
+        border-right: 0;
+        border-top: 0;
+        content: ' ';
+        display: block;
+        height: 6px;
+        width: 6px;
+        margin-top: -3px;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        right: -15px;
+        transform: rotate(-45deg);
+        transform-origin: center;
+    }
+
     .navbar .navbar-lang i {
         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPZSURBVHgB7VjLUeNAEB0bit8FEQHixueAiAA5gjUR2ESAM0BEsOsIMBFgIsBkIC5AFQdEBGsuQEEV7GvRbbfGo49hixNdJY80n+43PT09b2zMjxRLzXxCfN/3lpaWmu/v79u1Ws1D6XPTEE+C5wJ18c3NTWKmlKkAbWxsNFEcAERYpT9ADdD35OrqqmcqSiVA6+vrYb1eP8ar72gewvAJSg/PLgC4+iRvb2/78NjAlEi9rMPW1tZvgDkXMDRracM7Gdq5vr7u4Gnju0F1anifS590bG5uHpbZywVEcYIlOoeBjgCB8QYtgQLU0HFC72jfU2ouMWZNgYyg85R0Tw0IQXusYuUIHmiwy2WWPVfQIl5i6s+fB8/Pz0OMXZM66GwuLi6emmkAsWubAgZGIq5vG146zPwoT+nc3NwffvUWFhYCBhopUCGFQiVAFMAoIhsMyy/6wRKcFW3pOI6HMDpg4x2p16AoFNhWMSDeTWnAWmBIQm7rmxLhnUeAdnU96RSwYktLZtvzkkinGEqHo45IgCgCV5tLdH+9M7nNN+Ndu4cYG01w1urYQgf5DPCdZ6+ozQUuLGg+MOP0MPYQ1pNyxR1/9vDcWwMpfgJaSr31SyQdg4d23pnV5jEY8/j4uJIkSerxWTULWY4h1nnf1ozl3GblZ47YcgrGeDyJeyxL5GhvETA6F82HE8ZBLW6lQ9GlnGOCysLYsUT6LufojNmmOCOzy1a5vHQNVid6YqpLwoZ9VyNy2T23L08A+qQHviSwlVCpJlt+uH63jACJ+4DWM98nYuvB2IDUUm27Rop7jZsT5Una16IkWqfYSiYAmY9cobd/RiQzT+nBCQ9YOsXWQOpGiTEIAu/l5eUvd+w6grsoyeUJ5Rk/Zwzt6ja9EGeSwzqT/0EJiJCF5huFzjniWvKdOcuAtKsSZIKjJLEGh/wal6UHXtrA1V+3CSsQmTghQTHvKJHZyEmQ6mlJSdl+2U1CMQc6ilasNjozyUbCbHIkdcfM0nOMPOUg5QPu0zLlImTuwgJDOn1tqxAQ8+Yuf0YalCJdYRFRJ+ZgmAJrMse6Iv48cl2LnJkaLu4Iq9Og5ufnqS6NBZzQHZMjiL1DBpPAaM8Bpp/HGPIZ2EcaoBgQsk93sAaMtQ3fPF5fX3dub28z7EDzKroc0jhM7lBtlsHT09Oe8J/KgEQws8iMrz7p7GyQkkMYTOZSqdki5Te6VBbZq3yVhuLjvGsyngFlcvKeK5PT0lEAV7lKT/VnA4C1Z2ZmWlWTJ5P7ribx/xWQAubzmUeeWxUuxZ54ICYIntzPi5Mf+Yr8A5v6IP5WnNBKAAAAAElFTkSuQmCC);
         background-size: contain;
@@ -315,19 +347,54 @@ export default css`
     }
 
     .navbar-lang .dropdown {
+        margin-right: 20px;
         align-items: center;
     }
 
     .navbar-lang .dropdown-menu {
-        min-width: 132px;
+        min-width: 155px;
     }
 
     .navbar-lang .dropdown-content {
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.16);
+        padding: 0;
+        border-radius: 9px;
+    }
+
+    .navbar-lang a.dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 14px 21px;
+    }
+
+    .navbar-lang a.dropdown-item:last-child {
+        box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-lang a.dropdown-item:hover {
+        background-color: transparent;
+        color: ${theme.colors['vida-green']};
+    }
+
+    .navbar-lang a.dropdown-item:hover span {
+        color: ${theme.colors['vida-green']};
+    }
+
+    .navbar-lang a.dropdown-item span {
+        padding-left: 6px;
+        font-size: 18px;
+        line-height: 1.2;
+        color: #000000;
     }
 
     .navbar-lang a.dropdown-item.is-active {
-        background-color: ${theme.colors.lightGold};
+        background-color: transparent;
+        color: #000000;
+    }
+
+    .navbar-lang a.dropdown-item.is-active .checkmark {
+        display: block;
+        margin-left: auto;
     }
 
     .navbar-lang-mobile > span {
@@ -347,6 +414,10 @@ export default css`
 
     .navbar-lang-mobile > span:last-child:after {
         content: '';
+    }
+
+    .selected-lang {
+        padding-left: 6px;
     }
     /* language end*/
 
@@ -425,6 +496,8 @@ export default css`
         }
 
         .submenu-content {
+            display: block;
+            color: #000000;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
             font-size: 17px;
@@ -442,6 +515,43 @@ export default css`
         .navbar-menu.is-active .navbar-item.is-active span:after {
             display: block;
             width: 100%;
+        }
+
+        .navbar-menu.is-active :global(.accordion-label:after) {
+            border: 2px solid #000000;
+            border-radius: 1px;
+            border-right: 0;
+            border-top: 0;
+            content: ' ';
+            display: block;
+            height: 8px;
+            width: 8px;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            transform-origin: center;
+            margin-right: 2px;
+            margin-top: -2px;
+        }
+
+        .navbar-menu.is-active
+            .navbar-item
+            :global(.accordion-label.is-open:after) {
+            transform: rotate(135deg);
+        }
+
+        .navbar-menu.is-active
+            .navbar-item.is-active
+            :global(.accordion-label:after) {
+            color: ${theme.colors['vida-green']};
+        }
+
+        .navbar-menu.is-active .navbar-item.is-active span:after {
+            bottom: -7px;
+            height: 4px;
+        }
+
+        .navbar-item.has-dropdown.is-active :global(.accordion-content) {
+            margin-top: 10px;
         }
     }
 

@@ -6,6 +6,8 @@ import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
 
+const assetDomain = process.env.config?.baseEndpoint ?? '',
+    assetPrefix = process.env.config?.assetPrefix ?? ''
 export default function HomeScreen() {
     const [aboutData, setAboutData] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
@@ -31,9 +33,6 @@ export default function HomeScreen() {
 
         setAboutData(aboutDt)
     }, [])
-
-    const assetDomain = process.env.config?.baseEndpoint ?? '',
-        assetPrefix = process.env.config?.assetPrefix ?? ''
 
     if (!aboutData) return <Loader />
 
