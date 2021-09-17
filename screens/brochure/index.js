@@ -73,8 +73,8 @@ export default function BrochureScreen() {
 
         if (blob) {
             fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
-            if (window.JavascriptChannel) {
-                window.JavascriptChannel.postMessage(
+            if (typeof JavascriptChannel !== 'undefined') {
+                JavascriptChannel.postMessage(
                     `downloadbrochure_${brochureData.data.brochureLink}`
                 )
             }
@@ -84,7 +84,7 @@ export default function BrochureScreen() {
     const handleLoadProgress = ({ loaded, total }) => {
         if (loaded <= total) setProgressPercent((loaded / total) * 100)
     }
-    // const dataDummy = 'Solusi Asuransi Kesehatan_v2.pdf'
+    const dataDummy = 'Solusi Asuransi Kesehatan_v2.pdf'
     return (
         <div>
             {brochureData.status == 'success' && (
@@ -125,10 +125,10 @@ export default function BrochureScreen() {
                                     <TransformComponent>
                                         <Document
                                             loading=""
-                                            file={
-                                                brochureData.data.brochureLink
-                                            }
-                                            // file={dataDummy}
+                                            // file={
+                                            //     brochureData.data.brochureLink
+                                            // }
+                                            file={dataDummy}
                                             onLoadProgress={handleLoadProgress}
                                             onLoadSuccess={
                                                 onDocumentLoadSuccess
