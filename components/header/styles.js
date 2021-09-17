@@ -436,9 +436,15 @@ export default css`
         box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1100px) {
         .navbar {
             padding: 0 10px;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        .navbar {
+            padding: 0;
         }
 
         .navbar-menu.is-active {
@@ -598,18 +604,17 @@ export default css`
         /*static image end */
     }
 
-    @media screen and (max-width: 768px) {
-        .navbar {
-            padding: 0;
+    @media screen and (max-width: 320px) {
+        .navbar-menu.is-active .navbar-item {
+            font-size: 15px;
         }
 
-        .navbar-brand,
-        .navbar-tabs {
-            min-height: ${theme.header.height};
+        .download {
+            margin: 15px 40px;
         }
 
-        .navbar-brand a.navbar-item img {
-            height: 36px;
+        .download :global(.download-link) {
+            height: 56px;
         }
     }
 `
