@@ -73,8 +73,8 @@ export default function BrochureScreen() {
 
         if (blob) {
             fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
-            if (window.JavascriptChannel) {
-                window.JavascriptChannel.postMessage(
+            if (typeof JavascriptChannel !== 'undefined') {
+                JavascriptChannel.postMessage(
                     `downloadbrochure_${brochureData.data.brochureLink}`
                 )
             }
