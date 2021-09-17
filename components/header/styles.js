@@ -441,6 +441,11 @@ export default css`
             padding: 0 10px;
         }
 
+        .navbar-menu.is-active {
+            position: relative;
+            top: -1px;
+        }
+
         .navbar-burger {
             color: ${theme.colors.black};
             background-color: transparent;
@@ -481,6 +486,11 @@ export default css`
             padding: 0;
         }
 
+        .navbar-menu .navbar-item {
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
         .navbar-menu.is-active .navbar-item {
             margin: 0 24px;
             padding: 14px;
@@ -488,6 +498,17 @@ export default css`
             transition: background-color 0.3s ease-in-out;
             background-color: transparent;
             font-size: 18px;
+        }
+
+        .animation-slide-right {
+            animation: 0.2s slide-right 0.1s forwards;
+        }
+
+        @keyframes slide-right {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .navbar-menu.is-active .navbar-item.has-dropdown.submenu-open {
@@ -553,6 +574,28 @@ export default css`
         .navbar-item.has-dropdown.is-active :global(.accordion-content) {
             margin-top: 10px;
         }
+
+        .navbar-brand .brand-active {
+            opacity: 0;
+        }
+
+        /*static image start */
+        .static-blob-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .static-blob-bottom {
+            position: absolute;
+            bottom: -6px;
+            right: 0;
+            z-index: 10;
+            pointer-events: none;
+        }
+        /*static image end */
     }
 
     @media screen and (max-width: 768px) {
@@ -564,11 +607,6 @@ export default css`
         .navbar-tabs {
             min-height: ${theme.header.height};
         }
-
-        /* .navbar-item {
-            margin: 0;
-            margin-left: 24px;
-        } */
 
         .navbar-brand a.navbar-item img {
             height: 36px;

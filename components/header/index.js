@@ -184,8 +184,20 @@ export default function Header({ activeId }) {
                 role="navigation"
                 aria-label="main navigation"
             >
+                {!isDesktop && isMenuActive && (
+                    <div className="static-blob-top">
+                        <img
+                            src={`${assetPrefix}/images/blob/blob-header-1.png`}
+                        />
+                    </div>
+                )}
                 <div className="navbar-brand">
-                    <a className="navbar-item" href="/">
+                    <a
+                        className={`navbar-item ${
+                            isMenuActive ? 'brand-active' : ''
+                        }`}
+                        href="/"
+                    >
                         <img src={brandImg} alt="vida-logo" />
                     </a>
 
@@ -210,17 +222,28 @@ export default function Header({ activeId }) {
                     }`}
                     style={{ minHeight: `${mobileMenuHeight}px` || 'auto' }}
                 >
+                    {!isDesktop && isMenuActive && (
+                        <div className="static-blob-bottom">
+                            <img
+                                src={`${assetPrefix}/images/blob/blob-header-2.png`}
+                            />
+                        </div>
+                    )}
                     {headerData && (
                         <>
                             <div className="navbar-start">
-                                {headerData.map((dt) => {
+                                {headerData.map((dt, index) => {
                                     const hasSubMenu =
                                         dt.subMenus && dt.subMenus.length > 0
                                     return (
                                         <Fragment key={dt.id}>
                                             {hasSubMenu && (
                                                 <div
-                                                    className={`navbar-item has-dropdown ${
+                                                    className={`navbar-item has-dropdown  ${
+                                                        isMenuActive
+                                                            ? 'animation-slide-right'
+                                                            : ''
+                                                    } ${
                                                         activeMenu == dt.href
                                                             ? 'is-active'
                                                             : ''
@@ -229,6 +252,15 @@ export default function Header({ activeId }) {
                                                             ? 'submenu-open'
                                                             : ''
                                                     }`}
+                                                    style={
+                                                        !isDesktop
+                                                            ? {
+                                                                  animationDelay: `0.${
+                                                                      index + 1
+                                                                  }s`,
+                                                              }
+                                                            : {}
+                                                    }
                                                 >
                                                     {!isDesktop &&
                                                         renderSubMenuMobile(dt)}
@@ -241,10 +273,23 @@ export default function Header({ activeId }) {
                                             {!hasSubMenu && (
                                                 <a
                                                     className={`navbar-item ${
+                                                        isMenuActive
+                                                            ? 'animation-slide-right'
+                                                            : ''
+                                                    } ${
                                                         activeMenu == dt.href
                                                             ? 'is-active'
                                                             : ''
                                                     }`}
+                                                    style={
+                                                        !isDesktop
+                                                            ? {
+                                                                  animationDelay: `0.${
+                                                                      index + 1
+                                                                  }s`,
+                                                              }
+                                                            : {}
+                                                    }
                                                     href={dt.href}
                                                 >
                                                     <span>{dt.title}</span>
