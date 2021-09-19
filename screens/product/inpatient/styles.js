@@ -96,7 +96,7 @@ export default css`
 
     .counter-item {
         position: relative;
-        float: right;
+        float: left;
     }
 
     .counter-item-digit.counter-item--0:before {
@@ -132,7 +132,7 @@ export default css`
 
     .counter-content-digit {
         margin: 0 !important;
-        float: right;
+        float: left;
         line-height: 1;
         list-style: none !important;
     }

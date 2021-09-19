@@ -281,12 +281,12 @@ export default css`
         margin-top: 8px;
     }
 
-    .navbar-item.has-dropdown:hover .submenu-wrapper {
+    .navbar-item.has-dropdown.submenu-open .submenu-wrapper {
         height: 200px;
         transition: height 0.3s ease-out;
     }
 
-    .navbar-item.has-dropdown:hover .submenu-inner {
+    .navbar-item.has-dropdown.submenu-open .submenu-inner {
         opacity: 1;
         pointer-events: auto;
         transition: opacity 0.4s ease-in;

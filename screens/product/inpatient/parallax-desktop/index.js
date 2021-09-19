@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import globalStyles from '../global-styles'
 import styles from './styles'
+import Observer from 'components/intersection-observer'
 
 let heroHeight = 400,
     screenWidth = 1440,
@@ -11,210 +12,198 @@ let heroHeight = 400,
     opacityEl = {},
     scrollGap = 100,
     parentTop = 0,
-    viewTop = 0
-
-const assetDomain = process.env.config?.baseEndpoint ?? ''
+    viewTop = 0,
+    questionAnimate = {},
+    questionPos = {},
+    prevScroll = 0,
+    isScrollDown = true,
+    scrollQ = 0,
+    maxY = -80,
+    minY = 0
+const assetPrefix = process.env.config?.assetPrefix ?? ''
 
 export default function ParallaxDesktop({ data }) {
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
-        let firstQuestion = ''
+        // let firstQuestion = ''
         if (window) {
             window.addEventListener('scroll', handleScroll)
-
-            setTimeout(function () {
-                window.scrollTo(0, 0)
-                setIsLoaded(true)
-            }, 200)
-
-            heroHeight = document.getElementById('hero')?.offsetHeight ?? 0
-            screenWidth = window.innerWidth
             screenHeight = window.innerHeight
-            topDistance = (screenHeight - marginTop) / 4 //jarak dari middle ke 1/4 screen
-            parentTop = document.getElementById('container').offsetTop
-            viewTop =
-                document.getElementById('container').offsetTop +
-                screenHeight / 2
+        }
 
-            if (data) {
-                firstQuestion = data && data.length > 0 ? data[0] : null
-                if (firstQuestion) {
-                    setTextPosition(`question-${firstQuestion.id}`)
-                    setPortraitPosition(`portrait-${firstQuestion.id}`)
-                    setBubblePosition(`bubble-${firstQuestion.id}`)
-                    addAnimation(firstQuestion.id)
-                    setOpacity(firstQuestion.id)
-                }
+        //     setTimeout(function () {
+        //         window.scrollTo(0, 0)
+        //         setIsLoaded(true)
+        //     }, 200)
 
-                document.getElementById(`container`).style.height = `${
-                    (screenHeight / 2) * data.length + marginTop
-                }px`
+        //     heroHeight = document.getElementById('hero')?.offsetHeight ?? 0
+        //     screenWidth = window.innerWidth
+        //     screenHeight = window.innerHeight
+        //     topDistance = (screenHeight - marginTop) / 4 //jarak dari middle ke 1/4 screen
+        //     parentTop = document.getElementById('container').offsetTop
+        //     viewTop =
+        //         document.getElementById('container').offsetTop +
+        //         screenHeight / 2
+
+        //     if (data) {
+        //         firstQuestion = data && data.length > 0 ? data[0] : null
+        //         if (firstQuestion) {
+        //             setTextPosition(`question-${firstQuestion.id}`)
+        //             setPortraitPosition(`portrait-${firstQuestion.id}`)
+        //             setBubblePosition(`bubble-${firstQuestion.id}`)
+        //             addAnimation(firstQuestion.id)
+        //             setOpacity(firstQuestion.id)
+        //         }
+
+        //         document.getElementById(`container`).style.height = `${
+        //             (screenHeight / 2) * data.length + marginTop
+        //         }px`
+        //     }
+        // }
+
+        // scrollAt = {
+        //     ...scrollAt,
+        //     [firstQuestion.id]: 0,
+        // }
+
+        // opacityEl = {
+        //     ...opacityEl,
+        //     [firstQuestion.id]: 1,
+        // }
+
+        let observerOptions = {
+            rootMargin: '0px',
+            threshold: [0.35, 0.85],
+        }
+
+        var observer = new IntersectionObserver(
+            observerCallback,
+            observerOptions
+        )
+
+        let target = '.question-group'
+        document.querySelectorAll(target).forEach((i) => {
+            if (i) {
+                observer.observe(i)
             }
-        }
-
-        scrollAt = {
-            ...scrollAt,
-            [firstQuestion.id]: 0,
-        }
-
-        opacityEl = {
-            ...opacityEl,
-            [firstQuestion.id]: 1,
-        }
+        })
 
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            // window.removeEventListener('scroll', handleScroll)
         }
     }, [])
 
-    const setOpacity = (id) => {
-        document.getElementById(`question-${id}`).style.opacity = 1.2
-        document.getElementById(`portrait-${id}`).style.opacity = 1.2
-        document.getElementById(`bubble-${id}`).style.opacity = 1.2
-    }
+    const observerCallback = (entries, observer) => {
+        entries.forEach((entry) => {
+            if (
+                entry.intersectionRatio >= 0.3 &&
+                isScrollDown &&
+                entry.isIntersecting
+            ) {
+                //do something
+                addAnimation(entry.target.id)
 
-    const setTextPosition = (id, scrollAt = 0) => {
-        const height = document.querySelector(`#${id} > span`).offsetHeight,
-            elPosition =
-                (screenHeight - marginTop - height) / 2 + scrollAt - parentTop
-        // console.log(
-        //     ' (screenHeight - marginTop - height) / 2 + scrollAt',
-        //     (screenHeight - marginTop - height) / 2 + scrollAt
-        // )
-        // console.log('parentTop', parentTop)
-        // console.log('elPosition', elPosition)
-        const el = document.getElementById(id)
-        el.style.top = `${elPosition}px`
-        el.style.bottom = 'auto'
-        el.classList.add('is-show', 'animate-text')
-    }
-
-    const setPortraitPosition = (id, scrollAt = 0) => {
-        const cleanHeight = screenHeight - marginTop
-        const imgHeight = (cleanHeight * 87) / 100
-        const el = document.getElementById(id)
-        const imgTop = cleanHeight - imgHeight + 30 + (parentTop - scrollAt)
-        el.style.height = `${imgHeight}px`
-        el.style.top = `${imgTop}px`
-        el.style.bottom = 'auto'
-        el.classList.add('is-show', 'animate-portrait')
-    }
-
-    const setBubblePosition = (id, scrollAt = 0) => {
-        const cleanHeight = screenHeight - marginTop
-        const imgHeight = (cleanHeight * 88) / 100
-        const el = document.getElementById(id)
-        el.style.height = `${imgHeight}px`
-
-        const imgTop = (cleanHeight * 10) / 100 + (parentTop - scrollAt)
-        el.style.top = `${imgTop}px`
-        el.style.bottom = 'auto'
-        el.classList.add('is-show', 'animate-bubble')
-    }
-
-    const animateQuestion = (id, scrollTop, scrollAt = 0) => {
-        console.log('animate', scrollTop)
-        const x = (scrollTop - scrollAt) * (0.85 / topDistance), //0.007,
-            opacity = 1.2 - Math.abs(x)
-        document.getElementById(`question-${id}`).style.opacity = opacity
-        document.getElementById(`portrait-${id}`).style.opacity = opacity
-        document.getElementById(`bubble-${id}`).style.opacity = opacity
-
-        return opacity
-    }
-
-    const resetAnimation = (id) => {
-        document
-            .getElementById(`question-${id}`)
-            .classList.remove('animate-text')
-        document
-            .getElementById(`portrait-${id}`)
-            .classList.remove('animate-portrait')
-        document
-            .getElementById(`bubble-${id}`)
-            .classList.remove('animate-bubble')
-    }
-
-    const addAnimation = (id) => {
-        document.getElementById(`question-${id}`).classList.add('animate-text')
-        document
-            .getElementById(`portrait-${id}`)
-            .classList.add('animate-portrait')
-        document.getElementById(`bubble-${id}`).classList.add('animate-bubble')
+                questionPos = {
+                    ...questionPos,
+                    [entry.target.id]: 0,
+                }
+            }
+        })
     }
 
     const handleScroll = (e) => {
-        let scrollTop = window.pageYOffset
-        parentTop = document.getElementById('container').offsetTop
-        console.log('parenttop', parentTop + screenHeight / 3)
-        console.log('scrollTop', scrollTop, ' res:', scrollTop + screenHeight)
-        if (scrollTop + screenHeight >= parentTop + screenHeight / 3) {
-            data.map((q) => {
-                let currentScrollAt = 0
-                if (typeof scrollAt[q.id] !== 'undefined')
-                    currentScrollAt = scrollAt[q.id]
-                const opacity = animateQuestion(
-                    q.id,
-                    scrollTop,
-                    parentTop + screenHeight / 2 - currentScrollAt + scrollGap
-                )
-                opacityEl = {
-                    ...opacityEl,
-                    [q.id]: opacity,
-                }
-                let checkOpacity = true
-                for (var i = 1; i <= q.id; i++) {
-                    checkOpacity =
-                        checkOpacity &&
-                        opacityEl[i] < 0.18 &&
-                        typeof opacityEl[i] !== 'undefined'
-                }
+        let scrollTop = window.pageYOffset,
+            containerStart = document.getElementById('container').offsetTop,
+            currentScroll = scrollTop + screenHeight,
+            scrollQ = currentScroll - containerStart //scroll start from outer question container
 
-                if (checkOpacity && q.id < data.length) {
-                    let qId = 1,
-                        nextId = 2
-
-                    if (!isNaN(q.id)) {
-                        qId = parseInt(q.id)
-                        nextId = qId + 1
-                    }
-
-                    if (
-                        scrollAt[nextId] == 0 ||
-                        typeof scrollAt[nextId] === 'undefined'
-                    ) {
-                        scrollAt = {
-                            ...scrollAt,
-                            [nextId]: scrollTop,
-                        }
-                    }
-
-                    setTextPosition(
-                        `question-${nextId}`,
-                        scrollAt[nextId] + scrollGap
-                    )
-                    setPortraitPosition(
-                        `portrait-${nextId}`,
-                        scrollAt[nextId] + scrollGap
-                    )
-                    setBubblePosition(
-                        `bubble-${nextId}`,
-                        scrollAt[nextId] + scrollGap
-                    )
-
-                    if (opacityEl[q.id] < -0.1) {
-                        resetAnimation(q.id)
-                    }
-                } else if (q.id == 1) {
-                    addAnimation(q.id)
-                }
-
-                if (opacityEl[q.id] < 0 && q.id == data.length) {
-                    resetAnimation(q.id)
-                }
-            })
+        if (prevScroll < scrollTop) {
+            isScrollDown = true
+        } else {
+            isScrollDown = false
         }
+
+        console.log('scrollQ', scrollQ)
+
+        const groupPos = document.getElementById('question-group-1').offsetTop,
+            groupHeight =
+                document.getElementById('question-group-1').offsetHeight,
+            groupVisiblePos = groupPos + groupHeight / 2
+
+        const groupPos2 = document.getElementById('question-group-2').offsetTop,
+            groupHeight2 =
+                document.getElementById('question-group-2').offsetHeight,
+            groupVisiblePos2 = groupPos2 + groupHeight2 / 2
+
+        const groupPos3 = document.getElementById('question-group-3').offsetTop,
+            groupHeight3 =
+                document.getElementById('question-group-3').offsetHeight,
+            groupVisiblePos3 = groupPos3 + groupHeight3 / 2
+
+        //start animation when question group visibility on viewport meet this condiiton
+        if (scrollQ >= groupVisiblePos) {
+            questionPos['question-group-1'] = scrollQ - groupVisiblePos
+            console.log('questionPos', questionPos['question-group-1'])
+            let qPosY = questionPos['question-group-1'] * 0.15,
+                pPosY = questionPos['question-group-1'] * 0.1,
+                pPosX = questionPos['question-group-1'] * 0.05
+
+            document.getElementById(
+                'question-1'
+            ).style.transform = `translate3d(0,-${qPosY}px,0)`
+
+            document.getElementById(
+                'portrait-1'
+            ).style.transform = `translate3d(${pPosX}px,-${pPosY}px,0`
+        }
+
+        if (scrollQ >= groupVisiblePos2) {
+            questionPos['question-group-2'] = scrollQ - groupVisiblePos2
+            let qPosY = questionPos['question-group-2'] * 0.15,
+                pPosY = questionPos['question-group-2'] * 0.1,
+                pPosX = questionPos['question-group-2'] * 0.05
+
+            document.getElementById(
+                'question-2'
+            ).style.transform = `translate3d(0,-${qPosY}px,0)`
+
+            document.getElementById(
+                'portrait-2'
+            ).style.transform = `translate3d(-${pPosX}px,-${pPosY}px,0`
+            //kalau sebelah kanan position X axis nya minus
+        }
+
+        if (scrollQ >= groupVisiblePos3) {
+            questionPos['question-group-3'] = scrollQ - groupVisiblePos3
+            let qPosY = questionPos['question-group-3'] * 0.15,
+                pPosY = questionPos['question-group-3'] * 0.1,
+                pPosX = questionPos['question-group-3'] * 0.05
+
+            document.getElementById(
+                'question-3'
+            ).style.transform = `translate3d(0,-${qPosY}px,0)`
+
+            document.getElementById(
+                'portrait-3'
+            ).style.transform = `translate3d(${pPosX}px,-${pPosY}px,0`
+        }
+
+        prevScroll = scrollTop
+    }
+
+    // const resetAnimation = (id) => {
+    //     const el = document.getElementById(id)
+    //     // el.classList.add('animate-fadeout')
+    //     el.classList.remove('animate-fadein')
+    //     console.log('INvisible', id)
+    // }
+
+    const addAnimation = (id) => {
+        const el = document.getElementById(id)
+        el.classList.add('animate-fadein', 'is-visible')
+        // el.classList.remove('animate-fadeout')
+        // console.log('visible', id),
     }
 
     return (
@@ -224,29 +213,39 @@ export default function ParallaxDesktop({ data }) {
                 id="container"
             >
                 {data &&
-                    data.map((q) => (
-                        <Fragment key={q.id}>
-                            <div
-                                className="question-text"
-                                id={`question-${q.id}`}
-                            >
-                                <span>{q.questionText}</span>
-                            </div>
+                    data.map((q, index) => (
+                        <div
+                            className={`question-group ${
+                                (index + 1) % 2 == 0 ? 'item-even' : 'item-odd'
+                            }`}
+                            id={`question-group-${q.id}`}
+                            key={q.id}
+                        >
+                            {/*
                             <div id={`bubble-${q.id}`} className="bubble">
                                 <img
                                     src={`${assetDomain}${
                                         q.bubbleImg?.url ?? ''
                                     }`}
                                 />
-                            </div>
-                            <div id={`portrait-${q.id}`} className="portrait">
+                            </div> */}
+                            <div
+                                className={`question-bubble question-bubble-${q.id}`}
+                                id={`question-${q.id}`}
+                            >
                                 <img
-                                    src={`${assetDomain}${
-                                        q.portraitImg?.url ?? ''
-                                    }`}
+                                    src={`${assetPrefix}/images/inpatient/question.png`}
                                 />
                             </div>
-                        </Fragment>
+                            <div
+                                id={`portrait-${q.id}`}
+                                className={`portrait portrait-${q.id}`}
+                            >
+                                <img
+                                    src={`${assetPrefix}/images/inpatient/qp-${q.id}.png`}
+                                />
+                            </div>
+                        </div>
                     ))}
             </div>
             <style jsx>{styles}</style>
