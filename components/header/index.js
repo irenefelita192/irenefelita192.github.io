@@ -5,7 +5,6 @@ import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
 import LangPopup from './lang'
 import { getCookie } from 'utils/global-util'
-
 import styles from './styles'
 
 const assetPrefix = process.env.config?.assetPrefix ?? '',
@@ -15,9 +14,6 @@ export default function Header({ activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
     const [activeMenu, setActiveMenu] = useState(null)
-    const [isPopupLang, setIsPopupLang] = useState(false)
-    const [activeLang, setActiveLang] = useState('id')
-    const [activeLangObj, setActiveLangObj] = useState(null)
 
     const [headerData, setHeaderData] = useState([])
     const [footerData, setFooterData] = useState(null)
@@ -25,8 +21,6 @@ export default function Header({ activeId }) {
     const [languageData, setLanguageData] = useState([])
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
     const [mobileMenuHeight, setMobileMenuHeight] = useState(0)
-
-    // const [activeMenu, setActiveMenu] = useState(nu;;)
 
     let navbar = null,
         headerHeight = 80
@@ -62,7 +56,7 @@ export default function Header({ activeId }) {
             }
 
             document.addEventListener('click', (evt) => {
-                const navbarWrapper = document.getElementById('navbarTop')
+                const navbarWrapper = document.getElementById('navbar-dropdown')
                 let targetElement = evt.target // clicked element
 
                 do {
@@ -74,8 +68,8 @@ export default function Header({ activeId }) {
                     // Go up the DOM
                     targetElement = targetElement.parentNode
                 } while (targetElement)
-
-                setIsMenuActive(false)
+                setIsSubmenuOpen(false)
+                // setIsMenuActive(false)
                 // This is a click outside.
             })
         }
@@ -137,12 +131,7 @@ export default function Header({ activeId }) {
     const renderSubMenuDesktop = (menu) => {
         return (
             <>
-                <div
-                    className={`navbar-link ${
-                        activeId === menu.id ? 'is-active' : ''
-                    }`}
-                    // href={menu.href}
-                >
+                <div className={`navbar-link`}>
                     <span>{menu.title}</span>
                 </div>
                 <div className="submenu-wrapper">
@@ -239,6 +228,7 @@ export default function Header({ activeId }) {
                                         <Fragment key={dt.id}>
                                             {hasSubMenu && (
                                                 <div
+                                                    id="navbar-dropdown"
                                                     className={`navbar-item has-dropdown  ${
                                                         isMenuActive
                                                             ? 'animation-slide-right'
@@ -252,6 +242,9 @@ export default function Header({ activeId }) {
                                                             ? 'submenu-open'
                                                             : ''
                                                     }`}
+                                                    onClick={() =>
+                                                        handleOpenSubmenu(true)
+                                                    }
                                                     style={
                                                         !isDesktop
                                                             ? {

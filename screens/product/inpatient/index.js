@@ -5,7 +5,7 @@ import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
-import ParallaxDesktop from './parallax-d'
+import ParallaxDesktop from './parallax-desktop'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
@@ -18,7 +18,6 @@ const questionsDummy = [
         bubbleImg: '../../images/parallax/bubble1.png',
         bubbleId: 'bubble1',
         portraitImg: '../../images/parallax/portrait-01.png',
-        portraitId: 'portrait1',
     },
     {
         id: '2',
@@ -40,16 +39,6 @@ const questionsDummy = [
         bubbleId: 'bubble3',
         portraitImg: '../../images/parallax/portrait-03.png',
         portraitId: 'portrait3',
-    },
-    {
-        id: '4',
-        questionText: '"I wish I had insurance"',
-        questionTextOne: `"I lost my sight at 30. What if the`,
-        questionTextTwo: 'same thing happen to you?"',
-        bubbleImg: '../../images/parallax/bubble1.png',
-        bubbleId: 'bubble4',
-        portraitImg: '../../images/parallax/portrait-01.png',
-        portraitId: 'portrait4',
     },
 ]
 
@@ -120,31 +109,32 @@ export default function Inpatient() {
                 <div className="counter">
                     <ul className="counter-content">
                         <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                            <span className="counter-item counter-item--commapoint">
-                                ,
-                            </span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--6 counter-item-digit"></span>
-                            <span className="counter-item counter-item--commapoint">
-                                ,
-                            </span>
-                        </li>
-                        <li className="counter-content-digit">
                             <span className="counter-item counter-item--9 counter-item-digit"></span>
+                        </li>
+                        <li className="counter-content-digit">
+                            <span className="counter-item counter-item--commapoint">
+                                ,
+                            </span>
+                            <span className="counter-item counter-item--6 counter-item-digit"></span>
+                        </li>
+                        <li className="counter-content-digit">
+                            <span className="counter-item counter-item--0 counter-item-digit"></span>
+                        </li>
+                        <li className="counter-content-digit">
+                            <span className="counter-item counter-item--0 counter-item-digit"></span>
+                        </li>
+                        <li className="counter-content-digit">
+                            <span className="counter-item counter-item--commapoint">
+                                ,
+                            </span>
+                            <span className="counter-item counter-item--0 counter-item-digit"></span>
+                        </li>
+                        <li className="counter-content-digit">
+                            <span className="counter-item counter-item--0 counter-item-digit"></span>
+                        </li>
+
+                        <li className="counter-content-digit">
+                            <span className="counter-item counter-item--0 counter-item-digit"></span>
                         </li>
                     </ul>
                 </div>
@@ -165,28 +155,10 @@ export default function Inpatient() {
                 <div className="content-opening-2">
                     If you have cancer, there’s always a question….
                 </div>
-                {/* <div className="question-wrapper" id="question-wrapper"> */}
+
                 <ParallaxDesktop data={questionsDummy} />
-                {/* <div className="question-image">
-                        <img src={`${assetPrefix}/images/inpatient/qp-1.png`} />
-                    </div>
-
-                    <div className="question-image">
-                        <img src={`${assetPrefix}/images/inpatient/qp-2.png`} />
-                    </div> */}
-                {/* </div> */}
             </div>
 
-            <div className="bottom-section">
-                <div className="bottom-title">{homeData.bottomTitle}</div>
-                {homeData.bottomLinkText && (
-                    <div className="bottom-button">
-                        <a href={homeData.bottomLink}>
-                            {homeData.bottomLinkText}
-                        </a>
-                    </div>
-                )}
-            </div>
             <Footer />
             <style jsx>{styles}</style>
         </>

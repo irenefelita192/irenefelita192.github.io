@@ -40,7 +40,7 @@ export default function ParallaxDesktop({ data }) {
                     setOpacity(firstQuestion.id)
                 }
                 document.getElementById(`container`).style.height = `${
-                    (screenHeight / 2) * data.length + marginTop
+                    (screenHeight / 1.9) * data.length
                 }px`
             }
         }
@@ -128,72 +128,81 @@ export default function ParallaxDesktop({ data }) {
         document.getElementById(`bubble-${id}`).classList.add('animate-bubble')
     }
 
+    let timeout = false
+
     const handleScroll = (e) => {
-        let scrollTop = window.pageYOffset
-        data.map((q) => {
-            let currentScrollAt = 0
-            if (typeof scrollAt[q.id] !== 'undefined')
-                currentScrollAt = scrollAt[q.id]
-            const opacity = animateQuestion(
-                q.id,
-                scrollTop,
-                q.id == 1 ? 0 : currentScrollAt + scrollGap
-            )
-            opacityEl = {
-                ...opacityEl,
-                [q.id]: opacity,
-            }
-            let checkOpacity = true
-            for (var i = 1; i <= q.id; i++) {
-                checkOpacity =
-                    checkOpacity &&
-                    opacityEl[i] < 0.18 &&
-                    typeof opacityEl[i] !== 'undefined'
-            }
+        if (!timeout) {
+            timeout = setTimeout(function () {
+                clearTimeout(timeout)
+                timeout = false
 
-            if (checkOpacity && q.id < data.length) {
-                let qId = 1,
-                    nextId = 2
-
-                if (!isNaN(q.id)) {
-                    qId = parseInt(q.id)
-                    nextId = qId + 1
-                }
-
-                if (
-                    scrollAt[nextId] == 0 ||
-                    typeof scrollAt[nextId] === 'undefined'
-                ) {
-                    scrollAt = {
-                        ...scrollAt,
-                        [nextId]: scrollTop,
+                let scrollTop = window.pageYOffset
+                data.map((q) => {
+                    let currentScrollAt = 0
+                    if (typeof scrollAt[q.id] !== 'undefined')
+                        currentScrollAt = scrollAt[q.id]
+                    const opacity = animateQuestion(
+                        q.id,
+                        scrollTop,
+                        q.id == 1 ? 0 : currentScrollAt + scrollGap
+                    )
+                    opacityEl = {
+                        ...opacityEl,
+                        [q.id]: opacity,
                     }
-                }
+                    let checkOpacity = true
+                    for (var i = 1; i <= q.id; i++) {
+                        checkOpacity =
+                            checkOpacity &&
+                            opacityEl[i] < 0.18 &&
+                            typeof opacityEl[i] !== 'undefined'
+                    }
 
-                setTextPosition(
-                    `question-${nextId}`,
-                    scrollAt[nextId] + scrollGap
-                )
-                setPortraitPosition(
-                    `portrait-${nextId}`,
-                    scrollAt[nextId] + scrollGap
-                )
-                setBubblePosition(
-                    `bubble-${nextId}`,
-                    scrollAt[nextId] + scrollGap
-                )
+                    if (checkOpacity && q.id < data.length) {
+                        let qId = 1,
+                            nextId = 2
 
-                if (opacityEl[q.id] < -0.1) {
-                    resetAnimation(q.id)
-                }
-            } else if (q.id == 1) {
-                addAnimation(q.id)
-            }
+                        if (!isNaN(q.id)) {
+                            qId = parseInt(q.id)
+                            nextId = qId + 1
+                        }
 
-            if (opacityEl[q.id] < 0 && q.id == data.length) {
-                resetAnimation(q.id)
-            }
-        })
+                        if (
+                            scrollAt[nextId] == 0 ||
+                            typeof scrollAt[nextId] === 'undefined'
+                        ) {
+                            scrollAt = {
+                                ...scrollAt,
+                                [nextId]: scrollTop,
+                            }
+                        }
+
+                        setTextPosition(
+                            `question-${nextId}`,
+                            scrollAt[nextId] + scrollGap
+                        )
+                        setPortraitPosition(
+                            `portrait-${nextId}`,
+                            scrollAt[nextId] + scrollGap
+                        )
+                        setBubblePosition(
+                            `bubble-${nextId}`,
+                            scrollAt[nextId] + scrollGap
+                        )
+
+                        if (opacityEl[q.id] < -0.1) {
+                            resetAnimation(q.id)
+                        }
+                    } else if (q.id == 1) {
+                        addAnimation(q.id)
+                    }
+
+                    if (opacityEl[q.id] < 0 && q.id == data.length) {
+                        resetAnimation(q.id)
+                    }
+                })
+            }, 100)
+        }
     }
 
     return (
