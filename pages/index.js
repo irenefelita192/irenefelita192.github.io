@@ -10,7 +10,7 @@ import HomeScreen from 'screens/home'
 
 export default function Home() {
     return (
-        <Layout>
+        <Layout headerType="home">
             <HomeScreen />
         </Layout>
     )

@@ -16,6 +16,9 @@ export default css`
         left: 0;
         min-height: 0;
     }
+    .navbar.is-home {
+        background-color: transparent;
+    }
 
     .navbar.scroll-down {
         transform: translate(0, -82px);

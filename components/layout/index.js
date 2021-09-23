@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import yoastSEOPlugin from '../yoastSEOPlugin.json'
-import Header from '../header'
+import Header from 'components/header'
 
 import normalizeCss from 'normalize.css'
 import styles from './styles'
@@ -12,7 +12,7 @@ export default function Layout({
     description = 'Best Protection Solution at Every Stage of Life',
     image = '',
     keywords = '',
-
+    headerType = '',
     twitter_card_type = 'summary',
     appLinkUrl = '',
     type = 'website',
@@ -140,8 +140,14 @@ export default function Layout({
                 {globalStyles}
             </style>
 
-            <Header activeId={activeHeaderId} />
-            <div className="children-wrapper">{children}</div>
+            <Header activeId={activeHeaderId} type={headerType} />
+            <div
+                className={`children-wrapper ${
+                    headerType == 'home' ? 'is-home' : ''
+                }`}
+            >
+                {children}
+            </div>
 
             <noscript>
                 <style
