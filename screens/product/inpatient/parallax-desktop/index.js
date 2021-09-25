@@ -90,7 +90,7 @@ export default function ParallaxDesktop({ data }) {
         })
 
         return () => {
-            // window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener('scroll', handleScroll)
         }
     }, [])
 

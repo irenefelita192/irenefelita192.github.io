@@ -10,7 +10,7 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function Header({ activeId }) {
+export default function Header({ type, activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
     const [activeMenu, setActiveMenu] = useState(null)
@@ -169,7 +169,7 @@ export default function Header({ activeId }) {
         <>
             <nav
                 id="navbarTop"
-                className={`navbar`}
+                className={`navbar ${type == 'home' ? 'is-home' : ''}`}
                 role="navigation"
                 aria-label="main navigation"
             >

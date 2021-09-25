@@ -7,10 +7,15 @@ export default css.global`
         color: ${theme.colors.black};
         scroll-behavior: smooth;
         overflow-x: hidden;
+        line-height: 0;
     }
 
     .children-wrapper {
         margin-top: ${theme.header.height};
+    }
+
+    .children-wrapper.is-home {
+        margin-top: 0;
     }
 
     .children-wrapper .wrapper {
