@@ -20,7 +20,10 @@ export default function HomeScreen() {
         dental: 0,
         outpatient: 0,
     })
-    // const [inpatientSecondPos, setInpatientSecondPos] = useState(0)
+    const [iconWrapperSize, setIconWrapperSize] = useState({
+        width: 600,
+        height: 300,
+    })
 
     let headerHeight = 80,
         secondPosTop = 0,
@@ -44,6 +47,10 @@ export default function HomeScreen() {
                 dental: (7.6 / 100) * window.innerWidth,
                 outpatient: (6 / 100) * window.innerWidth,
             })
+            setIconWrapperSize({
+                width: (35 / 100) * window.innerWidth,
+                height: (21 / 100) * window.innerWidth,
+            })
             if (window.innerWidth <= 768) {
                 setIsPortrait(true)
                 // setHeroHeight(window.innerHeight - headerHeight)
@@ -62,15 +69,37 @@ export default function HomeScreen() {
     useEffect(() => {
         if (window && homeData) {
             window.addEventListener('scroll', handleScroll)
+
             const secondWrapper = document.getElementById('second-wrapper')
             // console.log('secondWrapper', secondWrapper)
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
                 // setInpatientSecondPos(secondPosTop + 100
-                inpatientSecondPos = secondPosTop
+                inpatientSecondPos =
+                    secondPosTop + (8 / 100) * window.innerWidth // 10% for title offset
                 // const inpatient = document.getElementById('icon-inpatient')
                 // inpatientTopView = inpatient.getBoundingClientRect().top
                 // console.log('inpatientTopView', inpatientTopView)
+                const imgEl = document.querySelector(`#second-bg`)
+                console.log('imgEl', imgEl)
+                if (imgEl.complete) {
+                    const imgHeight =
+                        (imgEl.naturalHeight / imgEl.naturalWidth) *
+                        window.innerWidth
+                    secondWrapper.style.height = `${imgHeight}px`
+                    console.log('complete imgHeight', imgHeight)
+                } else {
+                    imgEl.onload = () => {
+                        const imgHeight =
+                            (imgEl.naturalHeight / imgEl.naturalWidth) *
+                            window.innerWidth
+                        secondWrapper.style.height = `${imgHeight}px`
+                        console.log('imgHeight', imgHeight)
+                        // el.style.height = `${imgHeight}px`
+                        // const leftPos = (screenWidth - imgWidth) / 2
+                        // el.style.left = `${leftPos}px`
+                    }
+                }
             }
 
             setTimeout(() => {
@@ -84,7 +113,7 @@ export default function HomeScreen() {
 
     const resetInitialAnimation = () => {
         document
-            .querySelectorAll('#hero-icon-all .animate')
+            .querySelectorAll('.hero-image .animate')
             .forEach((el) => el.classList.remove('animate'))
     }
     let timeout = false,
@@ -92,7 +121,12 @@ export default function HomeScreen() {
         startY = -100,
         heroIconTopView = null,
         currentPosX = 0,
-        currentPosY = 0
+        currentPosY = 0,
+        currentRightPosX = 0,
+        animatePosX = 0,
+        animatePosY = 0,
+        animateRightPosX = 0,
+        animateScale = 1
 
     const handleScroll = (e) => {
         if (!timeout) {
@@ -103,53 +137,103 @@ export default function HomeScreen() {
                 let scrollTop = window.pageYOffset
                 console.log('scrollTop', scrollTop)
                 const inpatient = document.getElementById('icon-inpatient'),
+                    dental = document.getElementById('icon-dental'),
+                    maternity = document.getElementById('icon-maternity'),
+                    outpatient = document.getElementById('icon-outpatient'),
+                    outpatientDiv = document.querySelector(
+                        '#icon-outpatient > div'
+                    ),
                     heroIcon = document.getElementById('hero-icon-all'),
                     isFix = inpatient.classList.contains('is-fix')
-                // if (!inpatientTopView)
-                //     inpatientTopView = inpatient.getBoundingClientRect().top
-                if (!heroIconTopView)
-                    heroIconTopView = heroIcon.getBoundingClientRect().top
-                let heroIconTop = heroIconTopView + scrollTop
-                // let inpatientTop = inpatientTopView + scrollTop
+
+                if (!inpatientTopView) {
+                    inpatientTopView = inpatient.getBoundingClientRect().top
+                    //kadang masi ngebug kalo scroll cepet
+                    const calcScrollTop = inpatientSecondPos - inpatientTopView
+                    animatePosX = calcScrollTop * 0.03
+                    animatePosY = calcScrollTop * 0.3
+                    animateRightPosX = calcScrollTop * 0.05
+                    animateScale = 1 - calcScrollTop * 0.0002
+                }
+                // if (!heroIconTopView)
+                //     heroIconTopView = heroIcon.getBoundingClientRect().top
+                // let heroIconTop = heroIconTopView + scrollTop
+                let inpatientTop = inpatientTopView + scrollTop
                 // isFix? : inpatient.getBoundingClientRect().top + scrollTop
-                inpatient.classList.remove('animate')
 
-                console.log(
-                    'heroIconTop',
-                    heroIconTop,
-                    'inpatientSecondPos',
-                    inpatientSecondPos
-                )
-                const posX = constant.iconPosX + scrollTop * 0.04,
-                    posY = constant.iconPosY + scrollTop * 0.3
+                // const posX = constant.iconPosX + scrollTop * 0.04,
+                //     posY = constant.iconPosY + scrollTop * 0.3
 
+                const posX = scrollTop * 0.03,
+                    posY = scrollTop * 0.3,
+                    rightPosX = scrollTop * 0.05,
+                    scale = 1 - scrollTop * 0.0002,
+                    opRightPos = constant.opRight - scrollTop * 0.021
+
+                console.log('scale', scale)
                 if (
-                    heroIconTop + 150 <= inpatientSecondPos &&
+                    inpatientTop <= inpatientSecondPos &&
                     inpatientSecondPos > 0
                 ) {
                     currentPosX = 0
                     currentPosY = 0
-                    if (heroIcon.classList.contains('revolve')) {
-                        heroIcon.classList.remove('revolve')
+                    currentRightPosX = 0
+                    if (inpatient.classList.contains('revolve')) {
+                        inpatient.classList.remove('revolve')
+                        dental.classList.remove('revolve')
+                        maternity.classList.remove('revolve')
+                        outpatient.classList.remove('revolve')
                     } else {
-                        heroIcon.style.transition = `transform 0.1s ease-in`
+                        inpatient.style.transition = `transform 0.1s linear`
+                        dental.style.transition = `transform 0.1s linear`
+                        maternity.style.transition = `transform 0.1s linear`
+                        outpatient.style.transition = `transform 0.1s linear`
                     }
-                    heroIcon.style.transform = `translate3d( ${posX}%, ${posY}%, 0)`
+                    inpatient.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
+                    dental.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
+                    maternity.style.transform = `translate( ${rightPosX}%, ${posY}%) scale(${scale})`
+                    outpatient.style.transform = `translate( ${rightPosX}%, ${posY}%) scale(${scale})`
+                    outpatientDiv.style.right = `${opRightPos}%`
                 } else if (inpatientSecondPos > 0) {
-                    if (heroIcon.classList.contains('revolve')) {
+                    if (inpatient.classList.contains('revolve')) {
                     } else {
                         if (currentPosX == 0 && currentPosY == 0) {
                             currentPosX = posX
                             currentPosY = posY
+                            currentRightPosX = rightPosX
                         }
-                        heroIcon.style.transition = `all 0.5s ease-in`
-                        heroIcon.style.transform = `translate3d( ${currentPosX}%, ${
-                            currentPosY + 50
-                        }%, 0)`
-                        heroIcon.classList.add('revolve')
+                        inpatient.style.transition = `all 0.5s ease-in`
+                        inpatient.style.transform = `translate( ${animatePosX}%, ${
+                            animatePosY + 70
+                        }%) scale(${animateScale})`
+                        inpatient.classList.add('revolve')
+
+                        dental.style.transition = `all 0.5s ease-in`
+                        dental.style.transform = `translate( ${animatePosX}%, ${
+                            animatePosY + 85
+                        }%) scale(${animateScale})`
+
+                        dental.classList.add('revolve')
+
+                        maternity.style.transition = `all 0.5s ease-in`
+                        maternity.style.transform = `translate( ${
+                            animateRightPosX + 8
+                        }%, ${animatePosY + 55}%) scale(${animateScale})`
+
+                        maternity.classList.add('revolve')
+
+                        outpatient.style.transition = `all 0.5s ease-in`
+                        outpatient.style.transform = `translate( ${
+                            animateRightPosX + 10
+                        }%, ${animatePosY + 90}%) scale(${animateScale})`
+
+                        outpatient.classList.add('revolve')
                     }
                 } else {
-                    heroIcon.classList.remove('revolve')
+                    inpatient.classList.remove('revolve')
+                    dental.classList.remove('revolve')
+                    maternity.classList.remove('revolve')
+                    outpatient.classList.remove('revolve')
                 }
             }, 100)
         }
@@ -188,79 +272,111 @@ export default function HomeScreen() {
                     </div>
                     <div className="hero-image">
                         <img src={`${assetPrefix}/images/home/hero-1.png`} />
-                        <div id="hero-icon-all" className="hero-icon-all">
+                        {/* <div id="hero-icon-all" className="hero-icon-all"> */}
+                        <div
+                            id="icon-inpatient"
+                            className={'hero-icon hero-icon--inpatient animate'}
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
                             <div
-                                id="icon-inpatient"
-                                className={
-                                    'hero-icon hero-icon--inpatient animate'
-                                }
+                                style={{
+                                    width: `${iconWrapperSize.width}px`,
+                                    height: `${iconWrapperSize.height}px`,
+                                }}
                             >
-                                <div>
-                                    <img
-                                        style={{
-                                            width: `${iconHeight.inpatient}px`,
-                                        }}
-                                        src={`${assetPrefix}/images/home/inpatient.png`}
-                                    />
-                                </div>
+                                {/* <div className={'hero-icon-child'}> */}
+                                <img
+                                    style={{
+                                        width: `${iconHeight.inpatient}px`,
+                                    }}
+                                    src={`${assetPrefix}/images/home/inpatient.png`}
+                                />
+                                {/* </div> */}
                             </div>
+                        </div>
+                        <div
+                            id="icon-maternity"
+                            className={'hero-icon hero-icon--maternity animate'}
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
                             <div
-                                id="icon-maternity"
-                                className={
-                                    'hero-icon hero-icon--maternity animate'
-                                }
+                                style={{
+                                    width: `${iconWrapperSize.width}px`,
+                                    height: `${iconWrapperSize.height}px`,
+                                }}
                             >
-                                <div>
-                                    <img
-                                        style={{
-                                            width: `${iconHeight.maternity}px`,
-                                        }}
-                                        src={`${assetPrefix}/images/home/maternity.png`}
-                                    />
-                                </div>
+                                <img
+                                    style={{
+                                        width: `${iconHeight.maternity}px`,
+                                    }}
+                                    src={`${assetPrefix}/images/home/maternity.png`}
+                                />
                             </div>
+                        </div>
+                        <div
+                            id="icon-outpatient"
+                            className={
+                                'hero-icon hero-icon--outpatient animate'
+                            }
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
                             <div
-                                id="icon-outpatient"
-                                className={
-                                    'hero-icon hero-icon--outpatient animate'
-                                }
+                                style={{
+                                    width: `${iconWrapperSize.width}px`,
+                                    height: `${iconWrapperSize.height}px`,
+                                }}
                             >
-                                <div>
-                                    <img
-                                        style={{
-                                            width: `${iconHeight.outpatient}px`,
-                                        }}
-                                        src={`${assetPrefix}/images/home/outpatient.png`}
-                                    />
-                                </div>
+                                <img
+                                    style={{
+                                        width: `${iconHeight.outpatient}px`,
+                                    }}
+                                    src={`${assetPrefix}/images/home/outpatient.png`}
+                                />
                             </div>
+                        </div>
 
+                        <div
+                            id="icon-dental"
+                            className={'hero-icon hero-icon--dental animate'}
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
                             <div
-                                id="icon-dental"
-                                className={
-                                    'hero-icon hero-icon--dental animate'
-                                }
+                                style={{
+                                    width: `${iconWrapperSize.width}px`,
+                                    height: `${iconWrapperSize.height}px`,
+                                }}
                             >
-                                <div>
-                                    <img
-                                        style={{
-                                            width: `${iconHeight.dental}px`,
-                                        }}
-                                        src={`${assetPrefix}/images/home/dental.png`}
-                                    />
-                                </div>
+                                <img
+                                    style={{
+                                        width: `${iconHeight.dental}px`,
+                                    }}
+                                    src={`${assetPrefix}/images/home/dental.png`}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
+                // </div>
             )}
-            <div
+            {/* <div
                 className="second-title-wrapper"
                 style={{
-                    height: `350px`,
+                    height: `280px`,
                 }}
             >
-                {/* 'https://strapi-y5loyvex6a-et.a.run.app/uploads/home_hero_sample_bf7bfdf187.jpg?18236546' */}
+
                 <div className="second-title">
                     <h2> Everything Revolves Around You</h2>
                 </div>
@@ -269,7 +385,7 @@ export default function HomeScreen() {
                     a health service where you can seamlessly tailor it
                     according to your needs.{' '}
                 </div>
-            </div>
+            </div> */}
             <div
                 id="second-wrapper"
                 className="second-wrapper"
@@ -278,7 +394,21 @@ export default function HomeScreen() {
                 //     height: `${heroHeight}px`,
                 // }}
             >
-                <img src={`${assetPrefix}/images/home/room.png`} />
+                <div className="second-text">
+                    <div className="second-title">
+                        <h2> Everything Revolves Around You</h2>
+                    </div>
+                    <div className="second-desc">
+                        No one knows you better than yourself. That’s why we
+                        deliver a health service where you can seamlessly tailor
+                        it according to your needs.{' '}
+                    </div>
+                </div>
+                <img
+                    id="second-bg"
+                    className="second-bg"
+                    src={`${assetPrefix}/images/home/room.png`}
+                />
 
                 {/* <div className={'overlay-wrapper'}> */}
                 <img

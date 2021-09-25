@@ -27,45 +27,25 @@ export default css`
         max-width: 70%;
     }
 
-    .hero-icon-all {
-        position: absolute;
-        transform: translate(${constant.iconPosX}%, ${constant.iconPosY}%);
-        top: 10%;
-        left: 0;
-        height: auto;
-        transition: transform 0.1s ease-in;
-        z-index: 4;
-        will-change: transform;
-        transform-style: preserve-3d;
-        width: ${constant.iconWidth}px;
-        height: ${constant.iconHeight}px;
-    }
-
-    /* .hero-icon-all.revolve, */
-    .hero-icon-all.revolve .hero-icon {
-        transition: all 0.5s ease-in;
-        /* transform: rotateX(-75deg); */
-        /* transform-style: preserve-3d; */
-        width: ${constant.secondIconWidth}px;
-        height: ${constant.secondIconHeight}px;
-    }
-
-    .hero-icon-all.revolve {
-        /* opacity: 0; */
-        /* transform: rotateX(75deg); */
-        animation: revolve-parent 10s linear infinite;
-    }
-
     .hero-icon {
         position: absolute;
         transform: translate(0, 0);
+        top: 5%;
+        left: -14%;
         width: ${constant.iconWidth}px;
         height: ${constant.iconHeight}px;
-        transition: transform 0.1s ease-in;
+        transition: transform 0.1s linear;
         opacity: 0;
         z-index: 10;
+        /* will-change: transform; */
+        /* transform-style: flat; */
+    }
+
+    .hero-icon > div {
+        transform-origin: center;
+        transition: transform 0.3s ease-in;
         will-change: transform;
-        transform-style: preserve-3d;
+        text-align: left;
     }
 
     .hero-icon--inpatient.animate {
@@ -79,8 +59,17 @@ export default css`
         animation: float 10s linear infinite;
     }
 
-    .hero-icon-all.revolve .hero-icon--inpatient {
-        animation: revolve-ip 10s linear infinite;
+    .hero-icon--inpatient.revolve > div {
+        animation: 80s revolve-ip 0.5s linear infinite;
+    }
+
+    .hero-icon--inpatient.revolve {
+        /* animation: 80s revolve-ip 0.5s linear infinite; */
+        animation: 80s zIndex-ip 0.5s linear infinite;
+    }
+
+    .hero-icon--inpatient.revolve img {
+        animation: float 10s linear infinite;
     }
 
     /*maternity*/
@@ -92,33 +81,47 @@ export default css`
         right: ${constant.mRight}%;
         top: ${constant.mTop}%;
         position: absolute;
+        text-align: right;
         animation: float-maternity 10s linear infinite;
     }
 
-    .hero-icon-all.revolve .hero-icon--maternity {
-        /* transform: translate(190px, -85px) rotateX(75deg);
-        transform-style: preserve-3d; */
+    .hero-icon--maternity.revolve > div {
+        animation: 80s revolve-maternity 1s linear infinite;
+    }
 
-        animation: revolve-m 10s linear infinite;
+    .hero-icon--maternity.revolve {
+        animation: 80s zIndex-maternity 1s linear infinite;
+        /* animation: 80s revolve-maternity 0.5s linear infinite; */
+    }
+
+    .hero-icon--maternity.revolve img {
+        animation: float-maternity 10s linear infinite;
     }
 
     /* outpatient */
-
     .hero-icon--outpatient.animate {
         animation: popout-outpatient 0.5s ease-in forwards;
     }
 
     .hero-icon--outpatient > div {
         right: ${constant.opRight}%;
-        bottom: ${constant.opBottom}%;
+        top: ${constant.opTop}%;
         position: absolute;
+        text-align: right;
         animation: float-outpatient 10s linear infinite;
     }
 
-    .hero-icon--outpatient.spin {
-        transform: translate(190px, -85px) rotateX(75deg);
-        transform-style: preserve-3d;
-        animation: orbit 10s linear infinite;
+    .hero-icon--outpatient.revolve > div {
+        animation: 80s revolve-op 1s linear infinite;
+    }
+
+    .hero-icon--outpatient.revolve {
+        animation: 80s zIndex-op 1s linear infinite;
+        /* animation: 80s revolve-maternity 0.5s linear infinite; */
+    }
+
+    .hero-icon--outpatient.revolve img {
+        animation: float-outpatient 10s linear infinite;
     }
 
     /* dental */
@@ -128,15 +131,22 @@ export default css`
 
     .hero-icon--dental > div {
         left: ${constant.dLeft}%;
-        bottom: ${constant.dBottom}%;
+        top: ${constant.dTop}%;
         position: absolute;
         animation: float-dental 10s linear infinite;
     }
 
-    .hero-icon--dental.spin {
-        transform: translate(190px, -85px) rotateX(75deg);
-        transform-style: preserve-3d;
-        animation: orbit 10s linear infinite;
+    .hero-icon--dental.revolve > div {
+        animation: 80s revolve-dental 1s linear infinite;
+    }
+
+    .hero-icon--dental.revolve {
+        animation: 80s zIndex-dental 1s linear infinite;
+        /* animation: 80s revolve-maternity 0.5s linear infinite; */
+    }
+
+    .hero-icon--dental.revolve img {
+        animation: float-dental 10s linear infinite;
     }
 
     .hero-icon--inpatient,
@@ -146,54 +156,11 @@ export default css`
         opacity: 1;
     }
 
-    .hero-icon--inpatient img,
-    .hero-icon--outpatient img,
-    .hero-icon--maternity img,
-    .hero-icon--dental img {
-        height: 100%;
-    }
-
-    .hero-icon--inpatient.spin img,
-    .hero-icon--maternity.spin img {
-        transform: rotateX(-75deg);
-    }
-
-    @keyframes orbit {
-        /* 0% {
-            transform: rotateZ(0deg);
-        }
-        100% {
-            transform: rotateZ(360deg);
-        } */
-        0% {
-            transform: rotateZ(0deg) translate(0) rotateZ(0deg);
-        }
-
-        100% {
-            transform: rotateZ(-360deg) translate(200px) rotateZ(360deg);
-        }
-    }
-
-    @keyframes spinAround {
-        0% {
-            transform: rotateX(-90deg) rotateY(360deg) rotateZ(0deg);
-        }
-
-        100% {
-            transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
-        }
-    }
-
     @keyframes popout-inpatient {
         0% {
             opacity: 0.2;
-            /* transform: translate(0, -10%) scale(0.5) rotate(0.5turn); */
-            transform: translate(-30%, -15%) scale(0.5);
+            transform: translate(-5%, -5%) scale(0.3);
         }
-
-        /* 50% {
-            transform: translate(0, -10%) scale(0.8) rotate(0.8);
-        } */
         100% {
             opacity: 1;
             transform: translate(0, 0) scale(1);
@@ -203,7 +170,7 @@ export default css`
     @keyframes popout-maternity {
         0% {
             opacity: 0.2;
-            transform: translate(-30%, -15%) scale(0.5);
+            transform: translate(0, 0) scale(0.3);
         }
 
         100% {
@@ -215,13 +182,9 @@ export default css`
     @keyframes popout-outpatient {
         0% {
             opacity: 0.2;
-            /* transform: translate(0, -10%) scale(0.5) rotate(0.5turn); */
-            transform: translate(-30%, -15%) scale(0.5);
+            transform: translate(0, 5%) scale(0.3);
         }
 
-        /* 50% {
-            transform: translate(0, -10%) scale(0.8) rotate(0.8);
-        } */
         100% {
             opacity: 1;
             transform: translate(0, 0) scale(1);
@@ -231,7 +194,7 @@ export default css`
     @keyframes popout-dental {
         0% {
             opacity: 0.2;
-            transform: translate(-30%, -15%) scale(0.5);
+            transform: translate(-5%, 0) scale(0.3);
         }
 
         100% {
@@ -242,105 +205,83 @@ export default css`
 
     @keyframes float {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform-origin: left;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
-        50% {
-            transform: translate(10px, -10px) scale(0.9);
+        30% {
+            transform-origin: left;
+            transform: translate(10px, 5px) scale(0.85) rotate(20deg);
         }
         70% {
-            transform: translate(5px, -15px) scale(0.95);
+            transform-origin: left;
+            transform: translate(5px, 0) scale(0.95) rotate(10deg);
         }
         100% {
-            transform: translatey(0, 0) scale(1);
+            transform-origin: left;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
     }
 
     @keyframes float-maternity {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
         30% {
-            transform: translate(-10px, -15px) scale(1.2);
+            transform-origin: right;
+            transform: translate(20px, -20px) scale(1) rotate(-15deg);
         }
         60% {
-            transform: translate(-10px, -15px) scale(1.1);
+            transform-origin: right;
+            transform: translate(5px, -10px) scale(1.15) rotate(-10deg);
         }
         100% {
-            transform: translatey(0, 0) scale(1);
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
     }
 
     @keyframes float-dental {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform-origin: left;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
-        25% {
-            transform: translate(10px, -20px) scale(0.8);
+        30% {
+            transform-origin: left;
+            transform: translate(15px, -10px) scale(0.8) rotate(-10deg);
         }
         75% {
-            transform: translate(5px, -10px) scale(0.9);
+            transform-origin: left;
+            transform: translate(5px, 0) scale(0.9) rotate(-6deg);
         }
         100% {
-            transform: translatey(0, 0) scale(1);
+            transform-origin: left;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
     }
 
     @keyframes float-outpatient {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
         50% {
-            transform: translate(-10px, -5px) scale(1.2);
+            transform-origin: right;
+            transform: translate(0, -5px) scale(1.15) rotate(15deg);
         }
         70% {
-            transform: translate(-10px, -15px) scale(1.1);
+            transform-origin: right;
+            transform: translate(10px, -15px) scale(1.08) rotate(5deg);
         }
         100% {
-            transform: translatey(0, 0) scale(1);
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
         }
     }
 
-    /* @keyframes popout-maternity {
-        0% {
-            opacity: 0.5;
-            transform: translate(0, 0) scale(0.5) rotate(0.5turn);
-        }
-
-        50% {
-            transform: translate(50px, -10px) scale(0.8) rotate(0.8);
-        }
-        100% {
-            opacity: 1;
-            transform: translate(190px, -85px) scale(1);
-        }
-    } */
-    /* @keyframes popout-maternity {
-        0% {
-            opacity: 0.5;
-            transform: translate(0, 0) scale(0.5) rotate(0.5turn);
-        }
-
-        50% {
-            transform: translate(50px, -10px) scale(0.8) rotate(0.8);
-        }
-        100% {
-            opacity: 1;
-            transform: translate(190px, -85px) scale(1);
-        }
-    } */
-
-    /* @keyframes popout-maternity {
-        from {
-            transform: translate(0, 0) scale(0.5);
-        }
-        to {
-            transform: translate(190px, -85px) scale(1);
-        }
-    } */
-
     .hero-icon img {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
 
     .hero-text {
@@ -406,7 +347,7 @@ export default css`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: end;
         background-color: #f4f1ee;
     }
 
@@ -415,6 +356,25 @@ export default css`
         position: relative;
         padding: 0;
         line-height: 0;
+    }
+
+    .second-text {
+        position: absolute;
+        top: 10%;
+        z-index: 2;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .second-bg {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 1;
     }
 
     .overlay-wrapper {
@@ -428,93 +388,345 @@ export default css`
 
     .overlay-image {
         position: absolute;
-        top: 0;
-        left: 30%;
+        width: 29%;
         z-index: 3;
-        width: 47%;
+        bottom: 26px;
+        left: 54%;
+        transform: translateX(-54%);
         height: auto;
     }
 
+    /* @keyframes float {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+        50% {
+            transform: translate(10px, -10px) scale(0.85);
+        }
+        70% {
+            transform: translate(5px, -15px) scale(0.95);
+        }
+        100% {
+            transform: translatey(0, 0) scale(1);
+        }
+    } */
+
     @keyframes revolve-ip {
         0% {
-            transform: translate(0, 0) scale(1);
+            transform: translate(0, 0);
             z-index: 4;
         }
+
         25% {
-            transform: translate(30px, 100%) scale(1.2);
-            /* z-index: 1; */
+            transform: translate(10%, 85%);
         }
 
         50% {
-            transform: translate(70%, 90%) scale(1.1);
+            transform: translate(90%, 80%);
             z-index: 4;
         }
 
         75% {
-            transform: translate(70%, -10%);
-            z-index: 1;
+            transform: translate(95%, -10%);
+            z-index: 2;
         }
 
         100% {
             transform: translate(0, 0);
-            z-index: 1;
+            z-index: 2;
         }
     }
 
-    @keyframes revolve-m {
+    @keyframes zIndex-ip {
         0% {
-            transform: translate(0, 0) scale(1);
             z-index: 4;
         }
         25% {
-            transform: translate(30px, 100%) scale(1.2);
-            /* z-index: 1; */
+            z-index: 4;
         }
 
         50% {
-            transform: translate(70%, 90%) scale(1.1);
             z-index: 4;
         }
 
         75% {
-            transform: translate(70%, -10%);
-            z-index: 1;
+            z-index: 2;
+        }
+
+        100% {
+            z-index: 2;
+        }
+    }
+
+    @keyframes revolve-maternity {
+        0% {
+            transform: translate(0, 0);
+            z-index: 2;
+        }
+        25% {
+            transform: translate(-85%, 10%);
+            z-index: 4;
+        }
+
+        50% {
+            transform: translate(-82%, 95%);
+            z-index: 4;
+        }
+
+        75% {
+            transform: translate(2%, 80%);
+            z-index: 4;
         }
 
         100% {
             transform: translate(0, 0);
-            z-index: 1;
+            z-index: 2;
         }
     }
 
-    @keyframes revolve-parent {
+    @keyframes zIndex-maternity {
         0% {
-            /* transform: rotateX(0); */
-            z-index: 4;
+            z-index: 2;
         }
         25% {
-            /* transform: rotateX(-1deg); */
+            z-index: 4;
         }
 
         50% {
-            /* transform: rotateX(1deg); */
             z-index: 4;
         }
 
         75% {
-            /* transform: rotateX(-1deg); */
-            z-index: 1;
+            z-index: 4;
         }
 
         100% {
-            /* transform: rotateX(1deg); */
-            z-index: 1;
+            z-index: 2;
         }
     }
+
+    @keyframes revolve-op {
+        0% {
+            transform: translate(0, 0);
+            z-index: 2;
+        }
+        25% {
+            transform: translate(-5%, -90%);
+            z-index: 2;
+        }
+
+        50% {
+            transform: translate(-95%, -85%);
+            z-index: 4;
+        }
+
+        75% {
+            transform: translate(-85%, 5%);
+            z-index: 4;
+        }
+
+        100% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+    }
+
+    @keyframes zIndex-op {
+        0% {
+            z-index: 2;
+        }
+        25% {
+            z-index: 2;
+        }
+
+        50% {
+            z-index: 4;
+        }
+
+        75% {
+            z-index: 4;
+        }
+
+        100% {
+            z-index: 4;
+        }
+    }
+
+    @keyframes revolve-dental {
+        0% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+        25% {
+            transform: translate(95%, -5%);
+            z-index: 4;
+        }
+
+        50% {
+            transform: translate(92%, -90%);
+            z-index: 2;
+        }
+
+        75% {
+            transform: translate(5%, -85%);
+            z-index: 2;
+        }
+
+        100% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+    }
+
+    @keyframes zIndex-dental {
+        0% {
+            z-index: 4;
+        }
+        25% {
+            z-index: 4;
+        }
+
+        50% {
+            z-index: 2;
+        }
+
+        75% {
+            z-index: 2;
+        }
+
+        100% {
+            z-index: 4;
+        }
+    }
+
+    /* @keyframes revolve-ip {
+        0% {
+            top: 5%;
+            left: -12%;
+            z-index: 4;
+        }
+        25% {
+            top: 50%;
+            left: -10%;
+        }
+
+        50% {
+            top: 45%;
+            left: 28%;
+            z-index: 4;
+        }
+
+        75% {
+            top: 5%;
+            left: 30%;
+            z-index: 2;
+        }
+
+        100% {
+            top: 5%;
+            left: -12%;
+            z-index: 2;
+        }
+    } */
+
+    /* @keyframes revolve-maternity {
+        0% {
+            top: 5%;
+            left: -12%;
+            z-index: 2;
+        }
+        25% {
+            top: 10%;
+            left: -45%;
+            z-index: 4;
+        }
+
+        50% {
+            top: 48%;
+            left: -48%;
+            z-index: 4;
+        }
+
+        75% {
+            top: 51%;
+            left: -13%;
+            z-index: 4;
+        }
+
+        100% {
+            top: 5%;
+            left: -12%;
+            z-index: 2;
+        }
+    } */
+
+    /* @keyframes revolve-dental {
+        0% {
+            top: 5%;
+            left: -12%;
+            z-index: 4;
+        }
+        25% {
+            top: 0;
+            left: 30%;
+            z-index: 4;
+        }
+
+        50% {
+            top: -35%;
+            left: 28%;
+            z-index: 2;
+        }
+
+        75% {
+            top: -25%;
+            left: -8%;
+            z-index: 2;
+        }
+
+        100% {
+            top: 5%;
+            left: -12%;
+            z-index: 4;
+        }
+    } */
+
+    /* @keyframes revolve-op {
+        0% {
+            top: 5%;
+            left: -12%;
+            z-index: 2;
+        }
+        25% {
+            top: -40%;
+            left: -15%;
+            z-index: 2;
+        }
+
+        50% {
+            top: -35%;
+            left: -50%;
+            z-index: 4;
+        }
+
+        75% {
+            top: 10%;
+            left: -48%;
+            z-index: 4;
+        }
+
+        100% {
+            top: 5%;
+            left: -12%;
+            z-index: 4;
+        }
+    } */
+
+    /* 
 
     .hero-icon-sc {
         position: absolute;
-        /* transform: translate3d(50%, -50%, 0) rotateX(-20deg); */
+
         animation: revolve 5s linear infinite;
         transform-style: preserve-3d;
         width: 400px;
@@ -523,7 +735,6 @@ export default css`
     }
 
     .hero-icon-sc > div {
-        /* transform: rotateX(-93deg); */
         position: absolute;
     }
 
@@ -545,7 +756,7 @@ export default css`
     .hero-icon-sc--dental {
         bottom: 10%;
         left: 0;
-    }
+    } */
 
     .second-title {
         max-width: 544px;
