@@ -173,15 +173,13 @@ export default function Header({ type, activeId }) {
         )
     }
 
-    const brandImg =
-        type == 'home'
-            ? `${assetPrefix}${'/images/logo/logo-Vida-white.svg'}`
-            : `${assetPrefix}${'/images/logo/logo-Vida.svg'}`
+    const brandImg = `${assetPrefix}${'/images/logo/logo-Vida.svg'}`,
+        brandImgWhite = `${assetPrefix}${'/images/logo/logo-Vida-white.svg'}`
     return (
         <>
             <nav
                 id="navbarTop"
-                className={`navbar ${type == 'home' ? 'is-home' : ''}`}
+                className={`navbar ${type == 'trans' ? 'is-trans' : ''}`}
                 role="navigation"
                 aria-label="main navigation"
             >
@@ -200,6 +198,11 @@ export default function Header({ type, activeId }) {
                         href="/"
                     >
                         <img src={brandImg} alt="vida-logo" />
+                        <img
+                            src={brandImgWhite}
+                            className="is-white"
+                            alt="vida-logo"
+                        />
                     </a>
 
                     <a
@@ -330,14 +333,14 @@ export default function Header({ type, activeId }) {
                                 </div>
                             )}
 
-                            {isDesktop && (
+                            {/* {isDesktop && (
                                 <div className="navbar-end">
                                     <LangPopup
                                         isDesktop={isDesktop}
                                         languageData={languageData}
                                     />
                                 </div>
-                            )}
+                            )} */}
                         </>
                     )}
                 </div>

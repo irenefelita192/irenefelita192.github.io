@@ -387,6 +387,7 @@ export default css`
     }
 
     .overlay-image {
+        opacity: 0;
         position: absolute;
         width: 29%;
         z-index: 3;
