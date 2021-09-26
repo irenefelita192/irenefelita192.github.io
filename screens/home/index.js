@@ -5,40 +5,11 @@ import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
+import ProductSection from './product-section'
 import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-const products = [
-    {
-        id: 1,
-        title: 'Protect Yourself & Your Loved Ones',
-        description:
-            'You and those who matter deserve a better companion in every season in life. Vida is a reliable healthcare partner for today and tomorrow.',
-        image: '',
-    },
-    {
-        id: 1,
-        title: 'Cast Away The Stress',
-        description:
-            'Focus on your treatment to get better and let Vida handle the rest.',
-        image: '',
-    },
-    {
-        id: 1,
-        title: 'Life Full of Smiles',
-        description:
-            'Your simple and beautiful smile changes the world. Maintain your dental health to bring out happiness from within.',
-        image: '',
-    },
-    {
-        id: 1,
-        title: 'Celebrate A New Life',
-        description:
-            'It’s never too early for a couple prepare and plan the warmest welcome for a new generation',
-        image: '',
-    },
-]
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
@@ -428,10 +399,7 @@ export default function HomeScreen() {
             </div>
 
             {/* Section 3 start */}
-            <div className="third-wrapper">
-                <div>Kiri</div>
-                <div></div>
-            </div>
+            <ProductSection />
             {/* Section 3 end */}
 
             <div className="bottom-section">
