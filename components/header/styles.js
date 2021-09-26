@@ -18,7 +18,7 @@ export default css`
         transition: all 0.2s ease-in;
     }
 
-    .navbar.is-home {
+    .navbar.is-trans {
         border-bottom: 1px solid #fcfcfc;
         background-color: transparent;
         color: ${theme.colors['vida-white']};
@@ -32,7 +32,7 @@ export default css`
         transition: color 0.2s ease-in-out;
     }
 
-    .navbar.is-home .navbar-item {
+    .navbar.is-trans .navbar-item {
         color: ${theme.colors['vida-white']};
     }
 
@@ -79,7 +79,7 @@ export default css`
         color: ${theme.colors['vida-green']};
     }
 
-    .navbar.is-home .navbar-item.is-active {
+    .navbar.is-trans .navbar-item.is-active {
         color: ${theme.colors['vida-white']};
     }
 
@@ -139,6 +139,15 @@ export default css`
         max-height: none;
     }
 
+    .navbar.is-trans img,
+    img.is-white {
+        display: none;
+    }
+
+    .navbar.is-trans img.is-white {
+        display: block;
+    }
+
     .navbar-brand a.navbar-item:hover:after {
         display: none;
     }
@@ -178,8 +187,8 @@ export default css`
         color: ${theme.colors.black};
     }
 
-    .navbar.is-home .navbar-menu.is-active .navbar-item.is-active,
-    .navbar.is-home
+    .navbar.is-trans .navbar-menu.is-active .navbar-item.is-active,
+    .navbar.is-trans
         .navbar-menu.is-active
         .navbar-item.has-dropdown
         .navbar-link {
@@ -344,8 +353,8 @@ export default css`
         border-color: ${theme.colors['vida-green']};
     }
 
-    .navbar.is-home .navbar-link:not(.is-arrowless)::after,
-    .navbar.is-home
+    .navbar.is-trans .navbar-link:not(.is-arrowless)::after,
+    .navbar.is-trans
         .navbar-item.has-dropdown.is-active
         .navbar-link:not(.is-arrowless)::after {
         border-color: ${theme.colors['vida-white']};
@@ -355,8 +364,8 @@ export default css`
         color: ${theme.colors.black};
     }
 
-    .navbar.is-home .navbar-link,
-    .navbar.is-home .navbar-item.has-dropdown:hover .navbar-link {
+    .navbar.is-trans .navbar-link,
+    .navbar.is-trans .navbar-item.has-dropdown:hover .navbar-link {
         color: ${theme.colors['vida-white']};
     }
     /* submenu end*/

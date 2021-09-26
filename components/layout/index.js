@@ -143,7 +143,7 @@ export default function Layout({
             <Header activeId={activeHeaderId} type={headerType} />
             <div
                 className={`children-wrapper ${
-                    headerType == 'home' ? 'is-home' : ''
+                    headerType == 'trans' ? 'is-trans' : ''
                 }`}
             >
                 {children}

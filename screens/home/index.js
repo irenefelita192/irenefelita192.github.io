@@ -8,6 +8,37 @@ import Footer from 'components/footer'
 import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
+
+const products = [
+    {
+        id: 1,
+        title: 'Protect Yourself & Your Loved Ones',
+        description:
+            'You and those who matter deserve a better companion in every season in life. Vida is a reliable healthcare partner for today and tomorrow.',
+        image: '',
+    },
+    {
+        id: 1,
+        title: 'Cast Away The Stress',
+        description:
+            'Focus on your treatment to get better and let Vida handle the rest.',
+        image: '',
+    },
+    {
+        id: 1,
+        title: 'Life Full of Smiles',
+        description:
+            'Your simple and beautiful smile changes the world. Maintain your dental health to bring out happiness from within.',
+        image: '',
+    },
+    {
+        id: 1,
+        title: 'Celebrate A New Life',
+        description:
+            'It’s never too early for a couple prepare and plan the warmest welcome for a new generation',
+        image: '',
+    },
+]
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
@@ -72,34 +103,27 @@ export default function HomeScreen() {
             window.addEventListener('scroll', handleScroll)
             navbar = document.getElementById('navbarTop')
             const secondWrapper = document.getElementById('second-wrapper')
-            // console.log('secondWrapper', secondWrapper)
+
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
-                // setInpatientSecondPos(secondPosTop + 100
 
                 inpatientSecondPos =
                     secondPosTop + (8 / 100) * window.innerWidth // 10% for title offset
-                // const inpatient = document.getElementById('icon-inpatient')
-                // inpatientTopView = inpatient.getBoundingClientRect().top
-                // console.log('inpatientTopView', inpatientTopView)
                 const imgEl = document.querySelector(`#second-bg`)
-                console.log('imgEl', imgEl)
+                const overlayImg = document.getElementById('overlay-image')
                 if (imgEl.complete) {
                     const imgHeight =
                         (imgEl.naturalHeight / imgEl.naturalWidth) *
                         window.innerWidth
                     secondWrapper.style.height = `${imgHeight}px`
-                    console.log('complete imgHeight', imgHeight)
+                    overlayImg.style.opacity = '1'
                 } else {
                     imgEl.onload = () => {
                         const imgHeight =
                             (imgEl.naturalHeight / imgEl.naturalWidth) *
                             window.innerWidth
                         secondWrapper.style.height = `${imgHeight}px`
-                        console.log('imgHeight', imgHeight)
-                        // el.style.height = `${imgHeight}px`
-                        // const leftPos = (screenWidth - imgWidth) / 2
-                        // el.style.left = `${leftPos}px`
+                        overlayImg.style.opacity = '1'
                     }
                 }
             }
@@ -180,12 +204,12 @@ export default function HomeScreen() {
                 )
 
                 if (scrollTop + 70 <= secondPosTop) {
-                    if (navbar && !navbar.classList.contains('is-home')) {
-                        navbar.classList.add('is-home')
+                    if (navbar && !navbar.classList.contains('is-trans')) {
+                        navbar.classList.add('is-trans')
                     }
                 } else {
-                    if (navbar && navbar.classList.contains('is-home')) {
-                        navbar.classList.remove('is-home')
+                    if (navbar && navbar.classList.contains('is-trans')) {
+                        navbar.classList.remove('is-trans')
                     }
                 }
 
@@ -397,10 +421,18 @@ export default function HomeScreen() {
                 />
 
                 <img
+                    id="overlay-image"
                     className="overlay-image"
                     src={`${assetPrefix}/images/home/family.png`}
                 />
             </div>
+
+            {/* Section 3 start */}
+            <div className="third-wrapper">
+                <div>Kiri</div>
+                <div></div>
+            </div>
+            {/* Section 3 end */}
 
             <div className="bottom-section">
                 <div className="bottom-title">{homeData.bottomTitle}</div>

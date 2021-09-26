@@ -14,7 +14,7 @@ export default css.global`
         margin-top: ${theme.header.height};
     }
 
-    .children-wrapper.is-home {
+    .children-wrapper.is-trans {
         margin-top: 0;
     }
 
