@@ -246,11 +246,11 @@ export default css`
             transform-origin: left;
             transform: translate(0, 0) scale(1) rotate(0);
         }
-        30% {
+        20% {
             transform-origin: left;
             transform: translate(15px, -10px) scale(0.8) rotate(-10deg);
         }
-        75% {
+        85% {
             transform-origin: left;
             transform: translate(5px, 0) scale(0.9) rotate(-6deg);
         }
@@ -360,7 +360,7 @@ export default css`
 
     .second-text {
         position: absolute;
-        top: 10%;
+        top: 12%;
         z-index: 2;
         left: 50%;
         transform: translateX(-50%);
@@ -395,21 +395,6 @@ export default css`
         transform: translateX(-54%);
         height: auto;
     }
-
-    /* @keyframes float {
-        0% {
-            transform: translate(0, 0) scale(1);
-        }
-        50% {
-            transform: translate(10px, -10px) scale(0.85);
-        }
-        70% {
-            transform: translate(5px, -15px) scale(0.95);
-        }
-        100% {
-            transform: translatey(0, 0) scale(1);
-        }
-    } */
 
     @keyframes revolve-ip {
         0% {

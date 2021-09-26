@@ -28,7 +28,8 @@ export default function HomeScreen() {
     let headerHeight = 80,
         secondPosTop = 0,
         inpatientSecondPos = 0,
-        inpatientTopView = 0
+        inpatientTopView = 0,
+        navbar = null
 
     useAsyncEffect(async (isMounted) => {
         let langId
@@ -69,12 +70,13 @@ export default function HomeScreen() {
     useEffect(() => {
         if (window && homeData) {
             window.addEventListener('scroll', handleScroll)
-
+            navbar = document.getElementById('navbarTop')
             const secondWrapper = document.getElementById('second-wrapper')
             // console.log('secondWrapper', secondWrapper)
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
                 // setInpatientSecondPos(secondPosTop + 100
+
                 inpatientSecondPos =
                     secondPosTop + (8 / 100) * window.innerWidth // 10% for title offset
                 // const inpatient = document.getElementById('icon-inpatient')
@@ -117,12 +119,12 @@ export default function HomeScreen() {
             .forEach((el) => el.classList.remove('animate'))
     }
     let timeout = false,
-        startX = -220,
-        startY = -100,
-        heroIconTopView = null,
-        currentPosX = 0,
-        currentPosY = 0,
-        currentRightPosX = 0,
+        // startX = -220,
+        // startY = -100,
+        // heroIconTopView = null,
+        // currentPosX = 0,
+        // currentPosY = 0,
+        // currentRightPosX = 0,
         animatePosX = 0,
         animatePosY = 0,
         animateRightPosX = 0,
@@ -170,14 +172,27 @@ export default function HomeScreen() {
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
 
-                console.log('scale', scale)
+                console.log(
+                    'scrollTop',
+                    scrollTop,
+                    'secondPosTop',
+                    secondPosTop
+                )
+
+                if (scrollTop + 70 <= secondPosTop) {
+                    if (navbar && !navbar.classList.contains('is-home')) {
+                        navbar.classList.add('is-home')
+                    }
+                } else {
+                    if (navbar && navbar.classList.contains('is-home')) {
+                        navbar.classList.remove('is-home')
+                    }
+                }
+
                 if (
                     inpatientTop <= inpatientSecondPos &&
                     inpatientSecondPos > 0
                 ) {
-                    currentPosX = 0
-                    currentPosY = 0
-                    currentRightPosX = 0
                     if (inpatient.classList.contains('revolve')) {
                         inpatient.classList.remove('revolve')
                         dental.classList.remove('revolve')
@@ -197,11 +212,6 @@ export default function HomeScreen() {
                 } else if (inpatientSecondPos > 0) {
                     if (inpatient.classList.contains('revolve')) {
                     } else {
-                        if (currentPosX == 0 && currentPosY == 0) {
-                            currentPosX = posX
-                            currentPosY = posY
-                            currentRightPosX = rightPosX
-                        }
                         inpatient.style.transition = `all 0.5s ease-in`
                         inpatient.style.transform = `translate( ${animatePosX}%, ${
                             animatePosY + 70
@@ -224,7 +234,7 @@ export default function HomeScreen() {
 
                         outpatient.style.transition = `all 0.5s ease-in`
                         outpatient.style.transform = `translate( ${
-                            animateRightPosX + 10
+                            animateRightPosX + 8
                         }%, ${animatePosY + 90}%) scale(${animateScale})`
 
                         outpatient.classList.add('revolve')
@@ -258,7 +268,6 @@ export default function HomeScreen() {
                     className={`hero-wrapper`}
                     style={{
                         backgroundImage: `url(${heroImg})`,
-                        // height: isPortrait ? `${heroHeight}px` : 'auto',
                         height: `${heroHeight + headerHeight}px`,
                     }}
                 >
@@ -368,32 +377,9 @@ export default function HomeScreen() {
                         </div>
                     </div>
                 </div>
-                // </div>
             )}
-            {/* <div
-                className="second-title-wrapper"
-                style={{
-                    height: `280px`,
-                }}
-            >
 
-                <div className="second-title">
-                    <h2> Everything Revolves Around You</h2>
-                </div>
-                <div className="second-desc">
-                    No one knows you better than yourself. That’s why we deliver
-                    a health service where you can seamlessly tailor it
-                    according to your needs.{' '}
-                </div>
-            </div> */}
-            <div
-                id="second-wrapper"
-                className="second-wrapper"
-                // style={{
-                //     backgroundImage: `url(${assetPrefix}/images/home/room.png)`,
-                //     height: `${heroHeight}px`,
-                // }}
-            >
+            <div id="second-wrapper" className="second-wrapper">
                 <div className="second-text">
                     <div className="second-title">
                         <h2> Everything Revolves Around You</h2>
@@ -410,95 +396,12 @@ export default function HomeScreen() {
                     src={`${assetPrefix}/images/home/room.png`}
                 />
 
-                {/* <div className={'overlay-wrapper'}> */}
                 <img
                     className="overlay-image"
                     src={`${assetPrefix}/images/home/family.png`}
                 />
-                {/* </div> */}
-
-                {/* <div className={'hero-icon-all-sc'}> */}
-                {/* <div className={'hero-icon-sc hero-icon-sc--inpatient'}>
-                        <div>
-                            <img
-                                style={{
-                                    width: `${iconHeight.inpatient}px`,
-                                }}
-                                src={`${assetPrefix}/images/home/inpatient.png`}
-                            />
-                        </div>
-                    </div>
-                    <div className={'hero-icon-sc hero-icon-sc--maternity'}>
-                        <div>
-                            <img
-                                style={{
-                                    width: `${iconHeight.maternity}px`,
-                                }}
-                                src={`${assetPrefix}/images/home/maternity.png`}
-                            />
-                        </div>
-                    </div>
-                    <div className={'hero-icon-sc hero-icon-sc--outpatient'}>
-                        <div>
-                            <img
-                                style={{
-                                    width: `${iconHeight.outpatient}px`,
-                                }}
-                                src={`${assetPrefix}/images/home/outpatient.png`}
-                            />
-                        </div>
-                    </div>
-
-                    <div className={'hero-icon-sc hero-icon-sc--dental'}>
-                        <div>
-                            <img
-                                style={{
-                                    width: `${iconHeight.dental}px`,
-                                }}
-                                src={`${assetPrefix}/images/home/dental.png`}
-                            />
-                        </div>
-                    </div> */}
             </div>
-            {/* </div> */}
 
-            {/* 'https://strapi-y5loyvex6a-et.a.run.app/uploads/home_hero_sample_bf7bfdf187.jpg?18236546' */}
-            {/* </div> */}
-            {/* <div className="content-wrapper">
-                {!isPortrait && (
-                    <div className="static-blob">
-                        <img src="./images/blob/blob-home.png" />
-                    </div>
-                )}
-                <div className="content-cards">
-                    {homeData.key.map((dt, index) => (
-                        <div
-                            key={dt.id}
-                            className={`card-item ${
-                                (index + 1) % 2 == 0 ? 'card-even' : 'card-odd'
-                            }`}
-                        >
-                            <img
-                                src={`${assetDomain}${dt.image?.url ?? ''}`}
-                                alt={dt.image?.alternativeText ?? ''}
-                            />
-
-                            <div className="card-content">
-                                <div className="card-title">{dt.title}</div>
-
-                                <div className="card-desc">
-                                    {dt.description}
-                                </div>
-                                {dt.linkText && (
-                                    <a className="card-link" href={dt.link}>
-                                        {dt.linkText}
-                                    </a>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div> */}
             <div className="bottom-section">
                 <div className="bottom-title">{homeData.bottomTitle}</div>
                 {homeData.bottomLinkText && (

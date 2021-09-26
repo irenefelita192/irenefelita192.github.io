@@ -15,19 +15,13 @@ export default css`
         top: 0;
         left: 0;
         min-height: 0;
+        transition: all 0.2s ease-in;
     }
+
     .navbar.is-home {
+        border-bottom: 1px solid #fcfcfc;
         background-color: transparent;
-    }
-
-    .navbar.scroll-down {
-        transform: translate(0, -82px);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .navbar.scroll-up {
-        transform: translate(0, 0);
-        transition: transform 0.3s ease-in-out;
+        color: ${theme.colors['vida-white']};
     }
 
     .navbar-item {
@@ -36,6 +30,10 @@ export default css`
         margin: 0 30px;
         text-transform: uppercase;
         transition: color 0.2s ease-in-out;
+    }
+
+    .navbar.is-home .navbar-item {
+        color: ${theme.colors['vida-white']};
     }
 
     a.navbar-item i.caret-down {
@@ -81,6 +79,10 @@ export default css`
         color: ${theme.colors['vida-green']};
     }
 
+    .navbar.is-home .navbar-item.is-active {
+        color: ${theme.colors['vida-white']};
+    }
+
     .navbar-item.is-active span:after {
         content: '';
         position: absolute;
@@ -92,6 +94,10 @@ export default css`
         z-index: 1;
         border-radius: 16px;
         z-index: 1;
+    }
+
+    .navbar-item.is-active span:after {
+        background-color: ${theme.colors['vida-white']};
     }
     /* .navbar a.navbar-item:hover:after {
         content: '';
@@ -172,6 +178,14 @@ export default css`
         color: ${theme.colors.black};
     }
 
+    .navbar.is-home .navbar-menu.is-active .navbar-item.is-active,
+    .navbar.is-home
+        .navbar-menu.is-active
+        .navbar-item.has-dropdown
+        .navbar-link {
+        color: ${theme.colors['vida-white']};
+    }
+
     .navbar-link.is-active,
     .navbar-link:focus,
     .navbar-link:focus-within,
@@ -210,7 +224,7 @@ export default css`
         top: 80px;
         left: 0;
         width: 100%;
-        background-color: white;
+        background-color: rgba(244, 241, 238, 0.7);
         height: 0;
 
         /* height: 180px; */
@@ -231,17 +245,13 @@ export default css`
 
     .submenu-item {
         width: 224px;
-        height: 160px;
+        height: 129px;
         margin-right: 20px;
         border: 1px solid #cfcfcf;
-        background: linear-gradient(
-            180deg,
-            rgba(193, 208, 188, 0.4) 0%,
-            rgba(231, 233, 255, 0.4) 100%
-        );
-        border-radius: 16px;
+        background-color: ${theme.colors['vida-white']};
+        border-radius: 18px;
         color: ${theme.colors['vida-black']};
-        padding: 13px;
+        padding: 24px 16px;
         text-transform: none;
     }
 
@@ -250,25 +260,47 @@ export default css`
     }
 
     .submenu-item:hover {
-        padding: 12px;
-        border: 2px solid #7dcac7;
-        background: linear-gradient(
-            180deg,
-            rgba(182, 255, 242, 0.4) 0%,
-            rgba(173, 242, 213, 0.4) 100%
-        );
+        padding: 22px 14px;
+        border: 3px solid ${theme.colors['vida-green-fresh']};
+    }
+
+    .submenu-header {
+        display: flex;
+    }
+
+    .submenu-item:hover .submenu-header {
+        animation: fadein 0.3s ease-in;
+        color: ${theme.colors['vida-button']};
     }
 
     .submenu-icon {
-        height: 61px;
+        height: 28px;
         width: auto;
-        text-align: right;
+        margin-right: 8px;
     }
 
     .submenu-icon img {
         height: 100%;
         width: auto;
         max-height: initial;
+    }
+
+    .submenu-item:hover img,
+    .submenu-icon img.hover-icon {
+        display: none;
+    }
+
+    .submenu-item:hover img.hover-icon {
+        display: block;
+    }
+
+    @keyframes fadein {
+        from {
+            opacity: 0.8;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     .submenu-title {
@@ -312,8 +344,20 @@ export default css`
         border-color: ${theme.colors['vida-green']};
     }
 
+    .navbar.is-home .navbar-link:not(.is-arrowless)::after,
+    .navbar.is-home
+        .navbar-item.has-dropdown.is-active
+        .navbar-link:not(.is-arrowless)::after {
+        border-color: ${theme.colors['vida-white']};
+    }
+
     .navbar-link {
         color: ${theme.colors.black};
+    }
+
+    .navbar.is-home .navbar-link,
+    .navbar.is-home .navbar-item.has-dropdown:hover .navbar-link {
+        color: ${theme.colors['vida-white']};
     }
     /* submenu end*/
 
