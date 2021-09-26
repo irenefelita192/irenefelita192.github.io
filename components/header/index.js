@@ -142,16 +142,25 @@ export default function Header({ type, activeId }) {
                                 href={subMenu.href}
                                 className="submenu-item column"
                             >
-                                <div className="submenu-icon">
-                                    {subMenu.icon && (
-                                        <img
-                                            src={`${assetDomain}${subMenu.icon.url}`}
-                                        />
-                                    )}
+                                <div className="submenu-header">
+                                    <div className="submenu-icon">
+                                        {subMenu.icon && (
+                                            <img
+                                                src={`${assetDomain}${subMenu.icon.url}`}
+                                            />
+                                        )}
+                                        {subMenu.hoverIcon && (
+                                            <img
+                                                className="hover-icon"
+                                                src={`${assetDomain}${subMenu.hoverIcon.url}`}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="submenu-title">
+                                        {subMenu.title}
+                                    </div>
                                 </div>
-                                <div className="submenu-title">
-                                    {subMenu.title}
-                                </div>
+
                                 <div className="submenu-desc">
                                     {subMenu.description}
                                 </div>
@@ -164,7 +173,10 @@ export default function Header({ type, activeId }) {
         )
     }
 
-    const brandImg = `${assetPrefix}${'/images/logo/logo-Vida.svg'}`
+    const brandImg =
+        type == 'home'
+            ? `${assetPrefix}${'/images/logo/logo-Vida-white.svg'}`
+            : `${assetPrefix}${'/images/logo/logo-Vida.svg'}`
     return (
         <>
             <nav
@@ -243,7 +255,9 @@ export default function Header({ type, activeId }) {
                                                             : ''
                                                     }`}
                                                     onClick={() =>
-                                                        handleOpenSubmenu(true)
+                                                        handleOpenSubmenu(
+                                                            !isSubmenuOpen
+                                                        )
                                                     }
                                                     style={
                                                         !isDesktop
