@@ -4,7 +4,7 @@ import css from 'styled-jsx/css'
 export default css`
     /* Third Section - start */
     .third-wrapper {
-        /* height: 100vh; */
+        position: relative;
     }
 
     .product-wrapper {
@@ -12,12 +12,12 @@ export default css`
         grid-template-columns: 1fr 1fr;
         height: 100%;
         opacity: 0;
+        transition: all 1s ease-in-out;
     }
 
     .product-wrapper.is-active {
         display: grid;
         opacity: 1;
-        animation: fadein 0.5s ease-in-out;
     }
 
     .product-wrapper > div:first-child {
@@ -28,8 +28,8 @@ export default css`
         color: ${theme.colors['vida-white']};
     }
 
-    .product-wrapper > div:first-child > h2 {
-        padding: 0 168px 20px 168px;
+    .product-wrapper > div:first-child h2 {
+        padding: 0;
         margin: 0;
         /* font-family: Museo; */
         font-weight: 600;
@@ -37,10 +37,18 @@ export default css`
         line-height: 1.05;
     }
 
+    .product-wrapper > div:first-child > div:first-child {
+        display: flex;
+        align-items: flex-end;
+        height: 90px;
+        margin-bottom: 22px;
+    }
+
     .product-wrapper > div:first-child > div {
-        padding: 0 168px;
+        padding: 0 140px;
         font-size: 18px;
         line-height: 1.4;
+        height: 78px;
     }
 
     .product-wrapper > div:first-child > div:last-child {
@@ -87,9 +95,44 @@ export default css`
     @keyframes fadeout {
         0% {
             opacity: 1;
+            display: grid;
         }
         100% {
-            opacity: 0.2;
+            opacity: 0;
+            visibility: hidden;
         }
-    } /* Third Section - end */
+    }
+
+    .product-wrapper.product-transition-enter {
+        display: grid;
+        opacity: 0.7;
+    }
+    .product-wrapper.product-transition-enter-active {
+        opacity: 0.7;
+    }
+    .product-wrapper.product-transition-enter-done {
+        opacity: 1;
+    }
+
+    .product-wrapper.product-transition-exit {
+        opacity: 1;
+        display: grid;
+        position: absolute;
+        top: 0;
+    }
+    .product-wrapper.product-transition-exit-active {
+        opacity: 1;
+        display: grid;
+        position: absolute;
+        top: 0;
+    }
+    .product-wrapper.product-transition-exit-done {
+        opacity: 1;
+        display: grid;
+        position: absolute;
+        top: 0;
+        animation: fadeout 1s ease-in-out forwards;
+    }
+
+    /* Third Section - end */
 `

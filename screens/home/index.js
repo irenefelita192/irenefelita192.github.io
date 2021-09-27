@@ -31,8 +31,7 @@ export default function HomeScreen() {
     let headerHeight = 80,
         secondPosTop = 0,
         inpatientSecondPos = 0,
-        inpatientTopView = 0,
-        navbar = null
+        inpatientTopView = 0
 
     useAsyncEffect(async (isMounted) => {
         let langId
@@ -73,7 +72,7 @@ export default function HomeScreen() {
     useEffect(() => {
         if (window && homeData) {
             window.addEventListener('scroll', handleScroll)
-            navbar = document.getElementById('navbarTop')
+
             const secondWrapper = document.getElementById('second-wrapper')
 
             if (secondWrapper) {
@@ -148,7 +147,7 @@ export default function HomeScreen() {
                     inpatientTopView = inpatient.getBoundingClientRect().top
                     //kadang masi ngebug kalo scroll cepet
                     const calcScrollTop = inpatientSecondPos - inpatientTopView
-                    animatePosX = calcScrollTop * 0.03
+                    animatePosX = calcScrollTop * 0.035
                     animatePosY = calcScrollTop * 0.3
                     animateRightPosX = calcScrollTop * 0.05
                     animateScale = 1 - calcScrollTop * 0.0002
@@ -162,7 +161,7 @@ export default function HomeScreen() {
                 // const posX = constant.iconPosX + scrollTop * 0.04,
                 //     posY = constant.iconPosY + scrollTop * 0.3
 
-                const posX = scrollTop * 0.03,
+                const posX = scrollTop * 0.035,
                     posY = scrollTop * 0.3,
                     rightPosX = scrollTop * 0.05,
                     scale = 1 - scrollTop * 0.0002,
@@ -175,15 +174,15 @@ export default function HomeScreen() {
                     secondPosTop
                 )
 
-                if (scrollTop + 70 <= secondPosTop) {
-                    if (navbar && !navbar.classList.contains('is-trans')) {
-                        navbar.classList.add('is-trans')
-                    }
-                } else {
-                    if (navbar && navbar.classList.contains('is-trans')) {
-                        navbar.classList.remove('is-trans')
-                    }
-                }
+                // if (scrollTop + 70 <= secondPosTop) {
+                //     if (navbar && !navbar.classList.contains('is-trans')) {
+                //         navbar.classList.add('is-trans')
+                //     }
+                // } else {
+                //     if (navbar && navbar.classList.contains('is-trans')) {
+                //         navbar.classList.remove('is-trans')
+                //     }
+                // }
 
                 if (
                     inpatientTop <= inpatientSecondPos &&
@@ -209,15 +208,15 @@ export default function HomeScreen() {
                     if (inpatient.classList.contains('revolve')) {
                     } else {
                         inpatient.style.transition = `all 0.5s ease-in`
-                        inpatient.style.transform = `translate( ${animatePosX}%, ${
-                            animatePosY + 70
-                        }%) scale(${animateScale})`
+                        inpatient.style.transform = `translate( ${
+                            animatePosX + 10
+                        }%, ${animatePosY + 70}%) scale(${animateScale})`
                         inpatient.classList.add('revolve')
 
                         dental.style.transition = `all 0.5s ease-in`
-                        dental.style.transform = `translate( ${animatePosX}%, ${
-                            animatePosY + 85
-                        }%) scale(${animateScale})`
+                        dental.style.transform = `translate( ${
+                            animatePosX + 10
+                        }%, ${animatePosY + 85}%) scale(${animateScale})`
 
                         dental.classList.add('revolve')
 

@@ -54,7 +54,7 @@ export default function Header({ type, activeId }) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
             }
-
+            window.addEventListener('scroll', handleScroll)
             document.addEventListener('click', (evt) => {
                 const navbarWrapper = document.getElementById('navbar-dropdown')
                 let targetElement = evt.target // clicked element
@@ -78,6 +78,28 @@ export default function Header({ type, activeId }) {
             document.removeEventListener('click', () => {})
         }
     }, [])
+
+    let timeout = false
+    const handleScroll = (e) => {
+        if (!timeout) {
+            timeout = setTimeout(function () {
+                clearTimeout(timeout)
+                timeout = false
+
+                let scrollTop = window.pageYOffset
+                console.log('scrollTop', scrollTop)
+                if (scrollTop > 1) {
+                    if (navbar && navbar.classList.contains('is-trans')) {
+                        navbar.classList.remove('is-trans')
+                    }
+                } else {
+                    if (navbar && !navbar.classList.contains('is-trans')) {
+                        navbar.classList.add('is-trans')
+                    }
+                }
+            }, 100)
+        }
+    }
 
     const handleBurgerMenuClick = () => {
         if (document) {
@@ -343,6 +365,16 @@ export default function Header({ type, activeId }) {
                             )} */}
                         </>
                     )}
+                </div>
+                <div className="app-section">
+                    <a href={footerData?.AppStoreLink ?? ''}>
+                        <i></i>
+                        <span>iOS</span>
+                    </a>
+                    <a href={footerData?.PlayStoreLink ?? ''}>
+                        <i></i>
+                        <span>Android</span>
+                    </a>
                 </div>
             </nav>
             <style jsx>{styles}</style>

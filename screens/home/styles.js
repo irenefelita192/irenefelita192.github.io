@@ -210,11 +210,11 @@ export default css`
         }
         30% {
             transform-origin: left;
-            transform: translate(10px, 5px) scale(0.85) rotate(20deg);
+            transform: translate(0, 0) scale(0.85) rotate(10deg);
         }
         70% {
             transform-origin: left;
-            transform: translate(5px, 0) scale(0.95) rotate(10deg);
+            transform: translate(5px, -5px) scale(0.95) rotate(10deg);
         }
         100% {
             transform-origin: left;
@@ -404,16 +404,16 @@ export default css`
         }
 
         25% {
-            transform: translate(10%, 85%);
+            transform: translate(5%, 85%);
         }
 
         50% {
-            transform: translate(90%, 80%);
+            transform: translate(85%, 80%);
             z-index: 4;
         }
 
         75% {
-            transform: translate(95%, -10%);
+            transform: translate(87%, -5%);
             z-index: 2;
         }
 
@@ -450,12 +450,12 @@ export default css`
             z-index: 2;
         }
         25% {
-            transform: translate(-85%, 10%);
+            transform: translate(-75%, 15%);
             z-index: 4;
         }
 
         50% {
-            transform: translate(-82%, 95%);
+            transform: translate(-80%, 95%);
             z-index: 4;
         }
 
@@ -497,12 +497,12 @@ export default css`
             z-index: 2;
         }
         25% {
-            transform: translate(-5%, -90%);
+            transform: translate(-5%, -85%);
             z-index: 2;
         }
 
         50% {
-            transform: translate(-95%, -85%);
+            transform: translate(-78%, -85%);
             z-index: 4;
         }
 
@@ -544,12 +544,12 @@ export default css`
             z-index: 4;
         }
         25% {
-            transform: translate(95%, -5%);
+            transform: translate(85%, -5%);
             z-index: 4;
         }
 
         50% {
-            transform: translate(92%, -90%);
+            transform: translate(88%, -90%);
             z-index: 2;
         }
 
