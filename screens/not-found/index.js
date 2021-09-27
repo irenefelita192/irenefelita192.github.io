@@ -61,7 +61,7 @@ export default function NotFoundScreen() {
                 .not-found-description {
                     font-size: 16px;
                     line-height: 1.5;
-                    color: ${theme.colors.gray};
+                    color: ${theme.colors['vida-gray']};
                     margin: 0;
                     padding: 10px;
                     text-align: center;

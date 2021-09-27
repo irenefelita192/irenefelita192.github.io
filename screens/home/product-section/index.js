@@ -64,7 +64,8 @@ export default function ProductSection() {
                         <CSSTransition
                             in={productActive == prd.id}
                             timeout={100}
-                            classNames="default-img-transition"
+                            classNames="product-transition"
+                            key={prd.id}
                         >
                             <div
                                 key={prd.id}
@@ -73,7 +74,9 @@ export default function ProductSection() {
                                 }`}
                             >
                                 <div style={{ backgroundColor: prd.color }}>
-                                    <h2>{prd.title}</h2>
+                                    <div>
+                                        <h2>{prd.title}</h2>
+                                    </div>
                                     <div>{prd.description}</div>
                                     <div className="btn-navigation">
                                         <div
