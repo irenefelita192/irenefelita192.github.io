@@ -6,6 +6,7 @@ import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
 import ProductSection from './product-section'
+import AppSection from './app-section'
 import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -401,6 +402,10 @@ export default function HomeScreen() {
             {/* Section 3 start */}
             <ProductSection />
             {/* Section 3 end */}
+
+            {/* Section 4 start */}
+            {/* <AppSection /> */}
+            {/* Section 4 end */}
 
             <div className="bottom-section">
                 <div className="bottom-title">{homeData.bottomTitle}</div>
