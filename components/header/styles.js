@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css'
 import theme from 'components/global-styles/theme'
 const assetPrefix = process.env.config?.assetPrefix ?? ''
-console.log('styles', assetPrefix)
+
 export default css`
     .navbar {
         font-family: 'Bree Serif', serif;
