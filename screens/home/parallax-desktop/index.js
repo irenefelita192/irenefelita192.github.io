@@ -87,7 +87,15 @@ export default function HomeScreen({ homeData, isPortrait }) {
 
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
-                stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth
+                if (window.innerWidth <= 1920) {
+                    stickyPosTop = secondPosTop
+                }
+                if (window.innerWidth <= 1440) {
+                    stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth // 8% = jarak hero kedua dh title
+                } else if (window.innerWidth <= 1360) {
+                    stickyPosTop = secondPosTop + (14 / 100) * window.innerWidth
+                }
+
                 // setStickyPosTop(inpatientSecondPos) // 10% for title offset
                 const imgEl = document.querySelector(`#second-bg`)
                 const overlayImg = document.getElementById('overlay-image')
@@ -133,7 +141,7 @@ export default function HomeScreen({ homeData, isPortrait }) {
                 timeout = false
 
                 let scrollTop = window.pageYOffset
-                // console.log('scrollTop', scrollTop)
+
                 const inpatient = document.getElementById('icon-inpatient'),
                     dental = document.getElementById('icon-dental'),
                     maternity = document.getElementById('icon-maternity'),
@@ -146,37 +154,20 @@ export default function HomeScreen({ homeData, isPortrait }) {
 
                 if (!inpatientTopView) {
                     inpatientTopView = inpatient.getBoundingClientRect().top
-                    //kadang masi ngebug kalo scroll cepet
+
                     const calcScrollTop = stickyPosTop - inpatientTopView
                     animatePosX = calcScrollTop * 0.035
                     animatePosY = calcScrollTop * 0.3
                     animateRightPosX = calcScrollTop * 0.05
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
-                // if (!heroIconTopView)
-                //     heroIconTopView = heroIcon.getBoundingClientRect().top
-                // let heroIconTop = heroIconTopView + scrollTop
                 let inpatientTop = inpatientTopView + scrollTop
-                // isFix? : inpatient.getBoundingClientRect().top + scrollTop
-
-                // const posX = constant.iconPosX + scrollTop * 0.04,
-                //     posY = constant.iconPosY + scrollTop * 0.3
 
                 const posX = scrollTop * 0.035,
                     posY = scrollTop * 0.3,
                     rightPosX = scrollTop * 0.05,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
-
-                // if (scrollTop + 70 <= secondPosTop) {
-                //     if (navbar && !navbar.classList.contains('is-trans')) {
-                //         navbar.classList.add('is-trans')
-                //     }
-                // } else {
-                //     if (navbar && navbar.classList.contains('is-trans')) {
-                //         navbar.classList.remove('is-trans')
-                //     }
-                // }
 
                 if (inpatientTop <= stickyPosTop && stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {

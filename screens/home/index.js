@@ -8,6 +8,7 @@ import Footer from 'components/footer'
 import ParallaxSection from './parallax-desktop'
 import ProductSection from './product-section'
 import AppSection from './app-section'
+import BannerCTA from 'components/banner-cta'
 // import { constant } from './parallax-desktop/constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -50,24 +51,15 @@ export default function HomeScreen() {
         <div>
             {/* Section 1 and 2 start */}
             <ParallaxSection isPortrait={isPortrait} homeData={homeData} />
+            {/* Section 1 and 2 end */}
             {/* Section 3 start */}
             <ProductSection />
             {/* Section 3 end */}
-
             {/* Section 4 start */}
             <AppSection />
             {/* Section 4 end */}
 
-            <div className="bottom-section">
-                <div className="bottom-title">{homeData.bottomTitle}</div>
-                {homeData.bottomLinkText && (
-                    <div className="bottom-button">
-                        <a href={homeData.bottomLink}>
-                            {homeData.bottomLinkText}
-                        </a>
-                    </div>
-                )}
-            </div>
+            <BannerCTA data={homeData} />
             <Footer />
             <style jsx>{styles}</style>
         </div>

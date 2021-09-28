@@ -40,15 +40,15 @@ export default css`
     .product-wrapper > div:first-child > div:first-child {
         display: flex;
         align-items: flex-end;
-        height: 90px;
+        height: 12.5%;
         margin-bottom: 22px;
     }
 
     .product-wrapper > div:first-child > div {
-        padding: 0 140px;
+        padding: 0 20%;
         font-size: 18px;
         line-height: 1.4;
-        height: 78px;
+        height: 11%;
     }
 
     .product-wrapper > div:first-child > div:last-child {

@@ -737,6 +737,12 @@ export default css`
         }
     }
 
+    @media screen and (max-width: 1360px) {
+        .second-text {
+            top: 6%;
+        }
+    }
+
     @media screen and (max-width: 640px) {
         .hero-desc {
             font-weight: 500;
