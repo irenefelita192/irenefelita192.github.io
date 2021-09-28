@@ -105,7 +105,8 @@ export default css`
 
     .product-wrapper.product-transition-enter {
         display: grid;
-        opacity: 0.7;
+        opacity: 0;
+        transition: opacity 1s;
     }
     .product-wrapper.product-transition-enter-active {
         opacity: 0.7;
