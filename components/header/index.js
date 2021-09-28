@@ -87,7 +87,6 @@ export default function Header({ type, activeId }) {
                 timeout = false
 
                 let scrollTop = window.pageYOffset
-                console.log('scrollTop', scrollTop)
                 if (scrollTop > 1) {
                     if (navbar && navbar.classList.contains('is-trans')) {
                         navbar.classList.remove('is-trans')
