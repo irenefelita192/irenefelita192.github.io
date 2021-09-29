@@ -51,7 +51,6 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 secondPosTop = secondWrapper.offsetTop
                 if (window.innerWidth <= 1366) {
                     stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
-                    console.log('MASPK')
                 } else if (window.innerWidth <= 1440) {
                     stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth // 8% = jarak hero kedua dh title
                 } else if (window.innerWidth <= 1680) {
@@ -83,7 +82,6 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
             setTimeout(() => {
                 resetInitialAnimation()
             }, 1000)
-            console.log('secondPosTop', secondPosTop)
         }
     }, [heroHeight])
 

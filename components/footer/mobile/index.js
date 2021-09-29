@@ -1,9 +1,11 @@
 import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
+import Language from '../lang'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterMobile({ data }) {
+    console.log('KE SINI?')
     return (
         <>
             {data && (
@@ -78,6 +80,7 @@ export default function FooterMobile({ data }) {
                     </div>
 
                     <div className="fifth-row">
+                        <Language isDesktop={false} />
                         {data.privacyTitle && (
                             <>
                                 <a
@@ -94,10 +97,10 @@ export default function FooterMobile({ data }) {
                                 {data.tncTitle}
                             </a>
                         )}
-                    </div>
-                    <div className="copyright">
-                        {data?.copyrightText ??
-                            'All Rights Reserved © 2021 Vida'}
+                        <div className="copyright">
+                            {data?.copyrightText ??
+                                'All Rights Reserved © 2021 Vida'}
+                        </div>
                     </div>
                 </footer>
             )}

@@ -2,11 +2,12 @@ const theme = {
     colors: {
         black: '#000000',
         'vida-black': '#303030',
-        'vida-gray': '#7B7B7B',
+        'vida-gray': '#6B6B6B',
         'vida-brokenwhite': '#F6F4F1',
         'vida-green': '#00A59B',
         'vida-white': '#FCFCFC',
         'vida-green-fresh': '#00D1C5',
+        gray: '#7B7B7B',
         white: '#FFFFFF',
         brand: '#0A9188',
         yellow: 'F3E69E',

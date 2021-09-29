@@ -127,7 +127,8 @@ export default css`
         .dropdown-lang.is-mobile {
             margin: 0 24px;
             padding: 14px;
-            box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            color: ${theme.colors['vida-gray']};
         }
 
         .dropdown-lang.is-mobile .dropdown {
@@ -147,7 +148,7 @@ export default css`
         .dropdown-lang.is-mobile .selected-lang {
             font-size: 18px;
             line-height: 1.2;
-            color: #000000;
+            color: ${theme.colors['vida-gray']};
         }
     }
 
