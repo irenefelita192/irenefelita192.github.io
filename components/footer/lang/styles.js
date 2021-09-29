@@ -84,7 +84,7 @@ export default css`
         padding-left: 6px;
         font-size: 14px;
         line-height: 1.2;
-        color: #000000;
+        color: ${theme.colors['vida-gray']};
         text-transform: uppercase;
     }
 

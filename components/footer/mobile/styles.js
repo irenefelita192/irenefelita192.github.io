@@ -11,8 +11,7 @@ export default css`
     }
 
     footer .title {
-        font-weight: 500;
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
         font-size: 14px;
         line-height: 1.43;
         margin-bottom: 16px;
@@ -78,7 +77,6 @@ export default css`
 
     .menu-header {
         font-weight: 400;
-        font-family: 'Bree Serif', serif;
         text-transform: uppercase;
         font-size: 14px;
         line-height: 1.43;

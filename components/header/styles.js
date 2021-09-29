@@ -4,11 +4,12 @@ const assetPrefix = process.env.config?.assetPrefix ?? ''
 
 export default css`
     .navbar {
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
         font-size: 16px;
         line-height: 1.18;
         background-color: #ffffff;
-        color: ${theme.colors.black};
+        color: ${theme.colors['vida-gray']};
         height: ${theme.header.height};
         padding: 0 10%;
         position: fixed;
@@ -34,7 +35,7 @@ export default css`
     }
 
     .navbar-item {
-        color: ${theme.colors.black};
+        color: ${theme.colors['vida-gray']};
         padding: 0;
         margin: 0 30px;
         text-transform: capitalize;
@@ -54,6 +55,10 @@ export default css`
         left: 12%;
         top: 50%;
         transform: translate(-12%, -50%);
+    }
+
+    .navbar-brand .navbar-item {
+        margin: 0 0 0 10px;
     }
 
     .navbar.is-trans .navbar-item {
@@ -114,6 +119,7 @@ export default css`
         width: 100%;
         height: 1px;
         left: 0;
+        bottom: 37%;
         background-color: ${theme.colors['vida-green']};
         z-index: 1;
         border-radius: 16px;
@@ -265,6 +271,7 @@ export default css`
     }
 
     .app-section a {
+        font-family: 'Museo', sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;

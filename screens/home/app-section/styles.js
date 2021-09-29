@@ -26,7 +26,8 @@ export default css`
     }
 
     .fourth-wrapper > div:last-child h2 {
-        font-weight: 600;
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
         font-size: 44px;
         line-height: 1.05;
         padding: 0;

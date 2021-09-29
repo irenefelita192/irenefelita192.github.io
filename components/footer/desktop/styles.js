@@ -10,8 +10,8 @@ export default css`
     }
 
     footer .title {
-        font-weight: 500;
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
+        font-weight: normal;
         font-size: 14px;
         line-height: 1.43;
         margin-bottom: 16px;
@@ -146,6 +146,11 @@ export default css`
         line-height: 1.43;
         color: ${theme.colors['vida-gray']};
         margin-right: 36px;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .left-column a:hover {
+        color: ${theme.colors['vida-green']};
     }
 
     .copyright {

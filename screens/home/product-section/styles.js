@@ -31,7 +31,7 @@ export default css`
     .product-wrapper > div:first-child h2 {
         padding: 0;
         margin: 0;
-        /* font-family: Museo; */
+        font-family: 'Museo', sans-serif;
         font-weight: 600;
         font-size: 44px;
         line-height: 1.05;

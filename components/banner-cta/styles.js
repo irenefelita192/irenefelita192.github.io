@@ -12,7 +12,7 @@ export default css`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
         font-weight: normal;
         font-size: 36px;
         line-height: 1;
