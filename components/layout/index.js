@@ -117,6 +117,20 @@ export default function Layout({
                     rel="stylesheet"
                 />
 
+                <link
+                    rel="preload"
+                    href="fonts/Museo300-Regular-webfont.woff"
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+                <link
+                    rel="preload"
+                    href="fonts/Museo300-Regular-webfont.woff2"
+                    as="font"
+                    crossOrigin=""
+                />
+
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}
                 {/* <script
                     dangerouslySetInnerHTML={{

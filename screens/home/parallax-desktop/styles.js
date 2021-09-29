@@ -285,11 +285,12 @@ export default css`
 
     .hero-text {
         position: absolute;
-        top: 10%;
+        top: 12%;
     }
 
     .hero-title h1 {
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
         font-size: 60px;
         line-height: 1.1;
         color: #fcfcfc;
@@ -589,7 +590,8 @@ export default css`
     }
 
     .second-title h2 {
-        font-weight: 600;
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
         font-size: 44px;
         line-height: 1.1;
         text-align: center;
