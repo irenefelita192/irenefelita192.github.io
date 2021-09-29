@@ -3,7 +3,6 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getAllHeader, getLocale, getFooter } from 'services/common'
 import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
-import LangPopup from './lang'
 import { getCookie } from 'utils/global-util'
 import styles from './styles'
 
