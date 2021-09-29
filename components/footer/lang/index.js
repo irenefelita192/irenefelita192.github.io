@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-
+import { useAsyncEffect } from 'use-async-effect'
+import { getLocale } from 'services/common'
 import { getCookie } from 'utils/global-util'
 
 import styles from './styles'
@@ -7,17 +8,23 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function LangPopup({ isDesktop, languageData }) {
+export default function LangPopup({ isDesktop }) {
     const [isPopupLang, setIsPopupLang] = useState(false)
     const [activeLang, setActiveLang] = useState('id')
     const [activeLangObj, setActiveLangObj] = useState(null)
+    const [languageData, setLanguageData] = useState([])
+
+    useAsyncEffect(async (isMounted) => {
+        const locale = await getLocale()
+        if (!isMounted()) return
+        setLanguageData(locale)
+    }, [])
 
     useEffect(() => {
         if (languageData && languageData.length > 0) {
             const selLanguage = languageData.find((lang) => {
                 return lang.code === activeLang
             })
-
             setActiveLangObj(selLanguage)
         }
     }, [languageData])
@@ -29,7 +36,7 @@ export default function LangPopup({ isDesktop, languageData }) {
 
             document.addEventListener('click', (evt) => {
                 const navbarLang = document.getElementById('navbarLang')
-                const navbarWrapper = document.getElementById('navbarTop')
+
                 let targetElement = evt.target // clicked element
 
                 do {
@@ -66,15 +73,11 @@ export default function LangPopup({ isDesktop, languageData }) {
             <>
                 <div
                     id="navbarLang"
-                    className={`navbar-item navbar-lang ${
-                        isDesktop ? '' : 'is-mobile'
-                    }`}
+                    className={`dropdown-lang ${isDesktop ? '' : 'is-mobile'}`}
                     onClick={() => handleLangDropdown()}
                 >
                     <div
-                        className={`dropdown is-right ${
-                            isPopupLang ? 'is-active' : ''
-                        }`}
+                        className={`dropdown ${isPopupLang ? 'is-active' : ''}`}
                     >
                         {activeLangObj && (
                             <img

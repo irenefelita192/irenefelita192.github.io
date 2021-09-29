@@ -3,11 +3,10 @@ import css from 'styled-jsx/css'
 
 export default css`
     footer {
-        background-color: #f1efeb;
-        padding: 40px 10%;
-        color: ${theme.colors['vida-black']};
-        /* display: grid;
-        grid-gap: 62px; */
+        background-color: ${theme.colors.white};
+        padding: 40px 10% 0;
+        color: ${theme.colors['vida-gray']};
+        box-shadow: inset 0px 1px 0px rgba(197, 197, 197, 0.25);
     }
 
     footer .title {
@@ -16,7 +15,8 @@ export default css`
         font-size: 14px;
         line-height: 1.43;
         margin-bottom: 16px;
-        text-transform: uppercase;
+        color: ${theme.colors['vida-black']};
+        text-transform: capitalize;
     }
 
     footer .list {
@@ -25,7 +25,7 @@ export default css`
         line-height: 1.43;
         margin-bottom: 14px;
         display: block;
-        color: ${theme.colors['vida-black']};
+        color: ${theme.colors['vida-gray']};
         transition: color 0.2s ease-in-out;
     }
 
@@ -67,8 +67,8 @@ export default css`
     }
 
     .first-row .text {
-        font-size: 13px;
-        line-height: 1.38;
+        font-size: 15px;
+        line-height: 1.27;
         padding-top: 12px;
     }
 
@@ -128,9 +128,11 @@ export default css`
 
     .footer-bottom {
         display: flex;
-        padding-top: 32px;
+        padding: 22px 0;
+        margin-top: 26px;
         justify-content: space-between;
         align-items: center;
+        border-top: 1px solid rgba(123, 123, 123, 0.2);
     }
 
     .left-column {
@@ -142,19 +144,14 @@ export default css`
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
-        color: ${theme.colors['vida-black']};
-    }
-
-    .left-column span {
-        margin: 0 30px;
-        height: 31px;
-        border-right: 1px solid #5f5f5f;
+        color: ${theme.colors['vida-gray']};
+        margin-right: 36px;
     }
 
     .copyright {
         font-weight: 500;
-        font-size: 14px;
-        line-height: 1.43;
+        font-size: 12px;
+        line-height: 1.67;
         text-align: right;
     }
 

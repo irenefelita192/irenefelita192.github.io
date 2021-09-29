@@ -4,42 +4,7 @@ import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-const products = [
-    {
-        id: 1,
-        title: 'Protect Yourself & Your Loved Ones',
-        description:
-            'You and those who matter deserve a better companion in every season in life. Vida is a reliable healthcare partner for today and tomorrow.',
-        image: `${assetPrefix}/images/home/outpatient@2x.jpg`,
-        color: '#F88449',
-    },
-    {
-        id: 2,
-        title: 'Cast Away The Stress',
-        description:
-            'Focus on your treatment to get better and let Vida handle the rest.',
-        image: `${assetPrefix}/images/home/inpatient@2x.jpg`,
-        color: '#E6C031',
-    },
-    {
-        id: 3,
-        title: 'Life Full of Smiles',
-        description:
-            'Your simple and beautiful smile changes the world. Maintain your dental health to bring out happiness from within.',
-        image: `${assetPrefix}/images/home/dental@2x.jpg`,
-        color: '#3989D7',
-    },
-    {
-        id: 4,
-        title: 'Celebrate A New Life',
-        description:
-            'It’s never too early for a couple prepare and plan the warmest welcome for a new generation',
-        image: `${assetPrefix}/images/home/maternity@2x.jpg`,
-        color: '#EA95C1',
-    },
-]
-
-export default function ProductSection() {
+export default function ProductSection({ data }) {
     const [productActive, setProductActive] = useState(1)
 
     useEffect(() => {
@@ -51,15 +16,15 @@ export default function ProductSection() {
             setProductActive(productActive - 1)
         }
 
-        if (direction == 'next' && productActive < products.length) {
+        if (direction == 'next' && productActive < data.length) {
             setProductActive(productActive + 1)
         }
     }
 
     return (
         <div className="third-wrapper">
-            {products &&
-                products.map((prd) => {
+            {data &&
+                data.map((prd) => {
                     return (
                         <CSSTransition
                             in={productActive == prd.id}
@@ -73,7 +38,11 @@ export default function ProductSection() {
                                     productActive == prd.id ? 'is-active' : ''
                                 }`}
                             >
-                                <div style={{ backgroundColor: prd.color }}>
+                                <div
+                                    style={{
+                                        backgroundColor: prd.backgroundColor,
+                                    }}
+                                >
                                     <div>
                                         <h2>{prd.title}</h2>
                                     </div>
@@ -97,7 +66,7 @@ export default function ProductSection() {
                                         </div>
                                         <div
                                             className={`btn-next ${
-                                                productActive == products.length
+                                                productActive == data.length
                                                     ? 'disabled'
                                                     : ''
                                             }`}
@@ -114,7 +83,12 @@ export default function ProductSection() {
                                     </div>
                                 </div>
                                 <div>
-                                    <img src={prd.image} alt="" />
+                                    <img
+                                        src={`${assetDomain}${
+                                            prd?.image?.url ?? ''
+                                        }`}
+                                        alt=""
+                                    />
                                 </div>
                             </div>
                         </CSSTransition>

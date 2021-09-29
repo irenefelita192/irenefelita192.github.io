@@ -3,7 +3,6 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getAllHeader, getLocale, getFooter } from 'services/common'
 import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
-import LangPopup from './lang'
 import { getCookie } from 'utils/global-util'
 import styles from './styles'
 
@@ -18,7 +17,6 @@ export default function Header({ type, activeId }) {
     const [headerData, setHeaderData] = useState([])
     const [footerData, setFooterData] = useState(null)
 
-    const [languageData, setLanguageData] = useState([])
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
     const [mobileMenuHeight, setMobileMenuHeight] = useState(0)
 
@@ -26,7 +24,6 @@ export default function Header({ type, activeId }) {
         headerHeight = 80
 
     useAsyncEffect(async (isMounted) => {
-        const locale = await getLocale()
         let langId, activePath
         if (process.browser) {
             langId = getCookie('lang')
@@ -43,7 +40,6 @@ export default function Header({ type, activeId }) {
         setHeaderData(headers)
         setActiveMenu(activePath)
         if (footerDt) setFooterData(footerDt)
-        setLanguageData(locale)
     }, [])
 
     useEffect(() => {
@@ -333,10 +329,6 @@ export default function Header({ type, activeId }) {
 
                             {!isDesktop && (
                                 <div className="navbar-end">
-                                    <LangPopup
-                                        isDesktop={isDesktop}
-                                        languageData={languageData}
-                                    />
                                     {footerData && (
                                         <>
                                             <div className="download">
@@ -353,15 +345,6 @@ export default function Header({ type, activeId }) {
                                     )}
                                 </div>
                             )}
-
-                            {/* {isDesktop && (
-                                <div className="navbar-end">
-                                    <LangPopup
-                                        isDesktop={isDesktop}
-                                        languageData={languageData}
-                                    />
-                                </div>
-                            )} */}
                         </>
                     )}
                 </div>

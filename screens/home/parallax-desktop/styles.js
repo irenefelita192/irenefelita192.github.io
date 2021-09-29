@@ -8,7 +8,6 @@ export default css`
         background-size: contain;
         background-repeat: no-repeat;
         background-position: bottom right;
-        /* min-height: 900px; */
         color: #ffffff;
         display: flex;
         flex-direction: column;
@@ -609,151 +608,9 @@ export default css`
 
     /* Second Section - end */
 
-    /*Bottom Section - start*/
-
-    .bottom-section {
-        background-color: #f3ebe4;
-        height: 266px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Bree Serif', serif;
-    }
-
-    .bottom-title {
-        font-size: 28px;
-        line-height: 1.21;
-    }
-
-    .bottom-button a {
-        display: block;
-        background: ${theme.colors['vida-black']};
-        border: 1px solid #000000;
-        color: ${theme.colors['vida-brokenwhite']};
-        box-sizing: border-box;
-        border-radius: 16px;
-        font-size: 14px;
-        line-height: 1.43;
-        padding: 13px 62px;
-        margin-top: 16px;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .bottom-button a:hover {
-        background: #00a59b;
-        border: 1px solid #21837d;
-        color: ${theme.colors['vida-brokenwhite']};
-    }
-
-    .hero-single-button {
-        font-family: 'Bree Serif', serif;
-        font-size: 14px;
-        line-height: 1.43;
-        padding: 17px 28px;
-        background-color: #ffffff;
-        border: 1px solid #cecece;
-        box-sizing: border-box;
-        border-radius: 16px;
-        color: ${theme.colors['vida-black']};
-        width: 100%;
-        margin-top: 32px;
-    }
-
-    .hero-single-button a {
-        color: ${theme.colors['vida-black']};
-    }
-    /*Bottom Section - end*/
-
-    @media screen and (max-width: 1024px) {
-        .card-item img {
-            width: 348px;
-        }
-
-        .card-item.card-odd .card-content {
-            padding-left: 32px;
-        }
-
-        .card-item.card-even .card-content {
-            padding-right: 32px;
-        }
-    }
-
-    @media screen and (max-width: 900px) {
-        .card-item.card-odd,
-        .card-item.card-even {
-            flex-direction: column;
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .content-wrapper {
-            padding: 56px 24px;
-            position: relative;
-        }
-
-        .hero-wrapper {
-            justify-content: flex-end;
-            padding: 0 18px 56px;
-        }
-
-        .hero-title {
-            font-size: 56px;
-            line-height: 1.04;
-        }
-
-        .hero-desc {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 1.37;
-        }
-
-        .card-item img {
-            width: 100%;
-        }
-
-        .card-item.card-odd .card-content,
-        .card-item.card-even .card-content {
-            padding-left: 0;
-            padding-right: 0;
-            text-align: center;
-            padding-top: 24px;
-        }
-
-        .card-item {
-            margin-bottom: 54px;
-        }
-
-        .bottom-section {
-            background-color: #f3ebe4;
-            height: 266px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Bree Serif', serif;
-            padding: 0 24px;
-            text-align: center;
-        }
-    }
-
-    @media screen and (max-width: 640px) {
-        .hero-desc {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 1.37;
-        }
-
-        .card-title {
-            font-size: 32px;
-            line-height: 1.12;
-        }
-
-        .card-desc {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 1.37;
-            margin-top: 12px;
+    @media screen and (max-width: 1280px) {
+        .second-text {
+            top: 8%;
         }
     }
 `

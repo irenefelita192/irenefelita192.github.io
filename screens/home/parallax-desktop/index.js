@@ -5,7 +5,9 @@ import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-export default function HomeScreen({ homeData, isPortrait }) {
+export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
+    if (!sectionOne) return <></>
+
     const [heroHeight, setHeroHeight] = useState(0)
     const [iconHeight, setIconHeight] = useState({
         inpatient: 0,
@@ -13,29 +15,19 @@ export default function HomeScreen({ homeData, isPortrait }) {
         dental: 0,
         outpatient: 0,
     })
+
     const [iconWrapperSize, setIconWrapperSize] = useState({
         width: 600,
         height: 300,
     })
 
-    // const [stickyPosTop, setStickyPosTop] = useState(0)
-
     let headerHeight = 80,
         secondPosTop = 0,
         stickyPosTop = 0,
-        // inpatientSecondPos = 0,
         inpatientTopView = 0
 
     useEffect(() => {
-        let langId
         if (window) {
-            langId = getCookie('lang')
-            // const mob =
-            //     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            //         navigator.userAgent
-            //     )
-            // console.log('ismobile', mob)
-            // setIsMobile(mob)
             setHeroHeight(window.innerHeight)
             setIconHeight({
                 inpatient: (7.6 / 100) * window.innerWidth,
@@ -47,38 +39,8 @@ export default function HomeScreen({ homeData, isPortrait }) {
                 width: (35 / 100) * window.innerWidth,
                 height: (21 / 100) * window.innerWidth,
             })
-
-            // const secondWrapper = document.getElementById('second-wrapper')
-            // console.log('secondWrapper', secondWrapper)
-            // if (secondWrapper) {
-            //     secondPosTop = secondWrapper.offsetTop
-
-            //     inpatientSecondPos =
-            //         secondPosTop + (8 / 100) * window.innerWidth // 10% for title offset
-            //     const imgEl = document.querySelector(`#second-bg`)
-            //     const overlayImg = document.getElementById('overlay-image')
-            //     if (imgEl.complete) {
-            //         const imgHeight =
-            //             (imgEl.naturalHeight / imgEl.naturalWidth) *
-            //             window.innerWidth
-            //         secondWrapper.style.height = `${imgHeight}px`
-            //         overlayImg.style.opacity = '1'
-            //     } else {
-            //         imgEl.onload = () => {
-            //             const imgHeight =
-            //                 (imgEl.naturalHeight / imgEl.naturalWidth) *
-            //                 window.innerWidth
-            //             secondWrapper.style.height = `${imgHeight}px`
-            //             overlayImg.style.opacity = '1'
-            //         }
-            //     }
-            // }
-
-            // setTimeout(() => {
-            //     resetInitialAnimation()
-            // }, 1000)
         }
-    }, [homeData])
+    }, [])
 
     useEffect(() => {
         if (window && heroHeight > 0) {
@@ -87,7 +49,17 @@ export default function HomeScreen({ homeData, isPortrait }) {
 
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
-                stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth
+                if (window.innerWidth <= 1366) {
+                    stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
+                    console.log('MASPK')
+                } else if (window.innerWidth <= 1440) {
+                    stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth // 8% = jarak hero kedua dh title
+                } else if (window.innerWidth <= 1680) {
+                    stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
+                } else if (window.innerWidth <= 1920) {
+                    stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
+                }
+
                 // setStickyPosTop(inpatientSecondPos) // 10% for title offset
                 const imgEl = document.querySelector(`#second-bg`)
                 const overlayImg = document.getElementById('overlay-image')
@@ -133,7 +105,7 @@ export default function HomeScreen({ homeData, isPortrait }) {
                 timeout = false
 
                 let scrollTop = window.pageYOffset
-                // console.log('scrollTop', scrollTop)
+
                 const inpatient = document.getElementById('icon-inpatient'),
                     dental = document.getElementById('icon-dental'),
                     maternity = document.getElementById('icon-maternity'),
@@ -146,37 +118,20 @@ export default function HomeScreen({ homeData, isPortrait }) {
 
                 if (!inpatientTopView) {
                     inpatientTopView = inpatient.getBoundingClientRect().top
-                    //kadang masi ngebug kalo scroll cepet
+
                     const calcScrollTop = stickyPosTop - inpatientTopView
                     animatePosX = calcScrollTop * 0.035
                     animatePosY = calcScrollTop * 0.3
                     animateRightPosX = calcScrollTop * 0.05
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
-                // if (!heroIconTopView)
-                //     heroIconTopView = heroIcon.getBoundingClientRect().top
-                // let heroIconTop = heroIconTopView + scrollTop
                 let inpatientTop = inpatientTopView + scrollTop
-                // isFix? : inpatient.getBoundingClientRect().top + scrollTop
-
-                // const posX = constant.iconPosX + scrollTop * 0.04,
-                //     posY = constant.iconPosY + scrollTop * 0.3
 
                 const posX = scrollTop * 0.035,
                     posY = scrollTop * 0.3,
                     rightPosX = scrollTop * 0.05,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
-
-                // if (scrollTop + 70 <= secondPosTop) {
-                //     if (navbar && !navbar.classList.contains('is-trans')) {
-                //         navbar.classList.add('is-trans')
-                //     }
-                // } else {
-                //     if (navbar && navbar.classList.contains('is-trans')) {
-                //         navbar.classList.remove('is-trans')
-                //     }
-                // }
 
                 if (inpatientTop <= stickyPosTop && stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
@@ -237,16 +192,15 @@ export default function HomeScreen({ homeData, isPortrait }) {
 
     // if (!homeData) return <Loader />
 
-    const { header } = homeData
-    let heroImg = header.desktopImage
-        ? `${assetDomain}${header.desktopImage.url}`
+    let heroImg = sectionOne.shamrockImage
+        ? `${assetDomain}${sectionOne.shamrockImage.url}`
         : ''
-    if (isPortrait) {
-        heroImg = header.mobileImage
-            ? `${assetDomain}${header.mobileImage.url}`
-            : ''
-    }
-    if (!homeData) return <></>
+    // if (isPortrait) {
+    //     heroImg = header.mobileImage
+    //         ? `${assetDomain}${header.mobileImage.url}`
+    //         : ''
+    // }
+
     return (
         <>
             <div
@@ -258,14 +212,18 @@ export default function HomeScreen({ homeData, isPortrait }) {
             >
                 <div className="hero-text">
                     <div className="hero-title">
-                        <h1>A Health Service with Only You In Mind.</h1>
+                        <h1>{sectionOne.title || ''}</h1>
                     </div>
                     <div className="hero-desc">
-                        Designed to always be with you & your loved ones.
+                        {sectionOne.description || ''}
                     </div>
                 </div>
                 <div className="hero-image">
-                    <img src={`${assetPrefix}/images/home/hero-1.png`} />
+                    <img
+                        src={`${assetDomain}${
+                            sectionOne?.familyImage?.url ?? ''
+                        }`}
+                    />
                     {/* <div id="hero-icon-all" className="hero-icon-all"> */}
                     <div
                         id="icon-inpatient"
@@ -281,14 +239,14 @@ export default function HomeScreen({ homeData, isPortrait }) {
                                 height: `${iconWrapperSize.height}px`,
                             }}
                         >
-                            {/* <div className={'hero-icon-child'}> */}
                             <img
                                 style={{
                                     width: `${iconHeight.inpatient}px`,
                                 }}
-                                src={`${assetPrefix}/images/home/inpatient.png`}
+                                src={`${assetDomain}${
+                                    sectionOne?.inpatientIcon?.url ?? ''
+                                }`}
                             />
-                            {/* </div> */}
                         </div>
                     </div>
                     <div
@@ -309,7 +267,9 @@ export default function HomeScreen({ homeData, isPortrait }) {
                                 style={{
                                     width: `${iconHeight.maternity}px`,
                                 }}
-                                src={`${assetPrefix}/images/home/maternity.png`}
+                                src={`${assetDomain}${
+                                    sectionOne?.maternityIcon?.url ?? ''
+                                }`}
                             />
                         </div>
                     </div>
@@ -331,7 +291,9 @@ export default function HomeScreen({ homeData, isPortrait }) {
                                 style={{
                                     width: `${iconHeight.outpatient}px`,
                                 }}
-                                src={`${assetPrefix}/images/home/outpatient.png`}
+                                src={`${assetDomain}${
+                                    sectionOne?.outpatientIcon?.url ?? ''
+                                }`}
                             />
                         </div>
                     </div>
@@ -354,36 +316,41 @@ export default function HomeScreen({ homeData, isPortrait }) {
                                 style={{
                                     width: `${iconHeight.dental}px`,
                                 }}
-                                src={`${assetPrefix}/images/home/dental.png`}
+                                src={`${assetDomain}${
+                                    sectionOne?.dentalIcon?.url ?? ''
+                                }`}
                             />
                         </div>
                     </div>
                 </div>
             </div>
+            {sectionTwo && (
+                <div id="second-wrapper" className="second-wrapper">
+                    <div className="second-text">
+                        <div className="second-title">
+                            <h2> {sectionTwo.title || ''}</h2>
+                        </div>
+                        <div className="second-desc">
+                            {sectionTwo.description || ''}
+                        </div>
+                    </div>
+                    <img
+                        id="second-bg"
+                        className="second-bg"
+                        src={`${assetDomain}${
+                            sectionTwo?.backgroundImage?.url ?? ''
+                        }`}
+                    />
 
-            <div id="second-wrapper" className="second-wrapper">
-                <div className="second-text">
-                    <div className="second-title">
-                        <h2> Everything Revolves Around You</h2>
-                    </div>
-                    <div className="second-desc">
-                        No one knows you better than yourself. That’s why we
-                        deliver a health service where you can seamlessly tailor
-                        it according to your needs.{' '}
-                    </div>
+                    <img
+                        id="overlay-image"
+                        className="overlay-image"
+                        src={`${assetDomain}${
+                            sectionTwo?.familyImage?.url ?? ''
+                        }`}
+                    />
                 </div>
-                <img
-                    id="second-bg"
-                    className="second-bg"
-                    src={`${assetPrefix}/images/home/room.png`}
-                />
-
-                <img
-                    id="overlay-image"
-                    className="overlay-image"
-                    src={`${assetPrefix}/images/home/family.png`}
-                />
-            </div>
+            )}
 
             <style jsx>{styles}</style>
         </>

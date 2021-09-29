@@ -73,7 +73,7 @@ export default css`
 
     .clip-wrapper-inner {
         clip-path: path(
-            'M 550,400 C 500,10 810,574 262,550 95,524 0,372.931 10,360 V -300 H 300 590 Z'
+            'M 550,400 C 500,10 810,574 262,550 85,524 0,372.931 10,360 V -300 H 300 590 Z'
         );
         /* clip-path: path(
             'M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z'
@@ -121,8 +121,8 @@ export default css`
 
     .is-visible .circle-after {
         opacity: 1;
-        transform: rotate(90deg);
-        transition: opacity 0.3s ease-in 1s, transform 4s ease-in-out;
+        transform: rotate(120deg);
+        transition: opacity 0.3s ease-in 0.8s, transform 4s ease-in-out;
         /* animation: 4s rotate 1s ease-in-out forwards; */
     }
 
