@@ -50,13 +50,19 @@ export default function HomeScreen() {
     return (
         <div>
             {/* Section 1 and 2 start */}
-            <ParallaxSection isPortrait={isPortrait} homeData={homeData} />
+            <ParallaxSection
+                isPortrait={isPortrait}
+                sectionOne={homeData.SectionOne}
+                sectionTwo={homeData.SectionTwo}
+            />
             {/* Section 1 and 2 end */}
+
             {/* Section 3 start */}
-            <ProductSection />
+            <ProductSection data={homeData.SectionThree} />
             {/* Section 3 end */}
+
             {/* Section 4 start */}
-            <AppSection />
+            <AppSection data={homeData.SectionFour} />
             {/* Section 4 end */}
 
             <BannerCTA data={homeData} />

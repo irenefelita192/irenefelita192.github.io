@@ -1,5 +1,5 @@
 import styles from './styles'
-
+import Language from '../lang'
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterDesktop({ data }) {
     return (
@@ -117,6 +117,7 @@ export default function FooterDesktop({ data }) {
                     </div>
                     <div className="footer-bottom">
                         <div className="left-column">
+                            <Language isDesktop={true} />
                             {data.privacyTitle && (
                                 <>
                                     <a

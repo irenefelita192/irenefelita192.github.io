@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
 import styles from './styles'
 
-const assetDomain = process.env.config?.baseEndpoint ?? '',
-    assetPrefix = process.env.config?.assetPrefix ?? ''
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function AppSection() {
+export default function AppSection({ data }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isVisible, setIsVisible] = useState(false)
 
@@ -32,7 +31,6 @@ export default function AppSection() {
     const observerCallback = (entries, observer) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                console.log('ininiiini', entry.isIntersectionRatio)
                 setIsVisible(true)
             } else {
                 setIsVisible(false)
@@ -51,27 +49,29 @@ export default function AppSection() {
                     >
                         <img
                             className="circle circle-before"
-                            src={`${assetPrefix}/images/home/bg-app-before.svg`}
+                            src={`${assetDomain}${
+                                data?.circleImage?.url ?? ''
+                            }`}
                         />
                         <img
                             className="circle circle-after"
-                            src={`${assetPrefix}/images/home/bg-app-after.svg`}
+                            src={`${assetDomain}${
+                                data?.circleImageAfter?.url ?? ''
+                            }`}
                         />
                         <img
                             className="hp-image"
-                            src={`${assetPrefix}/images/home/hp.png`}
+                            src={`${assetDomain}${
+                                data?.handphoneImage?.url ?? ''
+                            }`}
                         />
                     </div>
                 </div>
             </div>
 
             <div>
-                <h2>You’re in Control Only With a Few Taps</h2>
-                <div>
-                    We make it happen with a mobile app that fits everyone’s
-                    needs. Manage your protection single handedly. Never has it
-                    been simpler and better with Vida.
-                </div>
+                <h2>{data.title || ''}</h2>
+                <div>{data.description || ''}</div>
             </div>
             <style jsx>{styles}</style>
         </div>

@@ -476,9 +476,28 @@ export default css`
         box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
     }
 
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1280px) {
         .navbar {
-            padding: 0 10px;
+            padding: 0 7%;
+        }
+
+        .navbar.is-trans:before {
+            width: 82%;
+            left: 9%;
+        }
+
+        .navbar-brand {
+            left: 9%;
+        }
+
+        .app-section {
+            right: 9%;
+        }
+    }
+
+    @media screen and (max-width: 1180px) {
+        .navbar-item {
+            margin: 0 20px;
         }
     }
 
