@@ -502,6 +502,10 @@ export default css`
     }
 
     @media screen and (max-width: 1023px) {
+        .app-section {
+            display: none;
+        }
+
         .navbar {
             padding: 0;
         }

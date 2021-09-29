@@ -65,7 +65,7 @@ export default function HomeScreen() {
             <AppSection data={homeData.SectionFour} />
             {/* Section 4 end */}
 
-            <BannerCTA data={homeData} />
+            <BannerCTA data={homeData.BottomBanner} />
             <Footer />
             <style jsx>{styles}</style>
         </div>

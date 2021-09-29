@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
-export default function BannerCTA({ data, type = '' }) {
+export default function BannerCTA({ data }) {
     const [isIos, setIsIos] = useState(false)
 
     useEffect(() => {
-        if (process.browser && type == 'download') {
+        if (process.browser && data.isDownload) {
             const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
             setIsIos(ios)
         }
@@ -17,15 +17,20 @@ export default function BannerCTA({ data, type = '' }) {
         <>
             <div
                 className={`banner-section ${
-                    type == 'download' ? 'is-download' : ''
+                    data.isDownload ? 'is-download' : ''
                 }`}
-                style={{ backgroundColor: '#3989D7' }}
+                style={{
+                    backgroundColor: data.backgroundColor || '#3989D7',
+                    backgroundImage: `url(${assetDomain}${
+                        data?.shamrockImage?.url ?? ''
+                    })`,
+                }}
             >
-                <div>Start Your Own Health Journey with Ease</div>
-                <div className="banner-desc">
-                    Get started now by downloading our mobile app
-                </div>
-                {type == 'download' ? (
+                <div>{data.title || ''}</div>
+                {data.description && (
+                    <div className="banner-desc">{data.description}</div>
+                )}
+                {data.isDownload ? (
                     <>
                         {isIos && (
                             <a
@@ -61,8 +66,8 @@ export default function BannerCTA({ data, type = '' }) {
                     </>
                 ) : (
                     // <div className="banner-link">
-                    <a className="banner-link" href={data.goodThingButtonLink}>
-                        Explore Vida
+                    <a className="banner-link" href={data.buttonLink}>
+                        {data.buttonText}
                     </a>
                     // </div>
                 )}

@@ -18,6 +18,8 @@ export default css`
         line-height: 1;
         text-align: center;
         color: ${theme.colors['vida-white']};
+        background-repeat: no-repeat;
+        background-position: bottom right;
     }
 
     .banner-section.is-download {
