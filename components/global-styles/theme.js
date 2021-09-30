@@ -1,6 +1,7 @@
 const theme = {
     colors: {
         black: '#000000',
+        black30: '#303030',
         'vida-black': '#303030',
         'vida-gray': '#6B6B6B',
         'vida-brokenwhite': '#F6F4F1',
