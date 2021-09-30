@@ -9,7 +9,7 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function Header({ type, activeId }) {
+export default function Header({ activeId }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
     const [activeMenu, setActiveMenu] = useState(null)
@@ -32,7 +32,7 @@ export default function Header({ type, activeId }) {
         }
         const headers = await getAllHeader(langId ? langId : 'id')
         let footerDt
-        if (window.innerWidth < 1024) {
+        if (window.innerWidth <= 1024) {
             footerDt = await getFooter(langId ? langId : 'id')
         }
 
@@ -46,7 +46,7 @@ export default function Header({ type, activeId }) {
         if (process.browser) {
             navbar = document.getElementById('navbarTop')
             // window.addEventListener('scroll', handleScroll)
-            if (window.innerWidth < 1024) {
+            if (window.innerWidth <= 1024) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
             }
@@ -131,6 +131,7 @@ export default function Header({ type, activeId }) {
                                         <a
                                             className="submenu-content"
                                             href={subMenu.href}
+                                            key={subMenu.id}
                                         >
                                             {subMenu.title}
                                         </a>
@@ -196,7 +197,7 @@ export default function Header({ type, activeId }) {
         <>
             <nav
                 id="navbarTop"
-                className={`navbar ${type == 'trans' ? 'is-trans' : ''}`}
+                className={`navbar is-trans`}
                 role="navigation"
                 aria-label="main navigation"
             >
@@ -207,7 +208,11 @@ export default function Header({ type, activeId }) {
                         />
                     </div>
                 )}
-                <div className="navbar-brand">
+                <div
+                    className={`navbar-brand ${
+                        isMenuActive ? 'is-active' : ''
+                    }`}
+                >
                     <a
                         className={`navbar-item ${
                             isMenuActive ? 'brand-active' : ''

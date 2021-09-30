@@ -1,5 +1,6 @@
 import Accordion from 'components/accordion'
 import DownloadButton from 'components/download-button'
+import Language from '../lang'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
@@ -51,7 +52,7 @@ export default function FooterMobile({ data }) {
                     <div className="third-row">
                         <Accordion>
                             {data.menu.map((menu) => (
-                                <Accordion.Container>
+                                <Accordion.Container key={menu.id}>
                                     <Accordion.Header id={menu.id}>
                                         <span className="menu-header">
                                             {menu.title}
@@ -61,7 +62,10 @@ export default function FooterMobile({ data }) {
                                         <>
                                             <Accordion.Body>
                                                 {menu.subMenu.map((subMenu) => (
-                                                    <div className="submenu-content">
+                                                    <div
+                                                        className="submenu-content"
+                                                        key={subMenu.id}
+                                                    >
                                                         {subMenu.title}
                                                     </div>
                                                 ))}
@@ -78,6 +82,7 @@ export default function FooterMobile({ data }) {
                     </div>
 
                     <div className="fifth-row">
+                        <Language isDesktop={false} />
                         {data.privacyTitle && (
                             <>
                                 <a
@@ -94,10 +99,10 @@ export default function FooterMobile({ data }) {
                                 {data.tncTitle}
                             </a>
                         )}
-                    </div>
-                    <div className="copyright">
-                        {data?.copyrightText ??
-                            'All Rights Reserved © 2021 Vida'}
+                        <div className="copyright">
+                            {data?.copyrightText ??
+                                'All Rights Reserved © 2021 Vida'}
+                        </div>
                     </div>
                 </footer>
             )}

@@ -3,11 +3,9 @@ import css from 'styled-jsx/css'
 
 export default css`
     footer {
-        background-color: #f1efeb;
+        background-color: ${theme.colors.white};
         padding: 56px 20px 0;
         color: ${theme.colors['vida-black']};
-        /* display: grid;
-        grid-gap: 62px; */
     }
 
     footer .title {
@@ -76,16 +74,18 @@ export default css`
     }
 
     .menu-header {
-        font-weight: 400;
+        font-weight: normal;
         text-transform: uppercase;
         font-size: 14px;
         line-height: 1.43;
+        font-family: 'Museo', sans-serif;
     }
 
     .submenu-content {
+        color: ${theme.colors['vida-gray']};
         font-weight: 500;
-        font-size: 20px;
-        line-height: 1;
+        font-size: 16px;
+        line-height: 1.25;
         padding-bottom: 15px;
     }
 
@@ -99,7 +99,7 @@ export default css`
     }
 
     .third-row :global(.accordion-content) {
-        border-bottom: 1px solid #bfbfbf;
+        border-bottom: 1px solid #eaeaea;
     }
 
     .download {
@@ -127,28 +127,25 @@ export default css`
         padding-top: 32px;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 
     .fifth-row a {
         font-weight: 500;
         font-size: 16px;
         line-height: 1.25;
-        color: ${theme.colors['vida-black']};
-    }
-
-    .fifth-row span {
-        margin: 0 30px;
-        height: 31px;
-        border-right: 1px solid #5f5f5f;
+        color: ${theme.colors['vida-gray']};
+        margin-top: 22px;
     }
 
     .copyright {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 55px 0 20px;
+        margin: 22px 0;
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
+        color: ${theme.colors['vida-gray']};
     }
 `

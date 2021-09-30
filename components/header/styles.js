@@ -172,12 +172,12 @@ export default css`
         max-height: none;
     }
 
-    .navbar.is-trans img,
-    img.is-white {
+    .navbar.is-trans .navbar-brand img,
+    .navbar-brand img.is-white {
         display: none;
     }
 
-    .navbar.is-trans img.is-white {
+    .navbar.is-trans .navbar-brand img.is-white {
         display: block;
     }
 
@@ -225,7 +225,7 @@ export default css`
         .navbar-menu.is-active
         .navbar-item.has-dropdown
         .navbar-link {
-        color: ${theme.colors['vida-white']};
+        color: ${theme.colors.black};
     }
 
     .navbar-link.is-active,
@@ -508,13 +508,40 @@ export default css`
         }
     }
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 1024px) {
+        .navbar-menu {
+            display: none;
+        }
+
+        .navbar:before {
+            display: none;
+        }
+
         .app-section {
             display: none;
         }
 
         .navbar {
             padding: 0;
+        }
+
+        .navbar-brand {
+            position: relative;
+            left: 0;
+            transform: translate(0, -50%);
+        }
+
+        .navbar-brand.is-active {
+            background-color: ${theme.colors.white};
+            color: ${theme.colors.black};
+        }
+
+        .navbar-brand a.navbar-item img {
+            height: 36px;
+        }
+
+        .navbar-brand .navbar-item {
+            margin: 0 0 0 24px;
         }
 
         .navbar-menu.is-active {
@@ -529,9 +556,18 @@ export default css`
             margin-right: 12px;
         }
 
+        .navbar.is-trans .navbar-burger {
+            color: ${theme.colors.white};
+        }
+
+        .navbar .navbar-burger.is-active {
+            color: ${theme.colors.black};
+        }
+
         .navbar-burger span {
             height: 2px;
             width: 24px;
+            transition-duration: 0.3s;
         }
 
         .navbar-burger span:nth-child(1) {
@@ -574,6 +610,7 @@ export default css`
             transition: background-color 0.3s ease-in-out;
             background-color: transparent;
             font-size: 18px;
+            text-transform: uppercase;
         }
 
         .animation-slide-right {
@@ -594,7 +631,7 @@ export default css`
 
         .submenu-content {
             display: block;
-            color: #000000;
+            color: ${theme.colors['vida-gray']};
             font-family: 'Inter', sans-serif;
             font-weight: 500;
             font-size: 17px;
@@ -607,11 +644,6 @@ export default css`
         .navbar-menu.is-active .navbar-item.is-active span {
             position: relative;
             color: ${theme.colors['vida-green']};
-        }
-
-        .navbar-menu.is-active .navbar-item.is-active span:after {
-            display: block;
-            width: 100%;
         }
 
         .navbar-menu.is-active :global(.accordion-label:after) {
@@ -643,8 +675,11 @@ export default css`
         }
 
         .navbar-menu.is-active .navbar-item.is-active span:after {
-            bottom: -7px;
-            height: 4px;
+            display: block;
+            width: 100%;
+            bottom: -2px;
+            height: 2px;
+            background-color: ${theme.colors['vida-green']};
         }
 
         .navbar-item.has-dropdown.is-active :global(.accordion-content) {

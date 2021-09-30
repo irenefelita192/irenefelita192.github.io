@@ -92,10 +92,6 @@ export default css.global`
     }
 
     .children-wrapper {
-        margin-top: ${theme.header.height};
-    }
-
-    .children-wrapper.is-trans {
         margin-top: 0;
     }
 

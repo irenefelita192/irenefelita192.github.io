@@ -3,10 +3,12 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getHomeData } from 'services/home'
 import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
-import styles from './styles'
+// import styles from './styles'
 import Footer from 'components/footer'
-import ParallaxSection from './parallax-desktop'
+import ParallaxDesktop from './parallax-desktop'
+import ParallaxMobile from './parallax-mobile'
 import ProductSection from './product-section'
+import ProductSectionMobile from './product-section-mobile'
 import AppSection from './app-section'
 import BannerCTA from 'components/banner-cta'
 // import { constant } from './parallax-desktop/constant'
@@ -15,24 +17,17 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
-    const [isMobile, setIsMobile] = useState(false)
-    const [isPortrait, setIsPortrait] = useState(false)
+
+    const [isDesktop, setIsDesktop] = useState(true)
     const [isIos, setIsIos] = useState(false)
 
     useAsyncEffect(async (isMounted) => {
         let langId
         if (window) {
             langId = getCookie('lang')
-            const mob =
-                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                    navigator.userAgent
-                )
-            // console.log('ismobile', mob)
-            setIsMobile(mob)
 
-            if (window.innerWidth <= 768) {
-                setIsPortrait(true)
-                // setHeroHeight(window.innerHeight - headerHeight)
+            if (window.innerWidth <= 1024) {
+                setIsDesktop(false)
             }
 
             const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
@@ -50,15 +45,25 @@ export default function HomeScreen() {
     return (
         <div>
             {/* Section 1 and 2 start */}
-            <ParallaxSection
-                isPortrait={isPortrait}
-                sectionOne={homeData.SectionOne}
-                sectionTwo={homeData.SectionTwo}
-            />
+            {isDesktop && (
+                <ParallaxDesktop
+                    sectionOne={homeData.SectionOne}
+                    sectionTwo={homeData.SectionTwo}
+                />
+            )}
+            {!isDesktop && (
+                <ParallaxMobile
+                    sectionOne={homeData.SectionOne}
+                    sectionTwo={homeData.SectionTwo}
+                />
+            )}
             {/* Section 1 and 2 end */}
 
             {/* Section 3 start */}
-            <ProductSection data={homeData.SectionThree} />
+            {isDesktop && <ProductSection data={homeData.SectionThree} />}
+            {!isDesktop && (
+                <ProductSectionMobile data={homeData.SectionThree} />
+            )}
             {/* Section 3 end */}
 
             {/* Section 4 start */}
@@ -67,7 +72,7 @@ export default function HomeScreen() {
 
             <BannerCTA data={homeData.BottomBanner} />
             <Footer />
-            <style jsx>{styles}</style>
+            {/* <style jsx>{styles}</style> */}
         </div>
     )
 }

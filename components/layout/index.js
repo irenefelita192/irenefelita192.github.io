@@ -154,14 +154,8 @@ export default function Layout({
                 {globalStyles}
             </style>
 
-            <Header activeId={activeHeaderId} type={headerType} />
-            <div
-                className={`children-wrapper ${
-                    headerType == 'trans' ? 'is-trans' : ''
-                }`}
-            >
-                {children}
-            </div>
+            <Header activeId={activeHeaderId} />
+            <div className={`children-wrapper`}>{children}</div>
 
             <noscript>
                 <style

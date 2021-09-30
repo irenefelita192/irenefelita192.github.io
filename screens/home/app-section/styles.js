@@ -66,7 +66,6 @@ export default css`
         -webkit-tap-highlight-color: transparent;
         width: 550px;
         position: absolute;
-        left: 50%;
         top: 60%;
         left: 20%;
         transform: translate(-20%, -60%);
@@ -74,7 +73,7 @@ export default css`
 
     .clip-wrapper-inner {
         clip-path: path(
-            'M 550,400 C 500,10 810,574 262,550 85,524 0,372.931 10,360 V -300 H 300 590 Z'
+            'M 560,400 C 500,10 810,574 262,550 85,524 0,372.931 10,360 V -300 H 300 590 Z'
         );
         /* clip-path: path(
             'M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z'
@@ -112,7 +111,7 @@ export default css`
     }
 
     .is-visible .hp-image {
-        transform: translate(-50%, -84px);
+        transform: translate(-50%, -11%);
     }
 
     .is-visible .circle-before {
@@ -133,6 +132,28 @@ export default css`
         }
         100% {
             transform: rotate(90deg);
+        }
+    }
+
+    @media screen and (max-width: 1366px) {
+        .clip-wrapper {
+            height: 500px;
+            width: 500px;
+        }
+
+        .clip-wrapper-inner {
+            clip-path: path(
+                'M 560,400 C 500,10 710,574 336,495 87,524 0,364.931 10,200 V -300 H 300 590 Z'
+            );
+        }
+
+        .circle {
+            height: 500px;
+            width: 500px;
+        }
+
+        .hp-image {
+            width: 360px;
         }
     }
 

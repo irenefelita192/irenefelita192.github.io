@@ -5,7 +5,7 @@ import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
+export default function ParallaxMobile({ sectionOne, sectionTwo }) {
     if (!sectionOne) return <></>
 
     const [heroHeight, setHeroHeight] = useState(0)
@@ -24,7 +24,13 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     let headerHeight = 80,
         secondPosTop = 0,
         stickyPosTop = 0,
-        inpatientTopView = 0
+        inpatientTopView = 0,
+        calcX = 8,
+        calcY = 80,
+        mCalcX = 15,
+        mCalcY = 85,
+        oCalcX = 17,
+        oCalcY = 85
 
     useEffect(() => {
         if (window) {
@@ -36,8 +42,8 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 outpatient: (6 / 100) * window.innerWidth,
             })
             setIconWrapperSize({
-                width: (35 / 100) * window.innerWidth,
-                height: (21 / 100) * window.innerWidth,
+                width: (73 / 100) * window.innerWidth,
+                height: (50 / 100) * window.innerWidth,
             })
         }
     }, [])
@@ -49,34 +55,61 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
-                if (window.innerWidth <= 1366) {
-                    stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
-                } else if (window.innerWidth <= 1440) {
-                    stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth // 8% = jarak hero kedua dh title
-                } else if (window.innerWidth <= 1680) {
-                    stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
-                } else if (window.innerWidth <= 1920) {
-                    stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
-                }
-
-                // setStickyPosTop(inpatientSecondPos) // 10% for title offset
                 const imgEl = document.querySelector(`#second-bg`)
                 const overlayImg = document.getElementById('overlay-image')
                 if (imgEl.complete) {
-                    const imgHeight =
-                        (imgEl.naturalHeight / imgEl.naturalWidth) *
-                        window.innerWidth
-                    secondWrapper.style.height = `${imgHeight}px`
                     overlayImg.style.opacity = '1'
                 } else {
                     imgEl.onload = () => {
-                        const imgHeight =
-                            (imgEl.naturalHeight / imgEl.naturalWidth) *
-                            window.innerWidth
-                        secondWrapper.style.height = `${imgHeight}px`
                         overlayImg.style.opacity = '1'
                     }
                 }
+
+                // stickyPosTop = secondPosTop + (45 / 100) * window.innerHeight
+
+                if (window.innerWidth / window.innerHeight > 0.5) {
+                    stickyPosTop =
+                        secondPosTop + (45 / 100) * window.innerHeight
+                    mCalcX = 17
+                    mCalcY = 50
+                    calcX = 10
+                    calcY = 50
+                    oCalcY = 50
+                } else {
+                    stickyPosTop =
+                        secondPosTop + (50 / 100) * window.innerHeight
+                    mCalcX = 5
+                    mCalcY = 68
+                    calcX = 5
+                    calcY = 60
+                    oCalcX = 5
+                    oCalcY = 68
+                }
+
+                // if (window.innerHeight <= 736) {
+                //     stickyPosTop =
+                //         secondPosTop + (40 / 100) * window.innerHeight
+                //     mCalcX = 20
+                //     mCalcY = 85
+                //     oCalcX = 20
+                //     oCalcY = 85
+                // } else if (window.innerHeight <= 823) {
+                //     stickyPosTop =
+                //         secondPosTop + (45 / 100) * window.innerHeight
+                //     mCalcX = 17
+                //     mCalcY = 85
+                //     calcX = 10
+                //     calcY = 80
+                // } else if (window.innerHeight <= 926) {
+                //     stickyPosTop =
+                //         secondPosTop + (50 / 100) * window.innerHeight
+                //     mCalcX = 5
+                //     mCalcY = 68
+                //     calcX = 5
+                //     calcY = 60
+                //     oCalcX = 5
+                //     oCalcY = 68
+                // }
             }
 
             setTimeout(() => {
@@ -93,8 +126,14 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     let timeout = false,
         animatePosX = 0,
         animatePosY = 0,
+        dAnimatePosX = 0,
+        dAnimatePosY = 0,
         animateRightPosX = 0,
-        animateScale = 1
+        animateScale = 0,
+        mAnimatePosX = 0,
+        mAnimatePosY = 0,
+        oAnimatePosX = 0,
+        oAnimatePosY = 0
 
     const handleScroll = (e) => {
         if (!timeout) {
@@ -116,19 +155,31 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                     inpatientTopView = inpatient.getBoundingClientRect().top
 
                     const calcScrollTop = stickyPosTop - inpatientTopView
-                    animatePosX = calcScrollTop * 0.035
-                    animatePosY = calcScrollTop * 0.3
+                    animatePosX = calcScrollTop * 0.018
+                    animatePosY = calcScrollTop * 0.4
+                    dAnimatePosX = calcScrollTop * 0.018
+                    dAnimatePosY = calcScrollTop * 0.4
+                    mAnimatePosX = calcScrollTop * 0.08
+                    mAnimatePosY = calcScrollTop * 0.38
+                    oAnimatePosX = calcScrollTop * 0.07
+                    oAnimatePosY = calcScrollTop * 0.41
+
                     animateRightPosX = calcScrollTop * 0.05
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
                 let inpatientTop = inpatientTopView + scrollTop
-
-                const posX = scrollTop * 0.035,
-                    posY = scrollTop * 0.3,
-                    rightPosX = scrollTop * 0.05,
+                console.log('stickyPosTop', stickyPosTop)
+                const posX = scrollTop * 0.018,
+                    posY = scrollTop * 0.4,
+                    dPosX = scrollTop * 0.018,
+                    dPosY = scrollTop * 0.4,
+                    mPosX = scrollTop * 0.08,
+                    mPosY = scrollTop * 0.38,
+                    oPosX = scrollTop * 0.07,
+                    oPosY = scrollTop * 0.41,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
-
+                console.log('mCalcX', mCalcX)
                 if (inpatientTop <= stickyPosTop && stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
                         inpatient.classList.remove('revolve')
@@ -142,37 +193,37 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                         outpatient.style.transition = `transform 0.1s linear`
                     }
                     inpatient.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
-                    dental.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
-                    maternity.style.transform = `translate( ${rightPosX}%, ${posY}%) scale(${scale})`
-                    outpatient.style.transform = `translate( ${rightPosX}%, ${posY}%) scale(${scale})`
+                    dental.style.transform = `translate( ${dPosX}%, ${dPosY}%) scale(${scale})`
+                    maternity.style.transform = `translate( ${mPosX}%, ${mPosY}%) scale(${scale})`
+                    outpatient.style.transform = `translate( ${oPosX}%, ${oPosY}%) scale(${scale})`
                     outpatientDiv.style.right = `${opRightPos}%`
                 } else if (stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
                     } else {
                         inpatient.style.transition = `all 0.5s ease-in`
                         inpatient.style.transform = `translate( ${
-                            animatePosX + 10
-                        }%, ${animatePosY + 70}%) scale(${animateScale})`
+                            animatePosX + calcX
+                        }%, ${animatePosY + calcY}%) scale(${animateScale})`
                         inpatient.classList.add('revolve')
 
                         dental.style.transition = `all 0.5s ease-in`
                         dental.style.transform = `translate( ${
-                            animatePosX + 10
-                        }%, ${animatePosY + 85}%) scale(${animateScale})`
+                            dAnimatePosX + calcX
+                        }%, ${dAnimatePosY + calcY}%) scale(${animateScale})`
 
                         dental.classList.add('revolve')
 
                         maternity.style.transition = `all 0.5s ease-in`
                         maternity.style.transform = `translate( ${
-                            animateRightPosX + 8
-                        }%, ${animatePosY + 55}%) scale(${animateScale})`
+                            mAnimatePosX + mCalcX
+                        }%, ${mAnimatePosY + mCalcY}%) scale(${animateScale})`
 
                         maternity.classList.add('revolve')
 
                         outpatient.style.transition = `all 0.5s ease-in`
                         outpatient.style.transform = `translate( ${
-                            animateRightPosX + 8
-                        }%, ${animatePosY + 90}%) scale(${animateScale})`
+                            oAnimatePosX + oCalcX
+                        }%, ${oAnimatePosY + oCalcY}%) scale(${animateScale})`
 
                         outpatient.classList.add('revolve')
                     }
@@ -189,13 +240,8 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     // if (!homeData) return <Loader />
 
     let heroImg = sectionOne.shamrockImage
-        ? `${assetDomain}${sectionOne.shamrockImage.url}`
+        ? `${assetDomain}${sectionOne.shamrockImageMobile.url}`
         : ''
-    // if (isPortrait) {
-    //     heroImg = header.mobileImage
-    //         ? `${assetDomain}${header.mobileImage.url}`
-    //         : ''
-    // }
 
     return (
         <>
@@ -203,7 +249,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 className={`hero-wrapper`}
                 style={{
                     backgroundImage: `url(${heroImg})`,
-                    height: `${heroHeight + headerHeight}px`,
+                    height: `${heroHeight}px`,
                 }}
             >
                 <div className="hero-text">
@@ -217,7 +263,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 <div className="hero-image">
                     <img
                         src={`${assetDomain}${
-                            sectionOne?.familyImage?.url ?? ''
+                            sectionOne?.familyImageMobile?.url ?? ''
                         }`}
                     />
                     {/* <div id="hero-icon-all" className="hero-icon-all"> */}
@@ -236,11 +282,35 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                             }}
                         >
                             <img
-                                style={{
-                                    width: `${iconHeight.inpatient}px`,
-                                }}
+                                // style={{
+                                //     width: `${iconHeight.inpatient}px`,
+                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.inpatientIcon?.url ?? ''
+                                }`}
+                            />
+                        </div>
+                    </div>
+                    <div
+                        id="icon-dental"
+                        className={'hero-icon hero-icon--dental animate'}
+                        style={{
+                            width: `${iconWrapperSize.width}px`,
+                            height: `${iconWrapperSize.height}px`,
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
+                            <img
+                                // style={{
+                                //     width: `${iconHeight.dental}px`,
+                                // }}
+                                src={`${assetDomain}${
+                                    sectionOne?.dentalIcon?.url ?? ''
                                 }`}
                             />
                         </div>
@@ -260,9 +330,9 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                             }}
                         >
                             <img
-                                style={{
-                                    width: `${iconHeight.maternity}px`,
-                                }}
+                                // style={{
+                                //     width: `${iconHeight.maternity}px`,
+                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.maternityIcon?.url ?? ''
                                 }`}
@@ -284,36 +354,11 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                             }}
                         >
                             <img
-                                style={{
-                                    width: `${iconHeight.outpatient}px`,
-                                }}
+                                // style={{
+                                //     width: `${iconHeight.outpatient}px`,
+                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.outpatientIcon?.url ?? ''
-                                }`}
-                            />
-                        </div>
-                    </div>
-
-                    <div
-                        id="icon-dental"
-                        className={'hero-icon hero-icon--dental animate'}
-                        style={{
-                            width: `${iconWrapperSize.width}px`,
-                            height: `${iconWrapperSize.height}px`,
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: `${iconWrapperSize.width}px`,
-                                height: `${iconWrapperSize.height}px`,
-                            }}
-                        >
-                            <img
-                                style={{
-                                    width: `${iconHeight.dental}px`,
-                                }}
-                                src={`${assetDomain}${
-                                    sectionOne?.dentalIcon?.url ?? ''
                                 }`}
                             />
                         </div>
@@ -321,7 +366,13 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 </div>
             </div>
             {sectionTwo && (
-                <div id="second-wrapper" className="second-wrapper">
+                <div
+                    id="second-wrapper"
+                    className="second-wrapper"
+                    style={{
+                        height: `${heroHeight + headerHeight}px`,
+                    }}
+                >
                     <div className="second-text">
                         <div className="second-title">
                             <h2> {sectionTwo.title || ''}</h2>
@@ -334,7 +385,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                         id="second-bg"
                         className="second-bg"
                         src={`${assetDomain}${
-                            sectionTwo?.backgroundImage?.url ?? ''
+                            sectionTwo?.backgroundImageMobile?.url ?? ''
                         }`}
                     />
 
