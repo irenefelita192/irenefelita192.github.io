@@ -78,11 +78,11 @@ export default css`
     }
 
     .hero-icon--inpatient.revolve > div {
-        animation: 11s revolve-ip 0.5s linear infinite;
+        animation: 80s revolve-ip 0.5s linear infinite;
     }
 
     .hero-icon--inpatient.revolve {
-        animation: 11s zIndex-ip 0.5s linear infinite;
+        animation: 80s zIndex-ip 0.5s linear infinite;
     }
 
     .hero-icon--inpatient.revolve img {
@@ -108,11 +108,11 @@ export default css`
     }
 
     .hero-icon--maternity.revolve > div {
-        animation: 11s revolve-maternity 1s linear infinite;
+        animation: 80s revolve-maternity 1s linear infinite;
     }
 
     .hero-icon--maternity.revolve {
-        animation: 11s zIndex-maternity 1s linear infinite;
+        animation: 80s zIndex-maternity 1s linear infinite;
     }
 
     .hero-icon--maternity.revolve img {
@@ -138,11 +138,11 @@ export default css`
     }
 
     .hero-icon--outpatient.revolve > div {
-        animation: 11s revolve-op 1s linear infinite;
+        animation: 80s revolve-op 1s linear infinite;
     }
 
     .hero-icon--outpatient.revolve {
-        animation: 11s zIndex-op 1s linear infinite;
+        animation: 80s zIndex-op 1s linear infinite;
     }
 
     .hero-icon--outpatient.revolve img {
@@ -163,11 +163,11 @@ export default css`
     }
 
     .hero-icon--dental.revolve > div {
-        animation: 11s revolve-dental 1s linear infinite;
+        animation: 80s revolve-dental 1s linear infinite;
     }
 
     .hero-icon--dental.revolve {
-        animation: 11s zIndex-dental 1s linear infinite;
+        animation: 80s zIndex-dental 1s linear infinite;
     }
 
     .hero-icon--dental.revolve img {
