@@ -4,8 +4,12 @@ import css from 'styled-jsx/css'
 export default css`
     footer {
         background-color: ${theme.colors.white};
-        padding: 56px 20px 0;
-        color: ${theme.colors['vida-black']};
+        padding: 56px 0 0;
+        color: ${theme.colors.gray};
+    }
+
+    footer > div {
+        padding: 0 32px;
     }
 
     footer .title {
@@ -56,14 +60,14 @@ export default css`
 
     .second-row-wrapper .text {
         font-weight: 300;
-        font-size: 14px;
-        line-height: 1.3;
+        font-size: 13px;
+        line-height: 1.38;
         text-align: center;
     }
 
     .lippo-logo,
     .ojk-logo {
-        height: 44px;
+        height: 40px;
         width: auto;
     }
 
@@ -124,28 +128,30 @@ export default css`
 
     .fifth-row {
         display: flex;
-        padding-top: 32px;
+        margin-top: 46px;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
+        box-shadow: inset 0px 1px 0px rgba(200, 200, 200, 0.25);
     }
 
-    .fifth-row a {
+    /* .fifth-row a {
         font-weight: 500;
         font-size: 16px;
         line-height: 1.25;
         color: ${theme.colors['vida-gray']};
         margin-top: 22px;
-    }
+    } */
 
     .copyright {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 22px 0;
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
-        color: ${theme.colors['vida-gray']};
+        padding: 16px 0;
+        color: ${theme.colors.gray};
     }
 `

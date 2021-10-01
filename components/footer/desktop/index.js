@@ -1,5 +1,5 @@
 import styles from './styles'
-import Language from '../lang'
+import Language from 'components/lang'
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterDesktop({ data }) {
     return (

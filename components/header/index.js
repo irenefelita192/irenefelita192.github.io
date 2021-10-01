@@ -1,9 +1,18 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
+import dynamic from 'next/dynamic'
 import { getAllHeader, getLocale, getFooter } from 'services/common'
-import Accordion from 'components/accordion'
-import DownloadButton from 'components/download-button'
 import { getCookie } from 'utils/global-util'
+import Accordion from 'components/accordion'
+
+// import DownloadButton from 'components/download-button'
+// import Language from 'components/lang'
+
+const DownloadButton = dynamic(() => import('components/download-button'), {
+    ssr: false,
+})
+const Language = dynamic(() => import('components/lang'), { ssr: false })
+
 import styles from './styles'
 
 const assetPrefix = process.env.config?.assetPrefix ?? '',
@@ -32,7 +41,8 @@ export default function Header({ activeId }) {
         }
         const headers = await getAllHeader(langId ? langId : 'id')
         let footerDt
-        if (window.innerWidth <= 1024) {
+        //< 1024 because ipad pro 1024 can use desktop layout
+        if (window.innerWidth < 1024) {
             footerDt = await getFooter(langId ? langId : 'id')
         }
 
@@ -46,7 +56,7 @@ export default function Header({ activeId }) {
         if (process.browser) {
             navbar = document.getElementById('navbarTop')
             // window.addEventListener('scroll', handleScroll)
-            if (window.innerWidth <= 1024) {
+            if (window.innerWidth < 1024) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
             }
@@ -83,6 +93,7 @@ export default function Header({ activeId }) {
                 timeout = false
 
                 let scrollTop = window.pageYOffset
+
                 if (scrollTop > 1) {
                     if (navbar && navbar.classList.contains('is-trans')) {
                         navbar.classList.remove('is-trans')
@@ -103,6 +114,12 @@ export default function Header({ activeId }) {
             } else {
                 document.documentElement.style.overflow = 'hidden'
             }
+        }
+        const nav = document.getElementById('navbarTop')
+        if (isMenuActive) {
+            nav.classList.remove('is-active')
+        } else {
+            nav.classList.add('is-active')
         }
         setIsMenuActive(!isMenuActive)
     }
@@ -197,7 +214,7 @@ export default function Header({ activeId }) {
         <>
             <nav
                 id="navbarTop"
-                className={`navbar is-trans`}
+                className={`navbar is-trans `}
                 role="navigation"
                 aria-label="main navigation"
             >
@@ -229,7 +246,7 @@ export default function Header({ activeId }) {
 
                     <a
                         role="button"
-                        className={`navbar-burger ${
+                        className={`navbar-burger  ${
                             isMenuActive ? 'is-active' : ''
                         }`}
                         aria-label="menu"
@@ -334,8 +351,36 @@ export default function Header({ activeId }) {
 
                             {!isDesktop && (
                                 <div className="navbar-end">
+                                    <div>
+                                        <Language isDesktop={isDesktop} />
+                                    </div>
                                     {footerData && (
                                         <>
+                                            <div className="tnc-link">
+                                                {footerData.privacyTitle && (
+                                                    <>
+                                                        <a
+                                                            href={
+                                                                footerData.privacyLink
+                                                            }
+                                                        >
+                                                            {
+                                                                footerData.privacyTitle
+                                                            }
+                                                        </a>
+                                                        <span></span>
+                                                    </>
+                                                )}
+                                                {footerData.tncTitle && (
+                                                    <a
+                                                        href={
+                                                            footerData.tncLink
+                                                        }
+                                                    >
+                                                        {footerData.tncTitle}
+                                                    </a>
+                                                )}
+                                            </div>
                                             <div className="download">
                                                 <DownloadButton
                                                     data={footerData}

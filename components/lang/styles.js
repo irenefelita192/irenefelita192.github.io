@@ -5,6 +5,7 @@ export default css`
     /* language start*/
     .dropdown-lang {
         cursor: pointer;
+        font-family: 'Inter', sans-serif;
         background: ${theme.colors['vida-white']};
         border: 1px solid ${theme.colors['vida-brokenwhite']};
         box-sizing: border-box;
@@ -149,6 +150,13 @@ export default css`
             font-size: 18px;
             line-height: 1.2;
             color: ${theme.colors['vida-gray']};
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .dropdown-lang.is-mobile {
+            margin: 32px 24px;
+            width: auto;
         }
     }
 

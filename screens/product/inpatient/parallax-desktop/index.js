@@ -124,8 +124,6 @@ export default function ParallaxDesktop({ data }) {
             isScrollDown = false
         }
 
-        console.log('scrollQ', scrollQ)
-
         const groupPos = document.getElementById('question-group-1').offsetTop,
             groupHeight =
                 document.getElementById('question-group-1').offsetHeight,
@@ -144,7 +142,7 @@ export default function ParallaxDesktop({ data }) {
         //start animation when question group visibility on viewport meet this condiiton
         if (scrollQ >= groupVisiblePos) {
             questionPos['question-group-1'] = scrollQ - groupVisiblePos
-            console.log('questionPos', questionPos['question-group-1'])
+
             let qPosY = questionPos['question-group-1'] * 0.15,
                 pPosY = questionPos['question-group-1'] * 0.1,
                 pPosX = questionPos['question-group-1'] * 0.05
