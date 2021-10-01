@@ -9,7 +9,7 @@ export default css`
 
     .product-wrapper {
         display: none;
-        grid-template-rows: 1fr 0.37fr;
+        grid-template-rows: 1fr auto;
         height: 100%;
         opacity: 0;
         transition: all 1s ease-in-out;
@@ -26,7 +26,7 @@ export default css`
         justify-content: flex-start;
         flex-direction: column;
         color: ${theme.colors['vida-white']};
-        padding: 32px 36px;
+        padding: 25px 36px;
         position: relative;
         text-align: center;
     }
@@ -36,8 +36,8 @@ export default css`
         margin: 0;
         font-family: 'Museo', sans-serif;
         font-weight: 600;
-        font-size: 27px;
-        line-height: 1.4;
+        font-size: 26px;
+        line-height: 1.2;
     }
 
     .product-wrapper > div:last-child > div:first-child {
@@ -54,7 +54,7 @@ export default css`
     .product-wrapper .btn-navigation {
         display: flex;
         position: absolute;
-        bottom: 30px;
+        bottom: 25px;
         left: 50%;
         transform: translateX(-50%);
     }

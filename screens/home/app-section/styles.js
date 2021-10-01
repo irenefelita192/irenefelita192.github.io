@@ -16,9 +16,6 @@ export default css`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    }
-
-    .fourth-wrapper > div:last-child {
         font-size: 18px;
         line-height: 1.33;
         color: ${theme.colors['vida-gray']};
@@ -155,6 +152,91 @@ export default css`
         .hp-image {
             width: 360px;
         }
+    }
+
+    .fourth-wrapper.is-mobile {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .fourth-wrapper.is-mobile .clip-wrapper {
+        margin-top: 25%;
+        width: 330px;
+        height: 360px;
+        position: relative;
+        transform: translate(-50%, 0);
+        top: 0;
+        left: 50%;
+    }
+
+    .fourth-wrapper.is-mobile .clip-wrapper-inner {
+        clip-path: ellipse(178px 186px at 51% 44%);
+        /* clip-path: path(
+            'M 190,397 C 0,80 -125,507 100,495 20,190 0,504.9341 0,400 V 10 H 29 390 Z'
+        ); */
+        /* clip-path: url(#svgPath); */
+    }
+
+    .fourth-wrapper.is-mobile .circle-after {
+        top: 0;
+    }
+
+    .fourth-wrapper.is-mobile .circle {
+        width: 100%;
+        height: 100%;
+        left: 0;
+    }
+
+    .fourth-wrapper.is-mobile .hp-image {
+        width: 227px;
+    }
+
+    .fourth-wrapper.is-mobile .is-visible .hp-image {
+        transform: translate(-50%, -5%);
+    }
+
+    .fourth-wrapper.is-mobile .is-visible .circle-after {
+        opacity: 1;
+        transform: rotate(90deg);
+        transition: opacity 0.3s ease-in 0.6s, transform 4s ease-in-out;
+        /* animation: 4s rotate 1s ease-in-out forwards; */
+    }
+
+    .fourth-wrapper.is-mobile > div:last-child h2 {
+        font-size: 27px;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .fourth-wrapper.is-mobile > div:last-child {
+        margin: 18% 24px 0;
+        text-align: center;
+        justify-content: flex-start;
+        font-size: 15px;
+    }
+
+    .fourth-wrapper.is-mobile > div:last-child > div {
+        margin-right: 0;
+    }
+
+    @media screen and (max-height: 812px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 15px;
+        }
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 25px;
+        }
+    }
+
+    @media screen and (max-height: 700px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 12px;
+        }
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 22px;
+        }
+
+        //tambah ganti image size kalo screen width 700
     }
 
     /* Fourth Section - end */

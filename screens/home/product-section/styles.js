@@ -5,6 +5,7 @@ export default css`
     /* Third Section - start */
     .third-wrapper {
         position: relative;
+        box-sizing: content-box;
     }
 
     .product-wrapper {
