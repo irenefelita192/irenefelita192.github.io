@@ -15,12 +15,10 @@ export default function ProductSection({ data, isDesktop }) {
                 `.product-wrapper > div:first-child > img`
             )
 
-            console.log('imgEl', imgEl)
             if (imgEl.complete) {
                 const imgHeight =
                     (imgEl.naturalHeight / imgEl.naturalWidth) *
                     window.innerWidth
-                console.log('imgEl.naturalHeight', imgHeight)
                 const height = window.innerHeight - imgHeight - headerHeight / 2
                 setTextHeight(height)
             } else {
@@ -28,7 +26,6 @@ export default function ProductSection({ data, isDesktop }) {
                     const imgHeight =
                         (imgEl.naturalHeight / imgEl.naturalWidth) *
                         window.innerWidth
-                    console.log('imgEl.naturalHeight', imgHeight)
                     const height =
                         window.innerHeight - imgHeight - headerHeight / 2
                     setTextHeight(height)

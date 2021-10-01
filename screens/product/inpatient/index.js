@@ -59,7 +59,6 @@ export default function Inpatient() {
                 /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
                     navigator.userAgent
                 )
-            console.log('ismobile', mob)
             setIsMobile(mob)
 
             if (window.innerWidth <= 768) {

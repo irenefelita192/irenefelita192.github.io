@@ -1,6 +1,3 @@
-import Accordion from 'components/accordion'
-import DownloadButton from 'components/download-button'
-import Language from '../lang'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
@@ -49,7 +46,7 @@ export default function FooterMobile({ data }) {
                             </div>
                         </div>
                     </div>
-                    <div className="third-row">
+                    {/* <div className="third-row">
                         <Accordion>
                             {data.menu.map((menu) => (
                                 <Accordion.Container key={menu.id}>
@@ -75,14 +72,14 @@ export default function FooterMobile({ data }) {
                                 </Accordion.Container>
                             ))}
                         </Accordion>
-                    </div>
+                    </div> */}
 
-                    <div className="fourth-row download">
+                    {/* <div className="fourth-row download">
                         <DownloadButton data={data} />
-                    </div>
+                    </div> */}
 
                     <div className="fifth-row">
-                        <Language isDesktop={false} />
+                        {/* <Language isDesktop={false} />
                         {data.privacyTitle && (
                             <>
                                 <a
@@ -98,7 +95,7 @@ export default function FooterMobile({ data }) {
                             <a className="third-row-link" href={data.tncLink}>
                                 {data.tncTitle}
                             </a>
-                        )}
+                        )} */}
                         <div className="copyright">
                             {data?.copyrightText ??
                                 'All Rights Reserved © 2021 Vida'}

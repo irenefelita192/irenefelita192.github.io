@@ -9,6 +9,7 @@ export default css`
         padding: 8px 0;
         text-align: center;
         border: 1px solid ${theme.colors['vida-black']};
+        background: rgba(255, 255, 255, 0.62);
         box-sizing: border-box;
         border-radius: 11px;
     }

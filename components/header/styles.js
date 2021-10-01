@@ -8,8 +8,8 @@ export default css`
         font-weight: 700;
         font-size: 16px;
         line-height: 1.18;
-        background-color: #ffffff;
-        color: ${theme.colors['vida-gray']};
+        background-color: ${theme.colors['vida-white']};
+        color: ${theme.colors.gray};
         height: ${theme.header.height};
         padding: 0 10%;
         position: fixed;
@@ -17,7 +17,9 @@ export default css`
         top: 0;
         left: 0;
         min-height: 0;
-        transition: all 0.2s ease-in;
+        transition: background-color 0.2s ease-in, color 0.2s ease-in;
+        /* overflow-y: scroll;
+        height: 100%; */
     }
 
     .navbar.is-trans {
@@ -35,7 +37,7 @@ export default css`
     }
 
     .navbar-item {
-        color: ${theme.colors['vida-gray']};
+        color: ${theme.colors.gray};
         padding: 0;
         margin: 0 30px;
         text-transform: capitalize;
@@ -126,6 +128,10 @@ export default css`
         border-radius: 16px;
     }
 
+    .navbar .navbar-menu.is-active .navbar-item.has-dropdown span:after {
+        background-color: transparent;
+    }
+
     .navbar.is-trans .navbar-item.is-active span:after,
     .navbar.is-trans .navbar-item:hover span:after {
         background-color: ${theme.colors['vida-white']};
@@ -134,6 +140,7 @@ export default css`
     .navbar-item.is-active span:after {
         background-color: ${theme.colors['vida-white']};
     }
+
     /* .navbar a.navbar-item:hover:after {
         content: '';
         position: absolute;
@@ -261,6 +268,11 @@ export default css`
         color: ${theme.colors['vida-green']};
     }
 
+    .navbar.is-trans .navbar-item.has-dropdown.is-active .navbar-link {
+        background-color: transparent;
+        color: ${theme.colors['vida-white']};
+    }
+
     /* download section start */
 
     .app-section {
@@ -358,7 +370,7 @@ export default css`
         top: 80px;
         left: 0;
         width: 100%;
-        background-color: rgba(244, 241, 238, 0.7);
+        background-color: #faf8f8;
         height: 0;
 
         /* height: 180px; */
@@ -475,6 +487,7 @@ export default css`
         height: 7px;
         width: 7px;
         margin-top: -0.275em;
+        transition: transform 0.2s ease-in-out;
     }
 
     .navbar-item.has-dropdown.is-active .navbar-link:not(.is-arrowless)::after {
@@ -495,10 +508,18 @@ export default css`
     .navbar.is-trans .navbar-item.has-dropdown:hover .navbar-link {
         color: ${theme.colors['vida-white']};
     }
+
+    .navbar-item.has-dropdown.submenu-open
+        .navbar-link:not(.is-arrowless)::after {
+        transform: rotate(135deg);
+        transform-origin: center;
+        margin-top: -0.15em;
+        transition: transform 0.2s ease-in-out;
+    }
     /* submenu end*/
 
     .download {
-        margin: 28px 40px;
+        margin: 28px 24px;
     }
 
     .copyright {
@@ -537,7 +558,35 @@ export default css`
         }
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
+        .navbar {
+            /* transition: none; */
+            padding: 0;
+        }
+
+        .navbar.is-active {
+            overflow-y: scroll;
+            height: 100%;
+            animation: slide-right 0.2s ease-in-out;
+        }
+
+        @keyframes slide-right {
+            from {
+                transform: translateX(-100%);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .navbar.is-active .navbar-brand {
+            top: 0;
+            transform: translate(0, 0);
+            /* transition: none; */
+        }
+
         .navbar-menu {
             display: none;
         }
@@ -550,14 +599,11 @@ export default css`
             display: none;
         }
 
-        .navbar {
-            padding: 0;
-        }
-
         .navbar-brand {
             position: relative;
             left: 0;
             transform: translate(0, -50%);
+            width: 100vw;
         }
 
         .navbar-brand.is-active {
@@ -628,35 +674,41 @@ export default css`
         }
 
         .navbar-menu .navbar-item {
-            transform: translateX(-50%);
-            opacity: 0;
+            /* transform: translateX(-50%);
+            opacity: 0; */
         }
 
         .navbar-menu.is-active .navbar-item {
             margin: 0 24px;
             padding: 14px;
-            border-radius: 24px;
             transition: background-color 0.3s ease-in-out;
             background-color: transparent;
             font-size: 18px;
             text-transform: uppercase;
         }
 
+        .navbar-menu.is-active .navbar-item.has-dropdown {
+            padding: 0 14px;
+        }
+
+        .navbar-menu.is-active
+            .navbar-item.has-dropdown
+            :global(.accordion-label) {
+            padding: 14px 0;
+        }
+
+        .navbar-menu.is-active .navbar-item:last-child {
+            border-bottom: 1px solid #eaeaea;
+        }
+
         .animation-slide-right {
-            animation: 0.2s slide-right 0.1s forwards;
+            /* animation: 0.2s slide-right 0.1s forwards; */
         }
 
-        @keyframes slide-right {
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .navbar-menu.is-active .navbar-item.has-dropdown.submenu-open {
+        /* .navbar-menu.is-active .navbar-item.has-dropdown.submenu-open {
             background-color: #f3ebe4;
             border-radius: 24px;
-        }
+        } */
 
         .submenu-content {
             display: block;
@@ -668,6 +720,10 @@ export default css`
             font-family: 'Inter', sans-serif;
             padding: 18px 18px 0;
             text-transform: none;
+        }
+
+        .submenu-content:first-child {
+            padding-top: 10px;
         }
 
         .navbar-menu.is-active .navbar-item.is-active span {
@@ -703,7 +759,7 @@ export default css`
             color: ${theme.colors['vida-green']};
         }
 
-        .navbar-menu.is-active .navbar-item.is-active span:after {
+        .navbar .navbar-menu.is-active .navbar-item.is-active span:after {
             display: block;
             width: 100%;
             bottom: -2px;
@@ -711,8 +767,9 @@ export default css`
             background-color: ${theme.colors['vida-green']};
         }
 
-        .navbar-item.has-dropdown.is-active :global(.accordion-content) {
-            margin-top: 10px;
+        .navbar-item.has-dropdown :global(.accordion-content) {
+            margin-top: -10px;
+            margin-bottom: 10px;
         }
 
         .navbar-brand .brand-active {
@@ -736,19 +793,54 @@ export default css`
             pointer-events: none;
         }
         /*static image end */
+
+        .tnc-link {
+            font-family: 'Inter', sans-serif;
+            margin: 0 37px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tnc-link span {
+            position: relative;
+        }
+
+        .tnc-link span:after {
+            content: '.';
+            display: block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            color: #7b7b7b;
+            top: -19px;
+            left: -3px;
+            font-size: 25px;
+        }
+
+        .tnc-link a {
+            color: ${theme.colors.gray};
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.3;
+        }
     }
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 360px) {
         .navbar-menu.is-active .navbar-item {
             font-size: 15px;
         }
 
         .download {
-            margin: 15px 40px;
+            margin: 15px 24px;
         }
 
         .download :global(.download-link) {
             height: 56px;
+        }
+
+        .tnc-link a {
+            font-size: 14px;
         }
     }
 `

@@ -168,7 +168,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
                 let inpatientTop = inpatientTopView + scrollTop
-                console.log('stickyPosTop', stickyPosTop)
+
                 const posX = scrollTop * 0.018,
                     posY = scrollTop * 0.4,
                     dPosX = scrollTop * 0.018,
@@ -179,7 +179,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     oPosY = scrollTop * 0.41,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
-                console.log('mCalcX', mCalcX)
+
                 if (inpatientTop <= stickyPosTop && stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
                         inpatient.classList.remove('revolve')

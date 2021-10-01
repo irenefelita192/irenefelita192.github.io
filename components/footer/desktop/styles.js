@@ -5,7 +5,7 @@ export default css`
     footer {
         background-color: ${theme.colors.white};
         padding: 40px 10% 0;
-        color: ${theme.colors['vida-gray']};
+        color: ${theme.colors.gray};
         box-shadow: inset 0px 1px 0px rgba(197, 197, 197, 0.25);
     }
 
@@ -25,7 +25,7 @@ export default css`
         line-height: 1.43;
         margin-bottom: 14px;
         display: block;
-        color: ${theme.colors['vida-gray']};
+        color: ${theme.colors.gray};
         transition: color 0.2s ease-in-out;
     }
 
@@ -166,7 +166,7 @@ export default css`
         }
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1023px) {
         footer {
             padding: 72px;
             grid-gap: 42px;
