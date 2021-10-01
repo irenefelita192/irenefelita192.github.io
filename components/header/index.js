@@ -176,26 +176,20 @@ export default function Header({ activeId }) {
                                 key={subMenu.id}
                                 href={subMenu.href}
                                 className="submenu-item column"
+                                style={{
+                                    backgroundColor: subMenu.backgroundColor,
+                                    color: subMenu.color,
+                                    backgroundImage: `url(${assetDomain}${subMenu.icon.url})`,
+                                }}
                             >
-                                <div className="submenu-header">
-                                    <div className="submenu-icon">
-                                        {subMenu.icon && (
-                                            <img
-                                                src={`${assetDomain}${subMenu.icon.url}`}
-                                            />
-                                        )}
-                                        {subMenu.hoverIcon && (
-                                            <img
-                                                className="hover-icon"
-                                                src={`${assetDomain}${subMenu.hoverIcon.url}`}
-                                            />
-                                        )}
-                                    </div>
-                                    <div className="submenu-title">
-                                        {subMenu.title}
-                                    </div>
+                                <i
+                                    style={{
+                                        borderColor: subMenu.borderColor,
+                                    }}
+                                ></i>
+                                <div className="submenu-title">
+                                    {subMenu.title}
                                 </div>
-
                                 <div className="submenu-desc">
                                     {subMenu.description}
                                 </div>
