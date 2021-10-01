@@ -467,15 +467,17 @@ export default css`
 
     .submenu-title {
         font-size: 18px;
+        font-weight: 700;
         line-height: 1.33;
     }
 
     .submenu-desc {
         font-family: 'Inter', serif;
-        font-size: 12px;
-        line-height: 1.33;
+        font-size: 13px;
+        line-height: 1.38;
         font-weight: 400;
         margin-top: 8px;
+        color: ${theme.colors.black30};
     }
 
     .navbar-item.has-dropdown.submenu-open .submenu-wrapper {
