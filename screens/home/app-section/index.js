@@ -12,7 +12,11 @@ export default function AppSection({ data, isDesktop }) {
             rootMargin: '0px',
             threshold: [0.5],
         }
-        setHeroHeight(window.innerHeight + 45)
+        setHeroHeight(
+            window.innerWidth > 1024
+                ? window.innerHeight + 45
+                : window.innerHeight
+        )
         var observer = new IntersectionObserver(
             observerCallback,
             observerOptions
