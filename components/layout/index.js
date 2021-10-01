@@ -117,18 +117,145 @@ export default function Layout({
                     rel="stylesheet"
                 />
 
+                {/* font Museo 300 */}
                 <link
                     rel="preload"
-                    href="fonts/Museo300-Regular-webfont.woff"
+                    href={`${url}/fonts/Museo300-Regular-webfont.woff`}
                     as="font"
                     crossOrigin=""
                     type="font/woff"
                 />
                 <link
                     rel="preload"
-                    href="fonts/Museo300-Regular-webfont.woff2"
+                    href={`${url}/fonts/Museo300-Regular-webfont.woff2`}
                     as="font"
                     crossOrigin=""
+                    type="font/woff"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo300-Regular.otf`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/otf"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo300-Italic-webfont.woff`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo300-Italic-webfont.woff2`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo300-Italic.otf`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/otf"
+                />
+
+                {/* font Museo 500 */}
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo500-Regular-webfont.woff`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo500-Regular-webfont.woff2`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo500-Regular.otf`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/otf"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo500-Italic-webfont.woff`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo500-Italic-webfont.woff2`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo500-Italic.otf`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/otf"
+                />
+
+                {/* font Museo 700 */}
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo700-Regular-webfont.woff`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo700-Regular-webfont.woff2`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo700-Regular.otf`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/otf"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo700-Italic-webfont.woff`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo700-Italic-webfont.woff2`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/woff"
+                />
+
+                <link
+                    rel="preload"
+                    href={`${url}/fonts/Museo700-Italic.otf`}
+                    as="font"
+                    crossOrigin=""
+                    type="font/otf"
                 />
 
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}

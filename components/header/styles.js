@@ -39,7 +39,7 @@ export default css`
         padding: 0;
         margin: 0 30px;
         text-transform: capitalize;
-        transition: color 0.2s ease-in-out;
+        /* transition: color 0.2s ease-in-out; */
     }
 
     .navbar-menu {
@@ -112,7 +112,8 @@ export default css`
         color: ${theme.colors['vida-white']};
     }
 
-    .navbar .navbar-item.is-active span:after {
+    .navbar .navbar-item.is-active span:after,
+    .navbar .navbar-item:hover span:after {
         content: '';
         position: absolute;
         display: block;
@@ -125,7 +126,8 @@ export default css`
         border-radius: 16px;
     }
 
-    .navbar.is-trans .navbar-item.is-active span:after {
+    .navbar.is-trans .navbar-item.is-active span:after,
+    .navbar.is-trans .navbar-item:hover span:after {
         background-color: ${theme.colors['vida-white']};
     }
 
@@ -298,6 +300,19 @@ export default css`
         background-image: url(${assetPrefix}/images/logo/android-gray.svg);
     }
 
+    .app-section a:hover {
+        color: ${theme.colors['vida-white']};
+        border: 1px solid ${theme.colors['vida-green']};
+        background-color: ${theme.colors['vida-green']};
+    }
+    .app-section a:first-child:hover i {
+        background-image: url(${assetPrefix}/images/logo/apple.svg);
+    }
+
+    .app-section a:last-child:hover i {
+        background-image: url(${assetPrefix}/images/logo/android.svg);
+    }
+
     .app-section a > i {
         display: block;
         width: 13px;
@@ -310,6 +325,20 @@ export default css`
     .navbar.is-trans .app-section a {
         color: ${theme.colors['vida-white']};
         border: 1px solid ${theme.colors['vida-white']};
+    }
+
+    .navbar.is-trans .app-section a:hover {
+        color: ${theme.colors['vida-green']};
+        border: 1px solid ${theme.colors['vida-white']};
+        background-color: ${theme.colors['vida-white']};
+    }
+
+    .navbar.is-trans .app-section a:first-child:hover i {
+        background-image: url(${assetPrefix}/images/logo/apple-green.svg);
+    }
+
+    .navbar.is-trans .app-section a:last-child:hover i {
+        background-image: url(${assetPrefix}/images/logo/android-green.svg);
     }
 
     .navbar.is-trans .app-section a:first-child i {
