@@ -385,29 +385,45 @@ export default css`
         margin: 0;
         padding: 0;
         display: flex;
-        transition: opacity 0.25s ease-in;
+        transition: opacity 0.18s ease-in;
         pointer-events: none;
     }
 
     .submenu-item {
+        position: relative;
         width: 224px;
         height: 129px;
         margin-right: 20px;
-        border: 1px solid #cfcfcf;
-        background-color: ${theme.colors['vida-white']};
         border-radius: 18px;
-        color: ${theme.colors['vida-black']};
         padding: 24px 16px;
         text-transform: none;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right;
+        box-shadow: 0px 4px 10px rgba(221, 221, 221, 0.25);
     }
 
     .submenu-item:last-child {
         margin-right: 0;
     }
 
-    .submenu-item:hover {
-        padding: 22px 14px;
-        border: 3px solid ${theme.colors['vida-green-fresh']};
+    .submenu-item i {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 18px;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+    }
+
+    .submenu-item:hover i {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
     }
 
     .submenu-header {
@@ -470,7 +486,7 @@ export default css`
     .navbar-item.has-dropdown.submenu-open .submenu-inner {
         opacity: 1;
         pointer-events: auto;
-        transition: opacity 0.4s ease-in;
+        transition: opacity 0.48s ease-in;
     }
 
     .navbar-item.has-dropdown,
