@@ -3,7 +3,6 @@ import css from 'styled-jsx/css'
 
 export default css`
     /*banner Section - start*/
-
     .banner-section {
         background-color: #f3ebe4;
         padding: 60px 19%;
@@ -13,13 +12,14 @@ export default css`
         align-items: center;
         justify-content: center;
         font-family: 'Museo', sans-serif;
-        font-weight: normal;
+        font-weight: 700;
         font-size: 36px;
         line-height: 1;
         text-align: center;
         color: ${theme.colors['vida-white']};
         background-repeat: no-repeat;
         background-position: bottom right;
+        background-size: contain;
     }
 
     .banner-section.is-download {
@@ -63,5 +63,19 @@ export default css`
         width: auto;
         height: 100%;
     }
+
+    @media screen and (max-width: 1024px) {
+        .banner-section {
+            font-size: 26px;
+            line-height: 1.2;
+            padding: 32px 20px;
+            justify-content: flex-end;
+        }
+
+        a.banner-link {
+            width: 100%;
+        }
+    }
+
     /*banner Section - end*/
 `

@@ -67,7 +67,7 @@ export default function HomeScreen() {
             {/* Section 3 end */}
 
             {/* Section 4 start */}
-            <AppSection data={homeData.SectionFour} />
+            <AppSection data={homeData.SectionFour} isDesktop={isDesktop} />
             {/* Section 4 end */}
 
             <BannerCTA data={homeData.BottomBanner} />
