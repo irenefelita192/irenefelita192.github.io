@@ -610,8 +610,38 @@ export default css`
     /* Second Section - end */
 
     @media screen and (max-width: 1280px) {
+        .hero-text {
+            top: 14%;
+        }
+
+        .hero-title h1 {
+            font-size: 50px;
+            max-width: 600px;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+        }
+
+        .hero-image {
+            max-width: 68%;
+        }
+
         .second-text {
             top: 8%;
+        }
+
+        .second-title {
+            max-width: 453px;
+        }
+
+        .second-desc {
+            font-size: 15px;
+            max-width: 687px;
+        }
+
+        .second-title h2 {
+            font-size: 37px;
         }
     }
 `
