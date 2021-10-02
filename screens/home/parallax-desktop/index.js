@@ -32,7 +32,9 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
     useEffect(() => {
         if (window) {
-            setHeroHeight(window.innerWidth * 0.55)
+            setHeroHeight(
+                window.innerWidth > 1280 ? window.innerWidth * 0.55 : 660
+            )
             setIconHeight({
                 inpatient: (7.6 / 100) * window.innerWidth,
                 maternity: (6 / 100) * window.innerWidth,
@@ -53,7 +55,9 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
-                if (window.innerWidth <= 1366) {
+                if (window.innerWidth <= 1280) {
+                    stickyPosTop = secondPosTop + (14 / 100) * window.innerWidth
+                } else if (window.innerWidth <= 1366) {
                     stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
                 } else if (window.innerWidth <= 1440) {
                     stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth // 8% = jarak hero kedua dh title
@@ -114,8 +118,6 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
                 if (!inpatientTopView) {
                     inpatientTopView = inpatient.offsetTop + heroImage.offsetTop
-                    console.log(' inpatient.offsetTop', inpatient.offsetTop)
-                    console.log(' heroImage.offsetTop', heroImage.offsetTop)
 
                     const calcScrollTop = stickyPosTop - inpatientTopView
                     animatePosX = calcScrollTop * 0.035
