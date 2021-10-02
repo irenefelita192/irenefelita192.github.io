@@ -28,7 +28,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
     useEffect(() => {
         if (window) {
-            setHeroHeight(window.innerHeight)
+            setHeroHeight(window.innerWidth * 0.55)
             setIconHeight({
                 inpatient: (7.6 / 100) * window.innerWidth,
                 maternity: (6 / 100) * window.innerWidth,
