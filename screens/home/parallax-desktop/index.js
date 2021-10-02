@@ -62,7 +62,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 } else if (window.innerWidth <= 1440) {
                     stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth // 8% = jarak hero kedua dh title
                 } else if (window.innerWidth <= 1680) {
-                    stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
+                    stickyPosTop = secondPosTop + (6 / 100) * window.innerWidth
                 } else if (window.innerWidth <= 1920) {
                     stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
                 }
