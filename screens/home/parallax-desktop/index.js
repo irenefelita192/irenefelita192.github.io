@@ -24,7 +24,11 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     let headerHeight = 80,
         secondPosTop = 0,
         stickyPosTop = 0,
-        inpatientTopView = 0
+        inpatientTopView = 0,
+        animatePosX = 0,
+        animatePosY = 0,
+        animateRightPosX = 0,
+        animateScale = 1
 
     useEffect(() => {
         if (window) {
@@ -59,7 +63,6 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                     stickyPosTop = secondPosTop - (5 / 100) * window.innerWidth
                 }
 
-                // setStickyPosTop(inpatientSecondPos) // 10% for title offset
                 const imgEl = document.querySelector(`#second-bg`)
                 const overlayImg = document.getElementById('overlay-image')
                 if (imgEl.complete) {
@@ -90,11 +93,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
             .querySelectorAll('.hero-image .animate')
             .forEach((el) => el.classList.remove('animate'))
     }
-    let timeout = false,
-        animatePosX = 0,
-        animatePosY = 0,
-        animateRightPosX = 0,
-        animateScale = 1
+    let timeout = false
 
     const handleScroll = (e) => {
         if (!timeout) {
@@ -110,10 +109,13 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                     outpatient = document.getElementById('icon-outpatient'),
                     outpatientDiv = document.querySelector(
                         '#icon-outpatient > div'
-                    )
+                    ),
+                    heroImage = document.getElementById('hero-image')
 
                 if (!inpatientTopView) {
-                    inpatientTopView = inpatient.getBoundingClientRect().top
+                    inpatientTopView = inpatient.offsetTop + heroImage.offsetTop
+                    console.log(' inpatient.offsetTop', inpatient.offsetTop)
+                    console.log(' heroImage.offsetTop', heroImage.offsetTop)
 
                     const calcScrollTop = stickyPosTop - inpatientTopView
                     animatePosX = calcScrollTop * 0.035
@@ -214,7 +216,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                         {sectionOne.description || ''}
                     </div>
                 </div>
-                <div className="hero-image">
+                <div className="hero-image" id="hero-image">
                     <img
                         src={`${assetDomain}${
                             sectionOne?.familyImage?.url ?? ''

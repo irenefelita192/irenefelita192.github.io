@@ -63,7 +63,6 @@ export default css`
     }
 
     .hero-icon--inpatient.revolve {
-        /* animation: 80s revolve-ip 0.5s linear infinite; */
         animation: 80s zIndex-ip 0.5s linear infinite;
     }
 
@@ -360,7 +359,7 @@ export default css`
 
     .second-text {
         position: absolute;
-        top: 12%;
+        top: 10%;
         z-index: 2;
         left: 50%;
         transform: translateX(-50%);
