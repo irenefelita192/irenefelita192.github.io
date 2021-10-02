@@ -35,7 +35,7 @@ export default css`
         height: ${constant.iconHeight}px;
         transition: transform 0.1s linear;
         opacity: 0;
-        z-index: 10;
+        z-index: 5;
         /* will-change: transform; */
         /* transform-style: flat; */
     }
@@ -360,7 +360,7 @@ export default css`
     .second-text {
         position: absolute;
         top: 10%;
-        z-index: 2;
+        z-index: 8;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
