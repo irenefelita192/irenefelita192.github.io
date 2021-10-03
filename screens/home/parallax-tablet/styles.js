@@ -22,22 +22,38 @@ export default css`
     .hero-image {
         position: absolute;
         bottom: 0;
-        right: 0;
-        max-width: 70%;
+        left: 0;
+        width: 100%;
+    }
+
+    .hero-image img {
+        width: 100%;
     }
 
     .hero-icon {
         position: absolute;
         transform: translate(0, 0);
-        top: 5%;
-        left: -14%;
-        width: ${constant.iconWidth}px;
-        height: ${constant.iconHeight}px;
+        top: -15%;
+        left: 0;
+        width: 300px;
+        height: 200px;
         transition: transform 0.1s linear;
         opacity: 0;
         z-index: 5;
-        will-change: transform;
-        /* transform-style: flat; */
+    }
+
+    .hero-icon--inpatient.animate,
+    .hero-icon--outpatient.animate,
+    .hero-icon--maternity.animate,
+    .hero-icon--dental.animate {
+        opacity: 0;
+    }
+
+    .hero-icon--inpatient,
+    .hero-icon--outpatient,
+    .hero-icon--maternity,
+    .hero-icon--dental {
+        opacity: 1;
     }
 
     .hero-icon > div {
@@ -45,15 +61,18 @@ export default css`
         transition: transform 0.3s ease-in;
         will-change: transform;
         text-align: left;
+        width: 300px;
+        height: 200px;
     }
 
     .hero-icon--inpatient.animate {
-        animation: popout-inpatient 0.5s ease-in forwards;
+        animation: popout-inpatient 0.4s ease-in forwards;
+        transform-origin: left;
     }
 
     .hero-icon--inpatient > div {
-        left: 0;
-        top: 0;
+        top: ${constant.ipTop}%;
+        left: ${constant.ipLeft}%;
         position: absolute;
         animation: float 10s linear infinite;
     }
@@ -71,13 +90,18 @@ export default css`
     }
 
     /*maternity*/
+    .hero-icon--maternity {
+        top: 0;
+        left: -44%;
+    }
+
     .hero-icon--maternity.animate {
-        animation: popout-maternity 0.5s ease-in forwards;
+        animation: 0.4s popout-maternity 0.1s ease-in forwards;
     }
 
     .hero-icon--maternity > div {
-        right: ${constant.mRight}%;
         top: ${constant.mTop}%;
+        right: ${constant.mRight}%;
         position: absolute;
         text-align: right;
         animation: float-maternity 10s linear infinite;
@@ -89,7 +113,6 @@ export default css`
 
     .hero-icon--maternity.revolve {
         animation: 80s zIndex-maternity 1s linear infinite;
-        /* animation: 80s revolve-maternity 0.5s linear infinite; */
     }
 
     .hero-icon--maternity.revolve img {
@@ -97,13 +120,18 @@ export default css`
     }
 
     /* outpatient */
+    .hero-icon--outpatient {
+        top: 0;
+        left: -44%;
+    }
+
     .hero-icon--outpatient.animate {
-        animation: popout-outpatient 0.5s ease-in forwards;
+        animation: 0.4s popout-outpatient 0.2s ease-in forwards;
     }
 
     .hero-icon--outpatient > div {
-        right: ${constant.opRight}%;
         top: ${constant.opTop}%;
+        right: ${constant.opRight}%;
         position: absolute;
         text-align: right;
         animation: float-outpatient 10s linear infinite;
@@ -115,7 +143,6 @@ export default css`
 
     .hero-icon--outpatient.revolve {
         animation: 80s zIndex-op 1s linear infinite;
-        /* animation: 80s revolve-maternity 0.5s linear infinite; */
     }
 
     .hero-icon--outpatient.revolve img {
@@ -124,7 +151,8 @@ export default css`
 
     /* dental */
     .hero-icon--dental.animate {
-        animation: popout-dental 0.5s ease-in forwards;
+        transform-origin: left;
+        animation: 0.4s popout-dental 0.3s ease-in forwards;
     }
 
     .hero-icon--dental > div {
@@ -140,24 +168,16 @@ export default css`
 
     .hero-icon--dental.revolve {
         animation: 80s zIndex-dental 1s linear infinite;
-        /* animation: 80s revolve-maternity 0.5s linear infinite; */
     }
 
     .hero-icon--dental.revolve img {
         animation: float-dental 10s linear infinite;
     }
 
-    .hero-icon--inpatient,
-    .hero-icon--outpatient,
-    .hero-icon--maternity,
-    .hero-icon--dental {
-        opacity: 1;
-    }
-
     @keyframes popout-inpatient {
         0% {
             opacity: 0.2;
-            transform: translate(-5%, -5%) scale(0.3);
+            transform: translate(0, 2%) scale(0.3);
         }
         100% {
             opacity: 1;
@@ -208,11 +228,11 @@ export default css`
         }
         30% {
             transform-origin: left;
-            transform: translate(0, 0) scale(0.85) rotate(10deg);
+            transform: translate(2px, 2px) scale(1.1) rotate(10deg);
         }
         70% {
             transform-origin: left;
-            transform: translate(5px, -5px) scale(0.95) rotate(10deg);
+            transform: translate(4px, -2px) scale(0.95) rotate(10deg);
         }
         100% {
             transform-origin: left;
@@ -225,13 +245,13 @@ export default css`
             transform-origin: right;
             transform: translate(0, 0) scale(1) rotate(0);
         }
-        30% {
+        20% {
             transform-origin: right;
-            transform: translate(20px, -20px) scale(1) rotate(-15deg);
+            transform: translate(15px, 0) scale(1) rotate(-10deg);
         }
         60% {
             transform-origin: right;
-            transform: translate(5px, -10px) scale(1.15) rotate(-10deg);
+            transform: translate(15px, 0) scale(1) rotate(-10deg);
         }
         100% {
             transform-origin: right;
@@ -246,11 +266,11 @@ export default css`
         }
         20% {
             transform-origin: left;
-            transform: translate(15px, -10px) scale(0.8) rotate(-10deg);
+            transform: translate(5px, -15px) scale(0.9) rotate(8deg);
         }
         85% {
             transform-origin: left;
-            transform: translate(5px, 0) scale(0.9) rotate(-6deg);
+            transform: translate(5px, -10px) scale(1.05) rotate(5deg);
         }
         100% {
             transform-origin: left;
@@ -265,11 +285,11 @@ export default css`
         }
         50% {
             transform-origin: right;
-            transform: translate(0, -5px) scale(1.15) rotate(15deg);
+            transform: translate(0, 0) scale(1.15) rotate(15deg);
         }
         70% {
             transform-origin: right;
-            transform: translate(10px, -15px) scale(1.08) rotate(5deg);
+            transform: translate(5px, -0) scale(1.08) rotate(5deg);
         }
         100% {
             transform-origin: right;
@@ -278,28 +298,30 @@ export default css`
     }
 
     .hero-icon img {
-        width: 100%;
+        width: 100px;
         height: auto;
     }
 
     .hero-text {
         position: absolute;
-        top: 12%;
+        top: 18%;
+        transform: translate(0, -18%);
+        padding: 0 36px;
     }
 
     .hero-title h1 {
         font-family: 'Museo', sans-serif;
         font-weight: 700;
-        font-size: 60px;
+        font-size: 50px;
         line-height: 1.1;
         color: #fcfcfc;
-        max-width: 700px;
-        margin: 0;
+        max-width: 80%;
+        margin: 0 auto;
         padding: 0;
     }
 
     .hero-desc {
-        font-size: 18px;
+        font-size: 32px;
         line-height: 1.4;
         margin-top: 10px;
         text-align: center;
@@ -355,24 +377,45 @@ export default css`
         position: relative;
         padding: 0;
         line-height: 0;
+        background-color: #f4f1ee;
     }
 
     .second-text {
         position: absolute;
-        top: 10%;
+        top: 4%;
         z-index: 8;
-        left: 50%;
-        transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
+    .second-title {
+        padding: 0 12%;
+    }
+
+    .second-title h2 {
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
+        font-size: 45px;
+        line-height: 1.4;
+        text-align: center;
+        color: ${theme.colors['black30']};
+    }
+
+    .second-desc {
+        font-weight: normal;
+        font-size: 23px;
+        line-height: 1.4;
+        text-align: center;
+        color: ${theme.colors['gray']};
+        padding: 0 10%;
+    }
+
     .second-bg {
         width: 100%;
         position: absolute;
-        top: 0;
+        bottom: 40px;
         z-index: 1;
     }
 
@@ -388,11 +431,13 @@ export default css`
     .overlay-image {
         opacity: 0;
         position: absolute;
-        width: 29%;
+        width: 65%;
         z-index: 3;
-        bottom: 26px;
-        left: 54%;
-        transform: translateX(-54%);
+        bottom: 45px;
+        left: 65%;
+        -webkit-transform: translateX(-54%);
+        -ms-transform: translateX(-54%);
+        transform: translateX(-65%);
         height: auto;
     }
 
@@ -584,64 +629,61 @@ export default css`
         }
     }
 
-    .second-title {
-        max-width: 544px;
-    }
-
-    .second-title h2 {
-        font-family: 'Museo', sans-serif;
-        font-weight: 700;
-        font-size: 44px;
-        line-height: 1.1;
-        text-align: center;
-        color: #303030;
-    }
-
-    .second-desc {
-        max-width: 824px;
-        padding: 10px;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 1.4;
-        text-align: center;
-        color: #7b7b7b;
-    }
-
     /* Second Section - end */
-
-    @media screen and (max-width: 1280px) {
-        .hero-text {
-            top: 14%;
-        }
-
+    @media screen and (min-height: 1280px) {
         .hero-title h1 {
-            font-size: 50px;
-            max-width: 600px;
+            font-size: 60px;
+            max-width: 90%;
         }
 
         .hero-desc {
-            font-size: 15px;
-        }
-
-        .hero-image {
-            max-width: 68%;
+            font-size: 39px;
         }
 
         .second-text {
             top: 8%;
         }
 
-        .second-title {
-            max-width: 453px;
+        .second-title h2 {
+            font-size: 54px;
+        }
+
+        .second-desc {
+            font-size: 27px;
+        }
+    }
+
+    @media screen and (min-width: 800px) and (min-height: 1280px) {
+        .hero-icon img {
+            width: 110px;
+        }
+    }
+
+    @media screen and (max-height: 812px) {
+        .second-title h2 {
+            font-size: 28px;
+        }
+    }
+
+    @media screen and (max-height: 700px) {
+        .second-title h2 {
+            font-size: 25px;
         }
 
         .second-desc {
             font-size: 15px;
-            max-width: 687px;
         }
+    }
 
-        .second-title h2 {
-            font-size: 37px;
+    @media screen and (min-width: 1024px) {
+        .hero-icon img {
+            width: 140px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .hero-icon img {
+            width: 80px;
         }
     }
 `
