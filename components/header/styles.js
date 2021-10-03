@@ -571,6 +571,24 @@ export default css`
     }
 
     @media screen and (max-width: 1180px) {
+        .navbar {
+            padding: 0 30px;
+            font-size: 20px;
+        }
+
+        .navbar.is-trans:before {
+            width: calc(100% - 60px);
+            left: 30px;
+        }
+
+        .navbar-brand {
+            left: 30px;
+        }
+
+        .app-section {
+            right: 30px;
+        }
+
         .navbar-item {
             margin: 0 20px;
         }
@@ -647,6 +665,7 @@ export default css`
             background-color: transparent;
             height: ${theme.header.height};
             margin-right: 12px;
+            /* display: block; */
         }
 
         .navbar.is-trans .navbar-burger {
