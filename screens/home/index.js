@@ -7,6 +7,7 @@ import Loader from 'components/loader'
 import Footer from 'components/footer'
 import ParallaxDesktop from './parallax-desktop'
 import ParallaxMobile from './parallax-mobile'
+import ParallaxTablet from './parallax-tablet'
 import ProductSection from './product-section'
 import ProductSectionMobile from './product-section-mobile'
 import AppSection from './app-section'
@@ -19,7 +20,7 @@ export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
 
     const [isDesktop, setIsDesktop] = useState(true)
-    const [isIos, setIsIos] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
 
     useAsyncEffect(async (isMounted) => {
         let langId
@@ -28,10 +29,13 @@ export default function HomeScreen() {
 
             if (window.innerWidth <= 1024) {
                 setIsDesktop(false)
+                if (
+                    window.innerWidth >= 600 &&
+                    window.innerWidth < window.innerHeight
+                ) {
+                    setIsTablet(true)
+                }
             }
-
-            const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
-            setIsIos(ios)
         }
         const homeDt = await getHomeData(langId ? langId : 'id')
 
@@ -52,17 +56,30 @@ export default function HomeScreen() {
                 />
             )}
             {!isDesktop && (
-                <ParallaxMobile
-                    sectionOne={homeData.SectionOne}
-                    sectionTwo={homeData.SectionTwo}
-                />
+                <>
+                    {isTablet && (
+                        <ParallaxTablet
+                            sectionOne={homeData.SectionOne}
+                            sectionTwo={homeData.SectionTwo}
+                        />
+                    )}
+                    {!isTablet && (
+                        <ParallaxMobile
+                            sectionOne={homeData.SectionOne}
+                            sectionTwo={homeData.SectionTwo}
+                        />
+                    )}
+                </>
             )}
             {/* Section 1 and 2 end */}
 
             {/* Section 3 start */}
             {isDesktop && <ProductSection data={homeData.SectionThree} />}
             {!isDesktop && (
-                <ProductSectionMobile data={homeData.SectionThree} />
+                <ProductSectionMobile
+                    isTablet={isTablet}
+                    data={homeData.SectionThree}
+                />
             )}
             {/* Section 3 end */}
 

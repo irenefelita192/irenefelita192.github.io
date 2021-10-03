@@ -11,6 +11,7 @@ export default css`
         display: none;
         grid-template-rows: 1fr auto;
         height: 100%;
+        width: 100%;
         opacity: 0;
         transition: all 1s ease-in-out;
     }
@@ -226,6 +227,94 @@ export default css`
         .product-wrapper .btn-next i {
             width: 26px;
             height: 26px;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        .product-wrapper > div:first-child > img {
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-wrapper > div:last-child {
+            padding: 24px 36px;
+        }
+
+        .product-wrapper > div:last-child h2 {
+            font-size: 35px;
+        }
+
+        .product-wrapper > div :last-child > div {
+            font-size: 22px;
+        }
+
+        .product-wrapper .btn-prev i,
+        .product-wrapper .btn-next i {
+            width: 45px;
+            height: 45px;
+        }
+    }
+
+    @media screen and (min-height: 1280px) {
+        .product-wrapper > div:last-child {
+            padding: 28px 36px;
+        }
+
+        .product-wrapper > div:last-child h2 {
+            font-size: 42px;
+        }
+
+        .product-wrapper > div :last-child > div {
+            font-size: 32px;
+        }
+
+        .product-wrapper .btn-prev i,
+        .product-wrapper .btn-next i {
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    @media screen and (min-width: 720px) {
+        .product-wrapper > div:last-child {
+            padding: 28px 36px;
+        }
+
+        .product-wrapper > div:last-child h2 {
+            font-size: 40px;
+        }
+
+        .product-wrapper > div :last-child > div {
+            font-size: 26px;
+        }
+
+        .product-wrapper .btn-prev i,
+        .product-wrapper .btn-next i {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .product-wrapper > div:last-child {
+            padding: 32px 36px;
+        }
+
+        .product-wrapper > div:last-child h2 {
+            font-size: 50px;
+        }
+
+        .product-wrapper > div :last-child > div {
+            font-size: 32px;
+        }
+
+        .product-wrapper .btn-prev i,
+        .product-wrapper .btn-next i {
+            width: 90px;
+            height: 90px;
         }
     }
 

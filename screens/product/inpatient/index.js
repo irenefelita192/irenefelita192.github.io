@@ -6,6 +6,7 @@ import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
 import ParallaxDesktop from './parallax-desktop'
+import SectionOne from '../section-one'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
@@ -90,71 +91,9 @@ export default function Inpatient() {
     let heroImg = `${assetPrefix}/images/inpatient/hero.jpg`
     return (
         <>
-            {/* {header && ( */}
-            <div
-                className={`hero-wrapper`}
-                style={{
-                    backgroundImage: `url(${heroImg})`,
-                    height: isPortrait ? `${heroHeight}px` : 'auto',
-                }}
-            >
-                <div className="hero-title"> {header?.title ?? ''}</div>
-                <div className="hero-desc">{header?.description ?? ''}</div>
-            </div>
-            {/* )} */}
+            <SectionOne />
 
-            <div className="stats-wrapper">
-                <div className="stats-header">You might don't know</div>
-                <div className="counter">
-                    <ul className="counter-content">
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--9 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--commapoint">
-                                ,
-                            </span>
-                            <span className="counter-item counter-item--6 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--commapoint">
-                                ,
-                            </span>
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-
-                        <li className="counter-content-digit">
-                            <span className="counter-item counter-item--0 counter-item-digit"></span>
-                        </li>
-                    </ul>
-                </div>
-                <div className="stats-title">
-                    People are estimated to have died from cancer
-                </div>
-                <div className="stats-note">Data provided by WHO</div>
-                <div className="stats-desc">
-                    You have a long wait and multiple tests, the open-ended
-                    waiting makes you frustrated.
-                </div>
-            </div>
             <div className="content-wrapper">
-                <div className="content-opening">
-                    There is always some trauma, The fear of going to the
-                    hospital.
-                </div>
-                <div className="content-opening-2">
-                    If you have cancer, there’s always a question….
-                </div>
-
                 <ParallaxDesktop data={questionsDummy} />
             </div>
 

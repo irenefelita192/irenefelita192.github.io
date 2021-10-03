@@ -5,7 +5,7 @@ import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-export default function ParallaxMobile({ sectionOne, sectionTwo }) {
+export default function ParallaxTablet({ sectionOne, sectionTwo }) {
     if (!sectionOne) return <></>
 
     const [heroHeight, setHeroHeight] = useState(0)
@@ -27,14 +27,14 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
         inpatientTopView = 0,
         calcX = 8,
         calcY = 80,
-        mCalcX = 15,
+        mCalcX = 0.09,
         mCalcY = 85,
-        oCalcX = 17,
+        oCalcX = 0.07,
         oCalcY = 85
 
     useEffect(() => {
         if (window) {
-            setHeroHeight(window.innerHeight)
+            setHeroHeight(window.innerHeight + 40)
             setIconHeight({
                 inpatient: (7.6 / 100) * window.innerWidth,
                 maternity: (6 / 100) * window.innerWidth,
@@ -65,58 +65,40 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     }
                 }
 
-                // stickyPosTop = secondPosTop + (45 / 100) * window.innerHeight
-                if (window.innerWidth / window.innerHeight > 0.5) {
-                    stickyPosTop =
-                        secondPosTop + (45 / 100) * window.innerHeight
-                    mCalcX = 17
-                    mCalcY = 80
-                    calcX = 10
-                    calcY = 80
-                    oCalcY = 80
-                } else if (window.innerWidth / window.innerHeight > 0.5) {
-                    stickyPosTop =
-                        secondPosTop + (45 / 100) * window.innerHeight
-                    mCalcX = 17
-                    mCalcY = 50
-                    calcX = 10
-                    calcY = 50
-                    oCalcY = 50
-                } else {
-                    stickyPosTop =
-                        secondPosTop + (50 / 100) * window.innerHeight
-                    mCalcX = 5
-                    mCalcY = 68
-                    calcX = 5
-                    calcY = 65
-                    oCalcX = 5
-                    oCalcY = 68
-                }
+                stickyPosTop = secondPosTop
 
-                // if (window.innerHeight <= 736) {
-                //     stickyPosTop =
-                //         secondPosTop + (40 / 100) * window.innerHeight
-                //     mCalcX = 20
-                //     mCalcY = 85
-                //     oCalcX = 20
-                //     oCalcY = 85
-                // } else if (window.innerHeight <= 823) {
-                //     stickyPosTop =
-                //         secondPosTop + (45 / 100) * window.innerHeight
-                //     mCalcX = 17
-                //     mCalcY = 85
-                //     calcX = 10
-                //     calcY = 80
-                // } else if (window.innerHeight <= 926) {
-                //     stickyPosTop =
-                //         secondPosTop + (50 / 100) * window.innerHeight
-                //     mCalcX = 5
-                //     mCalcY = 68
-                //     calcX = 5
-                //     calcY = 60
-                //     oCalcX = 5
-                //     oCalcY = 68
-                // }
+                if (window.innerWidth / window.innerHeight < 0.57) {
+                    mCalcX = 0.07
+                    oCalcX = 0.05
+                    stickyPosTop = secondPosTop + (35 / 100) * innerWidth
+                } else if (
+                    window.innerWidth / window.innerHeight < 0.6 ||
+                    window.innerWidth <= 600
+                ) {
+                    mCalcX = 0.08
+                    oCalcX = 0.06
+                    stickyPosTop = secondPosTop + (55 / 100) * innerWidth
+                } else if (window.innerWidth / window.innerHeight < 0.69) {
+                    //0.625
+                    //galaxy tab
+                    mCalcX = 0.08
+                    oCalcX = 0.06
+                    stickyPosTop = secondPosTop + (10 / 100) * innerWidth
+                } else if (
+                    window.innerWidth / window.innerHeight < 0.76 &&
+                    window.innerWidth < 1024
+                ) {
+                    //0.69, 0.75
+                    //ipad, ipad mini, ipad air, ipad pro 11
+                    stickyPosTop = secondPosTop
+                } else if (
+                    window.innerWidth / window.innerHeight < 0.76 &&
+                    window.innerWidth >= 1024
+                ) {
+                    //0.74
+                    //ipad pro
+                    stickyPosTop = secondPosTop - (20 / 100) * innerWidth
+                }
             }
 
             setTimeout(() => {
@@ -161,32 +143,42 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
 
                 if (!inpatientTopView) {
                     inpatientTopView = inpatient.offsetTop + heroImage.offsetTop
+
                     const calcScrollTop = stickyPosTop - inpatientTopView
-                    animatePosX = calcScrollTop * 0.018
-                    animatePosY = calcScrollTop * 0.4
-                    dAnimatePosX = calcScrollTop * 0.018
-                    dAnimatePosY = calcScrollTop * 0.4
-                    mAnimatePosX = calcScrollTop * 0.09
-                    mAnimatePosY = calcScrollTop * 0.38
-                    oAnimatePosX = calcScrollTop * 0.08
-                    oAnimatePosY = calcScrollTop * 0.41
+                    animatePosX = calcScrollTop * 0.02
+                    animatePosY = calcScrollTop * 0.3
+                    // dAnimatePosX = calcScrollTop * 0.018
+                    // dAnimatePosY = calcScrollTop * 0.4
+                    mAnimatePosX = calcScrollTop * mCalcX
+                    mAnimatePosY = calcScrollTop * 0.28
+                    oAnimatePosX = calcScrollTop * oCalcX
+                    // oAnimatePosY = calcScrollTop * 0.41
 
                     animateRightPosX = calcScrollTop * 0.05
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
                 let inpatientTop = inpatientTopView + scrollTop
 
-                const posX = scrollTop * 0.018,
-                    posY = scrollTop * 0.4,
-                    dPosX = scrollTop * 0.018,
-                    dPosY = scrollTop * 0.4,
-                    mPosX = scrollTop * 0.09,
-                    mPosY = scrollTop * 0.38,
-                    oPosX = scrollTop * 0.08,
-                    oPosY = scrollTop * 0.41,
+                const posX = scrollTop * 0.02,
+                    posY = scrollTop * 0.3,
+                    // dPosX = scrollTop * 0.018,
+                    // dPosY = scrollTop * 0.4,
+                    mPosX = scrollTop * mCalcX,
+                    mPosY = scrollTop * 0.28,
+                    oPosX = scrollTop * oCalcX,
+                    // oPosY = scrollTop * 0.41,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
-
+                // console.log(
+                //     'inpatientTopView',
+                //     inpatientTopView,
+                //     'scrollTop',
+                //     scrollTop,
+                //     'inpatientTop',
+                //     inpatientTop,
+                //     'stickyPosTop',
+                //     stickyPosTop
+                // )
                 if (inpatientTop <= stickyPosTop && stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
                         inpatient.classList.remove('revolve')
@@ -200,37 +192,37 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                         outpatient.style.transition = `transform 0.1s linear`
                     }
                     inpatient.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
-                    dental.style.transform = `translate( ${dPosX}%, ${dPosY}%) scale(${scale})`
+                    dental.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
                     maternity.style.transform = `translate( ${mPosX}%, ${mPosY}%) scale(${scale})`
-                    outpatient.style.transform = `translate( ${oPosX}%, ${oPosY}%) scale(${scale})`
+                    outpatient.style.transform = `translate( ${oPosX}%, ${posY}%) scale(${scale})`
                     outpatientDiv.style.right = `${opRightPos}%`
                 } else if (stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
                     } else {
                         inpatient.style.transition = `all 0.5s ease-in`
                         inpatient.style.transform = `translate( ${
-                            animatePosX + calcX
-                        }%, ${animatePosY + calcY}%) scale(${animateScale})`
+                            animatePosX + 10
+                        }%, ${animatePosY + 50}%) scale(${animateScale})`
                         inpatient.classList.add('revolve')
 
                         dental.style.transition = `all 0.5s ease-in`
                         dental.style.transform = `translate( ${
-                            dAnimatePosX + calcX
-                        }%, ${dAnimatePosY + calcY}%) scale(${animateScale})`
+                            animatePosX + 10
+                        }%, ${animatePosY + 45}%) scale(${animateScale})`
 
                         dental.classList.add('revolve')
 
                         maternity.style.transition = `all 0.5s ease-in`
                         maternity.style.transform = `translate( ${
-                            mAnimatePosX + mCalcX
-                        }%, ${mAnimatePosY + mCalcY}%) scale(${animateScale})`
+                            mAnimatePosX + 10
+                        }%, ${mAnimatePosY + 50}%) scale(${animateScale})`
 
                         maternity.classList.add('revolve')
 
                         outpatient.style.transition = `all 0.5s ease-in`
                         outpatient.style.transform = `translate( ${
-                            oAnimatePosX + oCalcX
-                        }%, ${oAnimatePosY + oCalcY}%) scale(${animateScale})`
+                            mAnimatePosX + 10
+                        }%, ${animatePosY + 50}%) scale(${animateScale})`
 
                         outpatient.classList.add('revolve')
                     }
@@ -273,7 +265,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             sectionOne?.familyImageMobile?.url ?? ''
                         }`}
                     />
-                    {/* <div id="hero-icon-all" className="hero-icon-all"> */}
                     <div
                         id="icon-inpatient"
                         className={'hero-icon hero-icon--inpatient animate'}
@@ -361,9 +352,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             }}
                         >
                             <img
-                                // style={{
-                                //     width: `${iconHeight.outpatient}px`,
-                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.outpatientIcon?.url ?? ''
                                 }`}

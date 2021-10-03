@@ -4,9 +4,10 @@ import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-export default function ProductSection({ data, isDesktop }) {
+export default function ProductSection({ data, isTablet }) {
     const [productActive, setProductActive] = useState(1)
     const [textHeight, setTextHeight] = useState(300)
+    const [heroHeight, setHeroHeight] = useState(null)
 
     let headerHeight = 80
     useEffect(() => {
@@ -14,21 +15,26 @@ export default function ProductSection({ data, isDesktop }) {
             const imgEl = document.querySelector(
                 `.product-wrapper > div:first-child > img`
             )
-
-            if (imgEl.complete) {
-                const imgHeight =
-                    (imgEl.naturalHeight / imgEl.naturalWidth) *
-                    window.innerWidth
-                const height = window.innerHeight - imgHeight - headerHeight / 2
-                setTextHeight(height)
+            if (isTablet) {
+                setHeroHeight(((window.innerHeight - 80) * 70) / 100)
+                setTextHeight(((window.innerHeight - 80) * 30) / 100)
             } else {
-                imgEl.onload = () => {
+                if (imgEl.complete) {
                     const imgHeight =
                         (imgEl.naturalHeight / imgEl.naturalWidth) *
                         window.innerWidth
                     const height =
                         window.innerHeight - imgHeight - headerHeight / 2
                     setTextHeight(height)
+                } else {
+                    imgEl.onload = () => {
+                        const imgHeight =
+                            (imgEl.naturalHeight / imgEl.naturalWidth) *
+                            window.innerWidth
+                        const height =
+                            window.innerHeight - imgHeight - headerHeight / 2
+                        setTextHeight(height)
+                    }
                 }
             }
         }
@@ -61,7 +67,13 @@ export default function ProductSection({ data, isDesktop }) {
                                     productActive == prd.id ? 'is-active' : ''
                                 }`}
                             >
-                                <div>
+                                <div
+                                    style={{
+                                        height: heroHeight
+                                            ? `${heroHeight}px`
+                                            : 'auto',
+                                    }}
+                                >
                                     <img
                                         src={`${assetDomain}${
                                             prd?.imageMobile?.url ?? ''

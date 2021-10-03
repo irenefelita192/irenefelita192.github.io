@@ -39,7 +39,8 @@ export default css`
         height: 200px;
         transition: transform 0.1s linear;
         opacity: 0;
-        z-index: 10;
+        z-index: 5;
+        will-change: transform;
     }
 
     .hero-icon--inpatient.animate,
@@ -383,7 +384,7 @@ export default css`
     .second-text {
         position: absolute;
         top: 12%;
-        z-index: 2;
+        z-index: 8;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
@@ -648,6 +649,12 @@ export default css`
 
         .second-desc {
             font-size: 15px;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        .second-text {
+            top: 8%;
         }
     }
 `
