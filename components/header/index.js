@@ -126,6 +126,9 @@ export default function Header({ activeId }) {
 
     const handleOpenSubmenu = (isOpen) => {
         setIsSubmenuOpen(isOpen)
+
+        const navbar = document.getElementById('navbarTop')
+        if (navbar) navbar.classList.remove('is-trans')
     }
 
     const renderSubMenuMobile = (menu) => {
