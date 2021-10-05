@@ -20,7 +20,7 @@ export default function Footer() {
                 setIsDesktop(true)
             }
         }
-        const footerDt = await getFooter(langId ? langId : 'id')
+        const footerDt = await getFooter(langId)
 
         if (!isMounted()) return
         setFooterData(footerDt)

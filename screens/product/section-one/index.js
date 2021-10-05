@@ -1,18 +1,9 @@
 import { useState, useEffect } from 'react'
 
 import styles from './styles'
-const assetPrefix = process.env.config?.assetPrefix ?? '',
-    assetDomain = process.env.config?.baseEndpoint ?? ''
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 
-const data = {
-    id: '1',
-    title: 'Have Better Comfort While Recovering',
-    description: 'Focus on your well-being and less worry for your family',
-    image: `/images/inpatient/hero.png`,
-    imageWebp: `${assetPrefix}/images/inpatient/hero.webp`,
-}
-
-export default function SectionOne() {
+export default function SectionOne({ data }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     let headerHeight = 80
@@ -32,9 +23,11 @@ export default function SectionOne() {
         }
     }, [])
 
-    let heroImage = `${assetPrefix}${data.imageWebp}`
+    let heroImage = ''
     if (!data.imageWebp || !isWebpSupport) {
-        heroImage = `${assetPrefix}${data.image}`
+        heroImage = `${assetDomain}${data.image.url}`
+    } else {
+        heroImage = `${assetDomain}${data.imageWebp.url}`
     }
 
     return (

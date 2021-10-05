@@ -5,7 +5,7 @@ export default css`
     /*banner Section - start*/
     .banner-section {
         background-color: #f3ebe4;
-        padding: 60px 19%;
+        padding: 80px 19%;
         min-height: 250px;
         display: flex;
         flex-direction: column;
@@ -14,7 +14,7 @@ export default css`
         font-family: 'Museo', sans-serif;
         font-weight: 700;
         font-size: 36px;
-        line-height: 1;
+        line-height: 1.17;
         text-align: center;
         color: ${theme.colors['vida-white']};
         background-repeat: no-repeat;

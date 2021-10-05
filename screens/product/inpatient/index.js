@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getHomeData } from 'services/home'
+import { getProductData } from 'services/product'
 import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
 import styles from './styles'
 import Footer from 'components/footer'
-import ParallaxDesktop from './parallax-desktop'
 import SectionOne from '../section-one'
 import SectionTwo from '../section-two'
 import SectionThree from '../section-three'
-const assetPrefix = process.env.config?.assetPrefix ?? '',
-    assetDomain = process.env.config?.baseEndpoint ?? ''
+import OtherProducts from '../other-products'
+import BannerCTA from 'components/banner-cta'
 
 export default function Inpatient() {
-    const [homeData, setHomeData] = useState(null)
+    const [productData, setProductData] = useState(null)
     const [isMobile, setIsMobile] = useState(false)
     const [isPortrait, setIsPortrait] = useState(false)
     const [isIos, setIsIos] = useState(false)
@@ -39,34 +38,35 @@ export default function Inpatient() {
             const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
             setIsIos(ios)
         }
-        const homeDt = await getHomeData(langId ? langId : 'id')
+        const prdDt = await getProductData('inpatient', langId)
 
         if (!isMounted()) return
 
-        setHomeData(homeDt)
+        setProductData(prdDt)
     }, [])
 
-    if (!homeData) return <Loader />
+    if (!productData) return <Loader />
 
-    const { header } = homeData
-    // let heroImg = header.desktopImage
-    //     ? `${assetDomain}${header.desktopImage.url}`
-    //     : ''
-    // if (isPortrait) {
-    //     heroImg = header.mobileImage
-    //         ? `${assetDomain}${header.mobileImage.url}`
-    //         : ''
-    // }
-    let heroImg = `${assetPrefix}/images/inpatient/hero.jpg`
     return (
         <>
-            <SectionOne />
-            <SectionTwo />
-
-            <div className="content-wrapper">
-                <SectionThree />
-            </div>
-
+            {productData.SectionOne && (
+                <SectionOne data={productData.SectionOne} />
+            )}
+            {productData.SectionTwo && (
+                <SectionTwo data={productData.SectionTwo} />
+            )}
+            {productData.SectionThree && (
+                <SectionThree data={productData.SectionThree} />
+            )}
+            {productData.BottomBanner && (
+                <BannerCTA data={productData.BottomBanner} />
+            )}
+            {productData.productCards && (
+                <OtherProducts
+                    data={productData.productCards}
+                    title={productData.productCardTitle}
+                />
+            )}
             <Footer />
             <style jsx>{styles}</style>
         </>

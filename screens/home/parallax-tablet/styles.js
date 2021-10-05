@@ -431,10 +431,10 @@ export default css`
     .overlay-image {
         opacity: 0;
         position: absolute;
-        width: 65%;
+        width: 66%;
         z-index: 3;
-        bottom: 45px;
-        left: 65%;
+        bottom: 39px;
+        left: 66%;
         -webkit-transform: translateX(-54%);
         -ms-transform: translateX(-54%);
         transform: translateX(-65%);
