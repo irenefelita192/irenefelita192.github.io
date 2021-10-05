@@ -7,7 +7,7 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 
 export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     if (!sectionOne) return <></>
-
+    const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [heroHeight, setHeroHeight] = useState(0)
     const [iconHeight, setIconHeight] = useState({
         inpatient: 0,
@@ -32,6 +32,11 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
     useEffect(() => {
         if (window) {
+            if (window.Modernizr.webp) {
+                setIsWebpSupport(true)
+            } else {
+                setIsWebpSupport(false)
+            }
             setHeroHeight(
                 window.innerWidth > 1280 ? window.innerWidth * 0.55 : 660
             )
@@ -195,6 +200,11 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     let heroImg = sectionOne.shamrockImage
         ? `${assetDomain}${sectionOne.shamrockImage.url}`
         : ''
+
+    let familyImg = `${assetPrefix}${sectionOne?.familyImageWebp?.url ?? ''}`
+    if (!sectionOne.familyImage || !isWebpSupport) {
+        familyImg = `${assetPrefix}${sectionOne?.familyImage?.url ?? ''}`
+    }
     // if (isPortrait) {
     //     heroImg = header.mobileImage
     //         ? `${assetDomain}${header.mobileImage.url}`
@@ -219,11 +229,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                     </div>
                 </div>
                 <div className="hero-image" id="hero-image">
-                    <img
-                        src={`${assetDomain}${
-                            sectionOne?.familyImage?.url ?? ''
-                        }`}
-                    />
+                    <img src={`${assetDomain}${familyImg}`} />
                     {/* <div id="hero-icon-all" className="hero-icon-all"> */}
                     <div
                         id="icon-inpatient"

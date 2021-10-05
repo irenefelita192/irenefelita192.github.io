@@ -65,8 +65,9 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     }
                 }
 
-                // stickyPosTop = secondPosTop + (45 / 100) * window.innerHeight
-                if (window.innerWidth / window.innerHeight > 0.5) {
+                stickyPosTop = secondPosTop + (50 / 100) * window.innerHeight
+
+                if (window.innerWidth / window.innerHeight > 0.55) {
                     stickyPosTop =
                         secondPosTop + (45 / 100) * window.innerHeight
                     mCalcX = 17
@@ -92,31 +93,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     oCalcX = 5
                     oCalcY = 68
                 }
-
-                // if (window.innerHeight <= 736) {
-                //     stickyPosTop =
-                //         secondPosTop + (40 / 100) * window.innerHeight
-                //     mCalcX = 20
-                //     mCalcY = 85
-                //     oCalcX = 20
-                //     oCalcY = 85
-                // } else if (window.innerHeight <= 823) {
-                //     stickyPosTop =
-                //         secondPosTop + (45 / 100) * window.innerHeight
-                //     mCalcX = 17
-                //     mCalcY = 85
-                //     calcX = 10
-                //     calcY = 80
-                // } else if (window.innerHeight <= 926) {
-                //     stickyPosTop =
-                //         secondPosTop + (50 / 100) * window.innerHeight
-                //     mCalcX = 5
-                //     mCalcY = 68
-                //     calcX = 5
-                //     calcY = 60
-                //     oCalcX = 5
-                //     oCalcY = 68
-                // }
             }
 
             setTimeout(() => {
@@ -244,8 +220,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
         }
     }
 
-    // if (!homeData) return <Loader />
-
     let heroImg = sectionOne.shamrockImage
         ? `${assetDomain}${sectionOne.shamrockImageMobile.url}`
         : ''
@@ -273,7 +247,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             sectionOne?.familyImageMobile?.url ?? ''
                         }`}
                     />
-                    {/* <div id="hero-icon-all" className="hero-icon-all"> */}
                     <div
                         id="icon-inpatient"
                         className={'hero-icon hero-icon--inpatient animate'}
@@ -289,9 +262,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             }}
                         >
                             <img
-                                // style={{
-                                //     width: `${iconHeight.inpatient}px`,
-                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.inpatientIcon?.url ?? ''
                                 }`}
@@ -313,9 +283,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             }}
                         >
                             <img
-                                // style={{
-                                //     width: `${iconHeight.dental}px`,
-                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.dentalIcon?.url ?? ''
                                 }`}
@@ -337,9 +304,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             }}
                         >
                             <img
-                                // style={{
-                                //     width: `${iconHeight.maternity}px`,
-                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.maternityIcon?.url ?? ''
                                 }`}

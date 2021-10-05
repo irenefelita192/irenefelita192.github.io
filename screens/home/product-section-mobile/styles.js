@@ -258,26 +258,6 @@ export default css`
         }
     }
 
-    @media screen and (min-height: 1280px) {
-        .product-wrapper > div:last-child {
-            padding: 28px 36px;
-        }
-
-        .product-wrapper > div:last-child h2 {
-            font-size: 42px;
-        }
-
-        .product-wrapper > div :last-child > div {
-            font-size: 32px;
-        }
-
-        .product-wrapper .btn-prev i,
-        .product-wrapper .btn-next i {
-            width: 70px;
-            height: 70px;
-        }
-    }
-
     @media screen and (min-width: 720px) {
         .product-wrapper > div:last-child {
             padding: 28px 36px;
@@ -315,6 +295,26 @@ export default css`
         .product-wrapper .btn-next i {
             width: 90px;
             height: 90px;
+        }
+    }
+
+    @media screen and (min-height: 1280px) {
+        .product-wrapper > div:last-child {
+            padding: 28px 36px;
+        }
+
+        .product-wrapper > div:last-child h2 {
+            font-size: 42px;
+        }
+
+        .product-wrapper > div :last-child > div {
+            font-size: 32px;
+        }
+
+        .product-wrapper .btn-prev i,
+        .product-wrapper .btn-next i {
+            width: 70px;
+            height: 70px;
         }
     }
 

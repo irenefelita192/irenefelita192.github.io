@@ -219,12 +219,105 @@ export default css`
         margin-right: 0;
     }
 
+    /* @media screen and (max-width: 1190px) {
+        .fourth-wrapper .clip-wrapper {
+            height: 500px;
+            width: 500px;
+        }
+
+        .fourth-wrapper .clip-wrapper-inner {
+            clip-path: ellipse(467px 408px at 56% 32%);
+        }
+
+        .fourth-wrapper .circle {
+            height: 500px;
+            width: 500px;
+        }
+
+        .fourth-wrapper .hp-image {
+            width: 360px;
+        }
+
+        .fourth-wrapper .is-visible .hp-image {
+            transform: translate(-50%, -14%);
+        }
+
+        .fourth-wrapper > div:last-child {
+            font-size: 21px;
+        }
+
+        .fourth-wrapper > div:last-child h2 {
+            font-size: 40px;
+        }
+
+        .fourth-wrapper .clip-wrapper {
+            margin-top: 0;
+        }
+
+        .fourth-wrapper > div:last-child {
+            margin: 5% 5% 0;
+        }
+    } */
+
+    @media screen and (max-width: 1190px) {
+        .fourth-wrapper .clip-wrapper {
+            height: 400px;
+            width: 400px;
+            left: 16%;
+        }
+
+        .fourth-wrapper .clip-wrapper-inner {
+            clip-path: ellipse(264px 237px at 57% 31%);
+        }
+
+        .fourth-wrapper .circle {
+            height: 400px;
+            width: 400px;
+        }
+
+        .fourth-wrapper .hp-image {
+            width: 288px;
+        }
+
+        .fourth-wrapper .is-visible .hp-image {
+            transform: translate(-50%, -14%);
+        }
+
+        .fourth-wrapper > div:last-child {
+            font-size: 21px;
+        }
+
+        .fourth-wrapper > div:last-child h2 {
+            font-size: 40px;
+        }
+
+        .fourth-wrapper .clip-wrapper {
+            margin-top: 0;
+        }
+
+        .fourth-wrapper > div:last-child {
+            margin: 5% 5% 0;
+        }
+    }
+
+    /* handphone - start */
+
     @media screen and (max-height: 812px) {
         .fourth-wrapper.is-mobile > div:last-child {
             font-size: 15px;
         }
         .fourth-wrapper.is-mobile > div:last-child h2 {
             font-size: 25px;
+        }
+    }
+
+    @media screen and (max-height: 750px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 15% 24px 0;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            margin-top: 20%;
         }
     }
 
@@ -235,9 +328,161 @@ export default css`
         .fourth-wrapper.is-mobile > div:last-child h2 {
             font-size: 22px;
         }
-
-        //tambah ganti image size kalo screen width 700
     }
 
+    @media screen and (max-height: 640px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 10% 24px 0;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            margin-top: 15%;
+        }
+    }
+
+    /* tablet - start */
+    @media screen and (min-width: 600px) {
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            height: 500px;
+            width: 500px;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper-inner {
+            /* clip-path: path(
+                'M 560,400 C 500,10 500,574 490,496 0,509 0,399 0,153 V -300 H 300 590 Z'
+            ); */
+            clip-path: ellipse(328px 285px at 57% 32%);
+        }
+
+        .fourth-wrapper.is-mobile .circle {
+            height: 500px;
+            width: 500px;
+        }
+
+        .fourth-wrapper.is-mobile .hp-image {
+            width: 360px;
+        }
+
+        .fourth-wrapper.is-mobile .is-visible .hp-image {
+            transform: translate(-50%, -14%);
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 24px 24px 0;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 24px;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media screen and (min-width: 720px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 6% 24px 0;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            margin-top: 22%;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 23px;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 45px;
+        }
+    }
+
+    @media screen and (min-width: 815px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 8% 24px 0;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            margin-top: 25%;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 27px;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 54px;
+        }
+    }
+
+    @media screen and (min-width: 830px) {
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 27px;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 54px;
+        }
+    }
+
+    @media screen and (max-width: 800px) and (min-height: 1280px) {
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            margin-top: 30%;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 15% 24px 0;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 27px;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 54px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            height: 720px;
+            width: 720px;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper-inner {
+            clip-path: ellipse(467px 408px at 56% 32%);
+        }
+
+        .fourth-wrapper.is-mobile .circle {
+            height: 720px;
+            width: 720px;
+        }
+
+        .fourth-wrapper.is-mobile .hp-image {
+            width: 518px;
+        }
+
+        .fourth-wrapper.is-mobile .is-visible .hp-image {
+            transform: translate(-50%, -14%);
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            font-size: 27px;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child h2 {
+            font-size: 54px;
+        }
+
+        .fourth-wrapper.is-mobile .clip-wrapper {
+            margin-top: 22%;
+        }
+
+        .fourth-wrapper.is-mobile > div:last-child {
+            margin: 5% 5% 0;
+        }
+    }
+    /* tablet - end */
     /* Fourth Section - end */
 `

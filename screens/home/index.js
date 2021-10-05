@@ -27,12 +27,9 @@ export default function HomeScreen() {
         if (window) {
             langId = getCookie('lang')
 
-            if (window.innerWidth <= 1024) {
+            if (window.innerWidth < window.innerHeight) {
                 setIsDesktop(false)
-                if (
-                    window.innerWidth >= 600 &&
-                    window.innerWidth < window.innerHeight
-                ) {
+                if (window.innerWidth >= 600) {
                     setIsTablet(true)
                 }
             }

@@ -8,17 +8,23 @@ const data = {
     id: '1',
     title: 'Have Better Comfort While Recovering',
     description: 'Focus on your well-being and less worry for your family',
-    image: `${assetPrefix}/images/inpatient/hero.png`,
+    image: `/images/inpatient/hero.png`,
+    imageWebp: `${assetPrefix}/images/inpatient/hero.webp`,
 }
 
 export default function SectionOne() {
     const [heroHeight, setHeroHeight] = useState(0)
-
+    const [isWebpSupport, setIsWebpSupport] = useState(true)
     let headerHeight = 80
 
     useEffect(() => {
         if (window) {
             setHeroHeight(window.innerHeight)
+            if (window.Modernizr.webp) {
+                setIsWebpSupport(true)
+            } else {
+                setIsWebpSupport(false)
+            }
         }
 
         return () => {
@@ -26,7 +32,10 @@ export default function SectionOne() {
         }
     }, [])
 
-    // if (!homeData) return <Loader />
+    let heroImage = `${assetPrefix}${data.imageWebp}`
+    if (!data.imageWebp || !isWebpSupport) {
+        heroImage = `${assetPrefix}${data.image}`
+    }
 
     return (
         <>
@@ -34,7 +43,7 @@ export default function SectionOne() {
                 className={`hero-wrapper`}
                 style={{
                     height: `${heroHeight}px`,
-                    backgroundImage: `url(${data.image})`,
+                    backgroundImage: `url(${heroImage})`,
                 }}
             >
                 <div className="hero-text">

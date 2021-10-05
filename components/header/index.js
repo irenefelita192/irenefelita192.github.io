@@ -100,7 +100,15 @@ export default function Header({ activeId }) {
                     }
                 } else {
                     if (navbar && !navbar.classList.contains('is-trans')) {
-                        navbar.classList.add('is-trans')
+                        const navDropdown =
+                            document.getElementById('navbar-dropdown')
+                        if (
+                            navDropdown &&
+                            navDropdown.classList.contains('submenu-open')
+                        ) {
+                        } else {
+                            navbar.classList.add('is-trans')
+                        }
                     }
                 }
             }, 100)
@@ -126,6 +134,9 @@ export default function Header({ activeId }) {
 
     const handleOpenSubmenu = (isOpen) => {
         setIsSubmenuOpen(isOpen)
+
+        const navbar = document.getElementById('navbarTop')
+        if (navbar) navbar.classList.remove('is-trans')
     }
 
     const renderSubMenuMobile = (menu) => {

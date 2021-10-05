@@ -9,6 +9,7 @@ const theme = {
         'vida-green': '#00A59B',
         'vida-white': '#FCFCFC',
         'vida-green-fresh': '#00D1C5',
+        'vida-tan-dark': '#A57A61',
         gray: '#7B7B7B',
         white: '#FFFFFF',
         brand: '#0A9188',

@@ -7,8 +7,6 @@ export default css`
         background-repeat: no-repeat;
         background-position: top right;
         position: relative;
-        display: flex;
-        align-items: center;
     }
 
     .hero-text {
@@ -18,11 +16,13 @@ export default css`
         font-size: 18px;
         line-height: 1.4;
         color: ${theme.colors['vida-white']};
-        margin-left: 154px;
+        top: calc(50% - 80px);
+        left: 154px;
         width: 100%;
     }
 
     .hero-text h1 {
+        margin: 0;
         font-family: 'Museo', sans-serif;
         font-weight: 700;
         font-size: 60px;
