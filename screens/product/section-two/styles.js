@@ -29,7 +29,7 @@ export default css`
         clip-path: ellipse(56% 138% at 50% -47%);
         width: 100%;
         position: absolute;
-        top: 0;
+        top: -3px;
         height: 40px;
         background-color: #f6f4f1;
     }
@@ -42,7 +42,7 @@ export default css`
 
     .hero-text {
         position: absolute;
-        width: 33.4%;
+        width: 30.5%;
         top: 50%;
         right: 9%;
         transform: translate(9%, -50%);
@@ -67,15 +67,15 @@ export default css`
         bottom: 65%;
         top: auto;
         transform: translateY(65%);
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
     }
 
     .extra-image {
         position: absolute;
         bottom: -6%;
-        right: 12%;
-        height: 65%;
-        transform: translate(12%, 6%);
+        right: 11%;
+        height: 62%;
+        transform: translate(11%, 6%);
     }
 
     .extra-image img {

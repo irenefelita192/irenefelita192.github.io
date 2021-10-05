@@ -12,9 +12,6 @@ import ProductSection from './product-section'
 import ProductSectionMobile from './product-section-mobile'
 import AppSection from './app-section'
 import BannerCTA from 'components/banner-cta'
-// import { constant } from './parallax-desktop/constant'
-const assetDomain = process.env.config?.baseEndpoint ?? '',
-    assetPrefix = process.env.config?.assetPrefix ?? ''
 
 export default function HomeScreen() {
     const [homeData, setHomeData] = useState(null)
@@ -34,7 +31,7 @@ export default function HomeScreen() {
                 }
             }
         }
-        const homeDt = await getHomeData(langId ? langId : 'id')
+        const homeDt = await getHomeData(langId)
 
         if (!isMounted()) return
 
@@ -45,46 +42,59 @@ export default function HomeScreen() {
 
     return (
         <div>
-            {/* Section 1 and 2 start */}
-            {isDesktop && (
-                <ParallaxDesktop
-                    sectionOne={homeData.SectionOne}
-                    sectionTwo={homeData.SectionTwo}
-                />
-            )}
-            {!isDesktop && (
+            {homeData.SectionOne && homeData.SectionTwo && (
                 <>
-                    {isTablet && (
-                        <ParallaxTablet
+                    {/* Section 1 and 2 start */}
+                    {isDesktop && (
+                        <ParallaxDesktop
                             sectionOne={homeData.SectionOne}
                             sectionTwo={homeData.SectionTwo}
                         />
                     )}
-                    {!isTablet && (
-                        <ParallaxMobile
-                            sectionOne={homeData.SectionOne}
-                            sectionTwo={homeData.SectionTwo}
+                    {!isDesktop && (
+                        <>
+                            {isTablet && (
+                                <ParallaxTablet
+                                    sectionOne={homeData.SectionOne}
+                                    sectionTwo={homeData.SectionTwo}
+                                />
+                            )}
+                            {!isTablet && (
+                                <ParallaxMobile
+                                    sectionOne={homeData.SectionOne}
+                                    sectionTwo={homeData.SectionTwo}
+                                />
+                            )}
+                        </>
+                    )}
+                    {/* Section 1 and 2 end */}
+                </>
+            )}
+
+            {/* Section 3 start */}
+            {homeData.SectionThree && (
+                <>
+                    {isDesktop && (
+                        <ProductSection data={homeData.SectionThree} />
+                    )}
+                    {!isDesktop && (
+                        <ProductSectionMobile
+                            isTablet={isTablet}
+                            data={homeData.SectionThree}
                         />
                     )}
                 </>
             )}
-            {/* Section 1 and 2 end */}
-
-            {/* Section 3 start */}
-            {isDesktop && <ProductSection data={homeData.SectionThree} />}
-            {!isDesktop && (
-                <ProductSectionMobile
-                    isTablet={isTablet}
-                    data={homeData.SectionThree}
-                />
-            )}
             {/* Section 3 end */}
 
             {/* Section 4 start */}
-            <AppSection data={homeData.SectionFour} isDesktop={isDesktop} />
+            {homeData.SectionFour && (
+                <AppSection data={homeData.SectionFour} isDesktop={isDesktop} />
+            )}
             {/* Section 4 end */}
-
-            <BannerCTA data={homeData.BottomBanner} />
+            {homeData.BottomBanner && (
+                <BannerCTA data={homeData.BottomBanner} />
+            )}
             <Footer />
             {/* <style jsx>{styles}</style> */}
         </div>

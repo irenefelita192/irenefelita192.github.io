@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import dynamic from 'next/dynamic'
-import { getAllHeader, getLocale, getFooter } from 'services/common'
+import { getAllHeader, getFooter } from 'services/common'
 import { getCookie } from 'utils/global-util'
 import Accordion from 'components/accordion'
 
@@ -39,11 +39,11 @@ export default function Header({ activeId }) {
             const pathArr = (window.location?.pathname ?? '').split('/')
             activePath = `/${pathArr.length > 2 ? pathArr[1] : ''}`
         }
-        const headers = await getAllHeader(langId ? langId : 'id')
+        const headers = await getAllHeader(langId)
         let footerDt
         //< 1024 because ipad pro 1024 can use desktop layout
         if (window.innerWidth < 1024) {
-            footerDt = await getFooter(langId ? langId : 'id')
+            footerDt = await getFooter(langId)
         }
 
         if (!isMounted()) return
@@ -190,7 +190,9 @@ export default function Header({ activeId }) {
                                 style={{
                                     backgroundColor: subMenu.backgroundColor,
                                     color: subMenu.color,
-                                    backgroundImage: `url(${assetDomain}${subMenu.icon.url})`,
+                                    backgroundImage: `url(${assetDomain}${
+                                        subMenu?.bgImage?.url ?? ''
+                                    })`,
                                 }}
                             >
                                 <i

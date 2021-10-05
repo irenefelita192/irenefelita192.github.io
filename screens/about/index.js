@@ -27,7 +27,7 @@ export default function HomeScreen() {
                 setHeroHeight(0)
             }
         }
-        const aboutDt = await getAboutData(langId ? langId : 'id')
+        const aboutDt = await getAboutData(langId)
 
         if (!isMounted()) return
 

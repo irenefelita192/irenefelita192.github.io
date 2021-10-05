@@ -17,7 +17,7 @@ export default function TnCScreen() {
         if (process.browser) {
             langId = getCookie('lang')
         }
-        const privacyDt = await getPrivacy(langId ? langId : 'id')
+        const privacyDt = await getPrivacy(langId)
 
         if (!isMounted()) return
         setPrivacyData(privacyDt)

@@ -24,7 +24,7 @@ export default function WhatIf() {
                 setIsMobile(false)
             }
         }
-        const whatIfDt = await getWhatIfData(langId ? langId : 'id')
+        const whatIfDt = await getWhatIfData(langId)
 
         if (!isMounted()) return
         setWhatIfData(whatIfDt)

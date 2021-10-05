@@ -17,7 +17,7 @@ export default function TnCScreen() {
         if (process.browser) {
             langId = getCookie('lang')
         }
-        const tncDt = await getTnc(langId ? langId : 'id')
+        const tncDt = await getTnc(langId)
 
         if (!isMounted()) return
         setTncData(tncDt)

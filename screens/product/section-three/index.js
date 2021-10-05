@@ -3,49 +3,40 @@ import { Fragment, useEffect, useState } from 'react'
 import styles from './styles'
 import Observer from 'components/intersection-observer'
 
-let heroHeight = 400,
-    screenWidth = 1440,
-    screenHeight = 700,
-    topDistance = 0,
-    marginTop = 80,
-    scrollAt = {},
-    opacityEl = {},
-    scrollGap = 100,
-    parentTop = 0,
-    viewTop = 0,
-    benefitAnimate = {},
+let screenHeight = 700,
     benefitPos = {},
     prevScroll = 0,
-    isScrollDown = true,
-    scrollQ = 0,
-    maxY = -80,
-    minY = 0
-const assetPrefix = process.env.config?.assetPrefix ?? ''
+    isScrollDown = true
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 
-const data = [
-    {
-        id: '1',
-        title: 'Vida Fights Alongside with You',
-        description:
-            'Let Vida be your buddy and accompany you along the journey. Make Vida part of your support system.',
-        image: '/images/inpatient/Vida Fights  Alongside with You@2x.png',
-    },
-    {
-        id: '2',
-        title: 'A Reliable Health Care Partner',
-        description:
-            'We believe that the right medical treatment helps increase the chance of recovery. Vida makes sure that you and your family can access the right treatment.',
-        image: '/images/inpatient/A Decent Health  Care Partner@2x.png',
-    },
-]
+// const data = [
+//     {
+//         id: '1',
+//         title: 'Vida Fights Alongside with You',
+//         description:
+//             'Let Vida be your buddy and accompany you along the journey. Make Vida part of your support system.',
+//         image: '/images/inpatient/Vida Fights  Alongside with You@2x.png',
+//     },
+//     {
+//         id: '2',
+//         title: 'A Reliable Health Care Partner',
+//         description:
+//             'We believe that the right medical treatment helps increase the chance of recovery. Vida makes sure that you and your family can access the right treatment.',
+//         image: '/images/inpatient/A Decent Health  Care Partner@2x.png',
+//     },
+// ]
 
-export default function ParallaxDesktop() {
+export default function ParallaxDesktop({ data }) {
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         // let firstbenefit = ''
         if (window) {
             window.addEventListener('scroll', handleScroll)
+            // setTimeout(function () {
+            //     window.scrollTo(0, 0)
+            //     setIsLoaded(true)
+            // }, 200)
             screenHeight = window.innerHeight
         }
 
@@ -188,14 +179,14 @@ export default function ParallaxDesktop() {
                             className={`benefit-group ${
                                 (index + 1) % 2 == 0 ? 'item-even' : 'item-odd'
                             }`}
-                            id={`benefit-group-${q.id}`}
-                            key={q.id}
+                            id={`benefit-group-${q.num}`}
+                            key={q.num}
                             // style={{ height: `${screenHeight}px` }}
                         >
                             <div className={`benefit-text-wrapper`}>
                                 <div
                                     className={`benefit-text`}
-                                    id={`benefit-${q.id}`}
+                                    id={`benefit-${q.num}`}
                                 >
                                     <h3>{q.title}</h3>
                                     <div>{q.description}</div>
@@ -203,10 +194,10 @@ export default function ParallaxDesktop() {
                             </div>
 
                             <div
-                                id={`benefit-image-${q.id}`}
-                                className={`benefit-image benefit-image-${q.id}`}
+                                id={`benefit-image-${q.num}`}
+                                className={`benefit-image benefit-image-${q.num}`}
                             >
-                                <img src={`${assetPrefix}${q.image}`} />
+                                <img src={`${assetDomain}${q.image.url}`} />
                             </div>
                         </div>
                     ))}

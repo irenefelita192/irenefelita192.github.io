@@ -15,7 +15,7 @@ export default function Hero({ id }) {
             langId = getCookie('lang')
         }
 
-        const heroData = await getHeroTop(langId ? langId : 'id', id)
+        const heroData = await getHeroTop(langId, id)
 
         if (!isMounted()) return
 

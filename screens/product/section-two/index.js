@@ -4,21 +4,21 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-const data = {
-    id: '1',
-    highlightTitle:
-        'Have you heard about long term illness? Or know someone who is going through them?',
-    highlightDescription: '',
-    title: 'Long Journey',
-    description:
-        'Some families have to fight with painful illnesses such as cancer. To win over a prolonged battle, you’ve got to have enough ammunition.',
-    color: '#F2D051',
-    image: '/images/inpatient/hero-2.jpg',
-    imageWebp: '',
-    extraImage: '/images/inpatient/script.png',
-}
+// const data = {
+//     id: '1',
+//     highlightTitle:
+//         'Have you heard about long term illness? Or know someone who is going through them?',
+//     highlightDescription: '',
+//     title: 'Long Journey',
+//     description:
+//         'Some families have to fight with painful illnesses such as cancer. To win over a prolonged battle, you’ve got to have enough ammunition.',
+//     color: '#F2D051',
+//     image: '/images/inpatient/hero-2.jpg',
+//     imageWebp: '',
+//     extraImage: '/images/inpatient/script.png',
+// }
 //description test rich text atau text biasa aja untuk yg case 41%maternity
-export default function SectionTwo() {
+export default function SectionTwo({ data }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
 
@@ -37,9 +37,11 @@ export default function SectionTwo() {
         }
     }, [])
 
-    let heroImage = `${assetPrefix}${data.imageWebp}`
+    let heroImage = ''
     if (!data.imageWebp || !isWebpSupport) {
-        heroImage = `${assetPrefix}${data.image}`
+        heroImage = `${assetDomain}${data.image.url}`
+    } else {
+        heroImage = `${assetDomain}${data.imageWebp.url}`
     }
 
     return (
@@ -65,7 +67,7 @@ export default function SectionTwo() {
                 </div>
                 {data.extraImage && (
                     <div className="extra-image">
-                        <img src={`${assetPrefix}${data.extraImage}`} />
+                        <img src={`${assetDomain}${data.extraImage.url}`} />
                     </div>
                 )}
             </div>

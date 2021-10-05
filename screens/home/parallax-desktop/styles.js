@@ -355,6 +355,7 @@ export default css`
         position: relative;
         padding: 0;
         line-height: 0;
+        background-color: #f4f1ee;
     }
 
     .second-text {
@@ -388,9 +389,9 @@ export default css`
     .overlay-image {
         opacity: 0;
         position: absolute;
-        width: 29%;
+        width: 28.5%;
         z-index: 3;
-        bottom: 26px;
+        bottom: 37px;
         left: 54%;
         transform: translateX(-54%);
         height: auto;
