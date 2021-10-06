@@ -17,7 +17,7 @@ export default css`
     }
 
     .highlight-wrapper > div {
-        padding: 0 20%;
+        padding: 20px 20% 0;
     }
 
     .hero-wrapper {
@@ -81,5 +81,162 @@ export default css`
     .extra-image img {
         height: 100%;
         width: auto;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .highlight-wrapper {
+            font-size: 32px;
+            line-height: 1.3;
+            height: 190px;
+        }
+
+        .highlight-wrapper > div {
+            padding: 20px 40px 0;
+        }
+
+        .hero-wrapper:before {
+            clip-path: ellipse(58% 142% at 50% -50%);
+            height: 40px;
+        }
+
+        .hero-text {
+            width: 100%;
+            top: 10%;
+            left: 0;
+            transform: translate(0, -10%);
+            padding: 0 10%;
+            font-size: 36px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .hero-text h2 {
+            font-size: 46px;
+            line-height: 1.4;
+        }
+
+        .hero-text > div {
+            padding-top: 8px;
+        }
+
+        .hero-text.with-image {
+            bottom: auto;
+            top: 10%;
+            transform: translate(0, -10%);
+        }
+
+        .extra-image {
+            bottom: -15%;
+            left: 0;
+            height: 47%;
+            width: 100%;
+            right: auto;
+        }
+    }
+
+    @media screen and (max-width: 850px) {
+        .highlight-wrapper {
+            font-size: 32px;
+            line-height: 1.3;
+            height: 220px;
+        }
+
+        .highlight-wrapper > div {
+            padding: 20px 40px 0;
+        }
+
+        .hero-wrapper:before {
+            clip-path: ellipse(58% 142% at 50% -50%);
+            height: 40px;
+        }
+
+        .hero-text {
+            top: 7%;
+            font-size: 33px;
+        }
+
+        .hero-text h2 {
+            font-size: 42px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .highlight-wrapper {
+            font-size: 29px;
+            line-height: 1.3;
+            height: 220px;
+        }
+
+        .hero-text {
+            top: 7%;
+            font-size: 35px;
+        }
+
+        .hero-text h2 {
+            font-size: 40px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .highlight-wrapper {
+            font-size: 26px;
+            line-height: 1.3;
+            height: 190px;
+        }
+
+        .hero-text {
+            top: 7%;
+            font-size: 24px;
+        }
+
+        .hero-text h2 {
+            font-size: 36px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .highlight-wrapper {
+            font-size: 20px;
+            line-height: 1.3;
+            height: 190px;
+        }
+
+        .highlight-wrapper > div {
+            padding: 10px 34px 0;
+        }
+
+        .hero-text {
+            width: 100%;
+            top: 10%;
+            left: 0;
+            transform: translate(0, -10%);
+            padding: 0 25px;
+            font-size: 18px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .hero-text h2 {
+            font-size: 27px;
+            line-height: 1.4;
+        }
+
+        .hero-text > div {
+            padding-top: 8px;
+        }
+
+        .hero-text.with-image {
+            bottom: auto;
+            top: 10%;
+            transform: translate(0, -10%);
+        }
+
+        .extra-image {
+            bottom: -15%;
+            left: 0;
+            height: 47%;
+            width: 100%;
+            right: auto;
+        }
     }
 `

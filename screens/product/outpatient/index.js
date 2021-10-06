@@ -25,7 +25,7 @@ export default function Inpatient() {
                 // }
             }
         }
-        const prdDt = await getProductData('inpatient', langId)
+        const prdDt = await getProductData('outpatient', langId)
 
         if (!isMounted()) return
 

@@ -4,7 +4,7 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function OtherProducts({ data, title }) {
+export default function OtherProducts({ data, title, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
 

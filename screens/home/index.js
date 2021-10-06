@@ -3,7 +3,6 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getHomeData } from 'services/home'
 import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
-// import styles from './styles'
 import Footer from 'components/footer'
 import ParallaxDesktop from './parallax-desktop'
 import ParallaxMobile from './parallax-mobile'
@@ -96,7 +95,6 @@ export default function HomeScreen() {
                 <BannerCTA data={homeData.BottomBanner} />
             )}
             <Footer />
-            {/* <style jsx>{styles}</style> */}
         </div>
     )
 }

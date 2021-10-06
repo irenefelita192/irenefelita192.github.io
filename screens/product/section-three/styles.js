@@ -187,11 +187,121 @@ export default css`
             /* transform: translate(50px, -50px); */
         }
     }
-    /* 
+
+    @media screen and (max-width: 1024px) {
+        .benefit-container {
+            padding-top: 40%;
+        }
+
+        .b-group {
+            padding: 0;
+            display: block;
+            margin-bottom: 100px;
+            opacity: 0;
+        }
+
+        .b-group.animate-fadein {
+            opacity: 1;
+            animation: fadein 0.5s ease-in forwards;
+        }
+
+        .b-image {
+            width: 100%;
+        }
+
+        .b-image img {
+            width: 100%;
+        }
+
+        .b-text {
+            color: ${theme.colors['gray']};
+            font-size: 36px;
+            line-height: 1.2;
+            text-align: center;
+            padding: 16px 10%;
+        }
+
+        .b-text h3 {
+            font-family: 'Museo', sans-serif;
+            font-weight: 700;
+            font-size: 46px;
+            line-height: 1.34;
+            color: #f2d051;
+            margin: 0;
+            padding: 0;
+        }
+
+        .b-text > div {
+            padding-top: 8px;
+        }
+    }
+
+    @media screen and (max-width: 850px) {
+        .b-text {
+            font-size: 33px;
+            padding: 8px 5%;
+        }
+
+        .b-text h3 {
+            font-size: 42px;
+        }
+
+        .b-text > div {
+            padding-top: 8px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .b-text {
+            font-size: 35px;
+            line-height: 1.2;
+            text-align: center;
+            padding: 8px 5%;
+        }
+
+        .b-text h3 {
+            font-size: 40px;
+            line-height: 1.34;
+        }
+
+        .b-text > div {
+            padding-top: 8px;
+        }
+    }
 
     @media screen and (max-width: 640px) {
-        .benefit-text {
-            font-size: 30px;
+        .b-text {
+            font-size: 35px;
+            line-height: 1.2;
+            text-align: center;
+            padding: 8px 24px;
         }
-    } */
+
+        .b-text h3 {
+            font-size: 40px;
+            line-height: 1.34;
+        }
+
+        .b-text > div {
+            padding-top: 8px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .b-text {
+            font-size: 18px;
+            line-height: 1.2;
+            text-align: center;
+            padding: 8px 24px;
+        }
+
+        .b-text h3 {
+            font-size: 27px;
+            line-height: 1.34;
+        }
+
+        .b-text > div {
+            padding-top: 8px;
+        }
+    }
 `

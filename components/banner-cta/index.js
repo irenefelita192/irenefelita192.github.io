@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
-export default function BannerCTA({ data }) {
+export default function BannerCTA({ data, isProduct, isDesktop }) {
     const [isIos, setIsIos] = useState(false)
 
     useEffect(() => {
@@ -16,13 +16,15 @@ export default function BannerCTA({ data }) {
     return (
         <>
             <div
-                className={`banner-section ${
+                className={`banner-section ${isProduct ? 'is-product' : ''} ${
                     data.isDownload ? 'is-download' : ''
-                }`}
+                } ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
                     backgroundColor: data.backgroundColor || '#3989D7',
                     backgroundImage: `url(${assetDomain}${
-                        data?.shamrockImage?.url ?? ''
+                        isDesktop
+                            ? data?.shamrockImage?.url ?? ''
+                            : data?.shamrockImageMobile?.url ?? ''
                     })`,
                 }}
             >

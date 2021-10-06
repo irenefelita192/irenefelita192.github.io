@@ -18,7 +18,7 @@ const assetPrefix = process.env.config?.assetPrefix ?? '',
 //     extraImage: '/images/inpatient/script.png',
 // }
 //description test rich text atau text biasa aja untuk yg case 41%maternity
-export default function SectionTwo({ data }) {
+export default function SectionTwo({ data, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
 
@@ -38,24 +38,27 @@ export default function SectionTwo({ data }) {
     }, [])
 
     let heroImage = ''
-    if (!data.imageWebp || !isWebpSupport) {
-        heroImage = `${assetDomain}${data.image.url}`
+    if (isDesktop) {
+        if (!data.imageWebp || !isWebpSupport) {
+            heroImage = `${assetDomain}${data.image.url}`
+        } else {
+            heroImage = `${assetDomain}${data.imageWebp.url}`
+        }
     } else {
-        heroImage = `${assetDomain}${data.imageWebp.url}`
+        if (!data.imageMobileWebp || !isWebpSupport) {
+            heroImage = `${assetDomain}${data.imageMobile.url}`
+        } else {
+            heroImage = `${assetDomain}${data.imageMobileWebp.url}`
+        }
     }
-
     return (
         <>
-            <div className={'highlight-wrapper'}>
+            <div
+                className={`highlight-wrapper ${isDesktop ? '' : 'is-mobile'}`}
+            >
                 <div>{data.highlightTitle || ''}</div>
             </div>
-            <div
-                className={`hero-wrapper`}
-                // style={{
-                //     height: `${heroHeight}px`,
-                //     backgroundImage: `url(${heroImage})`,
-                // }}
-            >
+            <div className={`hero-wrapper ${isDesktop ? '' : 'is-mobile'}`}>
                 <img src={heroImage} alt="" />
                 <div
                     className={`hero-text ${

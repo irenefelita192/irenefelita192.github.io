@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function SectionOne({ data }) {
+export default function SectionOne({ data, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     let headerHeight = 80
@@ -24,16 +24,24 @@ export default function SectionOne({ data }) {
     }, [])
 
     let heroImage = ''
-    if (!data.imageWebp || !isWebpSupport) {
-        heroImage = `${assetDomain}${data.image.url}`
+    if (isDesktop) {
+        if (!data.imageWebp || !isWebpSupport) {
+            heroImage = `${assetDomain}${data.image.url}`
+        } else {
+            heroImage = `${assetDomain}${data.imageWebp.url}`
+        }
     } else {
-        heroImage = `${assetDomain}${data.imageWebp.url}`
+        if (!data.imageMobileWebp || !isWebpSupport) {
+            heroImage = `${assetDomain}${data.imageMobile.url}`
+        } else {
+            heroImage = `${assetDomain}${data.imageMobileWebp.url}`
+        }
     }
 
     return (
         <>
             <div
-                className={`hero-wrapper`}
+                className={`hero-wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
                     height: `${heroHeight}px`,
                     backgroundImage: `url(${heroImage})`,
