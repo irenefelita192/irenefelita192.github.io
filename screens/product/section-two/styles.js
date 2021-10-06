@@ -132,6 +132,46 @@ export default css`
             width: 100%;
             right: auto;
         }
+
+        .hero-wrapper:not(.is-mobile) .hero-text {
+            position: absolute;
+            width: 30.5%;
+            top: 50%;
+            right: 9%;
+            transform: translate(9%, -50%);
+            font-size: 18px;
+            line-height: 1.4;
+            color: ${theme.colors['vida-white']};
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text h2 {
+            font-family: 'Museo', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 46px;
+            line-height: 1.17;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text > div {
+            padding-top: 16px;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text.with-image {
+            bottom: 72%;
+            top: auto;
+            transform: translateY(65%);
+            padding: 0;
+            left: auto;
+        }
+
+        .hero-wrapper:not(.is-mobile) .extra-image {
+            bottom: -6%;
+            right: 11%;
+            left: auto;
+            height: 62%;
+            width: auto;
+            transform: translate(11%, 6%);
+        }
     }
 
     @media screen and (max-width: 850px) {

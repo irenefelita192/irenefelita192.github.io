@@ -61,6 +61,31 @@ export default css`
         .hero-text > div:last-child {
             width: 100%;
         }
+
+        .hero-wrapper:not(.is-mobile) .hero-text {
+            position: absolute;
+            font-family: Inter;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.4;
+            color: ${theme.colors['vida-white']};
+            top: calc(50% - 80px);
+            left: 100px;
+            width: 100%;
+            padding: 0;
+            display: block;
+            text-align: left;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text h1 {
+            font-size: 50px;
+            line-height: 1.1;
+            width: 42%;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text > div:last-child {
+            width: 38%;
+        }
     }
 
     @media screen and (max-width: 850px) {

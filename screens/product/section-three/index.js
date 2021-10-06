@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 // import globalStyles from '../global-styles'
 import styles from './styles'
-import Observer from 'components/intersection-observer'
 
 let screenHeight = 700,
     benefitPos = {},
@@ -27,8 +26,6 @@ const assetDomain = process.env.config?.baseEndpoint ?? ''
 // ]
 
 export default function ParallaxDesktop({ data, isDesktop }) {
-    const [isLoaded, setIsLoaded] = useState(false)
-
     useEffect(() => {
         // let firstbenefit = ''
         if (window) {
@@ -148,7 +145,7 @@ export default function ParallaxDesktop({ data, isDesktop }) {
     return (
         <div className="content">
             <div
-                className={`benefit-container ${isLoaded ? 'is-loaded' : ''}`}
+                className={`benefit-container ${isDesktop ? '' : 'is-mobile'}`}
                 id="container"
             >
                 {data &&

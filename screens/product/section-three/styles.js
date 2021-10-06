@@ -234,6 +234,14 @@ export default css`
         .b-text > div {
             padding-top: 8px;
         }
+
+        .benefit-container:not(.is-mobile) {
+            padding-top: 120px;
+        }
+
+        .benefit-image img {
+            padding-top: 16%;
+        }
     }
 
     @media screen and (max-width: 850px) {
