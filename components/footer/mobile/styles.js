@@ -6,6 +6,7 @@ export default css`
         background-color: ${theme.colors.white};
         padding: 56px 0 0;
         color: ${theme.colors.gray};
+        box-shadow: inset 0px 1px 0px rgba(185, 185, 185, 0.25);
     }
 
     footer > div {

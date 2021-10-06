@@ -64,16 +64,58 @@ export default css`
         height: 100%;
     }
 
+    .banner-section.is-product.is-mobile .banner-link {
+        margin-top: 72px;
+    }
+
     @media screen and (max-width: 1024px) {
         .banner-section {
-            font-size: 26px;
+            font-size: 36px;
             line-height: 1.2;
-            padding: 32px 20px;
+            padding: 56px 10%;
             justify-content: flex-end;
         }
 
         a.banner-link {
+            font-size: 20px;
+            padding: 22px 28px;
+        }
+
+        a.banner-link {
             width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 850px) {
+        .banner-section {
+            font-size: 38px;
+            padding: 56px 5%;
+        }
+
+        a.banner-link {
+            font-size: 33px;
+            padding: 4% 28px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .banner-section {
+            font-size: 34px;
+        }
+
+        a.banner-link {
+            font-size: 22px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .banner-section {
+            font-size: 26px;
+        }
+
+        a.banner-link {
+            font-size: 18px;
+            padding: 17px 28px;
         }
     }
 

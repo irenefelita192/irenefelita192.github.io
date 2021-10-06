@@ -24,6 +24,7 @@ export default css`
 
     .card-box {
         position: relative;
+        display: block;
         width: 344px;
         height: 232px;
         margin-right: 20px;
@@ -73,5 +74,150 @@ export default css`
     .card-box:hover i {
         opacity: 1;
         transition: opacity 0.3s ease-in-out;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .card-wrapper {
+            padding: 80px 35px 48px;
+        }
+
+        .card-wrapper > div:first-child {
+            font-size: 27px;
+            line-height: 1.34;
+        }
+
+        .card-box {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .card-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-image {
+            height: 40px;
+        }
+
+        .card-title {
+            font-size: 26px;
+            line-height: 1.54;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            line-height: 1.37;
+            padding-top: 12px;
+        }
+    }
+
+    @media screen and (max-width: 850px) {
+        .card-wrapper {
+            padding: 80px 35px 48px;
+        }
+
+        .card-wrapper > div:first-child {
+            font-size: 40px;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .card-box-wrapper {
+            display: block;
+        }
+
+        .card-box {
+            padding: 33px;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+
+        .card-image {
+            height: 65px;
+        }
+
+        .card-title {
+            font-size: 44px;
+        }
+
+        .card-desc {
+            font-size: 24px;
+            padding-top: 12px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .card-wrapper > div:first-child {
+            font-size: 42px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card-box {
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .card-image {
+            height: 58px;
+        }
+
+        .card-title {
+            font-size: 39px;
+        }
+
+        .card-desc {
+            font-size: 24px;
+            padding-top: 12px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .card-wrapper > div:first-child {
+            font-size: 32px;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .card-box {
+            max-width: 380px;
+            margin: 0 auto 40px;
+        }
+
+        .card-image {
+            height: 44px;
+        }
+
+        .card-title {
+            font-size: 30px;
+        }
+
+        .card-desc {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .card-wrapper > div:first-child {
+            font-size: 27px;
+            line-height: 1.34;
+        }
+
+        .card-box {
+            margin-bottom: 20px;
+        }
+
+        .card-image {
+            height: 40px;
+        }
+
+        .card-title {
+            font-size: 26px;
+        }
+
+        .card-desc {
+            font-size: 16px;
+        }
     }
 `

@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 // import globalStyles from '../global-styles'
 import styles from './styles'
-import Observer from 'components/intersection-observer'
 
 let screenHeight = 700,
     benefitPos = {},
@@ -26,13 +25,11 @@ const assetDomain = process.env.config?.baseEndpoint ?? ''
 //     },
 // ]
 
-export default function ParallaxDesktop({ data }) {
-    const [isLoaded, setIsLoaded] = useState(false)
-
+export default function ParallaxDesktop({ data, isDesktop }) {
     useEffect(() => {
         // let firstbenefit = ''
         if (window) {
-            window.addEventListener('scroll', handleScroll)
+            if (isDesktop) window.addEventListener('scroll', handleScroll)
             // setTimeout(function () {
             //     window.scrollTo(0, 0)
             //     setIsLoaded(true)
@@ -50,7 +47,7 @@ export default function ParallaxDesktop({ data }) {
             observerOptions
         )
 
-        let target = '.benefit-group'
+        let target = isDesktop ? '.benefit-group' : '.b-group'
         document.querySelectorAll(target).forEach((i) => {
             if (i) {
                 observer.observe(i)
@@ -135,72 +132,85 @@ export default function ParallaxDesktop({ data }) {
             //kalau sebelah kanan position X axis nya minus
         }
 
-        // if (scrollQ >= groupVisiblePos3) {
-        //     benefitPos['benefit-group-3'] = scrollQ - groupVisiblePos3
-        //     let qPosY = benefitPos['benefit-group-3'] * 0.15,
-        //         pPosY = benefitPos['benefit-group-3'] * 0.1,
-        //         pPosX = benefitPos['benefit-group-3'] * 0.05
-
-        //     // document.getElementById(
-        //     //     'benefit-3'
-        //     // ).style.transform = `translate3d(0,-${qPosY}px,0)`
-
-        //     document.getElementById(
-        //         'benefit-image-3'
-        //     ).style.transform = `translate3d(${pPosX}px,-${pPosY}px,0`
-        // }
-
         prevScroll = scrollTop
     }
 
-    // const resetAnimation = (id) => {
-    //     const el = document.getElementById(id)
-    //     // el.classList.add('animate-fadeout')
-    //     el.classList.remove('animate-fadein')
-    //     console.log('INvisible', id)
-    // }
-
     const addAnimation = (id) => {
+        console.log('ID', id)
         const el = document.getElementById(id)
-        el.classList.add('animate-fadein', 'is-visible')
-        // el.classList.remove('animate-fadeout')
-        // console.log('visible', id),
+        if (isDesktop) el.classList.add('animate-fadein', 'is-visible')
+        else el.classList.add('animate-fadein')
     }
 
     return (
         <div className="content">
             <div
-                className={`benefit-container ${isLoaded ? 'is-loaded' : ''}`}
+                className={`benefit-container ${isDesktop ? '' : 'is-mobile'}`}
                 id="container"
             >
                 {data &&
-                    data.map((q, index) => (
-                        <div
-                            className={`benefit-group ${
-                                (index + 1) % 2 == 0 ? 'item-even' : 'item-odd'
-                            }`}
-                            id={`benefit-group-${q.num}`}
-                            key={q.num}
-                            // style={{ height: `${screenHeight}px` }}
-                        >
-                            <div className={`benefit-text-wrapper`}>
+                    data.map((q, index) => {
+                        let imageUrl = ''
+                        if (isDesktop) {
+                            imageUrl = `${assetDomain}${q?.image?.url ?? ''}`
+                        } else {
+                            imageUrl = q.image
+                                ? `${assetDomain}${q.image.formats.small.url}`
+                                : ''
+                        }
+                        if (isDesktop) {
+                            return (
                                 <div
-                                    className={`benefit-text`}
-                                    id={`benefit-${q.num}`}
+                                    className={`benefit-group ${
+                                        (index + 1) % 2 == 0
+                                            ? 'item-even'
+                                            : 'item-odd'
+                                    }`}
+                                    id={`benefit-group-${q.num}`}
+                                    key={q.num}
+                                    // style={{ height: `${screenHeight}px` }}
                                 >
-                                    <h3>{q.title}</h3>
-                                    <div>{q.description}</div>
-                                </div>
-                            </div>
+                                    <div className={`benefit-text-wrapper`}>
+                                        <div
+                                            className={`benefit-text`}
+                                            id={`benefit-${q.num}`}
+                                        >
+                                            <h3>{q.title}</h3>
+                                            <div>{q.description}</div>
+                                        </div>
+                                    </div>
 
-                            <div
-                                id={`benefit-image-${q.num}`}
-                                className={`benefit-image benefit-image-${q.num}`}
-                            >
-                                <img src={`${assetDomain}${q.image.url}`} />
-                            </div>
-                        </div>
-                    ))}
+                                    <div
+                                        id={`benefit-image-${q.num}`}
+                                        className={`benefit-image benefit-image-${q.num}`}
+                                    >
+                                        <img src={imageUrl} />
+                                    </div>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div
+                                    className={`b-group`}
+                                    id={`b-group-${q.num}`}
+                                    key={q.num}
+                                    // style={{ height: `${screenHeight}px` }}
+                                >
+                                    <div
+                                        id={`b-image-mobile-${q.num}`}
+                                        className={`b-image b-image-mobile-${q.num}`}
+                                    >
+                                        <img src={imageUrl} />
+                                    </div>
+
+                                    <div className={`b-text`} id={`b-${q.num}`}>
+                                        <h3>{q.title}</h3>
+                                        <div>{q.description}</div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
             </div>
             <style jsx>{styles}</style>
             <style jsx global>
