@@ -40,15 +40,15 @@ export default function SectionTwo({ data, isDesktop }) {
     let heroImage = ''
     if (isDesktop) {
         if (!data.imageWebp || !isWebpSupport) {
-            heroImage = `${assetDomain}${data.image.url}`
+            heroImage = `${assetDomain}${data?.image?.url ?? ''}`
         } else {
-            heroImage = `${assetDomain}${data.imageWebp.url}`
+            heroImage = `${assetDomain}${data?.imageWebp?.url ?? ''}`
         }
     } else {
         if (!data.imageMobileWebp || !isWebpSupport) {
-            heroImage = `${assetDomain}${data.imageMobile.url}`
+            heroImage = `${assetDomain}${data?.imageMobile?.url ?? ''}`
         } else {
-            heroImage = `${assetDomain}${data.imageMobileWebp.url}`
+            heroImage = `${assetDomain}${data?.imageMobileWebp?.url ?? ''}`
         }
     }
     return (
@@ -57,6 +57,11 @@ export default function SectionTwo({ data, isDesktop }) {
                 className={`highlight-wrapper ${isDesktop ? '' : 'is-mobile'}`}
             >
                 <div>{data.highlightTitle || ''}</div>
+                {data.highlightDescription && (
+                    <div className="highlight-desc">
+                        {data.highlightDescription || ''}
+                    </div>
+                )}
             </div>
             <div className={`hero-wrapper ${isDesktop ? '' : 'is-mobile'}`}>
                 <img src={heroImage} alt="" />

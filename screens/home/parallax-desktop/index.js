@@ -37,9 +37,12 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
             } else {
                 setIsWebpSupport(false)
             }
-            setHeroHeight(
+            let heroContainerHeight =
                 window.innerWidth > 1280 ? window.innerWidth * 0.55 : 660
-            )
+            if (window.innerWidth < 1024 && window.innerHeight < 450) {
+                heroContainerHeight = window.innerHeight
+            }
+            setHeroHeight(heroContainerHeight)
             setIconHeight({
                 inpatient: (7.6 / 100) * window.innerWidth,
                 maternity: (6 / 100) * window.innerWidth,
@@ -204,6 +207,19 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     let familyImg = `${assetPrefix}${sectionOne?.familyImageWebp?.url ?? ''}`
     if (!sectionOne.familyImage || !isWebpSupport) {
         familyImg = `${assetPrefix}${sectionOne?.familyImage?.url ?? ''}`
+    }
+
+    if (window) {
+        if (window.innerWidth < 1024 && window.innerHeight < 450) {
+            familyImg = `${assetPrefix}${
+                sectionOne?.familyImageWebp?.formats?.medium?.url ?? ''
+            }`
+            if (!sectionOne.familyImage || !isWebpSupport) {
+                familyImg = `${assetPrefix}${
+                    sectionOne?.familyImage?.formats?.medium?.url ?? ''
+                }`
+            }
+        }
     }
     // if (isPortrait) {
     //     heroImg = header.mobileImage

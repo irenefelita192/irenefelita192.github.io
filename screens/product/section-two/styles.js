@@ -12,12 +12,21 @@ export default css`
         text-align: center;
         color: ${theme.colors['vida-tan-dark']};
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
     .highlight-wrapper > div {
         padding: 20px 20% 0;
+    }
+
+    .highlight-wrapper .highlight-desc {
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 1.24;
+        padding-top: 8px;
+        margin-bottom: -20px;
     }
 
     .hero-wrapper {
@@ -87,11 +96,17 @@ export default css`
         .highlight-wrapper {
             font-size: 32px;
             line-height: 1.3;
-            height: 190px;
+            height: 220px;
         }
 
         .highlight-wrapper > div {
             padding: 20px 40px 0;
+        }
+
+        .highlight-wrapper .highlight-desc {
+            font-size: 32px;
+            padding-top: 8px;
+            margin-bottom: -10px;
         }
 
         .hero-wrapper:before {
@@ -178,7 +193,11 @@ export default css`
         .highlight-wrapper {
             font-size: 32px;
             line-height: 1.3;
-            height: 220px;
+            height: 260px;
+        }
+
+        .highlight-wrapper .highlight-desc {
+            font-size: 32px;
         }
 
         .highlight-wrapper > div {
@@ -204,7 +223,11 @@ export default css`
         .highlight-wrapper {
             font-size: 29px;
             line-height: 1.3;
-            height: 220px;
+            height: 260px;
+        }
+
+        .highlight-wrapper .highlight-desc {
+            font-size: 29px;
         }
 
         .hero-text {
@@ -221,7 +244,15 @@ export default css`
         .highlight-wrapper {
             font-size: 26px;
             line-height: 1.3;
-            height: 190px;
+            height: 240px;
+        }
+
+        .highlight-wrapper .highlight-desc {
+            font-size: 26px;
+        }
+
+        .hero-wrapper:before {
+            height: 22px;
         }
 
         .hero-text {
@@ -238,11 +269,15 @@ export default css`
         .highlight-wrapper {
             font-size: 20px;
             line-height: 1.3;
-            height: 190px;
+            height: 210px;
         }
 
         .highlight-wrapper > div {
             padding: 10px 34px 0;
+        }
+
+        .highlight-wrapper .highlight-desc {
+            font-size: 20px;
         }
 
         .hero-text {

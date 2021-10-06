@@ -90,7 +90,7 @@ export default css`
 
     @media screen and (max-width: 850px) {
         .hero-text {
-            padding: 30% 16px 0 16px;
+            padding: 25% 16px 0 16px;
             font-size: 31px;
             line-height: 1.4;
         }
@@ -124,7 +124,7 @@ export default css`
 
     @media screen and (max-width: 450px) {
         .hero-text {
-            padding: 35% 16px 0 16px;
+            padding: 30% 16px 0 16px;
             font-size: 22px;
             line-height: 1.4;
         }
@@ -141,9 +141,29 @@ export default css`
         }
     }
 
+    @media screen and (max-width: 375px) {
+        .hero-text {
+            font-size: 18px;
+        }
+
+        .hero-text h1 {
+            font-size: 30px;
+        }
+    }
+
     @media screen and (min-width: 640px) and (max-width: 850px) and (max-height: 1080px) {
         .hero-text {
             padding: 15% 32px 0 32px;
+            font-size: 25px;
+        }
+
+        .hero-text h1 {
+            font-size: 40px;
+            width: 100%;
+        }
+
+        .hero-text > div:last-child {
+            padding-top: 8px;
         }
     }
 `

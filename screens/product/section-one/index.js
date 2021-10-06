@@ -26,15 +26,15 @@ export default function SectionOne({ data, isDesktop }) {
     let heroImage = ''
     if (isDesktop) {
         if (!data.imageWebp || !isWebpSupport) {
-            heroImage = `${assetDomain}${data.image.url}`
+            heroImage = `${assetDomain}${data?.image?.url ?? ''}`
         } else {
-            heroImage = `${assetDomain}${data.imageWebp.url}`
+            heroImage = `${assetDomain}${data?.imageWebp?.url ?? ''}`
         }
     } else {
         if (!data.imageMobileWebp || !isWebpSupport) {
-            heroImage = `${assetDomain}${data.imageMobile.url}`
+            heroImage = `${assetDomain}${data?.imageMobile?.url ?? ''}`
         } else {
-            heroImage = `${assetDomain}${data.imageMobileWebp.url}`
+            heroImage = `${assetDomain}${data?.imageMobileWebp?.url ?? ''}`
         }
     }
 
