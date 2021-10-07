@@ -136,5 +136,40 @@ export default css`
         animation: fadeout 1s ease-in-out forwards;
     }
 
+    /*handphone landscape - start*/
+    @media screen and (max-width: 1024px) {
+        /* .product-wrapper > div:first-child h2 {
+            font-size: 30px;
+        } */
+
+        .product-wrapper > div:first-child > div:first-child {
+            height: 30%;
+        }
+
+        .product-wrapper > div:first-child > div {
+            height: 25%;
+        }
+    }
+
+    @media screen and (max-width: 844px) {
+        .product-wrapper > div:first-child h2 {
+            font-size: 30px;
+        }
+
+        .product-wrapper > div:first-child > div:first-child {
+            /* height: auto; */
+        }
+
+        .product-wrapper > div:first-child > div {
+            padding: 0 20%;
+            font-size: 13px;
+            /* height: auto; */
+        }
+
+        .product-wrapper > div:first-child > div:last-child {
+            display: flex;
+            margin-top: 24px;
+        }
+    }
     /* Third Section - end */
 `
