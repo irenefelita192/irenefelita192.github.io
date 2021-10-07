@@ -238,6 +238,19 @@ export default css`
         .hero-text h2 {
             font-size: 40px;
         }
+
+        .hero-wrapper:not(.is-mobile) .hero-text h2 {
+            font-size: 32px;
+        }
+        .hero-wrapper:not(.is-mobile) .hero-text > div {
+            padding-top: 8px;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text.with-image {
+            font-size: 12px;
+            width: 35%;
+            right: 7%;
+        }
     }
 
     @media screen and (max-width: 640px) {
