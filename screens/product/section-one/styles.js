@@ -103,6 +103,14 @@ export default css`
         .hero-text > div:last-child {
             width: 100%;
         }
+
+        .hero-wrapper:not(.is-mobile) .hero-text {
+            left: 50px;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text h1 {
+            font-size: 32px;
+        }
     }
 
     @media screen and (max-width: 640px) {

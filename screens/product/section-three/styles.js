@@ -257,6 +257,9 @@ export default css`
         .b-text > div {
             padding-top: 8px;
         }
+        .benefit-image {
+            top: 10%;
+        }
     }
 
     @media screen and (max-width: 768px) {
