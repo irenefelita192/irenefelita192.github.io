@@ -75,12 +75,16 @@ export default function ParallaxTablet({ sectionOne, sectionTwo }) {
                     window.innerWidth / window.innerHeight < 0.6 ||
                     window.innerWidth <= 600
                 ) {
+                    //galaxy tab small 600
+                    //advan tab 10
+                    console.log('MASUKK ya??1')
                     mCalcX = 0.08
                     oCalcX = 0.06
-                    stickyPosTop = secondPosTop + (55 / 100) * innerWidth
+                    stickyPosTop = secondPosTop + (60 / 100) * innerWidth
                 } else if (window.innerWidth / window.innerHeight < 0.69) {
                     //0.625
                     //galaxy tab
+
                     mCalcX = 0.08
                     oCalcX = 0.06
                     stickyPosTop = secondPosTop + (10 / 100) * innerWidth

@@ -85,7 +85,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     oCalcY = 50
                 } else {
                     stickyPosTop =
-                        secondPosTop + (50 / 100) * window.innerHeight
+                        secondPosTop + (58 / 100) * window.innerHeight
                     mCalcX = 5
                     mCalcY = 68
                     calcX = 5

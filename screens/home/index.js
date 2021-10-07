@@ -23,9 +23,18 @@ export default function HomeScreen() {
         if (window) {
             langId = getCookie('lang')
 
+            // if (
+            //     window.innerWidth < window.innerHeight ||
+            //     (window.innerHeight < 450 && window.innerWidth < 950)
+            // ) {
+            //     setIsDesktop(false)
+            //     if (window.innerWidth >= 600 && window.innerHeight > 600) {
+            //         setIsTablet(true)
+            //     }
+            // }
             if (window.innerWidth < window.innerHeight) {
                 setIsDesktop(false)
-                if (window.innerWidth >= 600) {
+                if (window.innerWidth >= 500) {
                     setIsTablet(true)
                 }
             }

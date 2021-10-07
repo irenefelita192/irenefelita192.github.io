@@ -28,7 +28,8 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
         animatePosX = 0,
         animatePosY = 0,
         animateRightPosX = 0,
-        animateScale = 1
+        animateScale = 1,
+        calcY = 0.3
 
     useEffect(() => {
         if (window) {
@@ -38,7 +39,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 setIsWebpSupport(false)
             }
             let heroContainerHeight =
-                window.innerWidth > 1280 ? window.innerWidth * 0.55 : 660
+                window.innerWidth > 1280 ? window.innerWidth * 0.55 : 600
             if (window.innerWidth < 1024 && window.innerHeight < 450) {
                 heroContainerHeight = window.innerHeight
             }
@@ -63,7 +64,22 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
             if (secondWrapper) {
                 secondPosTop = secondWrapper.offsetTop
-                if (window.innerWidth <= 1280) {
+                calcY = 0.3
+                if (window.innerWidth <= 812 && window.innerHeight <= 450) {
+                    console.log('MASUKK')
+                    calcY = 0.6
+                    stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
+                } else if (
+                    window.innerWidth <= 1024 &&
+                    window.innerHeight <= 450
+                ) {
+                    console.log('MASUKK')
+                    calcY = 0.6
+                    stickyPosTop = secondPosTop + (5 / 100) * window.innerWidth
+                } else if (window.innerWidth <= 1180) {
+                    calcY = 0.4
+                    stickyPosTop = secondPosTop + (8 / 100) * window.innerWidth
+                } else if (window.innerWidth <= 1280) {
                     stickyPosTop = secondPosTop + (14 / 100) * window.innerWidth
                 } else if (window.innerWidth <= 1366) {
                     stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
@@ -129,14 +145,14 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
 
                     const calcScrollTop = stickyPosTop - inpatientTopView
                     animatePosX = calcScrollTop * 0.035
-                    animatePosY = calcScrollTop * 0.3
+                    animatePosY = calcScrollTop * calcY
                     animateRightPosX = calcScrollTop * 0.05
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
                 let inpatientTop = inpatientTopView + scrollTop
 
                 const posX = scrollTop * 0.035,
-                    posY = scrollTop * 0.3,
+                    posY = scrollTop * calcY,
                     rightPosX = scrollTop * 0.05,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021

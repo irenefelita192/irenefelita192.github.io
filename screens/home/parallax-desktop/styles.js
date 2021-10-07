@@ -645,4 +645,117 @@ export default css`
             font-size: 37px;
         }
     }
+
+    @media screen and (max-width: 1024px) {
+        .hero-text {
+            top: 16%;
+        }
+
+        .hero-title h1 {
+            font-size: 38px;
+        }
+
+        .hero-desc {
+            font-size: 14px;
+        }
+
+        .second-title {
+            max-width: 453px;
+        }
+
+        .second-desc {
+            font-size: 14px;
+            max-width: 687px;
+        }
+
+        .second-title h2 {
+            font-size: 34px;
+        }
+    }
+
+    /*handphone landscape - start*/
+    @media screen and (max-width: 930px) {
+        .hero-text {
+            top: 12%;
+        }
+
+        .hero-title h1 {
+            font-size: 32px;
+            max-width: 70%;
+            margin: 0 auto;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            margin-top: 4px;
+        }
+
+        .hero-image {
+            max-width: 65%;
+        }
+
+        .second-text {
+            top: 8%;
+            width: 60%;
+        }
+
+        .second-title {
+            max-width: 100%;
+        }
+
+        .second-desc {
+            font-size: 10px;
+            max-width: 100%;
+        }
+
+        .second-title h2 {
+            font-size: 28px;
+        }
+
+        .overlay-image {
+            bottom: 16px;
+        }
+    }
+
+    @media screen and (max-width: 812px) {
+        .hero-text {
+            top: 14%;
+        }
+
+        .hero-title h1 {
+            font-size: 30px;
+            max-width: 70%;
+            margin: 0 auto;
+        }
+
+        .hero-desc {
+            font-size: 13px;
+        }
+
+        .hero-image {
+            max-width: 65%;
+        }
+
+        .second-text {
+            top: 8%;
+            width: 80%;
+        }
+
+        .second-title {
+            max-width: 100%;
+        }
+
+        .second-desc {
+            font-size: 10px;
+            max-width: 100%;
+        }
+
+        .second-title h2 {
+            font-size: 20px;
+        }
+
+        .overlay-image {
+            bottom: 16px;
+        }
+    }
 `

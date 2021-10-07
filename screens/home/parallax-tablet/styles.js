@@ -686,4 +686,31 @@ export default css`
             width: 80px;
         }
     }
+
+    @media screen and (max-width: 550px) {
+        .hero-icon img {
+            width: 70px;
+        }
+
+        .hero-title h1 {
+            font-size: 32px;
+            max-width: 90%;
+        }
+
+        .hero-desc {
+            font-size: 21px;
+        }
+
+        .second-text {
+            top: 8%;
+        }
+
+        .second-title h2 {
+            font-size: 32px;
+        }
+
+        .second-desc {
+            font-size: 21px;
+        }
+    }
 `
