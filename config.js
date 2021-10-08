@@ -5,6 +5,7 @@ const ENV = process.env.REACT_APP_ENV || 'staging'
 var endpointConfig = {
     baseEndpoint: process.env.BASE_API,
     assetPrefix: process.env.ASSET_PREFIX || '',
+    csWaNumber: process.env.CS_WHATSAPP_NUMBER || '',
 }
 // const options = {
 //     development: {
