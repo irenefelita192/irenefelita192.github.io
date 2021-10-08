@@ -55,7 +55,12 @@ export default function HomeScreen() {
             setTimeout(() => {
                 const offsetTop = document.getElementById(scrollParam).offsetTop
                 console.log('offsetTop', offsetTop)
-                window.scrollTo(0, offsetTop)
+
+                window.scrollTo({
+                    top: offsetTop,
+                    left: 0,
+                    behavior: 'smooth',
+                })
             }, 500)
         }
     }, [homeData])
