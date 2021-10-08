@@ -70,6 +70,7 @@ export default css`
     .ojk-logo {
         height: 40px;
         width: auto;
+        text-align: center;
     }
 
     .lippo-logo img,

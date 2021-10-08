@@ -89,12 +89,14 @@ export default css`
         font-weight: 300;
         font-size: 12px;
         line-height: 1.5;
+        text-align: center;
     }
 
     .lippo-logo,
     .ojk-logo {
         height: 36px;
         width: auto;
+        text-align: left;
     }
 
     .lippo-logo img,
