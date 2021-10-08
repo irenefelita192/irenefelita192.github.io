@@ -19,7 +19,7 @@ export default function AppSection({ data, isDesktop }) {
                 ? window.innerHeight + 45
                 : window.innerHeight
 
-        if (window.innerHeight < 450) {
+        if (window && window.innerHeight < 450) {
             setIsLandscape(true)
             containerHeight = 660
         }
@@ -52,6 +52,7 @@ export default function AppSection({ data, isDesktop }) {
 
     return (
         <div
+            id="app"
             className={`fourth-wrapper ${isDesktop ? '' : 'is-mobile'} ${
                 isLandscape ? 'is-landscape' : ''
             }`}

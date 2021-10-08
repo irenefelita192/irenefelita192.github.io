@@ -758,4 +758,10 @@ export default css`
             bottom: 16px;
         }
     }
+
+    @media screen and (min-width: 1024px) {
+        .hero-wrapper {
+            min-height: 600px;
+        }
+    }
 `

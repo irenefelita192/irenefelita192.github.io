@@ -46,6 +46,20 @@ export default function HomeScreen() {
         setHomeData(homeDt)
     }, [])
 
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+            scrollParam = urlParams.get('pos')
+        if (homeData && scrollParam) {
+            console.log('scrollParam', scrollParam)
+
+            setTimeout(() => {
+                const offsetTop = document.getElementById(scrollParam).offsetTop
+                console.log('offsetTop', offsetTop)
+                window.scrollTo(0, offsetTop)
+            }, 500)
+        }
+    }, [homeData])
+
     if (!homeData) return <Loader />
 
     return (
