@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import yoastSEOPlugin from '../yoastSEOPlugin.json'
 import Header from 'components/header'
-
+import ChatButton from 'components/chat-button'
 import normalizeCss from 'normalize.css'
 import styles from './styles'
 import globalStyles from '../global-styles/global-styles'
@@ -283,7 +283,7 @@ export default function Layout({
 
             <Header activeId={activeHeaderId} />
             <div className={`children-wrapper`}>{children}</div>
-
+            <ChatButton />
             <noscript>
                 <style
                     id="noscript-blank-page"
