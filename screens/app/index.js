@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import AppSection from './app-section'
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -66,6 +66,8 @@ export default function App() {
                     <div>{data?.description ?? ''}</div>
                 </div>
             </div>
+
+            <AppSection />
 
             <style jsx>{styles}</style>
         </>
