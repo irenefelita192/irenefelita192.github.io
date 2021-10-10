@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import styles from './styles'
-import globalStyles from './global-styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -242,6 +241,12 @@ export default function AppSectionMobile({ isDesktop }) {
 
                     .carousel .slide.selected {
                         margin-left: 0;
+                    }
+
+                    @media screen and (min-width: 700px) {
+                        .carousel .slide:nth-child(${currentSlide + 2}) {
+                            margin-left: -25%;
+                        }
                     }
                 `}
             </style>
