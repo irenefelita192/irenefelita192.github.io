@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import AppSection from './app-section'
+import AppSectionMobile from './app-section-mobile'
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -67,7 +68,8 @@ export default function App() {
                 </div>
             </div>
 
-            <AppSection />
+            {isDesktop && <AppSection />}
+            {!isDesktop && <AppSectionMobile />}
 
             <style jsx>{styles}</style>
         </>
