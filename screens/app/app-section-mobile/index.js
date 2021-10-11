@@ -1,4 +1,3 @@
-import { first } from 'lodash'
 import { useState, useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -7,37 +6,13 @@ import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-const data = [
-    {
-        id: 1,
-        title: 'Understanding Your Needs',
-        description:
-            'Select the best plan for you and your family from a wide range of options.',
-        video: `${assetPrefix}/images/app/flow-1-Understanding your need.mov`,
-    },
-    {
-        id: 2,
-        title: 'Fast Onboarding',
-        description: 'Simple application with a full online process.',
-        video: `${assetPrefix}/images/app/flow-2-Easy onboarding.mov`,
-    },
-    {
-        id: 3,
-        title: 'Easy Payment',
-        description:
-            'Payment can be done within minutes to activate a new policy.',
-        video: `${assetPrefix}/images/app/flow-3-Easy payment.mov`,
-    },
-]
-export default function AppSectionMobile({ isDesktop }) {
+export default function AppSectionMobile({ data, title, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [wrapperHeight, setWrapperHeight] = useState(0)
     const [deviceWidth, setDeviceWidth] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [currentSlide, setCurrentSlide] = useState(0)
-    let headerHeight = 80,
-        deviceHeightPercent = 48 / 100,
-        headingHeight = 189
+    let headingHeight = 189
 
     useEffect(() => {
         if (window) {
@@ -171,9 +146,7 @@ export default function AppSectionMobile({ isDesktop }) {
                     height: `${heroHeight}px`,
                 }}
             >
-                <h2>
-                    {data?.title ?? 'Get Protected by Vida in 3 Simple Steps'}
-                </h2>
+                <h2>{title || 'Get Protected by Vida in 3 Simple Steps'}</h2>
 
                 <Carousel
                     showThumbs={false}
@@ -206,7 +179,9 @@ export default function AppSectionMobile({ isDesktop }) {
                                         data-id={index}
                                     >
                                         <source
-                                            src={dt.video}
+                                            src={`${assetDomain}${
+                                                dt?.video?.url ?? ''
+                                            }`}
                                             type="video/mp4"
                                         />
                                         Your browser does not support HTML5

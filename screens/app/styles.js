@@ -69,7 +69,6 @@ export default css`
             font-weight: 500;
             font-size: 18px;
             line-height: 1.4;
-            color: ${theme.colors.black30};
             top: calc(50% - 80px);
             left: 100px;
             width: 100%;
@@ -79,7 +78,6 @@ export default css`
         }
 
         .hero-wrapper:not(.is-mobile) .hero-text h1 {
-            color: ${theme.colors['vida-tan-dark']};
             font-size: 50px;
             line-height: 1.1;
             width: 42%;
@@ -92,7 +90,7 @@ export default css`
 
     @media screen and (max-width: 850px) {
         .hero-text {
-            padding: 25% 16px 0 16px;
+            padding: 20% 16px 0 16px;
             font-size: 31px;
             line-height: 1.4;
         }
@@ -104,6 +102,14 @@ export default css`
 
         .hero-text > div:last-child {
             width: 100%;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text {
+            left: 50px;
+        }
+
+        .hero-wrapper:not(.is-mobile) .hero-text h1 {
+            font-size: 32px;
         }
     }
 

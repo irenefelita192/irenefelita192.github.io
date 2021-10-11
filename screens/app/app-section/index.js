@@ -1,45 +1,20 @@
-import { first } from 'lodash'
 import { useState, useEffect } from 'react'
 
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-const data = [
-    {
-        id: 12,
-        title: 'Understanding Your Needs',
-        description:
-            'Select the best plan for you and your family from a wide range of options.',
-        video: `${assetPrefix}/images/app/flow-1-Understanding your need.mov`,
-    },
-    {
-        id: 222,
-        title: 'Fast Onboarding',
-        description: 'Simple application with a full online process.',
-        video: `${assetPrefix}/images/app/flow-2-Easy onboarding.mov`,
-    },
-    {
-        id: 33,
-        title: 'Easy Payment',
-        description:
-            'Payment can be done within minutes to activate a new policy.',
-        video: `${assetPrefix}/images/app/flow-3-Easy payment.mov`,
-    },
-]
-export default function AppSection({ isDesktop }) {
+export default function AppSection({ data, title, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
-    const [isWebpSupport, setIsWebpSupport] = useState(true)
-    let headerHeight = 80
 
     useEffect(() => {
         if (window) {
-            setHeroHeight(window.innerHeight + headerHeight)
-            if (window.Modernizr.webp) {
-                setIsWebpSupport(true)
-            } else {
-                setIsWebpSupport(false)
+            let heroHeightVar = window.innerHeight
+            if (window.innerHeight <= 640) {
+                //landscape mobile
+                heroHeightVar = null
             }
+            setHeroHeight(heroHeightVar)
         }
 
         let observerOptions = {
@@ -54,7 +29,7 @@ export default function AppSection({ isDesktop }) {
 
         let target = document.querySelector('.animation-wrapper')
         observer.observe(target)
-
+        console.log('data', data)
         if (data) {
             data.map((dt, index) => {
                 const videoEl = document.getElementById(`video-${index}`)
@@ -143,12 +118,10 @@ export default function AppSection({ isDesktop }) {
             <div
                 className={`wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
-                    height: `${heroHeight}px`,
+                    height: heroHeight ? `${heroHeight}px` : 'auto',
                 }}
             >
-                <h2>
-                    {data?.title ?? 'Get Protected by Vida in 3 Simple Steps'}
-                </h2>
+                <h2>{title || 'Get Protected by Vida in 3 Simple Steps'}</h2>
                 <div className="animation-wrapper">
                     <div
                         className="device-wrapper"
@@ -164,7 +137,12 @@ export default function AppSection({ isDesktop }) {
                                     id={`video-${index}`}
                                     data-id={index}
                                 >
-                                    <source src={dt.video} type="video/mp4" />
+                                    <source
+                                        src={`${assetDomain}${
+                                            dt?.video?.url ?? ''
+                                        }`}
+                                        type="video/mp4"
+                                    />
                                     Your browser does not support HTML5 video.
                                 </video>
                             ))}

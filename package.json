@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "cookies": "^0.8.0",
+    "dompurify": "^2.3.3",
     "dotenv": "^8.2.0",
     "emotion": "^9.2.12",
     "env-cmd": "^10.1.0",
