@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import DOMPurify from 'dompurify'
-import dynamic from 'next/dynamic'
+import('intersection-observer')
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -24,12 +24,6 @@ export default function ProductSection({ data, content, isDesktop }) {
         let observerOptions = {
             rootMargin: '0px',
             threshold: [0.3],
-        }
-
-        if (typeof window.IntersectionObserver === 'undefined') {
-            dynamic(() => import('intersection-observer'), {
-                ssr: false,
-            })
         }
 
         let observer = new IntersectionObserver(
