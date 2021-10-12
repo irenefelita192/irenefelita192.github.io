@@ -163,7 +163,7 @@ export default function ProductSection({ data, content, isDesktop }) {
                                         id={`video-${dt.productId}`}
                                         data-id={dt.productId}
                                         data-inc={index}
-                                        playsinline
+                                        playsInline
                                     >
                                         <source
                                             src={`${assetDomain}${

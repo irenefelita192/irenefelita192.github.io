@@ -143,7 +143,7 @@ export default function AppSection({ data, title, isDesktop }) {
                                     muted
                                     id={`video-${index}`}
                                     data-id={index}
-                                    playsinline
+                                    playsInline
                                 >
                                     <source
                                         src={`${assetDomain}${
