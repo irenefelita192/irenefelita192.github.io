@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
@@ -25,6 +26,11 @@ export default function AppSection({ data, isDesktop }) {
         }
 
         setHeroHeight(containerHeight)
+        if (typeof window.IntersectionObserver === 'undefined') {
+            dynamic(() => import('intersection-observer'), {
+                ssr: false,
+            })
+        }
         var observer = new IntersectionObserver(
             observerCallback,
             observerOptions

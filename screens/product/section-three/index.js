@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 // import globalStyles from '../global-styles'
 import styles from './styles'
 
@@ -40,6 +41,12 @@ export default function ParallaxDesktop({ data, isDesktop }) {
         let observerOptions = {
             rootMargin: '0px',
             threshold: [0.2, 0.85],
+        }
+
+        if (typeof window.IntersectionObserver === 'undefined') {
+            dynamic(() => import('intersection-observer'), {
+                ssr: false,
+            })
         }
 
         var observer = new IntersectionObserver(
