@@ -184,6 +184,7 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
                                         muted
                                         id={`video-${index}`}
                                         data-id={index}
+                                        playsinline
                                     >
                                         <source
                                             src={`${assetDomain}${
