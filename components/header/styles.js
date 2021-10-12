@@ -809,6 +809,10 @@ export default css`
             margin-bottom: 10px;
         }
 
+        .navbar .navbar-menu.is-active .navbar-item:hover span:after {
+            display: none;
+        }
+
         .navbar-brand .brand-active {
             opacity: 0;
         }

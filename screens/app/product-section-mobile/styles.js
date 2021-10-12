@@ -54,6 +54,12 @@ export default css`
             width 0.5s ease-in-out;
     }
 
+    @media screen and (max-height: 600px) {
+        .content {
+            font-size: 20px;
+        }
+    }
+
     @media screen and (min-height: 670px) {
         .content {
             font-size: 25px;

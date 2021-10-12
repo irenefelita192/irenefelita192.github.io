@@ -11,7 +11,10 @@ export default function ProductSection({ data, content, isDesktop }) {
     useEffect(() => {
         if (window) {
             let heroHeightVar = window.innerHeight
-            if (window.innerHeight <= 640) {
+            if (
+                window.innerWidth > window.innerHeight &&
+                window.innerHeight <= 600
+            ) {
                 //landscape mobile
                 heroHeightVar = null
             }

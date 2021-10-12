@@ -67,7 +67,16 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
 
                 stickyPosTop = secondPosTop + (50 / 100) * window.innerHeight
 
-                if (window.innerWidth / window.innerHeight > 0.55) {
+                if (window.innerWidth / window.innerHeight > 0.65) {
+                    stickyPosTop =
+                        secondPosTop + (20 / 100) * window.innerHeight
+                    mCalcX = 22
+                    mCalcY = 80
+                    calcX = 10
+                    calcY = 80
+                    oCalcX = 35
+                    oCalcY = 80
+                } else if (window.innerWidth / window.innerHeight > 0.55) {
                     stickyPosTop =
                         secondPosTop + (45 / 100) * window.innerHeight
                     mCalcX = 17
