@@ -142,4 +142,19 @@ export default css`
             font-size: 20px;
         }
     }
+
+    @media screen and (max-height: 630px) {
+        .wrapper h2 {
+            padding: 45px 25px;
+            font-size: 20px;
+        }
+
+        .steps-title {
+            font-size: 16px;
+        }
+
+        .steps-desc {
+            font-size: 12px;
+        }
+    }
 `

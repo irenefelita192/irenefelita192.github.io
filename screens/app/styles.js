@@ -174,4 +174,25 @@ export default css`
             padding-top: 8px;
         }
     }
+
+    @media screen and (max-height: 630px) {
+        .hero-text {
+            padding: 22% 16px 0 16px;
+        }
+    }
+
+    @media screen and (max-height: 640px) and (min-width: 400px) {
+        .hero-wrapper.is-mobile {
+            background-position: center 70%;
+        }
+
+        .hero-text {
+            font-size: 20px;
+            padding: 22% 16px 0 16px;
+        }
+
+        .hero-text h1 {
+            font-size: 30px;
+        }
+    }
 `
