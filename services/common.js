@@ -22,33 +22,51 @@ export const getAllHeader = async (locale) => {
         .catch(function (error) {
             console.error(error)
         })
-    const allSubMenu = await getAllSubMenu(locale).catch(function (error) {
-        console.error(error)
-    })
+    // const allSubMenu = await getAllSubMenu(locale).catch(function (error) {
+    //     console.error(error)
+    // })
 
-    response &&
-        response.data &&
-        response.data.map((dt) => {
-            dt.subMenu &&
-                dt.subMenu.map((subMenu) => {
-                    const menuData = allSubMenu.find((sm) => {
-                        return sm.id == subMenu.id
-                    })
+    // console.log('response', response.data)
+    // allSubMenu &&
+    //     allSubMenu.map((submenu) => {
+    //         const headerSub =
+    //             response &&
+    //             response.data &&
+    //             response.data.find(
+    //                 (sm) => sm.subMenus && sm.subMenus.length > 0
+    //             )
+    //         console.log('headerSub', headerSub)
+    //         headerSub &&
+    //             headerSub.subMenus &&
+    //             headerSub.subMenus.map((dt) => {
+    //                 console.log('dt', dt)
+    //                 if (dt.id == submenu.id) {
+    //                 }
+    //             })
+    //     })
+    // response &&
+    //     response.data &&
+    //     response.data.map((dt) => {
+    //         dt.subMenu &&
+    //             dt.subMenu.map((subMenu) => {
+    //                 const menuData = allSubMenu.find((sm) => {
+    //                     return sm.id == subMenu.id
+    //                 })
 
-                    let subMenuSort = null
-                    if (
-                        menuData &&
-                        menuData.subMenu &&
-                        menuData.subMenu.length > 0
-                    ) {
-                        subMenuSort = menuData.subMenu.sort(function (a, b) {
-                            return a.sortNum - b.sortNum
-                        })
-                    }
+    //                 let subMenuSort = null
+    //                 if (
+    //                     menuData &&
+    //                     menuData.subMenu &&
+    //                     menuData.subMenu.length > 0
+    //                 ) {
+    //                     subMenuSort = menuData.subMenu.sort(function (a, b) {
+    //                         return a.sortNum - b.sortNum
+    //                     })
+    //                 }
 
-                    subMenu.subMenu = subMenuSort ? [...subMenuSort] : []
-                })
-        })
+    //                 subMenu.subMenu = subMenuSort ? [...subMenuSort] : []
+    //             })
+    //     })
 
     return response ? response.data : null
 }

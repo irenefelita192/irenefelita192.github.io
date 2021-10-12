@@ -132,7 +132,7 @@ export default css`
 
     @media screen and (max-width: 450px) {
         .hero-text {
-            padding: 30% 16px 0 16px;
+            padding: 28% 16px 0 16px;
             font-size: 22px;
             line-height: 1.4;
         }

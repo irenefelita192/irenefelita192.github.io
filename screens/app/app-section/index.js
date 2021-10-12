@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
@@ -20,6 +21,12 @@ export default function AppSection({ data, title, isDesktop }) {
         let observerOptions = {
             rootMargin: '0px',
             threshold: [0.3],
+        }
+
+        if (typeof window.IntersectionObserver === 'undefined') {
+            dynamic(() => import('intersection-observer'), {
+                ssr: false,
+            })
         }
 
         let observer = new IntersectionObserver(
@@ -136,6 +143,7 @@ export default function AppSection({ data, title, isDesktop }) {
                                     muted
                                     id={`video-${index}`}
                                     data-id={index}
+                                    playsinline=""
                                 >
                                     <source
                                         src={`${assetDomain}${
