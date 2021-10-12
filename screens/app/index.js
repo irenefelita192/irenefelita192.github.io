@@ -1,24 +1,52 @@
 import { useState, useEffect } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getAppData } from 'services/app'
+import { getCookie } from 'utils/global-util'
+import Footer from 'components/footer'
+import Loader from 'components/loader'
 import AppSection from './app-section'
 import AppSectionMobile from './app-section-mobile'
+import ProductSection from './product-section'
+import ProductSectionMobile from './product-section-mobile'
+import BannerCTA from 'components/banner-cta'
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-const data = {
-    title: 'Personalize Your Healthcare',
-    description:
-        'We make it easy to get, manage and pay for your healthcare. Our app puts all coverages at your fingertips',
-    image: '/images/app/app-hero.jpg',
-    imageMobile: '',
-    imageMobileWebp: '',
-    imageWebp: '/images/app/app-hero.webp',
-}
+// const data = {
+//     title: 'Personalize Your Healthcare',
+//     description:
+//         'We make it easy to get, manage and pay for your healthcare. Our app puts all coverages at your fingertips',
+//     image: { url: '/images/app/app-hero.jpg' },
+//     imageMobile: { url: '/images/app/app-hero-mobile.jpg' },
+//     imageMobileWebp: { url: '/images/app/app-hero-mobile.webp' },
+//     imageWebp: { url: '/images/app/app-hero.webp' },
+// }
 export default function App() {
+    const [appData, setAppData] = useState(null)
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [isDesktop, setIsDesktop] = useState(true)
     let headerHeight = 80
+
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (window) {
+            langId = getCookie('lang')
+
+            if (window.innerWidth < window.innerHeight) {
+                setIsDesktop(false)
+                // if (window.innerWidth >= 500) {
+                //     setIsTablet(true)
+                // }
+            }
+        }
+        const appDt = await getAppData(langId)
+
+        if (!isMounted()) return
+
+        setAppData(appDt)
+    }, [])
 
     useEffect(() => {
         if (window) {
@@ -38,39 +66,80 @@ export default function App() {
         }
     }, [])
 
-    let heroImage = `${assetPrefix}${data?.image ?? ''}`
-    // if (isDesktop) {
-    //     if (!data.imageWebp || !isWebpSupport) {
-    //         heroImage = `${assetDomain}${data?.image?.url ?? ''}`
-    //     } else {
-    //         heroImage = `${assetDomain}${data?.imageWebp?.url ?? ''}`
-    //     }
-    // } else {
-    //     if (!data.imageMobileWebp || !isWebpSupport) {
-    //         heroImage = `${assetDomain}${data?.imageMobile?.url ?? ''}`
-    //     } else {
-    //         heroImage = `${assetDomain}${data?.imageMobileWebp?.url ?? ''}`
-    //     }
-    // }
-
+    if (!appData) return <Loader />
+    const { SectionOne: heroData } = appData
+    let heroImage = `${assetDomain}${heroData?.image?.url ?? ''}`
+    if (isDesktop) {
+        if (!heroData.imageWebp || !isWebpSupport) {
+            heroImage = `${assetDomain}${heroData?.image?.url ?? ''}`
+        } else {
+            heroImage = `${assetDomain}${heroData?.imageWebp?.url ?? ''}`
+        }
+    } else {
+        if (!heroData.imageMobileWebp || !isWebpSupport) {
+            heroImage = `${assetDomain}${heroData?.imageMobile?.url ?? ''}`
+        } else {
+            heroImage = `${assetDomain}${heroData?.imageMobileWebp?.url ?? ''}`
+        }
+    }
     return (
         <>
-            <div
-                className={`hero-wrapper ${isDesktop ? '' : 'is-mobile'}`}
-                style={{
-                    height: `${heroHeight}px`,
-                    backgroundImage: `url(${heroImage})`,
-                }}
-            >
-                <div className="hero-text">
-                    <h1>{data?.title ?? ''}</h1>
-                    <div>{data?.description ?? ''}</div>
+            {heroData && (
+                <div
+                    className={`hero-wrapper ${isDesktop ? '' : 'is-mobile'}`}
+                    style={{
+                        height: `${heroHeight}px`,
+                        backgroundImage: `url(${heroImage})`,
+                    }}
+                >
+                    <div className="hero-text">
+                        <h1>{heroData?.title ?? ''}</h1>
+                        <div>{heroData?.description ?? ''}</div>
+                    </div>
                 </div>
-            </div>
+            )}
+            {appData.SectionTwo && (
+                <>
+                    {isDesktop && (
+                        <AppSection
+                            data={appData.SectionTwo.appAnimation}
+                            title={appData.SectionTwo.title || ''}
+                            isDesktop={isDesktop}
+                        />
+                    )}
+                    {!isDesktop && (
+                        <AppSectionMobile
+                            data={appData.SectionTwo.appAnimation}
+                            title={appData.SectionTwo.title || ''}
+                            isDesktop={isDesktop}
+                        />
+                    )}
+                </>
+            )}
 
-            {isDesktop && <AppSection />}
-            {!isDesktop && <AppSectionMobile />}
+            {appData.SectionThree && (
+                <>
+                    {isDesktop && (
+                        <ProductSection
+                            data={appData.SectionThree.productAnimation}
+                            content={appData.SectionThree.content || ''}
+                            isDesktop={isDesktop}
+                        />
+                    )}
+                    {!isDesktop && (
+                        <ProductSectionMobile
+                            data={appData.SectionThree.productAnimation}
+                            content={appData.SectionThree.content || ''}
+                            isDesktop={isDesktop}
+                        />
+                    )}
+                </>
+            )}
+            {appData.BottomBanner && (
+                <BannerCTA data={appData.BottomBanner} isDesktop={isDesktop} />
+            )}
 
+            <Footer />
             <style jsx>{styles}</style>
         </>
     )

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import styles from './styles'
 
-const assetDomain = process.env.config?.baseEndpoint ?? ''
+const assetDomain = process.env.config?.baseEndpoint ?? '',
+    assetPrefix = process.env.config?.assetPrefix ?? ''
 export default function BannerCTA({ data, isProduct, isDesktop }) {
     const [isIos, setIsIos] = useState(false)
 
@@ -34,36 +35,41 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                 )}
                 {data.isDownload ? (
                     <>
-                        {isIos && (
-                            <a
-                                className="download-link"
-                                href={data.AppStoreLink}
-                            >
-                                <img
-                                    src={`${assetDomain}${
-                                        data.AppStoreIcon?.url ?? ''
-                                    }`}
-                                    alt={
-                                        data.AppStoreIcon?.alternativeText ?? ''
-                                    }
-                                />
-                            </a>
+                        {isDesktop && (
+                            <div className="download-link">
+                                <a href={data.AppStoreLink}>
+                                    <img
+                                        src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
+                                        alt={'app-store'}
+                                    />
+                                </a>
+                                <a href={data.PlayStoreLink}>
+                                    <img
+                                        src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}
+                                        alt={'google-play'}
+                                    />
+                                </a>
+                            </div>
                         )}
-                        {!isIos && (
-                            <a
-                                className="download-link"
-                                href={data.PlayStoreLink}
-                            >
-                                <img
-                                    src={`${assetDomain}${
-                                        data.PlayStoreIcon?.url ?? ''
-                                    }`}
-                                    alt={
-                                        data.PlayStoreIcon?.alternativeText ??
-                                        ''
-                                    }
-                                />
-                            </a>
+                        {!isDesktop && (
+                            <div className="download-link">
+                                {isIos && (
+                                    <a href={data.AppStoreLink}>
+                                        <img
+                                            src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
+                                            alt={'app-store'}
+                                        />
+                                    </a>
+                                )}
+                                {!isIos && (
+                                    <a href={data.PlayStoreLink}>
+                                        <img
+                                            src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}
+                                            alt={'google-play'}
+                                        />
+                                    </a>
+                                )}
+                            </div>
                         )}
                     </>
                 ) : (

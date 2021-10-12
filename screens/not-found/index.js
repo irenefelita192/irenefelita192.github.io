@@ -73,7 +73,7 @@ export default function NotFoundScreen() {
                     background: ${theme.colors.gold};
                     border: 0.1px solid ${theme.colors.gold};
                     border-radius: 60px;
-                    color: #ffffff;
+                    color: ${theme.colors['black30']};
                     justify-content: center;
                     align-items: center;
                     text-align: center;

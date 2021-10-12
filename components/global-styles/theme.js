@@ -11,6 +11,7 @@ const theme = {
         'vida-green-fresh': '#00D1C5',
         'vida-tan-dark': '#A57A61',
         'vida-tan': '#DEB196',
+        'light-sand': '#F4F1EE',
         gray: '#7B7B7B',
         white: '#FFFFFF',
         brand: '#0A9188',

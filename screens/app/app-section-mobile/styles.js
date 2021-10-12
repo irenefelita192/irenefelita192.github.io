@@ -9,7 +9,7 @@ export default css`
         position: relative;
     }
 
-    h2 {
+    .wrapper h2 {
         font-family: 'Museo', sans-serif;
         font-weight: 700;
         font-size: 27px;
@@ -95,5 +95,51 @@ export default css`
         height: 4px;
         width: 0;
         transition: width 0.3s linear;
+    }
+
+    @media screen and (max-width: 850px) {
+        .wrapper h2 {
+            font-size: 36px;
+        }
+
+        .wrapper:not(.is-mobile) h2 {
+            font-size: 32px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .wrapper h2 {
+            font-size: 26px;
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        .wrapper h2 {
+            font-size: 30px;
+        }
+    }
+
+    @media screen and (min-width: 640px) and (max-width: 850px) and (max-height: 1080px) {
+        .wrapper h2 {
+            font-size: 36px;
+        }
+    }
+
+    @media screen and (min-height: 1024px) {
+        .wrapper h2 {
+            font-size: 36px;
+        }
+
+        .wrapper:not(.is-mobile) h2 {
+            font-size: 36px;
+        }
+
+        .steps-title {
+            font-size: 28px;
+        }
+
+        .steps-desc {
+            font-size: 20px;
+        }
     }
 `

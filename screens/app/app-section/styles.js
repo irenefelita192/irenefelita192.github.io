@@ -16,11 +16,11 @@ export default css`
         line-height: 1.2;
         text-align: center;
         color: ${theme.colors['vida-green-fresh']};
-        margin: 185px 0 105px;
+        margin: 120px 0 65px;
     }
 
     .animation-wrapper {
-        max-width: 670px;
+        max-width: 640px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -28,14 +28,18 @@ export default css`
 
     .device-wrapper {
         display: block;
-        width: 308px;
-        height: 640px;
+        width: 280px;
+        height: 581px;
+        /* width: 308px;
+        height: 640px; */
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     .device-wrapper video {
         position: absolute;
-        margin: 72px 19px;
-        width: 270px;
+        padding: 72px 19px;
+        width: 280px;
     }
 
     video#video-2,
@@ -90,5 +94,14 @@ export default css`
         height: 4px;
         width: 0;
         transition: width 0.3s linear;
+    }
+
+    @media screen and (max-height: 640px) {
+        h2 {
+            margin: 100px 0 80px;
+        }
+        .wrapper {
+            margin-bottom: 100px;
+        }
     }
 `

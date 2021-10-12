@@ -25,6 +25,7 @@ export default css`
     .banner-section.is-download {
         font-size: 30px;
         line-height: 1.13;
+        background-position: bottom left;
     }
 
     .banner-desc {
@@ -49,14 +50,21 @@ export default css`
     }
 
     .download-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0 0;
+    }
+
+    .download-link a {
         display: block;
         width: auto;
-        height: 62px;
-        padding: 8px 0;
-        text-align: center;
-        border: 1px solid ${theme.colors['vida-black']};
-        box-sizing: border-box;
-        border-radius: 11px;
+        height: 48px;
+        padding-right: 20px;
+    }
+
+    .download-link a:last-child {
+        padding-right: 0;
     }
 
     .download-link img {
