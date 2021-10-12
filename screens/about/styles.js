@@ -45,6 +45,7 @@ export default css`
         position: absolute;
         right: 10%;
         width: 43%;
+        line-height: 1.2;
     }
 
     .hero-title {
@@ -69,6 +70,7 @@ export default css`
     .portrait-founder {
         position: absolute;
         bottom: 24px;
+        line-height: 1.2;
     }
 
     .portrait-founder .founder-name,
@@ -77,38 +79,52 @@ export default css`
     }
     /* Hero Header - end */
 
+    /* content vision mission -start*/
     .content-wrapper {
-        padding: 145px 16% 135px;
+        padding: 0 22%;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.4;
+        color: ${theme.colors['vida-white']};
+        font-size: 24px;
+        text-align: center;
+        background-position: bottom;
+        background-size: cover;
     }
 
-    .content-title {
-        margin: 0 0 70px;
-        font-weight: 300;
-        font-size: 42px;
-        line-height: 1.19;
-        color: ${theme.colors.black};
+    .content-wrapper > div:first-child {
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        margin-bottom: 30px;
     }
 
-    .static-blob {
-        position: absolute;
-        z-index: 1;
-        right: -80px;
-        top: -120px;
+    /*vida value start*/
+    .value-wrapper {
+        padding: 140px 20%;
+        background-color: ${theme.colors['light-sand']};
     }
 
-    .static-blob-left {
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 678px;
+    .vida-value {
+        background: #f4eee8;
     }
 
-    .static-blob-right {
-        position: absolute;
-        z-index: 1;
-        right: 0;
-        top: 273px;
+    .vida-value .card-item img {
+        width: auto;
+        height: 210px;
+        border-radius: 24px;
+    }
+
+    .value-title {
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 1.3;
+        text-align: center;
+        color: ${theme.colors['vida-tan-dark']};
+        margin-bottom: 85px;
     }
 
     .content-cards {
@@ -119,7 +135,7 @@ export default css`
     .card-item {
         display: flex;
         align-items: center;
-        color: ${theme.colors.black};
+        color: ${theme.colors['black30']};
         margin-bottom: 140px;
     }
 
@@ -150,60 +166,26 @@ export default css`
 
     .card-item img {
         width: auto;
-        height: 330px;
+        height: 260px;
         border-radius: 24px;
     }
 
     .card-title {
-        font-family: 'Bree Serif', serif;
-        font-size: 44px;
-        line-height: 1.09;
+        font-family: 'Museo', sans-serif;
+        font-size: 28px;
+        line-height: 1.2;
     }
 
     .card-desc {
-        font-size: 14px;
-        line-height: 1.43;
-        margin-top: 14px;
+        font-size: 18px;
+        line-height: 1.33;
+        margin-top: 8px;
+        color: ${theme.colors.gray};
     }
 
     .card-desc-title {
         font-weight: 600;
         margin-top: 14px;
-    }
-
-    .card-link {
-        font-family: 'Bree Serif', serif;
-        font-size: 16px;
-        line-height: 1.25;
-        margin-top: 16px;
-        display: block;
-        color: ${theme.colors.black};
-        text-decoration: underline;
-    }
-
-    .vida-value {
-        background: #f4eee8;
-    }
-
-    .vida-value .card-item img {
-        width: auto;
-        height: 210px;
-        border-radius: 24px;
-    }
-
-    .value-title {
-        font-family: 'Bree Serif', serif;
-        font-size: 48px;
-        line-height: 1.12;
-        text-align: center;
-    }
-
-    .value-desc {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 1.37;
-        text-align: center;
-        margin: 16px 0 90px;
     }
 
     /*Bottom Section - start*/
