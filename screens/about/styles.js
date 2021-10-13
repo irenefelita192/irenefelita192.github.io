@@ -414,7 +414,7 @@ export default css`
     }
 
     /* landscape */
-    @media screen and (max-width: 1024) and (max-height: 450px) {
+    @media screen and (max-width: 1024px) and (max-height: 450px) {
         .hero-wrapper {
             background-position: bottom;
         }
