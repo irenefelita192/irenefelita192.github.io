@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import { getAboutData } from 'services/about'
 import { getCookie } from 'utils/global-util'
@@ -35,6 +35,22 @@ export default function HomeScreen() {
 
         setAboutData(aboutDt)
     }, [])
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+            scrollParam = urlParams.get('pos')
+        if (aboutData && scrollParam) {
+            setTimeout(() => {
+                const offsetTop = document.getElementById(scrollParam).offsetTop
+
+                window.scrollTo({
+                    top: offsetTop,
+                    left: 0,
+                    behavior: 'smooth',
+                })
+            }, 500)
+        }
+    }, [aboutData])
 
     if (!aboutData) return <Loader />
 
@@ -108,6 +124,7 @@ export default function HomeScreen() {
 
                     {/*vision*/}
                     <div
+                        id="vision"
                         className="content-wrapper"
                         style={{
                             backgroundImage: `url(${visionImg})`,
@@ -120,6 +137,7 @@ export default function HomeScreen() {
 
                     {/*mission*/}
                     <div
+                        id="mission"
                         className="content-wrapper"
                         style={{
                             backgroundImage: `url(${missionImg})`,
@@ -129,7 +147,7 @@ export default function HomeScreen() {
                         <div>{aboutData.missionTitle}</div>
                         <div>{aboutData.missionDescription}</div>
                     </div>
-                    <div className="value-wrapper">
+                    <div id="value" className="value-wrapper">
                         <div className="value-title">
                             {aboutData.valueTitle}
                         </div>
