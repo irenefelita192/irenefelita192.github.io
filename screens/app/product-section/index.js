@@ -43,7 +43,6 @@ export default function ProductSection({ data, content, isDesktop }) {
                     videoEl.ontimeupdate = videoTimeUpdate
                 }
             })
-            setBgProduct(data[0])
         }
 
         return () => {
@@ -55,6 +54,7 @@ export default function ProductSection({ data, content, isDesktop }) {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 if (data && data.length > 1) {
+                    setBgProduct(data[0])
                     playVideo(data[0].productId)
                 }
             }

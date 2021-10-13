@@ -119,10 +119,26 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
         }
     }
 
+    const isOtherVideoPlay = () => {
+        let isOtherPlay = false
+        if (data) {
+            data.map((dt, index) => {
+                if (index > 0) {
+                    const videoEl = document.getElementById(`video-${index}`)
+                    if (videoEl && videoEl.currentTime > 0) {
+                        isOtherPlay = true
+                    }
+                }
+            })
+        }
+
+        return isOtherPlay
+    }
+
     const observerCallback = (entries, observer) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                playVideo(0)
+                if (!isOtherVideoPlay()) playVideo(0)
             }
         })
     }
