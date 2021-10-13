@@ -31,29 +31,48 @@ export default css`
         height: 100%;
     }
 
+    .hero-text {
+        position: absolute;
+        right: 10%;
+        width: 43%;
+        line-height: 1.2;
+        text-align: left;
+    }
+
     .hero-vida-text {
         width: 68%;
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
         color: #f7f7f7;
-        padding-left: 20px;
-        text-align: left;
-    }
-
-    .hero-text {
-        position: absolute;
-        right: 10%;
-        width: 43%;
-        line-height: 1.2;
     }
 
     .hero-title {
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
         font-size: 32px;
         line-height: 1.31;
-        text-align: left;
-        margin-top: 32px;
+        margin-top: 16px;
+    }
+
+    .is-mobile .hero-text {
+        width: 100%;
+        right: auto;
+        left: 0;
+        top: 0;
+        padding: 25% 18px 0;
+        text-align: center;
+    }
+
+    .is-mobile .hero-vida-text {
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .is-mobile .hero-title {
+        font-size: 24px;
+        line-height: 1.25;
     }
 
     .founder-name {
@@ -231,12 +250,37 @@ export default css`
         .card-item.card-even .card-content {
             padding-right: 32px;
         }
+
+        .is-mobile .hero-vida-text {
+            font-size: 24px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 32px;
+        }
     }
 
     @media screen and (max-width: 900px) {
         .card-item.card-odd,
         .card-item.card-even {
             flex-direction: column;
+        }
+
+        .is-mobile .hero-vida-text {
+            width: 100%;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 1.43;
+            color: #f7f7f7;
+            padding: 0;
+            text-align: center;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 32px;
+            line-height: 1.23;
+            text-align: center;
+            margin-top: 16px;
         }
     }
 
@@ -250,39 +294,16 @@ export default css`
         }
 
         .content-wrapper {
-            padding: 56px 24px;
+            padding: 56px 30px;
             position: relative;
         }
 
-        .hero-text {
+        .is-mobile .hero-text {
             width: 100%;
             right: auto;
             left: 0;
             top: 0;
-            padding: 56px 18px;
-        }
-
-        .hero-vida-logo {
-            height: 32px;
-        }
-
-        .hero-vida-text {
-            width: 100%;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 1.43;
-            color: #f7f7f7;
-            padding: 0;
-            padding-top: 12px;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 26px;
-            line-height: 1.23;
-            text-align: center;
-            margin-top: 16px;
-            letter-spacing: -0.008em;
+            padding: 20% 10% 0;
         }
 
         .founder-name {
@@ -324,12 +345,6 @@ export default css`
     }
 
     @media screen and (max-width: 640px) {
-        .hero-desc {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 1.37;
-        }
-
         .card-title {
             font-size: 32px;
             line-height: 1.12;
@@ -354,7 +369,7 @@ export default css`
         }
 
         .vida-value .card-title {
-            font-size: 26px;
+            font-size: 24px;
             line-height: 1.31;
         }
 
@@ -362,6 +377,68 @@ export default css`
             font-weight: 400;
             font-size: 16px;
             line-height: 1.37;
+        }
+
+        .is-mobile .hero-vida-text {
+            font-size: 19px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 26px;
+        }
+    }
+    @media screen and (min-width: 400px) and (max-height: 930px) {
+        .is-mobile .hero-text {
+            padding: 22% 18px 0;
+            font-size: 18px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 24px;
+        }
+    }
+
+    @media screen and (max-height: 640px) {
+        .hero-wrapper {
+            background-position: center 60%;
+        }
+
+        .is-mobile .hero-text {
+            padding: 80px 18px 0;
+            font-size: 14px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 22px;
+        }
+    }
+
+    /* landscape */
+    @media screen and (max-width: 1024) and (max-height: 450px) {
+        .hero-wrapper {
+            background-position: bottom;
+        }
+
+        .hero-vida-text {
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 26px;
+        }
+    }
+
+    @media screen and (max-width: 800px) and (max-height: 450px) {
+        .hero-wrapper {
+            background-position: -100px bottom;
+        }
+
+        .hero-vida-text {
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 26px;
         }
     }
 `

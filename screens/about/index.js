@@ -67,28 +67,17 @@ export default function HomeScreen() {
             {aboutData && (
                 <>
                     <div
-                        className={`hero-wrapper`}
+                        className={`hero-wrapper ${
+                            isDesktop ? '' : 'is-mobile'
+                        }`}
                         style={{
                             backgroundImage: `url(${heroImg})`,
                             height: `${heroHeight}px`,
                         }}
                     >
                         <div className="hero-text">
-                            <div className="hero-vida">
-                                {aboutData.vidaLogo && isDesktop && (
-                                    <div className="hero-vida-logo">
-                                        <img
-                                            src={`${assetDomain}${aboutData.vidaLogo.url}`}
-                                            alt={
-                                                aboutData.vidaLogo
-                                                    ?.alternativeText ?? ''
-                                            }
-                                        />
-                                    </div>
-                                )}
-                                <div className="hero-vida-text">
-                                    {aboutData?.vidaText ?? ''}
-                                </div>
+                            <div className="hero-vida-text">
+                                {aboutData?.vidaText ?? ''}
                             </div>
                             <div className="hero-title">
                                 {aboutData?.heroDescription ?? ''}
