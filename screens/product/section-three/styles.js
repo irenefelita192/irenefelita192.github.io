@@ -118,6 +118,8 @@ export default css`
     .benefit-image img {
         width: auto;
         height: 100%;
+        object-fit: contain;
+        object-position: top;
     }
 
     .is-show {
