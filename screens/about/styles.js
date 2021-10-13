@@ -31,28 +31,48 @@ export default css`
         height: 100%;
     }
 
+    .hero-text {
+        position: absolute;
+        right: 10%;
+        width: 43%;
+        line-height: 1.2;
+        text-align: left;
+    }
+
     .hero-vida-text {
         width: 68%;
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
         color: #f7f7f7;
-        padding-left: 20px;
-        text-align: left;
-    }
-
-    .hero-text {
-        position: absolute;
-        right: 10%;
-        width: 43%;
     }
 
     .hero-title {
-        font-family: 'Bree Serif', serif;
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
         font-size: 32px;
         line-height: 1.31;
-        text-align: left;
-        margin-top: 32px;
+        margin-top: 16px;
+    }
+
+    .is-mobile .hero-text {
+        width: 100%;
+        right: auto;
+        left: 0;
+        top: 0;
+        padding: 25% 18px 0;
+        text-align: center;
+    }
+
+    .is-mobile .hero-vida-text {
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .is-mobile .hero-title {
+        font-size: 24px;
+        line-height: 1.25;
     }
 
     .founder-name {
@@ -69,6 +89,7 @@ export default css`
     .portrait-founder {
         position: absolute;
         bottom: 24px;
+        line-height: 1.2;
     }
 
     .portrait-founder .founder-name,
@@ -77,38 +98,52 @@ export default css`
     }
     /* Hero Header - end */
 
+    /* content vision mission -start*/
     .content-wrapper {
-        padding: 145px 16% 135px;
+        padding: 0 22%;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.4;
+        color: ${theme.colors['vida-white']};
+        font-size: 24px;
+        text-align: center;
+        background-position: bottom;
+        background-size: cover;
     }
 
-    .content-title {
-        margin: 0 0 70px;
-        font-weight: 300;
-        font-size: 42px;
-        line-height: 1.19;
-        color: ${theme.colors.black};
+    .content-wrapper > div:first-child {
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        margin-bottom: 30px;
     }
 
-    .static-blob {
-        position: absolute;
-        z-index: 1;
-        right: -80px;
-        top: -120px;
+    /*vida value start*/
+    .value-wrapper {
+        padding: 140px 20%;
+        background-color: ${theme.colors['light-sand']};
     }
 
-    .static-blob-left {
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 678px;
+    .vida-value {
+        background: #f4eee8;
     }
 
-    .static-blob-right {
-        position: absolute;
-        z-index: 1;
-        right: 0;
-        top: 273px;
+    .vida-value .card-item img {
+        width: auto;
+        height: 210px;
+        border-radius: 24px;
+    }
+
+    .value-title {
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 1.3;
+        text-align: center;
+        color: ${theme.colors['vida-tan-dark']};
+        margin-bottom: 85px;
     }
 
     .content-cards {
@@ -119,7 +154,7 @@ export default css`
     .card-item {
         display: flex;
         align-items: center;
-        color: ${theme.colors.black};
+        color: ${theme.colors['black30']};
         margin-bottom: 140px;
     }
 
@@ -150,60 +185,26 @@ export default css`
 
     .card-item img {
         width: auto;
-        height: 330px;
+        height: 260px;
         border-radius: 24px;
     }
 
     .card-title {
-        font-family: 'Bree Serif', serif;
-        font-size: 44px;
-        line-height: 1.09;
+        font-family: 'Museo', sans-serif;
+        font-size: 28px;
+        line-height: 1.2;
     }
 
     .card-desc {
-        font-size: 14px;
-        line-height: 1.43;
-        margin-top: 14px;
+        font-size: 18px;
+        line-height: 1.33;
+        margin-top: 8px;
+        color: ${theme.colors.gray};
     }
 
     .card-desc-title {
         font-weight: 600;
         margin-top: 14px;
-    }
-
-    .card-link {
-        font-family: 'Bree Serif', serif;
-        font-size: 16px;
-        line-height: 1.25;
-        margin-top: 16px;
-        display: block;
-        color: ${theme.colors.black};
-        text-decoration: underline;
-    }
-
-    .vida-value {
-        background: #f4eee8;
-    }
-
-    .vida-value .card-item img {
-        width: auto;
-        height: 210px;
-        border-radius: 24px;
-    }
-
-    .value-title {
-        font-family: 'Bree Serif', serif;
-        font-size: 48px;
-        line-height: 1.12;
-        text-align: center;
-    }
-
-    .value-desc {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 1.37;
-        text-align: center;
-        margin: 16px 0 90px;
     }
 
     /*Bottom Section - start*/
@@ -249,12 +250,37 @@ export default css`
         .card-item.card-even .card-content {
             padding-right: 32px;
         }
+
+        .is-mobile .hero-vida-text {
+            font-size: 24px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 32px;
+        }
     }
 
     @media screen and (max-width: 900px) {
         .card-item.card-odd,
         .card-item.card-even {
             flex-direction: column;
+        }
+
+        .is-mobile .hero-vida-text {
+            width: 100%;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 1.43;
+            color: #f7f7f7;
+            padding: 0;
+            text-align: center;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 32px;
+            line-height: 1.23;
+            text-align: center;
+            margin-top: 16px;
         }
     }
 
@@ -268,39 +294,16 @@ export default css`
         }
 
         .content-wrapper {
-            padding: 56px 24px;
+            padding: 56px 30px;
             position: relative;
         }
 
-        .hero-text {
+        .is-mobile .hero-text {
             width: 100%;
             right: auto;
             left: 0;
             top: 0;
-            padding: 56px 18px;
-        }
-
-        .hero-vida-logo {
-            height: 32px;
-        }
-
-        .hero-vida-text {
-            width: 100%;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 1.43;
-            color: #f7f7f7;
-            padding: 0;
-            padding-top: 12px;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 26px;
-            line-height: 1.23;
-            text-align: center;
-            margin-top: 16px;
-            letter-spacing: -0.008em;
+            padding: 20% 10% 0;
         }
 
         .founder-name {
@@ -342,12 +345,6 @@ export default css`
     }
 
     @media screen and (max-width: 640px) {
-        .hero-desc {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 1.37;
-        }
-
         .card-title {
             font-size: 32px;
             line-height: 1.12;
@@ -372,7 +369,7 @@ export default css`
         }
 
         .vida-value .card-title {
-            font-size: 26px;
+            font-size: 24px;
             line-height: 1.31;
         }
 
@@ -380,6 +377,68 @@ export default css`
             font-weight: 400;
             font-size: 16px;
             line-height: 1.37;
+        }
+
+        .is-mobile .hero-vida-text {
+            font-size: 19px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 26px;
+        }
+    }
+    @media screen and (min-width: 400px) and (max-height: 930px) {
+        .is-mobile .hero-text {
+            padding: 22% 18px 0;
+            font-size: 18px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 24px;
+        }
+    }
+
+    @media screen and (max-height: 640px) {
+        .hero-wrapper {
+            background-position: center 60%;
+        }
+
+        .is-mobile .hero-text {
+            padding: 80px 18px 0;
+            font-size: 14px;
+        }
+
+        .is-mobile .hero-title {
+            font-size: 22px;
+        }
+    }
+
+    /* landscape */
+    @media screen and (max-width: 1024) and (max-height: 450px) {
+        .hero-wrapper {
+            background-position: bottom;
+        }
+
+        .hero-vida-text {
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 26px;
+        }
+    }
+
+    @media screen and (max-width: 800px) and (max-height: 450px) {
+        .hero-wrapper {
+            background-position: -100px bottom;
+        }
+
+        .hero-vida-text {
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 26px;
         }
     }
 `

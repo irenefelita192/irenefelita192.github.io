@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import dynamic from 'next/dynamic'
-import styles from './styles'
+import('intersection-observer')
 
+import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
@@ -29,12 +29,6 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
                 setIsWebpSupport(true)
             } else {
                 setIsWebpSupport(false)
-            }
-
-            if (typeof window.IntersectionObserver === 'undefined') {
-                dynamic(() => import('intersection-observer'), {
-                    ssr: false,
-                })
             }
         }
 

@@ -10,7 +10,8 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 export default function HomeScreen() {
     const [aboutData, setAboutData] = useState(null)
-    const [isMobile, setIsMobile] = useState(false)
+    const [isDesktop, setIsDesktop] = useState(true)
+    const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [heroHeight, setHeroHeight] = useState(null)
     let headerHeight = 80
 
@@ -18,13 +19,14 @@ export default function HomeScreen() {
         let langId
         if (process.browser) {
             langId = getCookie('lang')
-
-            if (window.innerWidth <= 768) {
-                setIsMobile(true)
-                setHeroHeight(window.innerHeight - headerHeight)
+            setHeroHeight(window.innerHeight)
+            if (window.innerWidth < window.innerHeight) {
+                setIsDesktop(false)
+            }
+            if (window.Modernizr.webp) {
+                setIsWebpSupport(true)
             } else {
-                setIsMobile(false)
-                setHeroHeight(0)
+                setIsWebpSupport(false)
             }
         }
         const aboutDt = await getAboutData(langId)
@@ -36,46 +38,51 @@ export default function HomeScreen() {
 
     if (!aboutData) return <Loader />
 
-    let heroImg = aboutData.desktopHeroImage
-        ? `${assetDomain}${aboutData.desktopHeroImage.url}`
-        : ''
-    if (isMobile) {
-        heroImg = aboutData.mobileHeroImage
-            ? `${assetDomain}${aboutData.mobileHeroImage.url}`
-            : ''
+    let heroImg = '',
+        visionImg = '',
+        missionImg = ''
+    if (isDesktop) {
+        if (!aboutData.heroImageWebp || !isWebpSupport) {
+            heroImg = `${assetDomain}${aboutData?.heroImage?.url ?? ''}`
+        } else {
+            heroImg = `${assetDomain}${aboutData?.heroImageWebp?.url ?? ''}`
+        }
+
+        visionImg = `${assetDomain}${aboutData?.visionImage?.url ?? ''}`
+        missionImg = `${assetDomain}${aboutData?.missionImage?.url ?? ''}`
+    } else {
+        if (!aboutData.heroImageMobileWebp || !isWebpSupport) {
+            heroImg = `${assetDomain}${aboutData?.heroImageMobile?.url ?? ''}`
+        } else {
+            heroImg = `${assetDomain}${
+                aboutData?.heroImageMobileWebp?.url ?? ''
+            }`
+        }
+
+        visionImg = `${assetDomain}${aboutData?.visionImageMobile?.url ?? ''}`
+        missionImg = `${assetDomain}${aboutData?.missionImageMobile?.url ?? ''}`
     }
     return (
         <>
             {aboutData && (
                 <>
                     <div
-                        className={`hero-wrapper`}
+                        className={`hero-wrapper ${
+                            isDesktop ? '' : 'is-mobile'
+                        }`}
                         style={{
                             backgroundImage: `url(${heroImg})`,
-                            height: isMobile ? `${heroHeight}px` : 'auto',
+                            height: `${heroHeight}px`,
                         }}
                     >
                         <div className="hero-text">
-                            <div className="hero-vida">
-                                {aboutData.vidaLogo && (
-                                    <div className="hero-vida-logo">
-                                        <img
-                                            src={`${assetDomain}${aboutData.vidaLogo.url}`}
-                                            alt={
-                                                aboutData.vidaLogo
-                                                    ?.alternativeText ?? ''
-                                            }
-                                        />
-                                    </div>
-                                )}
-                                <div className="hero-vida-text">
-                                    {aboutData?.vidaText ?? ''}
-                                </div>
+                            <div className="hero-vida-text">
+                                {aboutData?.vidaText ?? ''}
                             </div>
                             <div className="hero-title">
                                 {aboutData?.heroDescription ?? ''}
                             </div>
-                            {!isMobile && (
+                            {isDesktop && (
                                 <>
                                     <div className="founder-name">
                                         {aboutData?.founderName ?? ''}
@@ -87,7 +94,7 @@ export default function HomeScreen() {
                             )}
                         </div>
 
-                        {isMobile && (
+                        {!isDesktop && (
                             <div className="portrait-founder">
                                 <div className="founder-name">
                                     {aboutData?.founderName ?? ''}
@@ -99,92 +106,32 @@ export default function HomeScreen() {
                         )}
                     </div>
 
-                    <div className="content-wrapper vision-mission">
-                        {!isMobile && (
-                            <div className="static-blob">
-                                <img
-                                    src={`${assetPrefix}/images/blob/blob-about-1.png`}
-                                />
-                            </div>
-                        )}
-                        <div className="content-cards">
-                            <div className="card-item card-even">
-                                <img
-                                    src={`${assetDomain}${
-                                        aboutData.visionImage?.url ?? ''
-                                    }`}
-                                    alt={
-                                        aboutData.visionImage
-                                            ?.alternativeText ?? ''
-                                    }
-                                />
-
-                                <div className="card-content">
-                                    <div className="card-title">
-                                        {aboutData.visionTitle}
-                                    </div>
-
-                                    <div className="card-desc">
-                                        {aboutData.visionDescription}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="card-item card-odd">
-                                <img
-                                    src={`${assetDomain}${
-                                        aboutData.missionImage?.url ?? ''
-                                    }`}
-                                    alt={
-                                        aboutData.missionImage
-                                            ?.alternativeText ?? ''
-                                    }
-                                />
-
-                                <div className="card-content">
-                                    <div className="card-title">
-                                        {aboutData.missionTitle}
-                                    </div>
-
-                                    <div className="card-desc">
-                                        {aboutData.missionValue &&
-                                            aboutData.missionValue.map(
-                                                (msVal) => (
-                                                    <>
-                                                        <div className="card-desc-title">
-                                                            {msVal.title}
-                                                        </div>
-                                                        <div>
-                                                            {msVal.description}
-                                                        </div>
-                                                    </>
-                                                )
-                                            )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    {/*vision*/}
+                    <div
+                        className="content-wrapper"
+                        style={{
+                            backgroundImage: `url(${visionImg})`,
+                            height: `${heroHeight}px`,
+                        }}
+                    >
+                        <div>{aboutData.visionTitle}</div>
+                        <div>{aboutData.visionDescription}</div>
                     </div>
-                    <div className="content-wrapper vida-value">
-                        {!isMobile && (
-                            <>
-                                <div className="static-blob-left">
-                                    <img
-                                        src={`${assetPrefix}/images/blob/blob-about-3.png`}
-                                    />
-                                </div>
-                                <div className="static-blob-right">
-                                    <img
-                                        src={`${assetPrefix}/images/blob/blob-about-2.png`}
-                                    />
-                                </div>
-                            </>
-                        )}
+
+                    {/*mission*/}
+                    <div
+                        className="content-wrapper"
+                        style={{
+                            backgroundImage: `url(${missionImg})`,
+                            height: `${heroHeight}px`,
+                        }}
+                    >
+                        <div>{aboutData.missionTitle}</div>
+                        <div>{aboutData.missionDescription}</div>
+                    </div>
+                    <div className="value-wrapper">
                         <div className="value-title">
                             {aboutData.valueTitle}
-                        </div>
-                        <div className="value-desc">
-                            {aboutData.valueDescription}
                         </div>
 
                         <div className="content-cards">
@@ -212,14 +159,6 @@ export default function HomeScreen() {
                                         <div className="card-desc">
                                             {dt.description}
                                         </div>
-                                        {dt.linkText && (
-                                            <a
-                                                className="card-link"
-                                                href={dt.link}
-                                            >
-                                                {dt.linkText}
-                                            </a>
-                                        )}
                                     </div>
                                 </div>
                             ))}
