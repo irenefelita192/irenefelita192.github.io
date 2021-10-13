@@ -14,8 +14,6 @@ const theme = {
         'light-sand': '#F4F1EE',
         gray: '#7B7B7B',
         white: '#FFFFFF',
-        brand: '#0A9188',
-        yellow: 'F3E69E',
     },
     offset: {
         container: '168px',

@@ -221,7 +221,7 @@ export default function Header({ activeId }) {
         <>
             <nav
                 id="navbarTop"
-                className={`navbar is-trans `}
+                className={`navbar is-trans`}
                 role="navigation"
                 aria-label="main navigation"
             >
@@ -329,23 +329,10 @@ export default function Header({ activeId }) {
                                             {!hasSubMenu && (
                                                 <a
                                                     className={`navbar-item ${
-                                                        isMenuActive
-                                                            ? 'animation-slide-right'
-                                                            : ''
-                                                    } ${
                                                         activeMenu == dt.href
                                                             ? 'is-active'
                                                             : ''
                                                     }`}
-                                                    style={
-                                                        !isDesktop
-                                                            ? {
-                                                                  animationDelay: `0.${
-                                                                      index + 1
-                                                                  }s`,
-                                                              }
-                                                            : {}
-                                                    }
                                                     href={dt.href}
                                                 >
                                                     <span>{dt.title}</span>

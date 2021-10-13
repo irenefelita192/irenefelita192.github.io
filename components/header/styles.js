@@ -738,15 +738,6 @@ export default css`
             border-bottom: 1px solid #eaeaea;
         }
 
-        .animation-slide-right {
-            /* animation: 0.2s slide-right 0.1s forwards; */
-        }
-
-        /* .navbar-menu.is-active .navbar-item.has-dropdown.submenu-open {
-            background-color: #f3ebe4;
-            border-radius: 24px;
-        } */
-
         .submenu-content {
             display: block;
             color: ${theme.colors['vida-gray']};
