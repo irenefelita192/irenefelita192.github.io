@@ -49,6 +49,22 @@ export default function App() {
     }, [])
 
     useEffect(() => {
+        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+            scrollParam = urlParams.get('pos')
+        if (appData && scrollParam) {
+            setTimeout(() => {
+                const offsetTop = document.getElementById(scrollParam).offsetTop
+
+                window.scrollTo({
+                    top: offsetTop,
+                    left: 0,
+                    behavior: 'smooth',
+                })
+            }, 500)
+        }
+    }, [appData])
+
+    useEffect(() => {
         if (window) {
             if (window.innerWidth < window.innerHeight) {
                 setIsDesktop(false)

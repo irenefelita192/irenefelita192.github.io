@@ -81,6 +81,11 @@ export default function FooterDesktop({ data }) {
                                                     <a
                                                         className="list"
                                                         key={subMenu.id}
+                                                        target={
+                                                            subMenu.isNewTab
+                                                                ? '_target'
+                                                                : ''
+                                                        }
                                                         href={subMenu.link}
                                                     >
                                                         {subMenu.title}
@@ -90,7 +95,7 @@ export default function FooterDesktop({ data }) {
                                     ))}
                             </div>
                             <div className="download">
-                                <a href={data.AppStoreLink}>
+                                <a target="_blank" href={data.AppStoreLink}>
                                     <img
                                         src={`${assetDomain}${
                                             data.AppStoreIcon?.url ?? ''
@@ -101,7 +106,7 @@ export default function FooterDesktop({ data }) {
                                         }
                                     />
                                 </a>
-                                <a href={data.PlayStoreLink}>
+                                <a target="_blank" href={data.PlayStoreLink}>
                                     <img
                                         src={`${assetDomain}${
                                             data.PlayStoreIcon?.url ?? ''

@@ -16,7 +16,11 @@ export default function DownloadButton({ data }) {
     return (
         <>
             {isIos && (
-                <a className="download-link" href={data.AppStoreLink}>
+                <a
+                    className="download-link"
+                    target="_blank"
+                    href={data.AppStoreLink}
+                >
                     <img
                         src={`${assetDomain}${data.AppStoreIcon?.url ?? ''}`}
                         alt={data.AppStoreIcon?.alternativeText ?? ''}
@@ -24,7 +28,11 @@ export default function DownloadButton({ data }) {
                 </a>
             )}
             {!isIos && (
-                <a className="download-link" href={data.PlayStoreLink}>
+                <a
+                    className="download-link"
+                    target="_blank"
+                    href={data.PlayStoreLink}
+                >
                     <img
                         src={`${assetDomain}${data.PlayStoreIcon?.url ?? ''}`}
                         alt={data.PlayStoreIcon?.alternativeText ?? ''}

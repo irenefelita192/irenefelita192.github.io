@@ -12,12 +12,11 @@ export default function Layout({
     description = 'Best Protection Solution at Every Stage of Life',
     image = '',
     keywords = '',
-    headerType = '',
     twitter_card_type = 'summary',
     appLinkUrl = '',
     type = 'website',
     markup,
-    headerWithBg = true,
+    headerWithBg = false,
     activeHeaderId = '',
 }) {
     const temTitle = ' Vida - Live for today, Create a better tomorrow',
@@ -281,8 +280,12 @@ export default function Layout({
                 {globalStyles}
             </style>
 
-            <Header activeId={activeHeaderId} />
-            <div className={`children-wrapper`}>{children}</div>
+            <Header activeId={activeHeaderId} headerWithBg={headerWithBg} />
+            <div
+                className={`children-wrapper ${headerWithBg ? 'with-bg' : ''}`}
+            >
+                {children}
+            </div>
             <ChatButton />
             <noscript>
                 <style

@@ -14,8 +14,7 @@ export default function ChatButton() {
     }, [])
 
     const sendMessage = () => {
-        console.log('csWaNumber', csWaNumber)
-        window.location.href = `https://api.whatsapp.com/send?phone=${csWaNumber}`
+        window.open(`https://api.whatsapp.com/send?phone=${csWaNumber}`)
     }
     let buttonImg = `${assetPrefix}/images/chat/chat-button.png`
     return (
