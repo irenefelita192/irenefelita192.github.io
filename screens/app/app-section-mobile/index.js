@@ -158,6 +158,7 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
     return (
         <>
             <div
+                id="step"
                 className={`wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
                     height: `${heroHeight}px`,

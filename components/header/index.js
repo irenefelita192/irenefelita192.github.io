@@ -18,7 +18,7 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-export default function Header({ activeId }) {
+export default function Header({ activeId, headerWithBg }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
     const [activeMenu, setActiveMenu] = useState(null)
@@ -60,7 +60,7 @@ export default function Header({ activeId }) {
                 setIsDesktop(false)
                 setMobileMenuHeight(window.innerHeight - headerHeight)
             }
-            window.addEventListener('scroll', handleScroll)
+            if (!headerWithBg) window.addEventListener('scroll', handleScroll)
             document.addEventListener('click', (evt) => {
                 const navbarWrapper = document.getElementById('navbar-dropdown')
                 let targetElement = evt.target // clicked element
@@ -221,7 +221,7 @@ export default function Header({ activeId }) {
         <>
             <nav
                 id="navbarTop"
-                className={`navbar is-trans`}
+                className={`navbar ${headerWithBg ? '' : 'is-trans'}`}
                 role="navigation"
                 aria-label="main navigation"
             >

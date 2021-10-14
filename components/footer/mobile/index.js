@@ -46,56 +46,8 @@ export default function FooterMobile({ data }) {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="third-row">
-                        <Accordion>
-                            {data.menu.map((menu) => (
-                                <Accordion.Container key={menu.id}>
-                                    <Accordion.Header id={menu.id}>
-                                        <span className="menu-header">
-                                            {menu.title}
-                                        </span>
-                                    </Accordion.Header>
-                                    {menu.subMenu && (
-                                        <>
-                                            <Accordion.Body>
-                                                {menu.subMenu.map((subMenu) => (
-                                                    <div
-                                                        className="submenu-content"
-                                                        key={subMenu.id}
-                                                    >
-                                                        {subMenu.title}
-                                                    </div>
-                                                ))}
-                                            </Accordion.Body>
-                                        </>
-                                    )}
-                                </Accordion.Container>
-                            ))}
-                        </Accordion>
-                    </div> */}
-
-                    {/* <div className="fourth-row download">
-                        <DownloadButton data={data} />
-                    </div> */}
 
                     <div className="fifth-row">
-                        {/* <Language isDesktop={false} />
-                        {data.privacyTitle && (
-                            <>
-                                <a
-                                    className="third-row-link"
-                                    href={data.privacyLink}
-                                >
-                                    {data.privacyTitle}
-                                </a>
-                                <span></span>
-                            </>
-                        )}
-                        {data.tncTitle && (
-                            <a className="third-row-link" href={data.tncLink}>
-                                {data.tncTitle}
-                            </a>
-                        )} */}
                         <div className="copyright">
                             {data?.copyrightText ??
                                 'All Rights Reserved © 2021 Vida'}

@@ -7,6 +7,8 @@ export default css`
         background-repeat: no-repeat;
         background-position: top right;
         position: relative;
+        padding-top: 120px;
+        box-sizing: content-box;
     }
 
     h2 {
@@ -16,7 +18,9 @@ export default css`
         line-height: 1.2;
         text-align: center;
         color: ${theme.colors['vida-green-fresh']};
-        margin: 120px 0 65px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 65px;
     }
 
     .animation-wrapper {
@@ -34,6 +38,7 @@ export default css`
         height: 640px; */
         background-size: contain;
         background-repeat: no-repeat;
+        box-sizing: border-box;
     }
 
     .device-wrapper video {
@@ -98,10 +103,13 @@ export default css`
 
     @media screen and (max-height: 640px) {
         h2 {
-            margin: 100px 0 80px;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 80px;
         }
+
         .wrapper {
-            margin-bottom: 100px;
+            padding: 100px 0;
         }
     }
 `

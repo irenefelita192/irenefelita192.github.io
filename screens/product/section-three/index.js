@@ -137,7 +137,6 @@ export default function ParallaxDesktop({ data, isDesktop }) {
     }
 
     const addAnimation = (id) => {
-        console.log('ID', id)
         const el = document.getElementById(id)
         if (isDesktop) el.classList.add('animate-fadein', 'is-visible')
         else el.classList.add('animate-fadein')

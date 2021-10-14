@@ -15,7 +15,7 @@ export default function ProductSection({ data, isTablet }) {
             const imgEl = document.querySelector(
                 `.product-wrapper > div:first-child > img`
             )
-            console.log('istablet', isTablet)
+
             if (isTablet) {
                 setHeroHeight(((window.innerHeight - 80) * 70) / 100)
                 setTextHeight(((window.innerHeight - 80) * 30) / 100)

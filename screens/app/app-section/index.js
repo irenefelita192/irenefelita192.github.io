@@ -90,7 +90,6 @@ export default function AppSection({ data, title, isDesktop }) {
                             `#bar-${index}>span`
                         )
                         if (barEl) {
-                            console.log('masuk')
                             barEl.style.width = '0'
                         }
                         const containerEl = document.getElementById(
@@ -133,6 +132,7 @@ export default function AppSection({ data, title, isDesktop }) {
     return (
         <>
             <div
+                id="step"
                 className={`wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
                     height: heroHeight ? `${heroHeight}px` : 'auto',

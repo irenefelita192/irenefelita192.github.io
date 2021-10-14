@@ -3,8 +3,20 @@ import css from 'styled-jsx/css'
 
 export default css`
     .wrapper {
-        display: block;
-        padding: 57px 300px 126px;
+        font-size: 14px;
+        line-height: 1.43;
+        padding: 32px 40px;
+    }
+
+    .wrapper h1 {
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 1.12;
+        color: #222222;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 16px;
     }
 
     @media screen and (max-width: 1024px) {

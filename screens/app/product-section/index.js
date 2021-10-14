@@ -135,6 +135,7 @@ export default function ProductSection({ data, content, isDesktop }) {
     return (
         <>
             <div
+                id="protection"
                 className={`wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
                     height: heroHeight ? `${heroHeight}px` : 'auto',

@@ -64,6 +64,10 @@ export default css.global`
         margin-top: 0;
     }
 
+    .children-wrapper.with-bg {
+        margin-top: 80px;
+    }
+
     .children-wrapper .wrapper {
         min-height: 48vh;
     }
