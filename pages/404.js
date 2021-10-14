@@ -5,7 +5,7 @@ export default function Custom404() {
     const title = 'Page Not Found'
     const description = 'Sorry, the page you were trying to view does not exist'
     return (
-        <Layout title={title} description={description}>
+        <Layout title={title} description={description} headerWithBg={true}>
             <NotFound></NotFound>
             {/* <style jsx global>
                 {jsxGlobalStyle}

@@ -7,6 +7,7 @@ import styles from './styles'
 import globalStyles from '../global-styles/global-styles'
 
 export default function Layout({
+    isWebView = false,
     children,
     title = '',
     description = 'Best Protection Solution at Every Stage of Life',
@@ -280,13 +281,15 @@ export default function Layout({
                 {globalStyles}
             </style>
 
-            <Header activeId={activeHeaderId} headerWithBg={headerWithBg} />
+            {!isWebView && (
+                <Header activeId={activeHeaderId} headerWithBg={headerWithBg} />
+            )}
             <div
                 className={`children-wrapper ${headerWithBg ? 'with-bg' : ''}`}
             >
                 {children}
             </div>
-            <ChatButton />
+            {!isWebView && <ChatButton />}
             <noscript>
                 <style
                     id="noscript-blank-page"

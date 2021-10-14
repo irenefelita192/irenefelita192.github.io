@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import Layout from 'components/layout'
-import PrivacyScreen from 'screens/privacy'
+import TermsScreen from 'screens/terms'
 
-export default function Privacy() {
+export default function TermsConditions() {
     const [isWebView, setIsWebView] = useState(false)
     useEffect(() => {
         if (window) {
@@ -17,11 +17,11 @@ export default function Privacy() {
 
     return (
         <Layout
+            title="Vida - Terms and Conditions"
             isWebView={isWebView}
-            title="Vida - Privacy Policy"
             headerWithBg={true}
         >
-            <PrivacyScreen title="Privacy Policy" />
+            <TermsScreen title="Terms and Conditions" />
         </Layout>
     )
 }

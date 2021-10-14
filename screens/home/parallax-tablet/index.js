@@ -77,7 +77,7 @@ export default function ParallaxTablet({ sectionOne, sectionTwo }) {
                 ) {
                     //galaxy tab small 600
                     //advan tab 10
-                    console.log('MASUKK ya??1')
+
                     mCalcX = 0.08
                     oCalcX = 0.06
                     stickyPosTop = secondPosTop + (60 / 100) * innerWidth

@@ -28,7 +28,7 @@ export default function Outpatient() {
                 setIsDesktop(false)
             }
         }
-        console.log('productName', productName)
+
         const prdDt = await getProductData(productName, langId)
 
         if (!isMounted()) return

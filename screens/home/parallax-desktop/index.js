@@ -66,14 +66,12 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 secondPosTop = secondWrapper.offsetTop
                 calcY = 0.3
                 if (window.innerWidth <= 812 && window.innerHeight <= 450) {
-                    console.log('MASUKK')
                     calcY = 0.6
                     stickyPosTop = secondPosTop + (12 / 100) * window.innerWidth
                 } else if (
                     window.innerWidth <= 1024 &&
                     window.innerHeight <= 450
                 ) {
-                    console.log('MASUKK')
                     calcY = 0.6
                     stickyPosTop = secondPosTop + (5 / 100) * window.innerWidth
                 } else if (window.innerWidth <= 1180) {

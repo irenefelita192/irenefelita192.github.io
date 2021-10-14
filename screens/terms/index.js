@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import DOMPurify from 'dompurify'
-import { getPrivacy } from 'services/privacy-terms'
+import { getTerms } from 'services/privacy-terms'
 import { getCookie } from 'utils/global-util'
 import styles from './styles'
 
@@ -9,29 +9,29 @@ import Loader from 'components/loader'
 import Footer from 'components/footer'
 
 export default function PrivacyScreen() {
-    const [privacyData, setPrivacyData] = useState(null)
+    const [termsData, setTermsData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
         let langId
         if (process.browser) {
             langId = getCookie('lang')
         }
-        const privacyDt = await getPrivacy(langId)
+        const termsDt = await getTerms(langId)
 
         if (!isMounted()) return
-        setPrivacyData(privacyDt)
+        setTermsData(termsDt)
     }, [])
 
-    if (!privacyData) return <Loader />
+    if (!termsData) return <Loader />
 
-    const sanitizedContent = DOMPurify.sanitize(privacyData.content, {
+    const sanitizedContent = DOMPurify.sanitize(termsData.content, {
         USE_PROFILES: { html: true },
     })
     return (
         <>
-            {privacyData && (
+            {termsData && (
                 <div className="wrapper">
-                    <h1>{privacyData.title}</h1>
+                    <h1>{termsData.title}</h1>
                     <div
                         className="content"
                         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
@@ -40,13 +40,6 @@ export default function PrivacyScreen() {
             )}
             <Footer />
             <style jsx>{styles}</style>
-            {/* <style jsx global>
-                {`
-                    .wrapper p {
-                        padding-bottom: 20px;
-                    }
-                `}
-            </style> */}
         </>
     )
 }
