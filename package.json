@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next --port 90",
+    "dev": "NODE_OPTIONS='--inspect' next",
+    "dev-port": "NODE_OPTIONS='--inspect' next  --port 90",
     "build": "next build",
     "build:prod": "env-cmd -f .defaultenv/production next build && next export",
     "build:stag": "env-cmd -f .defaultenv/staging next build && next export",
