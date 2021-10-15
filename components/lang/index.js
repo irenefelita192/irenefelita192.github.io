@@ -68,82 +68,69 @@ export default function LangPopup({ isDesktop }) {
         location.reload()
     }
 
-    const renderLang = () => {
-        return (
-            <>
-                {languageData && (
+    return (
+        <>
+            {languageData && (
+                <div
+                    id="navbarLang"
+                    className={`dropdown-lang ${isDesktop ? '' : 'is-mobile'}`}
+                    onClick={() => handleLangDropdown()}
+                >
                     <div
-                        id="navbarLang"
-                        className={`dropdown-lang ${
-                            isDesktop ? '' : 'is-mobile'
-                        }`}
-                        onClick={() => handleLangDropdown()}
+                        className={`dropdown ${isPopupLang ? 'is-active' : ''}`}
                     >
-                        <div
-                            className={`dropdown ${
-                                isPopupLang ? 'is-active' : ''
-                            }`}
-                        >
-                            {activeLangObj && (
-                                <img
-                                    src={`${assetPrefix}/images/lang/${
-                                        activeLangObj.code == 'en'
-                                            ? 'uk-flag.svg'
-                                            : 'id-flag.svg'
-                                    }`}
-                                />
-                            )}
-                            <span className="selected-lang">
-                                {activeLangObj &&
-                                    activeLangObj.code.toUpperCase()}
-                            </span>
+                        {activeLangObj && (
+                            <img
+                                src={`${assetPrefix}/images/lang/${
+                                    activeLangObj.code == 'en'
+                                        ? 'uk-flag.svg'
+                                        : 'id-flag.svg'
+                                }`}
+                            />
+                        )}
+                        <span className="selected-lang">
+                            {activeLangObj && activeLangObj.code.toUpperCase()}
+                        </span>
 
-                            <div
-                                className="dropdown-menu"
-                                id="dropdown-menu"
-                                role="menu"
-                            >
-                                <div className="dropdown-content">
-                                    {languageData.map((lang) => (
-                                        <a
-                                            key={lang.id}
-                                            onClick={() =>
-                                                handleChooseLang(lang.code)
-                                            }
-                                            className={`dropdown-item ${
-                                                activeLang === lang.code
-                                                    ? 'is-active'
-                                                    : ''
+                        <div
+                            className="dropdown-menu"
+                            id="dropdown-menu"
+                            role="menu"
+                        >
+                            <div className="dropdown-content">
+                                {languageData.map((lang) => (
+                                    <a
+                                        key={lang.id}
+                                        onClick={() =>
+                                            handleChooseLang(lang.code)
+                                        }
+                                        className={`dropdown-item ${
+                                            activeLang === lang.code
+                                                ? 'is-active'
+                                                : ''
+                                        }`}
+                                    >
+                                        <img
+                                            src={`${assetPrefix}/images/lang/${
+                                                lang.code == 'en'
+                                                    ? 'uk-flag.svg'
+                                                    : 'id-flag.svg'
                                             }`}
-                                        >
+                                        />
+                                        <span>{lang.code}</span>
+                                        {activeLang === lang.code && (
                                             <img
-                                                src={`${assetPrefix}/images/lang/${
-                                                    lang.code == 'en'
-                                                        ? 'uk-flag.svg'
-                                                        : 'id-flag.svg'
-                                                }`}
+                                                className="checkmark"
+                                                src={`${assetPrefix}/images/lang/checkmark.svg`}
                                             />
-                                            <span>{lang.code}</span>
-                                            {activeLang === lang.code && (
-                                                <img
-                                                    className="checkmark"
-                                                    src={`${assetPrefix}/images/lang/checkmark.svg`}
-                                                />
-                                            )}
-                                        </a>
-                                    ))}
-                                </div>
+                                        )}
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
-                )}
-                <style jsx>{styles}</style>
-            </>
-        )
-    }
-    return (
-        <>
-            {renderLang()}
+                </div>
+            )}
 
             <style jsx>{styles}</style>
         </>

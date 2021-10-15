@@ -393,11 +393,11 @@ export default function Header({ activeId, headerWithBg }) {
                     )}
                 </div>
                 <div className="app-section">
-                    <a href={footerData?.AppStoreLink ?? ''}>
+                    <a target="_blank" href={footerData?.AppStoreLink ?? ''}>
                         <i></i>
                         <span>iOS</span>
                     </a>
-                    <a href={footerData?.PlayStoreLink ?? ''}>
+                    <a target="_blank" href={footerData?.PlayStoreLink ?? ''}>
                         <i></i>
                         <span>Android</span>
                     </a>
