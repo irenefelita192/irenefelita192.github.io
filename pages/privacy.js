@@ -17,11 +17,11 @@ export default function Privacy() {
 
     return (
         <Layout
-            isWebView={isWebView}
             title="Vida - Privacy Policy"
+            isWebView={isWebView}
             headerWithBg={true}
         >
-            <PrivacyScreen title="Privacy Policy" />
+            <PrivacyScreen />
         </Layout>
     )
 }

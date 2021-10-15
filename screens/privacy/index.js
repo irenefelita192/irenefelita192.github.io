@@ -12,11 +12,14 @@ export default function PrivacyScreen() {
     const [privacyData, setPrivacyData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
+        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+            paramLocale = urlParams.get('locale')
+
         let langId
         if (process.browser) {
             langId = getCookie('lang')
         }
-        const privacyDt = await getPrivacy(langId)
+        const privacyDt = await getPrivacy(paramLocale || langId)
 
         if (!isMounted()) return
         setPrivacyData(privacyDt)
