@@ -43,7 +43,7 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                                         alt={'app-store'}
                                     />
                                 </a>
-                                <a href={data.PlayStoreLink}>
+                                <a target="_blank" href={data.PlayStoreLink}>
                                     <img
                                         src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}
                                         alt={'google-play'}

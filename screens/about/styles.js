@@ -316,7 +316,9 @@ export default css`
         }
 
         .card-item img {
-            width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 200px;
         }
 
         .card-item.card-odd .card-content,
@@ -425,6 +427,24 @@ export default css`
 
         .hero-title {
             font-size: 26px;
+        }
+
+        .card-item img {
+            width: auto;
+            height: auto;
+            max-height: 200px;
+        }
+
+        .card-item.card-odd .card-content,
+        .card-item.card-even .card-content {
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+            padding-top: 24px;
+        }
+
+        .card-item {
+            margin-bottom: 54px;
         }
     }
 
