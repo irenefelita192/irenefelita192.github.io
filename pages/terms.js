@@ -21,7 +21,7 @@ export default function TermsConditions() {
             isWebView={isWebView}
             headerWithBg={true}
         >
-            <TermsScreen title="Terms and Conditions" />
+            <TermsScreen />
         </Layout>
     )
 }
