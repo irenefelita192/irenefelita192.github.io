@@ -11,7 +11,6 @@ export default css.global`
     .react-bootstrap-table table {
         border-radius: 8px;
         overflow: hidden;
-        width: 100%;
     }
     .react-bootstrap-table table > thead {
         background-color: #c9e4e3;
@@ -23,11 +22,6 @@ export default css.global`
         padding: 16px;
         line-height: 1.43;
         color: ${theme.colors.black};
-    }
-
-    .react-bootstrap-table table td {
-        font-size: 14px;
-        line-height: 1.5;
     }
 
     .react-bootstrap-table table td:first-child {

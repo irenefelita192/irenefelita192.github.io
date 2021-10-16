@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './styles'
-export default function PaginationGoTo({ onClick }) {
+export default function PaginationGoTo({ onClick, isDesktop, textLang }) {
     const [inputVal, setInputVal] = useState('')
     const handleGoTo = () => {
         if (onClick) {
@@ -12,8 +12,10 @@ export default function PaginationGoTo({ onClick }) {
         setInputVal(e.target.value)
     }
     return (
-        <div className="pagination-goto">
-            <div className="wrapper-title">Jump to page</div>
+        <div className={`pagination-goto ${isDesktop ? '' : 'is-mobile'}`}>
+            <div className="wrapper-title">
+                {textLang ? textLang['jumpToPage'] : 'Jump to page'}
+            </div>
             <div className="wrapper-goto">
                 <input
                     placeholder="page number"
@@ -27,7 +29,7 @@ export default function PaginationGoTo({ onClick }) {
                         handleGoTo()
                     }}
                 >
-                    Go
+                    {textLang ? textLang['go'] : 'Go'}
                 </button>
             </div>
             <style jsx>{styles}</style>

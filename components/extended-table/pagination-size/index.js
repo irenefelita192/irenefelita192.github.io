@@ -10,7 +10,7 @@ export default function SizePerPageButton({
     onSizePerPageChange,
     className,
     isDesktop,
-    ...ddProps
+    textLang,
 }) {
     const [isPopUp, setIsPopUp] = useState(false)
     const [selected, setSelected] = useState(currSizePerPage)
@@ -47,13 +47,16 @@ export default function SizePerPageButton({
 
     const handleChooseSelection = (size) => {
         setSelected(size)
+
         onSizePerPageChange(size)
     }
     return (
-        <div>
+        <div className={`wrapper-page-size ${isDesktop ? '' : 'is-mobile'}`}>
             {options && (
                 <>
-                    <div className="wrapper-title">Rows per page</div>
+                    <div className="wrapper-title">
+                        {textLang ? textLang['rowsPerPage'] : 'Rows per page'}
+                    </div>
                     <div
                         id="paginationSizeDd"
                         className={`dropdown-page-size ${

@@ -5,14 +5,14 @@ import styles from './styles.js'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-const data = {
-    title: 'Our Partner',
-    color: '#017D76',
-    backgroundColor: '#D2F4F2',
-    shamrockImage: { url: '/images/partner/bg-hero.png' },
-    shamrockImageMobile: { url: '/images/partner/bg-hero-mobile.png' },
-}
-export default function Header({ isDesktop }) {
+// const data = {
+//     title: 'Our Partner',
+//     color: '#017D76',
+//     backgroundColor: '#D2F4F2',
+//     shamrockImage: { url: '/images/partner/bg-hero.png' },
+//     shamrockImageMobile: { url: '/images/partner/bg-hero-mobile.png' },
+// }
+export default function Header({ data, isDesktop }) {
     useEffect(() => {
         if (window) {
         }
@@ -26,7 +26,7 @@ export default function Header({ isDesktop }) {
                 style={{
                     color: data.color || '#017D76',
                     backgroundColor: data.backgroundColor || '#D2F4F2',
-                    backgroundImage: `url(${assetPrefix}${
+                    backgroundImage: `url(${assetDomain}${
                         isDesktop
                             ? data?.shamrockImage?.url ?? ''
                             : data?.shamrockImageMobile?.url ?? ''

@@ -4,8 +4,7 @@ import css from 'styled-jsx/css'
 export default css`
     .banner-section {
         background-color: #f3ebe4;
-        padding: 80px 19%;
-        min-height: 250px;
+        padding: 6.3% 19%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -19,6 +18,10 @@ export default css`
         background-repeat: no-repeat;
         background-position: bottom right;
         background-size: contain;
+    }
+
+    .banner-section.is-mobile {
+        height: 38%;
     }
 
     @media screen and (max-width: 1024px) {
