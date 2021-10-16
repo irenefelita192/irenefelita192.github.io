@@ -3,7 +3,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 // import { useParams, useHistory } from 'react-router-dom'
-// import overlayFactory from 'react-bootstrap-table2-overlay'
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import _debounce from 'lodash/debounce'
