@@ -1,16 +1,19 @@
 import ReactPaginate from 'react-paginate'
-
+import styles from './styles'
+import globalStyles from './global-styles'
 //pagination on the right : 1,2,3,4,5
 export default function PaginationPanel({
     onPageChange,
     totalPage,
     currentPage,
+    isDesktop,
+    textLang,
 }) {
     return (
-        <div>
+        <div className={`pagination-panel ${isDesktop ? '' : 'is-mobile'}`}>
             <ReactPaginate
-                previousLabel={'Prev'}
-                nextLabel={'Next'}
+                previousLabel={textLang ? textLang['prev'] : 'Prev'}
+                nextLabel={textLang ? textLang['next'] : 'Next'}
                 breakLabel={'...'}
                 breakClassName={'page-item-break'}
                 pageCount={totalPage}
@@ -28,6 +31,11 @@ export default function PaginationPanel({
                 forcePage={currentPage - 1}
                 // initialPage={1}
             />
+
+            <style jsx>{styles}</style>
+            <style jsx global>
+                {globalStyles}
+            </style>
         </div>
     )
 }

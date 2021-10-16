@@ -1,31 +1,64 @@
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useAsyncEffect } from 'use-async-effect'
-import { getHomeData } from '../../services/home'
-import { getCookie } from '../../utils/global-util'
+import { getPartnerCMS } from 'services/partner'
+import { getCookie } from 'utils/global-util'
+import Loader from 'components/loader'
 import Header from './header'
-import Table from './table'
+import Footer from 'components/footer'
+// import Table from './table'
+// import TableMobile from './table-mobile'
+
+const Table = dynamic(() => import('./table'), {
+    ssr: false,
+})
+const TableMobile = dynamic(() => import('./table-mobile'), { ssr: false })
 
 export default function Partner() {
-    // const [homeData, setHomeData] = useState(null)
-    // useAsyncEffect(async (isMounted) => {
-    //     let langId
-    //     if (window) {
-    //         langId = getCookie('lang')
-    //     }
-    //     const homeDt = await getHomeData(langId)
+    const [isDesktop, setIsDesktop] = useState(true)
+    const [partnerData, setPartnerData] = useState(null)
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (window) {
+            langId = getCookie('lang')
+            if (window.innerWidth < window.innerHeight) {
+                setIsDesktop(false)
+            }
+        }
+        const partnerDt = await getPartnerCMS(langId)
+        console.log('partnerDt', partnerDt)
+        if (!isMounted()) return
 
-    //     if (!isMounted()) return
-
-    //     setHomeData(homeDt)
-    // }, [])
-    // if (!homeData) return <></>
+        setPartnerData(partnerDt)
+    }, [])
+    if (!partnerData) return <Loader />
     return (
         <div>
-            <Header title={'Our Partners'} isDesktop={'true'} />
+            {partnerData.header && (
+                <Header
+                    title={'Our Partners'}
+                    isDesktop={isDesktop}
+                    data={partnerData.header}
+                />
+            )}
 
-            <Table />
-            {/* <div>search</div> */}
-            {/* <Features data={homeData.features} /> */}
+            {isDesktop && (
+                <Table
+                    columns={partnerData.columns}
+                    pageSizes={partnerData.pageSizes}
+                    searchOpt={partnerData.searchOptions}
+                    textLang={partnerData.textLang}
+                />
+            )}
+            {!isDesktop && (
+                <TableMobile
+                    columns={partnerData.columns}
+                    pageSizes={partnerData.pageSizes}
+                    searchOpt={partnerData.searchOptions}
+                    textLang={partnerData.textLang}
+                />
+            )}
+            <Footer />
         </div>
     )
 }

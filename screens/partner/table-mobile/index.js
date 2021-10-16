@@ -3,8 +3,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 // import { useParams, useHistory } from 'react-router-dom'
-import BootstrapTable from 'react-bootstrap-table-next'
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
+
 import _debounce from 'lodash/debounce'
 import _size from 'lodash/size'
 import _reduce from 'lodash/reduce'
@@ -94,11 +93,9 @@ export default function TablePartner({
         })
         return partnerData
     }
-
     const onSearch = async (value, opt = null) => {
         setCurrPage(1)
         const selOpt = opt || searchObj
-
         if (selOpt && selOpt.master) {
             const data = await getDataList({
                 page: 1,
@@ -107,7 +104,6 @@ export default function TablePartner({
                 searchfield: '',
                 key: '',
             })
-
             setSearchObj({
                 ...selOpt,
                 source: selOpt.dataSource,
@@ -175,8 +171,45 @@ export default function TablePartner({
         setPartnerData(data)
     }
 
-    const handleNoData = () => {
-        console.log('NO DATA')
+    const renderTableList = () => {
+        return (
+            partnerFlatList &&
+            partnerFlatList.map((dt) => {
+                return (
+                    <div className="table-item" key={dt.id}>
+                        <div className="table-header">{dt.name}</div>
+                        {columns &&
+                            columns.map((col) => {
+                                if (!col.isDesktopOnly) {
+                                    return (
+                                        <div
+                                            key={col.dataField}
+                                            className="table-row"
+                                        >
+                                            <div className="table-head">
+                                                {col.text}
+                                            </div>
+                                            {col.canScroll && (
+                                                <div className="table-data can-scroll">
+                                                    <div>
+                                                        {dt[col.dataField]}
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {!col.canScroll && (
+                                                <div className="table-data">
+                                                    {dt[col.dataField]}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )
+                                }
+                            })}
+                        <style jsx>{styles}</style>
+                    </div>
+                )
+            })
+        )
     }
 
     return (
@@ -188,37 +221,30 @@ export default function TablePartner({
                         currSizePerPage={sizePerPage}
                         options={pageSizes}
                         className={styles['spp-btn']}
-                        isDesktop={true}
+                        isDesktop={false}
                         textLang={textLang}
                     />
                     <PaginationGoTo
                         onClick={onGoToClick}
-                        isDesktop={true}
+                        isDesktop={false}
                         textLang={textLang}
                     />
                     <Search
                         onSelect={onSelectSearch}
                         onSearch={onSearch}
                         options={searchOpt}
-                        isDesktop={true}
+                        isDesktop={false}
                     />
                 </div>
-
-                <BootstrapTable
-                    keyField="id"
-                    // data={[]}
-                    noDataIndication={handleNoData}
-                    data={partnerFlatList || []}
-                    columns={columns}
-                />
-
+                {partnerFlatList && (
+                    <div className="table-wrapper">{renderTableList()}</div>
+                )}
                 {partnerFlatList && (
                     <div className={`pagination-wrapper`}>
                         <PaginationTotal
                             from={pageIndex?.startPage ?? 0}
                             to={pageIndex?.endPage ?? 0}
                             size={totalData}
-                            isDesktop={true}
                             textLang={textLang}
                         />
                         {totalPage > 0 && (
@@ -226,7 +252,7 @@ export default function TablePartner({
                                 onPageChange={onPageChange}
                                 totalPage={totalPage}
                                 currentPage={currPage}
-                                isDesktop={true}
+                                isDesktop={false}
                                 textLang={textLang}
                             />
                         )}
