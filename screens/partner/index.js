@@ -18,6 +18,8 @@ export default function Partner() {
     const [isDesktop, setIsDesktop] = useState(true)
     const [partnerData, setPartnerData] = useState(null)
     useAsyncEffect(async (isMounted) => {
+        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+            paramLocale = urlParams.get('locale')
         let langId
         if (window) {
             langId = getCookie('lang')
@@ -25,8 +27,8 @@ export default function Partner() {
                 setIsDesktop(false)
             }
         }
-        const partnerDt = await getPartnerCMS(langId)
-        console.log('partnerDt', partnerDt)
+        const partnerDt = await getPartnerCMS(paramLocale || langId)
+
         if (!isMounted()) return
 
         setPartnerData(partnerDt)
