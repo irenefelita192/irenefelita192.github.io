@@ -20,7 +20,6 @@ export default function Layout({
     headerWithBg = false,
     activeHeaderId = '',
 }) {
-    console.log('TITLE', title)
     const temTitle = ' Vida - A Health Coverage with Only You in Mind',
         temDesc = 'Designed to always be with you & your loved ones. '
     const seoTitle = title || temTitle,
