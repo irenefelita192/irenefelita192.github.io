@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-const endpoints = process.env.config?.baseEndpoint ?? ''
+const endpoints = process.env.config?.baseEndpoint ?? '',
+    defaultLang = process.env.config?.defaultLang ?? 'id'
 
 export const getPrivacy = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
         .get(`${endpoints}/vida-privacy${locQs}`)
         .catch(function (error) {
@@ -13,7 +14,7 @@ export const getPrivacy = async (locale) => {
 }
 
 export const getTerms = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
         .get(`${endpoints}/vida-terms${locQs}`)
         .catch(function (error) {

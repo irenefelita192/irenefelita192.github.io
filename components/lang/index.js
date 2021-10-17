@@ -6,11 +6,12 @@ import { getCookie } from 'utils/global-util'
 import styles from './styles'
 
 const assetPrefix = process.env.config?.assetPrefix ?? '',
-    assetDomain = process.env.config?.baseEndpoint ?? ''
+    assetDomain = process.env.config?.baseEndpoint ?? '',
+    defaultLang = process.env.config?.defaultLang ?? 'id'
 
 export default function LangPopup({ isDesktop }) {
     const [isPopupLang, setIsPopupLang] = useState(false)
-    const [activeLang, setActiveLang] = useState('id')
+    const [activeLang, setActiveLang] = useState(defaultLang)
     const [activeLangObj, setActiveLangObj] = useState(null)
     const [languageData, setLanguageData] = useState([])
 
