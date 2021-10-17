@@ -10,7 +10,7 @@ export default function Layout({
     isWebView = false,
     children,
     title = '',
-    description = 'Designed to always be with you & your loved ones. Best Protection Solution at Every Stage of Life',
+    description = '',
     image = '',
     keywords = '',
     twitter_card_type = 'summary',
