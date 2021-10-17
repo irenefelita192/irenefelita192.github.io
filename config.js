@@ -7,6 +7,7 @@ var endpointConfig = {
     assetPrefix: process.env.ASSET_PREFIX || '',
     csWaNumber: process.env.CS_WHATSAPP_NUMBER || '',
     beEndpoint: process.env.BASE_ENDPOINT || '',
+    defaultLang: process.env.DEFAULT_LANG,
 }
 // const options = {
 //     development: {

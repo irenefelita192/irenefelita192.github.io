@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-const endpoints = process.env.config?.baseEndpoint ?? ''
+const endpoints = process.env.config?.baseEndpoint ?? '',
+    defaultLang = process.env.config?.defaultLang ?? 'id'
 
 export const getAllSubMenu = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const sortQs = `${locQs ? '&' : '?'}_sort=sortNum:ASC`
 
     const response = await axios
@@ -16,7 +17,7 @@ export const getAllSubMenu = async (locale) => {
 }
 
 export const getAllHeader = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
         .get(`${endpoints}/vida-menus${locQs}`)
         .catch(function (error) {
@@ -80,19 +81,8 @@ export const getLocale = async () => {
     return response ? response.data : null
 }
 
-export const getHeroTop = async (locale, pageId) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
-    const pageQs = pageId ? `${locQs ? '&' : '?'}pageID=${pageId}` : ''
-    const response = await axios
-        .get(`${endpoints}/hero-page-tops${locQs}${pageQs}`)
-        .catch(function (error) {
-            console.error(error)
-        })
-    return response ? response.data : null
-}
-
 export const getTnc = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
         .get(`${endpoints}/terms-conditions${locQs}`)
         .catch(function (error) {
@@ -102,7 +92,7 @@ export const getTnc = async (locale) => {
 }
 
 export const getFooter = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
         .get(`${endpoints}/vida-footer${locQs}`)
         .catch(function (error) {

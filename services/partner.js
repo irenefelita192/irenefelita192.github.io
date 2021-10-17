@@ -3,10 +3,11 @@
 import { get } from 'axios'
 
 const endpoints = process.env.config?.beEndpoint ?? '',
-    cmsEndpoints = process.env.config?.baseEndpoint ?? ''
+    cmsEndpoints = process.env.config?.baseEndpoint ?? '',
+    defaultLang = process.env.config?.defaultLang ?? 'id'
 
 export const getPartnerCMS = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : ''
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await get(`${cmsEndpoints}/vida-partner${locQs}`).catch(
         function (error) {
             console.error(error)
