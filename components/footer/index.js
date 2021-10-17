@@ -10,8 +10,12 @@ export default function Footer() {
     const [footerData, setFooterData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
-        let langId
+        let langId, paramLocale
         if (process.browser) {
+            const urlParams = new URLSearchParams(
+                window?.location?.search ?? ''
+            )
+            paramLocale = urlParams.get('locale')
             langId = getCookie('lang')
             //< 1024 because ipad pro 1024 can use desktop layout
             if (window.innerWidth < 1024) {
@@ -20,7 +24,7 @@ export default function Footer() {
                 setIsDesktop(true)
             }
         }
-        const footerDt = await getFooter(langId)
+        const footerDt = await getFooter(paramLocale || langId)
 
         if (!isMounted()) return
         setFooterData(footerDt)
