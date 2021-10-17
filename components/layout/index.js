@@ -10,7 +10,7 @@ export default function Layout({
     isWebView = false,
     children,
     title = '',
-    description = 'Best Protection Solution at Every Stage of Life',
+    description = 'Designed to always be with you & your loved ones. Best Protection Solution at Every Stage of Life',
     image = '',
     keywords = '',
     twitter_card_type = 'summary',
@@ -20,12 +20,11 @@ export default function Layout({
     headerWithBg = false,
     activeHeaderId = '',
 }) {
-    const temTitle = ' Vida - Live for today, Create a better tomorrow',
-        temDesc = 'Live for today, Create a better tomorrow'
-    const seoTitle = title
-        ? `${title} |${temTitle}
-        `
-        : temTitle
+    console.log('TITLE', title)
+    const temTitle = ' Vida - A Health Coverage with Only You in Mind',
+        temDesc = 'Designed to always be with you & your loved ones. '
+    const seoTitle = title || temTitle,
+        seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? ''
 
     return (
@@ -45,29 +44,23 @@ export default function Layout({
                 />
                 <meta
                     name="keywords"
-                    content={keywords ? keywords : `${description}`}
+                    content={keywords ? keywords : `${seoDesc}`}
                 />
-                <meta
-                    name="description"
-                    content={
-                        description ||
-                        'Best Protection Solution at Every Stage of Life'
-                    }
-                />
+                <meta name="description" content={seoDesc} />
                 <title>{seoTitle}</title>
 
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
 
-                <meta property="og:site_name" content={temTitle} />
+                <meta property="og:site_name" content={'Vida'} />
                 <meta property="og:title" content={seoTitle} />
-                <meta property="og:description" content={description} />
+                <meta property="og:description" content={seoDesc} />
                 <meta property="og:image" content={image} />
                 <meta property="og:url" content={url} />
                 <meta property="og:type" content={type} />
 
                 <meta property="twitter:text:title" content={seoTitle} />
-                <meta name="twitter:description" content={description} />
+                <meta name="twitter:description" content={seoDesc} />
                 <meta name="twitter:image:src" content={image} />
                 <meta name="twitter:card" content={twitter_card_type} />
 
