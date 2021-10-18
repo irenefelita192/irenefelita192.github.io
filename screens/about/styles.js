@@ -122,18 +122,8 @@ export default css`
 
     /*vida value start*/
     .value-wrapper {
-        padding: 140px 20%;
+        padding: 140px 22%;
         background-color: ${theme.colors['light-sand']};
-    }
-
-    .vida-value {
-        background: #f4eee8;
-    }
-
-    .vida-value .card-item img {
-        width: auto;
-        height: 210px;
-        border-radius: 24px;
     }
 
     .value-title {
@@ -161,6 +151,7 @@ export default css`
     .card-content {
         padding: 0;
         margin: 0;
+        width: 100%;
     }
 
     .card-item.card-odd {
@@ -168,7 +159,7 @@ export default css`
     }
 
     .card-item.card-odd .card-content {
-        padding-left: 48px;
+        padding-left: 112px;
     }
 
     .card-item.card-even {
@@ -176,7 +167,7 @@ export default css`
     }
 
     .card-item.card-even .card-content {
-        padding-right: 48px;
+        padding-right: 112px;
     }
 
     .card-item:last-child {
@@ -184,8 +175,8 @@ export default css`
     }
 
     .card-item img {
-        width: auto;
-        height: 260px;
+        width: 44%;
+        height: auto;
         border-radius: 24px;
     }
 
@@ -239,16 +230,16 @@ export default css`
     /*Bottom Section - end*/
 
     @media screen and (max-width: 1024px) {
-        .card-item img {
+        /* .card-item img {
             width: 348px;
-        }
+        } */
 
         .card-item.card-odd .card-content {
-            padding-left: 32px;
+            padding-left: 80px;
         }
 
         .card-item.card-even .card-content {
-            padding-right: 32px;
+            padding-right: 80px;
         }
 
         .is-mobile .hero-vida-text {
@@ -347,6 +338,10 @@ export default css`
     }
 
     @media screen and (max-width: 640px) {
+        .value-wrapper {
+            padding: 140px 14%;
+        }
+
         .card-title {
             font-size: 32px;
             line-height: 1.12;
@@ -389,6 +384,20 @@ export default css`
             font-size: 26px;
         }
     }
+
+    @media screen and (max-width: 450px) {
+        .card-title {
+            font-size: 26px;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 1.32;
+        }
+    }
+
     @media screen and (min-width: 400px) and (max-height: 930px) {
         .is-mobile .hero-text {
             padding: 22% 18px 0;
