@@ -21,7 +21,7 @@ const assetPrefix = process.env.config?.assetPrefix ?? '',
 export default function Header({ activeId, headerWithBg }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
-    const [activeMenu, setActiveMenu] = useState('')
+    // const [activeMenu, setActiveMenu] = useState('')
 
     const [headerData, setHeaderData] = useState([])
     const [footerData, setFooterData] = useState(null)
@@ -43,7 +43,7 @@ export default function Header({ activeId, headerWithBg }) {
 
         if (!isMounted()) return
         setHeaderData(headers)
-        setActiveMenu(activePath)
+        // setActiveMenu(activePath)
         if (footerDt) setFooterData(footerDt)
     }, [])
 
@@ -290,9 +290,7 @@ export default function Header({ activeId, headerWithBg }) {
                                                             ? 'animation-slide-right'
                                                             : ''
                                                     } ${
-                                                        activeMenu.indexOf(
-                                                            dt.href
-                                                        ) > -1
+                                                        activeId == dt.headerId
                                                             ? 'is-active'
                                                             : ''
                                                     } ${
@@ -326,9 +324,7 @@ export default function Header({ activeId, headerWithBg }) {
                                             {!hasSubMenu && (
                                                 <a
                                                     className={`navbar-item ${
-                                                        activeMenu.indexOf(
-                                                            dt.href
-                                                        ) > -1
+                                                        activeId == dt.headerId
                                                             ? 'is-active'
                                                             : ''
                                                     }`}
