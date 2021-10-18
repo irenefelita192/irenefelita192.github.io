@@ -5,18 +5,18 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
 export default function ProductSection({ data }) {
-    const [productActive, setProductActive] = useState(1)
+    const [productActive, setProductActive] = useState(0)
 
     useEffect(() => {
         return () => {}
     }, [])
 
     const handleNavigate = (direction) => {
-        if (direction == 'prev' && productActive > 1) {
+        if (direction == 'prev' && productActive > 0) {
             setProductActive(productActive - 1)
         }
 
-        if (direction == 'next' && productActive < data.length) {
+        if (direction == 'next' && productActive < data.length - 1) {
             setProductActive(productActive + 1)
         }
     }
@@ -24,18 +24,17 @@ export default function ProductSection({ data }) {
     return (
         <div className="third-wrapper">
             {data &&
-                data.map((prd) => {
+                data.map((prd, index) => {
                     return (
                         <CSSTransition
-                            in={productActive == prd.id}
+                            in={productActive == index}
                             timeout={100}
                             classNames="product-transition"
                             key={prd.id}
                         >
                             <div
-                                key={prd.id}
                                 className={`product-wrapper ${
-                                    productActive == prd.id ? 'is-active' : ''
+                                    productActive == index ? 'is-active' : ''
                                 }`}
                             >
                                 <div
@@ -50,7 +49,7 @@ export default function ProductSection({ data }) {
                                     <div className="btn-navigation">
                                         <div
                                             className={`btn-prev ${
-                                                productActive == 1
+                                                productActive == 0
                                                     ? 'disabled'
                                                     : ''
                                             }`}
@@ -66,7 +65,7 @@ export default function ProductSection({ data }) {
                                         </div>
                                         <div
                                             className={`btn-next ${
-                                                productActive == data.length
+                                                productActive == data.length - 1
                                                     ? 'disabled'
                                                     : ''
                                             }`}

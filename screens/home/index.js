@@ -117,7 +117,7 @@ export default function HomeScreen() {
             )}
             {/* Section 4 end */}
             {homeData.BottomBanner && (
-                <BannerCTA data={homeData.BottomBanner} />
+                <BannerCTA data={homeData.BottomBanner} isDesktop={isDesktop} />
             )}
             <Footer />
         </div>
