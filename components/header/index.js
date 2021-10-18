@@ -36,8 +36,7 @@ export default function Header({ activeId, headerWithBg }) {
         let langId, activePath
         if (process.browser) {
             langId = getCookie('lang')
-            const pathArr = (window.location?.pathname ?? '').split('/')
-            activePath = `/${pathArr.length > 2 ? pathArr[1] : ''}`
+            activePath = window.location.href
         }
         const headers = await getAllHeader(langId)
         let footerDt = await getFooter(langId)
@@ -291,7 +290,9 @@ export default function Header({ activeId, headerWithBg }) {
                                                             ? 'animation-slide-right'
                                                             : ''
                                                     } ${
-                                                        activeMenu == dt.href
+                                                        activeMenu.indexOf(
+                                                            dt.href
+                                                        ) > -1
                                                             ? 'is-active'
                                                             : ''
                                                     } ${
@@ -325,7 +326,9 @@ export default function Header({ activeId, headerWithBg }) {
                                             {!hasSubMenu && (
                                                 <a
                                                     className={`navbar-item ${
-                                                        activeMenu == dt.href
+                                                        activeMenu.indexOf(
+                                                            dt.href
+                                                        ) > -1
                                                             ? 'is-active'
                                                             : ''
                                                     }`}
