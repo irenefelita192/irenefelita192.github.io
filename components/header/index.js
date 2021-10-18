@@ -21,7 +21,7 @@ const assetPrefix = process.env.config?.assetPrefix ?? '',
 export default function Header({ activeId, headerWithBg }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isMenuActive, setIsMenuActive] = useState(false)
-    const [activeMenu, setActiveMenu] = useState(null)
+    const [activeMenu, setActiveMenu] = useState('')
 
     const [headerData, setHeaderData] = useState([])
     const [footerData, setFooterData] = useState(null)
