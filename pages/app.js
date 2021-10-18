@@ -3,7 +3,7 @@ import AppScreen from 'screens/app'
 
 export default function App() {
     return (
-        <Layout>
+        <Layout activeId="app">
             <AppScreen />
         </Layout>
     )

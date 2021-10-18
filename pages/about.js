@@ -3,7 +3,7 @@ import AboutScreen from 'screens/about'
 
 export default function About() {
     return (
-        <Layout>
+        <Layout activeId="about">
             <AboutScreen title="About Policy" />
         </Layout>
     )

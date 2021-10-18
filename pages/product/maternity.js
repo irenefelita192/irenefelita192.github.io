@@ -3,7 +3,7 @@ import ProductScreen from 'screens/product'
 
 export default function Home() {
     return (
-        <Layout>
+        <Layout activeId="product">
             <ProductScreen />
         </Layout>
     )

@@ -18,7 +18,7 @@ export default function Layout({
     type = 'website',
     markup,
     headerWithBg = false,
-    activeHeaderId = '',
+    activeId = '',
 }) {
     const temTitle = ' Vida - A Health Coverage with Only You in Mind',
         temDesc = 'Designed to always be with you & your loved ones. '
@@ -274,7 +274,7 @@ export default function Layout({
             </style>
 
             {!isWebView && (
-                <Header activeId={activeHeaderId} headerWithBg={headerWithBg} />
+                <Header activeId={activeId} headerWithBg={headerWithBg} />
             )}
             <div
                 className={`children-wrapper ${headerWithBg ? 'with-bg' : ''}`}
