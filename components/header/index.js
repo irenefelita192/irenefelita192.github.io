@@ -40,11 +40,7 @@ export default function Header({ activeId, headerWithBg }) {
             activePath = `/${pathArr.length > 2 ? pathArr[1] : ''}`
         }
         const headers = await getAllHeader(langId)
-        let footerDt
-        //< 1024 because ipad pro 1024 can use desktop layout
-        if (window.innerWidth < 1024) {
-            footerDt = await getFooter(langId)
-        }
+        let footerDt = await getFooter(langId)
 
         if (!isMounted()) return
         setHeaderData(headers)
