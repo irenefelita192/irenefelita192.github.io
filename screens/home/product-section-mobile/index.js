@@ -53,7 +53,7 @@ export default function ProductSection({ data, isTablet }) {
                         setHeroHeight(null)
                         setTextHeight(window.innerHeight - 80 - imgEl.height)
                     }
-                    console.log('imgEl.naturalHeight ', imgEl.height)
+
                     // const imgHeight =
                     //     (imgEl.naturalHeight / imgEl.naturalWidth) *
                     //     window.innerWidth

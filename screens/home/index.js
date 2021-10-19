@@ -49,18 +49,21 @@ export default function HomeScreen() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window?.location?.search ?? ''),
             scrollParam = urlParams.get('pos')
-        if (homeData && scrollParam) {
+
+        //just non desktop only
+        //desktop scroll func is after image load
+        //inside   <ParallaxDesktop/> component
+        if (!isDesktop && homeData && scrollParam) {
             setTimeout(() => {
                 const offsetTop = document.getElementById(scrollParam).offsetTop
-
                 window.scrollTo({
-                    top: offsetTop,
+                    top: offsetTop - 40,
                     left: 0,
                     behavior: 'smooth',
                 })
             }, 500)
         }
-    }, [homeData])
+    }, [homeData, isDesktop])
 
     if (!homeData) return <Loader />
 
