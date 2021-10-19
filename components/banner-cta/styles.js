@@ -76,7 +76,7 @@ export default css`
         margin-top: 72px;
     }
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1200px) {
         .banner-section {
             font-size: 36px;
             line-height: 1.2;
