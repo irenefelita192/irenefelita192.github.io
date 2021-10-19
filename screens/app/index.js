@@ -54,7 +54,7 @@ export default function App() {
         if (appData && scrollParam) {
             setTimeout(() => {
                 const offsetTop = document.getElementById(scrollParam).offsetTop
-
+                console.log('app top', offsetTop)
                 window.scrollTo({
                     top: offsetTop,
                     left: 0,
