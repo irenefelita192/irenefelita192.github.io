@@ -62,6 +62,12 @@ export default css`
         }
     }
 
+    @media screen and (max-width: 1200px) and (min-height: 640px) {
+        .content {
+            font-size: 30px;
+        }
+    }
+
     @media screen and (max-height: 640px) {
         .wrapper {
             padding: 10%;
@@ -87,6 +93,12 @@ export default css`
 
         .bg-color {
             border-radius: 8px;
+        }
+    }
+
+    @media screen and (max-height: 450px) and (max-width: 680px) {
+        .content {
+            font-size: 16px;
         }
     }
 `
