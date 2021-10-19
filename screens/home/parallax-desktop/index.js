@@ -97,6 +97,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                         window.innerWidth
                     secondWrapper.style.height = `${imgHeight}px`
                     overlayImg.style.opacity = '1'
+                    scrollToElement()
                 } else {
                     imgEl.onload = () => {
                         const imgHeight =
@@ -104,6 +105,10 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                             window.innerWidth
                         secondWrapper.style.height = `${imgHeight}px`
                         overlayImg.style.opacity = '1'
+
+                        //func disini agar image fully load baru scroll ke bawah
+                        //menghindari salah baca posisi krn image belum ke load
+                        scrollToElement()
                     }
                 }
             }
@@ -113,6 +118,22 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
             }, 1000)
         }
     }, [heroHeight])
+
+    const scrollToElement = () => {
+        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+            scrollParam = urlParams.get('pos')
+        if (scrollParam) {
+            setTimeout(() => {
+                const offsetTop = document.getElementById(scrollParam).offsetTop
+                console.log('offsetTop?', offsetTop)
+                window.scrollTo({
+                    top: offsetTop,
+                    left: 0,
+                    behavior: 'smooth',
+                })
+            }, 500)
+        }
+    }
 
     const resetInitialAnimation = () => {
         document
