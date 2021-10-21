@@ -551,9 +551,9 @@ export default css`
         box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
     }
 
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1360px) {
         .navbar {
-            padding: 0 7%;
+            padding: 0 5%;
         }
 
         .navbar.is-trans:before {
@@ -570,7 +570,7 @@ export default css`
         }
     }
 
-    @media screen and (max-width: 1180px) {
+    @media screen and (max-width: 1260px) {
         .navbar {
             padding: 0 30px;
             font-size: 20px;
