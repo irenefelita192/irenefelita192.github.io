@@ -239,18 +239,18 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
         ? `${assetDomain}${sectionOne.shamrockImage.url}`
         : ''
 
-    let familyImg = `${assetPrefix}${sectionOne?.familyImageWebp?.url ?? ''}`
+    let familyImg = `${sectionOne?.familyImageWebp?.url ?? ''}`
     if (!sectionOne.familyImage || !isWebpSupport) {
-        familyImg = `${assetPrefix}${sectionOne?.familyImage?.url ?? ''}`
+        familyImg = `${sectionOne?.familyImage?.url ?? ''}`
     }
 
     if (window) {
         if (window.innerWidth < 1024 && window.innerHeight < 450) {
-            familyImg = `${assetPrefix}${
+            familyImg = `${
                 sectionOne?.familyImageWebp?.formats?.medium?.url ?? ''
             }`
             if (!sectionOne.familyImage || !isWebpSupport) {
-                familyImg = `${assetPrefix}${
+                familyImg = `${
                     sectionOne?.familyImage?.formats?.medium?.url ?? ''
                 }`
             }
