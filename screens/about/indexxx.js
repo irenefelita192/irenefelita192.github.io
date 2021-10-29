@@ -3,9 +3,8 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getAboutData } from 'services/about'
 import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
-import styles from './styles'
-// import Footer from 'components/footer'
-import ParallaxDesktop from './parallax'
+import styles from './stylesxx'
+import Footer from 'components/footer'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -83,10 +82,48 @@ export default function HomeScreen() {
         <>
             {aboutData && (
                 <>
-                    <ParallaxDesktop aboutData={aboutData} />
+                    <div
+                        className={`hero-wrapper ${
+                            isDesktop ? '' : 'is-mobile'
+                        }`}
+                        style={{
+                            backgroundImage: `url(${heroImg})`,
+                            height: `${heroHeight}px`,
+                        }}
+                    >
+                        <div className="hero-text">
+                            <div className="hero-vida-text">
+                                {aboutData?.vidaText ?? ''}
+                            </div>
+                            <div className="hero-title">
+                                {aboutData?.heroDescription ?? ''}
+                            </div>
+                            {isDesktop && (
+                                <>
+                                    <div className="founder-name">
+                                        {aboutData?.founderName ?? ''}
+                                    </div>
+                                    <div className="founder-title">
+                                        {aboutData?.founderTitle ?? ''}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+
+                        {!isDesktop && (
+                            <div className="portrait-founder">
+                                <div className="founder-name">
+                                    {aboutData?.founderName ?? ''}
+                                </div>
+                                <div className="founder-title">
+                                    {aboutData?.founderTitle ?? ''}
+                                </div>
+                            </div>
+                        )}
+                    </div>
 
                     {/*vision*/}
-                    {/* <div
+                    <div
                         id="vision"
                         className="content-wrapper"
                         style={{
@@ -96,10 +133,10 @@ export default function HomeScreen() {
                     >
                         <div>{aboutData.visionTitle}</div>
                         <div>{aboutData.visionDescription}</div>
-                    </div> */}
+                    </div>
 
                     {/*mission*/}
-                    {/* <div
+                    <div
                         id="mission"
                         className="content-wrapper"
                         style={{
@@ -144,10 +181,10 @@ export default function HomeScreen() {
                                 </div>
                             ))}
                         </div>
-                    </div> */}
+                    </div>
                 </>
             )}
-            {/* <Footer /> */}
+            <Footer />
             <style jsx>{styles}</style>
         </>
     )
