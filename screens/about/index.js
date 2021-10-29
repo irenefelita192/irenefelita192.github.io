@@ -83,7 +83,10 @@ export default function HomeScreen() {
         <>
             {aboutData && (
                 <>
-                    <ParallaxDesktop aboutData={aboutData} />
+                    <ParallaxDesktop
+                        aboutData={aboutData}
+                        isDesktop={isDesktop}
+                    />
 
                     {/*vision*/}
                     {/* <div

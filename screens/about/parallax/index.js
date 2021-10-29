@@ -8,7 +8,7 @@ import Footer from 'components/footer'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
-export default function HomeScreen({ aboutData }) {
+export default function HomeScreen({ aboutData, isDesktop }) {
     useEffect(() => {
         if (window) {
             window.addEventListener('scroll', handleScroll)
@@ -100,7 +100,9 @@ export default function HomeScreen({ aboutData }) {
                 <section className="s1">
                     <div className="section-content">
                         <img
-                            src={`${assetPrefix}/images/about/hero.png`}
+                            src={`${assetPrefix}/images/about${
+                                isDesktop ? '' : '/mobile'
+                            }/hero.png`}
                             alt={'hero'}
                         />
                     </div>
@@ -108,7 +110,9 @@ export default function HomeScreen({ aboutData }) {
                 <section className="s2">
                     <div className="section-content">
                         <img
-                            src={`${assetPrefix}/images/about/hero-2.png`}
+                            src={`${assetPrefix}/images/about${
+                                isDesktop ? '' : '/mobile'
+                            }/hero-2.png`}
                             alt={'hero'}
                         />
                     </div>
@@ -116,7 +120,9 @@ export default function HomeScreen({ aboutData }) {
                 <section className="s3">
                     <div className="section-content">
                         <img
-                            src={`${assetPrefix}/images/about/hero-3.png`}
+                            src={`${assetPrefix}/images/about${
+                                isDesktop ? '' : '/mobile'
+                            }/hero-3.png`}
                             alt={'hero'}
                         />
                     </div>
@@ -125,7 +131,9 @@ export default function HomeScreen({ aboutData }) {
                 <section className="s4 last-section">
                     <div className="section-content full-height">
                         <img
-                            src={`${assetPrefix}/images/about/hero-4.png`}
+                            src={`${assetPrefix}/images/about${
+                                isDesktop ? '' : '/mobile'
+                            }/hero-4.png`}
                             alt={'hero'}
                         />
                     </div>
