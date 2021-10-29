@@ -387,16 +387,28 @@ export default function Header({ activeId, headerWithBg }) {
                         </>
                     )}
                 </div>
-                <div className="app-section">
-                    <a target="_blank" href={footerData?.AppStoreLink ?? ''}>
-                        <i></i>
-                        <span>iOS</span>
-                    </a>
-                    <a target="_blank" href={footerData?.PlayStoreLink ?? ''}>
-                        <i></i>
-                        <span>Android</span>
-                    </a>
-                </div>
+                {footerData && (
+                    <div className="app-section">
+                        {footerData.AppStoreLink && (
+                            <a
+                                target="_blank"
+                                href={footerData?.AppStoreLink ?? ''}
+                            >
+                                <i></i>
+                                <span>iOS</span>
+                            </a>
+                        )}
+                        {footerData.PlayStoreLink && (
+                            <a
+                                target="_blank"
+                                href={footerData?.PlayStoreLink ?? ''}
+                            >
+                                <i></i>
+                                <span>Android</span>
+                            </a>
+                        )}
+                    </div>
+                )}
             </nav>
             <style jsx>{styles}</style>
         </>
