@@ -18,8 +18,9 @@ export const getAllSubMenu = async (locale) => {
 
 export const getAllHeader = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
+    const sortQs = `${locQs ? '&' : '?'}_sort=sortNum:ASC`
     const response = await axios
-        .get(`${endpoints}/vida-menus${locQs}`)
+        .get(`${endpoints}/vida-menus${locQs}${sortQs}`)
         .catch(function (error) {
             console.error(error)
         })
@@ -81,20 +82,19 @@ export const getLocale = async () => {
     return response ? response.data : null
 }
 
-export const getTnc = async (locale) => {
+export const getFooter = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
-        .get(`${endpoints}/terms-conditions${locQs}`)
+        .get(`${endpoints}/vida-footer${locQs}`)
         .catch(function (error) {
             console.error(error)
         })
     return response ? response.data : null
 }
 
-export const getFooter = async (locale) => {
-    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
+export const getChatButton = async () => {
     const response = await axios
-        .get(`${endpoints}/vida-footer${locQs}`)
+        .get(`${endpoints}/vida-chat-button`)
         .catch(function (error) {
             console.error(error)
         })

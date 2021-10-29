@@ -67,6 +67,19 @@ export default function Layout({
                 <meta name="referrer" content="origin" />
                 <meta name="referrer" content="origin-when-cross-origin" />
 
+                {/*GA Google Analytics @ https://m0n.co/ga - start */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', '${gaId}', 'auto');
+			ga('send', 'pageview');`,
+                    }}
+                />
+
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -249,19 +262,6 @@ export default function Layout({
                     as="font"
                     crossOrigin=""
                     type="font/otf"
-                />
-
-                {/*GA Google Analytics @ https://m0n.co/ga - start */}
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-			ga('create', ${gaId}, 'auto');
-			ga('send', 'pageview');`,
-                    }}
                 />
             </Head>
             <style jsx global>

@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify'
 import { getPrivacy } from 'services/privacy-terms'
 import { getCookie } from 'utils/global-util'
 import styles from './styles'
+import globalStyles from './global-styles'
 
 import Loader from 'components/loader'
 import Footer from 'components/footer'
@@ -43,13 +44,9 @@ export default function PrivacyScreen() {
             )}
             <Footer />
             <style jsx>{styles}</style>
-            {/* <style jsx global>
-                {`
-                    .wrapper p {
-                        padding-bottom: 20px;
-                    }
-                `}
-            </style> */}
+            <style jsx global>
+                {globalStyles}
+            </style>
         </>
     )
 }
