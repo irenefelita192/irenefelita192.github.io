@@ -71,30 +71,23 @@ export default css`
         font-size: 80px;
         font-weight: 600;
 
-        /* transform: translateY(100vh);
-        transition: all ${timeAnimation}s ease-in-out; */
-
         z-index: 0;
     }
 
     .layout .s1 {
-        background-color: #4d2536;
         transform: translateY(0);
         z-index: 4;
     }
 
     .layout .s2 {
-        background-color: #02486b;
         z-index: 3;
     }
 
     .layout .s3 {
-        background-color: #171716;
         z-index: 2;
     }
 
     .layout .s4 {
-        background-color: #154621;
         z-index: 1;
     }
     /** Vida Value start **/
