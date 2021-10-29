@@ -1,22 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useAsyncEffect } from 'use-async-effect'
+import { getChatButton } from 'services/common'
 import styles from './styles'
 
-const assetPrefix = process.env.config?.assetPrefix ?? '',
-    csWaNumber = process.env.config?.csWaNumber ?? ''
+const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function ChatButton() {
-    // const [isIos, setIsIos] = useState(false)
+    const [chatData, setChatData] = useState(false)
 
-    useEffect(() => {
-        // if (process.browser && data.isDownload) {
-        //     const ios = /(iPad|iPhone|iPod)/g.test(navigator.userAgent)
-        //     setIsIos(ios)
-        // }
+    useAsyncEffect(async (isMounted) => {
+        const chatDt = await getChatButton()
+
+        if (!isMounted()) return
+        setChatData(chatDt)
     }, [])
 
+    if (!chatData) return <></>
+
     const sendMessage = () => {
-        window.open(`https://api.whatsapp.com/send?phone=${csWaNumber}`)
+        window.open(chatData?.link ?? '')
     }
-    let buttonImg = `${assetPrefix}/images/chat/chat-button.png`
+    let buttonImg = `${assetDomain}${chatData?.image?.url ?? ''}`
     return (
         <a
             onClick={sendMessage}
