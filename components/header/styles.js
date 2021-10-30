@@ -391,7 +391,7 @@ export default css`
 
     .submenu-item {
         position: relative;
-        width: 224px;
+        width: 248px;
         height: 129px;
         margin-right: 20px;
         border-radius: 18px;
