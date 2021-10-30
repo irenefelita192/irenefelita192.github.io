@@ -151,13 +151,7 @@ export default function ParallaxDesktop({ data, isDesktop }) {
                 {data &&
                     data.map((q, index) => {
                         let imageUrl = ''
-                        if (isDesktop) {
-                            imageUrl = `${assetDomain}${q?.image?.url ?? ''}`
-                        } else {
-                            imageUrl = q.image
-                                ? `${assetDomain}${q.image.formats.small.url}`
-                                : ''
-                        }
+                        imageUrl = `${assetDomain}${q?.image?.url ?? ''}`
                         if (isDesktop) {
                             return (
                                 <div

@@ -15,7 +15,7 @@ export default function DownloadButton({ data }) {
     if (!data) return <></>
     return (
         <>
-            {isIos && (
+            {isIos && data.AppStoreLink && (
                 <a
                     className="download-link"
                     target="_blank"
@@ -27,7 +27,7 @@ export default function DownloadButton({ data }) {
                     />
                 </a>
             )}
-            {!isIos && (
+            {!isIos && data.PlayStoreLink && (
                 <a
                     className="download-link"
                     target="_blank"

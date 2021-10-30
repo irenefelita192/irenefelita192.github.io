@@ -95,28 +95,35 @@ export default function FooterDesktop({ data }) {
                                     ))}
                             </div>
                             <div className="download">
-                                <a target="_blank" href={data.AppStoreLink}>
-                                    <img
-                                        src={`${assetDomain}${
-                                            data.AppStoreIcon?.url ?? ''
-                                        }`}
-                                        alt={
-                                            data.AppStoreIcon
-                                                ?.alternativeText ?? ''
-                                        }
-                                    />
-                                </a>
-                                <a target="_blank" href={data.PlayStoreLink}>
-                                    <img
-                                        src={`${assetDomain}${
-                                            data.PlayStoreIcon?.url ?? ''
-                                        }`}
-                                        alt={
-                                            data.PlayStoreIcon
-                                                ?.alternativeText ?? ''
-                                        }
-                                    />
-                                </a>
+                                {data.AppStoreLink && (
+                                    <a target="_blank" href={data.AppStoreLink}>
+                                        <img
+                                            src={`${assetDomain}${
+                                                data.AppStoreIcon?.url ?? ''
+                                            }`}
+                                            alt={
+                                                data.AppStoreIcon
+                                                    ?.alternativeText ?? ''
+                                            }
+                                        />
+                                    </a>
+                                )}
+                                {data.PlayStoreLink && (
+                                    <a
+                                        target="_blank"
+                                        href={data.PlayStoreLink}
+                                    >
+                                        <img
+                                            src={`${assetDomain}${
+                                                data.PlayStoreIcon?.url ?? ''
+                                            }`}
+                                            alt={
+                                                data.PlayStoreIcon
+                                                    ?.alternativeText ?? ''
+                                            }
+                                        />
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>

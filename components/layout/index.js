@@ -11,7 +11,6 @@ export default function Layout({
     children,
     title = '',
     description = '',
-    image = '',
     keywords = '',
     twitter_card_type = 'summary',
     appLinkUrl = '',
@@ -26,6 +25,7 @@ export default function Layout({
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
+    const seoImage = `/images/logo/vida-image.jpg`
 
     return (
         <>
@@ -55,13 +55,13 @@ export default function Layout({
                 <meta property="og:site_name" content={'Vida'} />
                 <meta property="og:title" content={seoTitle} />
                 <meta property="og:description" content={seoDesc} />
-                <meta property="og:image" content={image} />
+                <meta property="og:image" content={seoImage} />
                 <meta property="og:url" content={url} />
                 <meta property="og:type" content={type} />
 
                 <meta property="twitter:text:title" content={seoTitle} />
                 <meta name="twitter:description" content={seoDesc} />
-                <meta name="twitter:image:src" content={image} />
+                <meta name="twitter:image:src" content={seoImage} />
                 <meta name="twitter:card" content={twitter_card_type} />
 
                 <meta name="referrer" content="origin" />
@@ -366,7 +366,7 @@ export default function Layout({
                     <div className={'noscript-header'}>
                         <img
                             alt="LippoLife"
-                            src="/images/logo/LippoLife-Logo-Black.png"
+                            src={seoImage}
                             className={'noscript-logo'}
                         />
                     </div>

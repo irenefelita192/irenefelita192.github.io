@@ -293,8 +293,8 @@ export default css`
         font-size: 60px;
         line-height: 1.1;
         color: #fcfcfc;
-        max-width: 700px;
-        margin: 0;
+        max-width: 56%;
+        margin: 0 auto;
         padding: 0;
     }
 

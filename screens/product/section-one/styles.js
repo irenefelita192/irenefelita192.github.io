@@ -27,11 +27,11 @@ export default css`
         font-weight: 700;
         font-size: 60px;
         line-height: 1.1;
-        width: 42%;
+        width: 50%;
     }
 
     .hero-text > div:last-child {
-        width: 38%;
+        width: 35%;
         padding-top: 12px;
     }
 

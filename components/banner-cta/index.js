@@ -37,23 +37,7 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                     <>
                         {isDesktop && (
                             <div className="download-link">
-                                <a target="_blank" href={data.AppStoreLink}>
-                                    <img
-                                        src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
-                                        alt={'app-store'}
-                                    />
-                                </a>
-                                <a target="_blank" href={data.PlayStoreLink}>
-                                    <img
-                                        src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}
-                                        alt={'google-play'}
-                                    />
-                                </a>
-                            </div>
-                        )}
-                        {!isDesktop && (
-                            <div className="download-link">
-                                {isIos && (
+                                {data.AppStoreLink && (
                                     <a target="_blank" href={data.AppStoreLink}>
                                         <img
                                             src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
@@ -61,7 +45,30 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                                         />
                                     </a>
                                 )}
-                                {!isIos && (
+                                {data.PlayStoreLink && (
+                                    <a
+                                        target="_blank"
+                                        href={data.PlayStoreLink}
+                                    >
+                                        <img
+                                            src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}
+                                            alt={'google-play'}
+                                        />
+                                    </a>
+                                )}
+                            </div>
+                        )}
+                        {!isDesktop && (
+                            <div className="download-link">
+                                {isIos && data.AppStoreLink && (
+                                    <a target="_blank" href={data.AppStoreLink}>
+                                        <img
+                                            src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
+                                            alt={'app-store'}
+                                        />
+                                    </a>
+                                )}
+                                {!isIos && data.PlayStoreLink && (
                                     <a
                                         target="_blank"
                                         href={data.PlayStoreLink}
