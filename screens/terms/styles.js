@@ -5,7 +5,7 @@ export default css`
     .wrapper {
         font-size: 14px;
         line-height: 1.43;
-        padding: 32px 40px;
+        padding: 42px 12%;
     }
 
     .wrapper h1 {
@@ -16,7 +16,8 @@ export default css`
         color: #222222;
         margin: 0;
         padding: 0;
-        margin-bottom: 16px;
+        margin-bottom: 54px;
+        text-align: center;
     }
 
     @media screen and (max-width: 1024px) {

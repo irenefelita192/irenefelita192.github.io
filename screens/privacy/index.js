@@ -9,7 +9,7 @@ import globalStyles from './global-styles'
 import Loader from 'components/loader'
 import Footer from 'components/footer'
 
-export default function PrivacyScreen() {
+export default function TnCScreen() {
     const [privacyData, setPrivacyData] = useState(null)
 
     useAsyncEffect(async (isMounted) => {
