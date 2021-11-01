@@ -26,7 +26,8 @@ const assetDomain = process.env.config?.baseEndpoint ?? ''
 //     },
 // ]
 
-export default function ParallaxDesktop({ data, isDesktop }) {
+export default function SectionThree({ data, isDesktop }) {
+    const [isWebpSupport, setIsWebpSupport] = useState(true)
     useEffect(() => {
         // let firstbenefit = ''
         if (window) {
@@ -36,6 +37,11 @@ export default function ParallaxDesktop({ data, isDesktop }) {
             //     setIsLoaded(true)
             // }, 200)
             screenHeight = window.innerHeight
+            if (window.Modernizr.webp) {
+                setIsWebpSupport(true)
+            } else {
+                setIsWebpSupport(false)
+            }
         }
 
         let observerOptions = {
@@ -151,7 +157,14 @@ export default function ParallaxDesktop({ data, isDesktop }) {
                 {data &&
                     data.map((q, index) => {
                         let imageUrl = ''
-                        imageUrl = `${assetDomain}${q?.image?.url ?? ''}`
+                        // imageUrl = `${assetDomain}${q?.image?.url ?? ''}`
+                        if (!q.imageWebp || !isWebpSupport) {
+                            imageUrl = `${assetDomain}${q?.image?.url ?? ''}`
+                        } else {
+                            imageUrl = `${assetDomain}${
+                                q?.imageWebp?.url ?? ''
+                            }`
+                        }
                         if (isDesktop) {
                             return (
                                 <div
