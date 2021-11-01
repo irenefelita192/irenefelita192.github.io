@@ -4,7 +4,7 @@ import css from 'styled-jsx/css'
 export default css`
     .wrapper {
         background-color: ${theme.colors['light-sand']};
-        padding: 12% 190px;
+        padding: 8% 190px;
         position: relative;
     }
 
