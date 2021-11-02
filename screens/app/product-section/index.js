@@ -96,6 +96,8 @@ export default function ProductSection({ data, content, isDesktop }) {
                 spanLeft = spanEl.offsetLeft,
                 spanWidth = spanEl.offsetWidth,
                 spanHeight = spanEl.offsetHeight
+
+            console.log('spanTop', spanTop)
             if (bgEl) {
                 bgEl.style.transform = `translate3d(${
                     spanLeft - 6
@@ -137,40 +139,44 @@ export default function ProductSection({ data, content, isDesktop }) {
             <div
                 id="protection"
                 className={`wrapper ${isDesktop ? '' : 'is-mobile'}`}
-                style={{
-                    height: heroHeight ? `${heroHeight}px` : 'auto',
-                }}
+                // style={{
+                //     height: heroHeight ? `${heroHeight}px` : 'auto',
+                // }}
             >
-                <div id="bg-color" className="bg-color" />
-                <div className="animation-wrapper">
-                    <div
-                        className="content"
-                        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-                    />
+                <div id="wrapper-content" className="wrapper-content">
+                    <div id="bg-color" className="bg-color" />
+                    <div className="animation-wrapper">
+                        <div
+                            className="content"
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizedContent,
+                            }}
+                        />
 
-                    <div className="video-wrapper">
-                        {data &&
-                            data.map((dt, index) => {
-                                return (
-                                    <video
-                                        key={dt.id}
-                                        muted
-                                        id={`video-${dt.productId}`}
-                                        data-id={dt.productId}
-                                        data-inc={index}
-                                        playsInline
-                                    >
-                                        <source
-                                            src={`${assetDomain}${
-                                                dt?.video?.url ?? ''
-                                            }`}
-                                            type="video/mp4"
-                                        />
-                                        Your browser does not support HTML5
-                                        video.
-                                    </video>
-                                )
-                            })}
+                        <div className="video-wrapper">
+                            {data &&
+                                data.map((dt, index) => {
+                                    return (
+                                        <video
+                                            key={dt.id}
+                                            muted
+                                            id={`video-${dt.productId}`}
+                                            data-id={dt.productId}
+                                            data-inc={index}
+                                            playsInline
+                                        >
+                                            <source
+                                                src={`${assetDomain}${
+                                                    dt?.video?.url ?? ''
+                                                }`}
+                                                type="video/mp4"
+                                            />
+                                            Your browser does not support HTML5
+                                            video.
+                                        </video>
+                                    )
+                                })}
+                        </div>
                     </div>
                 </div>
             </div>

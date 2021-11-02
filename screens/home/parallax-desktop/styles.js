@@ -290,7 +290,7 @@ export default css`
     .hero-title h1 {
         font-family: 'Museo', sans-serif;
         font-weight: 700;
-        font-size: 60px;
+        font-size: 55px;
         line-height: 1.1;
         color: #fcfcfc;
         max-width: 56%;
@@ -616,8 +616,8 @@ export default css`
         }
 
         .hero-title h1 {
-            font-size: 50px;
-            max-width: 600px;
+            font-size: 36px;
+            max-width: 70%;
         }
 
         .hero-desc {

@@ -7,7 +7,8 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 
 export default function AppSection({ data, title, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
-
+    const [deviceSize, setDeviceSize] = useState({})
+    const { deviceWidth, deviceHeight } = deviceSize
     useEffect(() => {
         if (window) {
             let heroHeightVar = window.innerHeight
@@ -16,6 +17,13 @@ export default function AppSection({ data, title, isDesktop }) {
                 heroHeightVar = null
             }
             setHeroHeight(heroHeightVar)
+            const dHeight = (68 / 100) * window.innerHeight,
+                dWidth = (48 / 100) * dHeight
+
+            setDeviceSize({
+                deviceHeight: `${dHeight}px`,
+                deviceWidth: `${dWidth}px`,
+            })
         }
 
         let observerOptions = {
@@ -144,6 +152,8 @@ export default function AppSection({ data, title, isDesktop }) {
                         className="device-wrapper"
                         style={{
                             backgroundImage: `url(${deviceImage})`,
+                            height: deviceHeight,
+                            width: deviceWidth,
                         }}
                     >
                         {data &&
@@ -154,6 +164,9 @@ export default function AppSection({ data, title, isDesktop }) {
                                     id={`video-${index}`}
                                     data-id={index}
                                     playsInline
+                                    style={{
+                                        width: deviceWidth,
+                                    }}
                                 >
                                     <source
                                         src={`${assetDomain}${
