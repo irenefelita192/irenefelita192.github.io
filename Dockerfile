@@ -7,6 +7,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json yarn.lock next.config.js public ./
 
 RUN yarn
+RUN yarn build
 COPY . ./
 
 RUN yarn --development
