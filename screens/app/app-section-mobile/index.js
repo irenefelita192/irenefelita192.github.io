@@ -137,6 +137,7 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
                         //     `video-play-${index}`
                         // )
                         // if (videoPlayIcon) videoPlayIcon.style.display = 'block'
+                        videoEl.muted = true
                         var promise = videoEl.play()
 
                         if (promise !== undefined) {

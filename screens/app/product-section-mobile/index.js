@@ -155,6 +155,7 @@ export default function ProductSection({ data, content, isDesktop }) {
                 if (dt.productId == id) {
                     if (videoEl) {
                         // videoEl.play()
+                        videoEl.muted = true
                         var promise = videoEl.play()
 
                         if (promise !== undefined) {
