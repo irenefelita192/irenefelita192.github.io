@@ -13,3 +13,10 @@ export const getCookie = (cname) => {
     }
     return ''
 }
+
+export const getCookieLocale = (req, res) => {
+    const cookies = new Cookies(req, res),
+        locale = cookies.get('locale')
+
+    return locale
+}
