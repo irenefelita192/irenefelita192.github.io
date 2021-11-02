@@ -97,7 +97,6 @@ export default function ProductSection({ data, content, isDesktop }) {
                 spanWidth = spanEl.offsetWidth,
                 spanHeight = spanEl.offsetHeight
 
-            console.log('spanTop', spanTop)
             if (bgEl) {
                 bgEl.style.transform = `translate3d(${
                     spanLeft - 6
