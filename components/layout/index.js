@@ -25,7 +25,7 @@ export default function Layout({
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
-    const seoImage = `/images/logo/vida-image.jpg`
+    const seoImage = `https://kenalvida.com/images/logo/vida-image.jpg`
 
     return (
         <>
