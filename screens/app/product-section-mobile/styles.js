@@ -48,6 +48,17 @@ export default css`
         left: 0;
     }
 
+    .video-play {
+        width: 40px;
+        height: 40px;
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+    }
+
     .bg-color {
         position: absolute;
         border-radius: 8px;

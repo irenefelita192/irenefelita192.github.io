@@ -7,6 +7,8 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 
 export default function ProductSection({ data, content, isDesktop }) {
     const [heroHeight, setHeroHeight] = useState(0)
+    const [videoIdPlay, setVideoIdPlay] = useState(null)
+    const [canAutoplay, setCanAutoplay] = useState(true)
 
     useEffect(() => {
         if (window) {
@@ -58,6 +60,7 @@ export default function ProductSection({ data, content, isDesktop }) {
             if (entry.isIntersecting) {
                 if (data && data.length > 1) {
                     setBgProduct(data[0])
+                    setVideoIdPlay(data[0].productId)
                     playVideo(data[0].productId)
                 }
             }
@@ -85,6 +88,7 @@ export default function ProductSection({ data, content, isDesktop }) {
             if (prodData) {
                 playVideo(prodData?.productId ?? '')
                 setBgProduct(prodData)
+                setVideoIdPlay(prodData?.productId ?? '')
             }
         }
     }
@@ -111,6 +115,35 @@ export default function ProductSection({ data, content, isDesktop }) {
         }
     }
 
+    const handleManualPlay = () => {
+        if (data) {
+            data.map((dt) => {
+                const videoEl = document.getElementById(`video-${dt.productId}`)
+                const spanEl = document.getElementById(dt.productId)
+                const videoPlayIcon = document.getElementById(
+                    `video-play-${dt.productId}`
+                )
+                if (videoPlayIcon) videoPlayIcon.style.display = 'block'
+                if (videoEl) {
+                    videoEl.style.opacity =
+                        dt.productId == videoIdPlay ? '1' : '0'
+                }
+                if (dt.productId == videoIdPlay) {
+                    if (videoEl) {
+                        videoEl.play()
+                        setCanAutoplay(true)
+                    }
+                } else {
+                    spanEl.style.color = dt.color
+                    if (videoEl) {
+                        videoEl.pause()
+                        videoEl.currentTime = 0
+                    }
+                }
+            })
+        }
+    }
+
     const playVideo = (id) => {
         if (data) {
             data.map((dt) => {
@@ -120,7 +153,22 @@ export default function ProductSection({ data, content, isDesktop }) {
                     videoEl.style.opacity = dt.productId == id ? '1' : '0'
                 }
                 if (dt.productId == id) {
-                    if (videoEl) videoEl.play()
+                    if (videoEl) {
+                        // videoEl.play()
+                        var promise = videoEl.play()
+
+                        if (promise !== undefined) {
+                            promise
+                                .then((_) => {
+                                    // Autoplay started!
+                                })
+                                .catch((error) => {
+                                    // Autoplay not allowed!
+                                    // Show something in the UI that the video is muted
+                                    setCanAutoplay(false)
+                                })
+                        }
+                    }
                 } else {
                     spanEl.style.color = dt.color
                     if (videoEl) {
@@ -146,26 +194,39 @@ export default function ProductSection({ data, content, isDesktop }) {
             >
                 <div className="animation-wrapper">
                     <div className="video-wrapper">
+                        {!canAutoplay && (
+                            <div
+                                className={`video-play`}
+                                id={`video-play`}
+                                onClick={() => handleManualPlay()}
+                            >
+                                <img
+                                    src={`${assetPrefix}/images/app/play-icon.svg`}
+                                />
+                            </div>
+                        )}
                         {data &&
                             data.map((dt, index) => {
                                 return (
-                                    <video
-                                        key={dt.id}
-                                        muted
-                                        id={`video-${dt.productId}`}
-                                        data-id={dt.productId}
-                                        data-inc={index}
-                                        playsInline
-                                    >
-                                        <source
-                                            src={`${assetDomain}${
-                                                dt?.video?.url ?? ''
-                                            }`}
-                                            type="video/mp4"
-                                        />
-                                        Your browser does not support HTML5
-                                        video.
-                                    </video>
+                                    <>
+                                        <video
+                                            key={dt.id}
+                                            muted
+                                            id={`video-${dt.productId}`}
+                                            data-id={dt.productId}
+                                            data-inc={index}
+                                            playsInline
+                                        >
+                                            <source
+                                                src={`${assetDomain}${
+                                                    dt?.video?.url ?? ''
+                                                }`}
+                                                type="video/mp4"
+                                            />
+                                            Your browser does not support HTML5
+                                            video.
+                                        </video>
+                                    </>
                                 )
                             })}
                     </div>

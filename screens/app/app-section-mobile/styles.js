@@ -43,6 +43,17 @@ export default css`
         padding: 23% 5%;
     }
 
+    .video-play {
+        width: 40px;
+        height: 40px;
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+
     /* video#video-2,
     video#video-3 {
         opacity: 0;

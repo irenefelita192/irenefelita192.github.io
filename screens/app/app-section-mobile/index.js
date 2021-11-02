@@ -78,6 +78,47 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
         }
     }
 
+    const handleManualPlay = (id) => {
+        if (data) {
+            data.map((dt, index) => {
+                const videoEl = document.getElementById(`video-${index}`)
+                const videoPlayIcon = document.getElementById(
+                    `video-play-${index}`
+                )
+                if (videoPlayIcon) videoPlayIcon.style.display = 'block'
+                if (index == id) {
+                    const containerEl = document.getElementById(
+                        `info-flow-${index}`
+                    )
+                    if (containerEl) {
+                        containerEl.classList.add('is-active')
+                    }
+
+                    if (videoEl) {
+                        videoEl.play()
+                    }
+                    if (videoPlayIcon) videoPlayIcon.style.display = 'none'
+                } else {
+                    if (videoEl) {
+                        videoEl.pause()
+                        videoEl.currentTime = 0
+                    }
+
+                    const barEl = document.querySelector(`#bar-${index}>span`)
+                    if (barEl) {
+                        barEl.style.width = '0'
+                    }
+                    const containerEl = document.getElementById(
+                        `info-flow-${index}`
+                    )
+                    if (containerEl) {
+                        containerEl.classList.remove('is-active')
+                    }
+                }
+            })
+        }
+    }
+
     const playVideo = (id, resetOther = false) => {
         //resetOther = true -> only when user select specific step
         if (data) {
@@ -92,7 +133,28 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
                     }
 
                     if (videoEl) {
-                        videoEl.play()
+                        // const videoPlayIcon = document.getElementById(
+                        //     `video-play-${index}`
+                        // )
+                        // if (videoPlayIcon) videoPlayIcon.style.display = 'block'
+                        var promise = videoEl.play()
+
+                        if (promise !== undefined) {
+                            promise
+                                .then((_) => {
+                                    // Autoplay started!
+                                })
+                                .catch((error) => {
+                                    // Autoplay not allowed!
+                                    // Show something in the UI that the video is muted
+                                    const videoPlayIcon =
+                                        document.getElementById(
+                                            `video-play-${index}`
+                                        )
+                                    if (videoPlayIcon)
+                                        videoPlayIcon.style.display = 'block'
+                                })
+                        }
                     }
                 } else {
                     if (resetOther) {
@@ -206,6 +268,15 @@ export default function AppSectionMobile({ data, title, isDesktop }) {
                                         Your browser does not support HTML5
                                         video.
                                     </video>
+                                    <div
+                                        className={`video-play`}
+                                        id={`video-play-${index}`}
+                                        onClick={() => handleManualPlay(index)}
+                                    >
+                                        <img
+                                            src={`${assetPrefix}/images/app/play-icon.svg`}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="steps-wrapper">
                                     <div
