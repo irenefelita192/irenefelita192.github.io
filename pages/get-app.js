@@ -22,9 +22,8 @@ export default function GetApp() {
 
         if (!isMounted()) return
         // setFooterData(footerDt)
-        window.location.href = ios
-            ? footerDt.AppStoreLink
-            : footerDt.PlayStoreLink
+        if (ios) window.location.href = ifooterDt.AppStoreLink
+        else if (!ios) window.location.href = footerDt.PlayStoreLink
     }, [])
 
     return <Loader />
