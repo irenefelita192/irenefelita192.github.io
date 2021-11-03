@@ -90,9 +90,9 @@ export default function Layout({
                         __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', ${new Date()});
+            gtag('js', new Date());
             gtag('config', '${gaId}', {
-              page_path: ${window.location.pathname},
+              page_path: window.location.pathname,
             });
           `,
                     }}
