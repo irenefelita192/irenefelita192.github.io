@@ -12,19 +12,19 @@ export default css`
     .wrapper h2 {
         font-family: 'Museo', sans-serif;
         font-weight: 700;
-        font-size: 27px;
+        font-size: 26px;
         line-height: 1.4;
         text-align: center;
         color: ${theme.colors['vida-green-fresh']};
         margin: 0;
-        padding: 75px 25px 35px;
+        padding: 55px 25px 35px;
     }
 
     .animation-wrapper {
         max-width: 670px;
         margin: 0 auto;
         display: grid;
-        grid-template-rows: 73% 27%;
+        grid-template-rows: 70% 30%;
     }
 
     .device-wrapper {
@@ -60,7 +60,7 @@ export default css`
     } */
 
     .steps-wrapper {
-        padding: 10px 15%;
+        padding: 30px 15% 10px;
         text-align: left;
     }
 
@@ -120,13 +120,21 @@ export default css`
 
     @media screen and (max-width: 450px) {
         .wrapper h2 {
-            font-size: 26px;
+            font-size: 24px;
         }
     }
 
     @media screen and (max-width: 375px) {
         .wrapper h2 {
-            font-size: 30px;
+            font-size: 22px;
+        }
+
+        .steps-title {
+            font-size: 16px;
+        }
+
+        .steps-desc {
+            font-size: 12px;
         }
     }
 
@@ -152,11 +160,15 @@ export default css`
         .steps-desc {
             font-size: 20px;
         }
+
+        .steps-wrapper {
+            padding: 10% 15% 10px;
+        }
     }
 
-    @media screen and (max-height: 630px) {
+    @media screen and (max-height: 670px) {
         .wrapper h2 {
-            padding: 45px 25px;
+            padding: 35px 25px;
             font-size: 20px;
         }
 
