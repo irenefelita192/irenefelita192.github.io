@@ -47,6 +47,17 @@ export default function HomeScreen() {
     }, [])
 
     useEffect(() => {
+        if (homeData && homeData.SectionOne) {
+            if (gtag) {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `'${gaId}'`, {
+                    page_title: `Vida | ${homeData.SectionOne?.title ?? ''}`,
+                })
+            }
+        }
+    }, [homeData])
+
+    useEffect(() => {
         const urlParams = new URLSearchParams(window?.location?.search ?? ''),
             scrollParam = urlParams.get('pos')
 

@@ -36,6 +36,17 @@ export default function Outpatient() {
         setProductData(prdDt)
     }, [])
 
+    useEffect(() => {
+        if (productData && productData.SectionOne) {
+            if (gtag) {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `'${gaId}'`, {
+                    page_title: `Vida | ${productData.SectionOne?.title ?? ''}`,
+                })
+            }
+        }
+    }, [productData])
+
     if (!productData) return <Loader />
 
     return (
