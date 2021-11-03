@@ -68,7 +68,7 @@ export default function Layout({
                 <meta name="referrer" content="origin-when-cross-origin" />
 
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}
-                <script
+                {/* <script
                     dangerouslySetInnerHTML={{
                         __html: `
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -77,6 +77,24 @@ export default function Layout({
 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 			ga('create', '${gaId}', 'auto');
 			ga('send', 'pageview');`,
+                    }}
+                /> */}
+
+                {/* Global Site Tag (gtag.js) - Google Analytics */}
+                <script
+                    async
+                    src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', ${new Date()});
+            gtag('config', '${gaId}', {
+              page_path: ${window.location.pathname},
+            });
+          `,
                     }}
                 />
 
