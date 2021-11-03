@@ -21,7 +21,7 @@ export default function Layout({
 }) {
     const temTitle = 'Vida | A Health Coverage with Only You in Mind',
         temDesc = 'Designed to always be with you & your loved ones. '
-    const seoTitle = title || temTitle,
+    const seoTitle = `Vida | ${title}` || temTitle,
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''

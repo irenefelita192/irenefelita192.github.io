@@ -17,7 +17,7 @@ export default function Privacy() {
 
     return (
         <Layout
-            title="Vida - Privacy Policy"
+            title="Privacy Policy"
             isWebView={isWebView}
             headerWithBg={true}
         >

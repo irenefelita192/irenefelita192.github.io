@@ -17,7 +17,7 @@ export default function TermsConditions() {
 
     return (
         <Layout
-            title="Vida - Terms and Conditions"
+            title="Terms and Conditions"
             isWebView={isWebView}
             headerWithBg={true}
         >
