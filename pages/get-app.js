@@ -34,17 +34,10 @@ export default function GetApp() {
                     footerDt?.AppStoreLink ?? 'https://kenalvida.com/'
             else if (!ios) {
                 const playStoreLink = footerDt
-                    ? footerDt.PlayStoreLink.replace(
-                          'https://play.google.com/store/apps/',
-                          'market://'
-                      )
-                    : ''
+                    ? `https://play.app.goo.gl/?link=${footerDt.PlayStoreLink}`
+                    : 'https://kenalvida.com/'
 
-                if (playStoreLink && navigator.userAgent.match(/android/i)) {
-                    window.open(playStoreLink, '_system')
-                } else {
-                    window.location.href = 'https://kenalvida.com/'
-                }
+                window.location.href = playStoreLink
             }
         }
     }, [])
