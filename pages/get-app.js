@@ -39,7 +39,8 @@ export default function GetApp() {
                           'market://'
                       )
                     : ''
-                if (playStoreLink) {
+
+                if (playStoreLink && navigator.userAgent.match(/android/i)) {
                     window.open(playStoreLink, '_system')
                 } else {
                     window.location.href = 'https://kenalvida.com/'
@@ -48,5 +49,5 @@ export default function GetApp() {
         }
     }, [])
 
-    return <Loader />
+    return <></>
 }
