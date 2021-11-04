@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import DOMPurify from 'dompurify'
 import { getTerms } from 'services/privacy-terms'
@@ -25,6 +25,17 @@ export default function TermsScreen() {
         if (!isMounted()) return
         setPrivacyData(privacyDt)
     }, [])
+
+    useEffect(() => {
+        if (privacyData) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | ${privacyData.title || ''}`,
+                })
+            }
+        }
+    }, [privacyData])
 
     if (!privacyData) return <Loader />
 

@@ -61,6 +61,15 @@ export default function App() {
                 })
             }, 500)
         }
+
+        if (appData && appData.SectionOne) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | ${appData.SectionOne?.title ?? ''}`,
+                })
+            }
+        }
     }, [appData])
 
     useEffect(() => {

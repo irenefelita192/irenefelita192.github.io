@@ -10,7 +10,7 @@ import SectionThree from './section-three'
 import OtherProducts from './other-products'
 import BannerCTA from 'components/banner-cta'
 
-export default function Outpatient() {
+export default function Product() {
     const [productData, setProductData] = useState(null)
     const [isDesktop, setIsDesktop] = useState(true)
     useAsyncEffect(async (isMounted) => {
@@ -35,6 +35,17 @@ export default function Outpatient() {
 
         setProductData(prdDt)
     }, [])
+
+    useEffect(() => {
+        if (productData && productData.SectionOne) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | ${productData.SectionOne?.title ?? ''}`,
+                })
+            }
+        }
+    }, [productData])
 
     if (!productData) return <Loader />
 

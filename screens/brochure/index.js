@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useAsyncEffect } from 'use-async-effect'
 import { getBrochure, getBlob } from 'services/brochure'
@@ -57,6 +57,19 @@ export default function BrochureScreen() {
             setWindowWidth(window.innerWidth)
         }
     }, [])
+
+    useEffect(() => {
+        if (brochureData && brochureData.data) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | Brochure ${
+                        brochureData.data?.brochureTitle ?? ''
+                    }`,
+                })
+            }
+        }
+    }, [brochureData])
 
     if (brochureData.status === 'loading') {
         return <Loader />

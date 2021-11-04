@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import DOMPurify from 'dompurify'
 import { getPrivacy } from 'services/privacy-terms'
@@ -26,11 +26,23 @@ export default function TnCScreen() {
         setPrivacyData(privacyDt)
     }, [])
 
+    useEffect(() => {
+        if (privacyData) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | ${privacyData.title || ''}`,
+                })
+            }
+        }
+    }, [privacyData])
+
     if (!privacyData) return <Loader />
 
     const sanitizedContent = DOMPurify.sanitize(privacyData.content, {
         USE_PROFILES: { html: true },
     })
+
     return (
         <>
             {privacyData && (

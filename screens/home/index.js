@@ -48,9 +48,9 @@ export default function HomeScreen() {
 
     useEffect(() => {
         if (homeData && homeData.SectionOne) {
-            if (gtag) {
+            if (typeof gtag !== 'undefined') {
                 const gaId = process.env.config?.gaId ?? ''
-                gtag('config', `'${gaId}'`, {
+                gtag('config', `${gaId}`, {
                     page_title: `Vida | ${homeData.SectionOne?.title ?? ''}`,
                 })
             }
