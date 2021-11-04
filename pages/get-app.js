@@ -2,7 +2,7 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getFooter } from 'services/common'
 import { getCookie } from 'utils/global-util'
 
-import Loader from 'components/loader'
+// import Loader from 'components/loader'
 
 export default function GetApp() {
     useAsyncEffect(async (isMounted) => {
@@ -22,6 +22,7 @@ export default function GetApp() {
                 isDesktop = false
             }
         }
+
         const footerDt = await getFooter(paramLocale || langId)
         // window.open("market://details?id=com.your.app","_system")
         if (!isMounted()) return
@@ -29,10 +30,15 @@ export default function GetApp() {
         if (isDesktop) {
             window.location.href = footerDt?.homeUrl ?? 'https://kenalvida.com/'
         } else {
-            if (ios)
-                window.location.href =
-                    footerDt?.AppStoreLink ?? 'https://kenalvida.com/'
-            else if (!ios) {
+            if (ios) {
+                const appStoreLink = footerDt
+                    ? footerDt.AppStoreLink.replace(
+                          'https://apps.apple.com/',
+                          'itms-apps://'
+                      )
+                    : 'https://kenalvida.com/'
+                window.location.href = appStoreLink
+            } else if (!ios) {
                 const playStoreLink = footerDt
                     ? `https://play.app.goo.gl/?link=${footerDt.PlayStoreLink}`
                     : 'https://kenalvida.com/'
