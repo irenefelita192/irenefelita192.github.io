@@ -31,17 +31,19 @@ export default function GetApp() {
             window.location.href = footerDt?.homeUrl ?? 'https://kenalvida.com/'
         } else {
             if (ios) {
-                const appStoreLink = footerDt
-                    ? footerDt.AppStoreLink.replace(
-                          'https://apps.apple.com/',
-                          'itms-apps://'
-                      )
-                    : 'https://kenalvida.com/'
+                const appStoreLink =
+                    footerDt && footerDt.AppStoreLink
+                        ? footerDt.AppStoreLink.replace(
+                              'https://apps.apple.com/',
+                              'itms-apps://'
+                          )
+                        : 'https://kenalvida.com/'
                 window.location.href = appStoreLink
             } else if (!ios) {
-                const playStoreLink = footerDt
-                    ? `https://play.app.goo.gl/?link=${footerDt.PlayStoreLink}`
-                    : 'https://kenalvida.com/'
+                const playStoreLink =
+                    footerDt && footerDt.PlayStoreLink
+                        ? `https://play.app.goo.gl/?link=${footerDt.PlayStoreLink}`
+                        : 'https://kenalvida.com/'
 
                 window.location.href = playStoreLink
             }
