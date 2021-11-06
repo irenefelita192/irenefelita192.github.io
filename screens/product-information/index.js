@@ -225,7 +225,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     </td>
                                 </tr>
                                 <tr className="th-child">
-                                    <td colspan="3">
+                                    <td colSpan="3">
                                         <h4>
                                             Perawatan rawat inap dan rawat
                                             harian
@@ -320,7 +320,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                 </tr>
 
                                 <tr className="th-child">
-                                    <td colspan="3">
+                                    <td colSpan="3">
                                         <h4>
                                             Perawatan sebelum dan sesudah rawat
                                             inap (sebagai bagian dari rawat
@@ -406,7 +406,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     </td>
                                 </tr>
                                 <tr className="th-child">
-                                    <td colspan="3">
+                                    <td colSpan="3">
                                         <h4>Perawatan rawat jalan</h4>
                                     </td>
                                 </tr>
@@ -556,7 +556,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     </td>
                                 </tr>
                                 <tr className="th-child">
-                                    <td colspan="3">
+                                    <td colSpan="3">
                                         <h4>Evakuasi darurat dan repatriasi</h4>
                                     </td>
                                 </tr>
@@ -1352,7 +1352,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     </table>
 
                     <h3>Pilihan Asuransi</h3>
-                    <div class="table-flex">
+                    <div className="table-flex">
                         <table>
                             <tbody>
                                 <tr>
@@ -1422,7 +1422,7 @@ export default function ProductInfoScreen({ isWebView }) {
                         </tbody>
                     </table>
 
-                    <p>
+                    <p style={{ paddingTop: '5px' }}>
                         <i>
                             *Jumlah Total Premi Tahunan di atas hanya
                             berdasarkan pada informasi yang ada dalam ilustrasi
@@ -1437,36 +1437,37 @@ export default function ProductInfoScreen({ isWebView }) {
                         Tabel Ilustrasi (dalam Rupiah)** - untuk Seluruh
                         Tertanggung
                     </h3>
+                    <div className="table-overflow">
+                        <table className="table-justify">
+                            <thead>
+                                <tr>
+                                    <th>Total premi tahun ke-1</th>
+                                    <th>
+                                        Proyeksi total premi tahun ke-2 - Rendah
+                                        (0%)
+                                    </th>
+                                    <th>
+                                        Proyeksi total premi tahun ke-2 - Sedang
+                                        (10%)
+                                    </th>
+                                    <th>
+                                        Proyeksi total premi tahun ke-2 - Tinggi
+                                        (15%)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>24.624.000</td>
+                                    <td>25.668.000</td>
+                                    <td>28.235.000</td>
+                                    <td>29.519.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <table className="table-justify">
-                        <thead>
-                            <tr>
-                                <th>Total premi tahun ke-1</th>
-                                <th>
-                                    Proyeksi total premi tahun ke-2 - Rendah
-                                    (0%)
-                                </th>
-                                <th>
-                                    Proyeksi total premi tahun ke-2 - Sedang
-                                    (10%)
-                                </th>
-                                <th>
-                                    Proyeksi total premi tahun ke-2 - Tinggi
-                                    (15%)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>24.624.000</td>
-                                <td>25.668.000</td>
-                                <td>28.235.000</td>
-                                <td>29.519.000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <p>
+                    <p style={{ paddingTop: '5px' }}>
                         <i>
                             **Premi akan berubah sesuai dengan perubahan usia.
                             Sebagai catatan, premi juga dapat berubah seiring
@@ -1487,45 +1488,48 @@ export default function ProductInfoScreen({ isWebView }) {
                         selama (7) tujuh hari dengan perincian biaya sebagai
                         berikut.
                     </p>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Detail</th>
-                                <th>Hari </th>
-                                <th>Biaya </th>
-                                <th>Total biaya perawatan</th>
-                                <th>Biaya yang ditanggung</th>
-                            </tr>
-                            <tr>
-                                <td>Biaya kamar</td>
-                                <td>7</td>
-                                <td>2.000.000</td>
-                                <td>14.000.000</td>
-                                <td>14.000.000</td>
-                            </tr>
-                            <tr>
-                                <td>Biaya konsultasi dokter</td>
-                                <td>7</td>
-                                <td>1.000.000</td>
-                                <td>7.000.000</td>
-                                <td>7.000.000</td>
-                            </tr>
-                            <tr>
-                                <td>Biaya bedah</td>
-                                <td></td>
-                                <td>70.000.000</td>
-                                <td>70.000.000</td>
-                                <td>70.000.000</td>
-                            </tr>
-                            <tr>
-                                <td>Biaya rumah sakit lain lain</td>
-                                <td>7</td>
-                                <td>5.000.000</td>
-                                <td>35.000.000</td>
-                                <td>35.000.000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div className="table-overflow">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Detail</th>
+                                    <th>Hari </th>
+                                    <th>Biaya </th>
+                                    <th>Total biaya perawatan</th>
+                                    <th>Biaya yang ditanggung</th>
+                                </tr>
+                                <tr>
+                                    <td>Biaya kamar</td>
+                                    <td>7</td>
+                                    <td>2.000.000</td>
+                                    <td>14.000.000</td>
+                                    <td>14.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Biaya konsultasi dokter</td>
+                                    <td>7</td>
+                                    <td>1.000.000</td>
+                                    <td>7.000.000</td>
+                                    <td>7.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Biaya bedah</td>
+                                    <td></td>
+                                    <td>70.000.000</td>
+                                    <td>70.000.000</td>
+                                    <td>70.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>Biaya rumah sakit lain lain</td>
+                                    <td>7</td>
+                                    <td>5.000.000</td>
+                                    <td>35.000.000</td>
+                                    <td>35.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <p style={{ paddingTop: '10px' }}>
                         Total biaya perawatan Tuan A selama rawat inap dapat
                         ditanggung seluruhnya oleh Solusi Asuransi Kesehatan
@@ -1978,9 +1982,7 @@ export default function ProductInfoScreen({ isWebView }) {
                 <br />
                 <br />
                 <p>Tanggal Cetak Dokumen</p>
-                <p>
-                    {new Date(Date.now()).toLocaleString('en-GB').split(',')[0]}
-                </p>
+                <p>dd/mm/yyyy</p>
             </div>
             <Footer />
             <style jsx>{styles}</style>

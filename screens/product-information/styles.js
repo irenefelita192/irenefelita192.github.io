@@ -51,5 +51,9 @@ export default css`
             padding: 42px;
             min-height: 0;
         }
+
+        .table-overflow {
+            overflow-x: auto;
+        }
     }
 `
