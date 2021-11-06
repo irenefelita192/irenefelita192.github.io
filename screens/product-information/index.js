@@ -807,7 +807,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             pertama setelah melahirkan untuk setiap anak yang
                             dikandung dengan cara buatan atau segala bentuk
                             konsepsi yang dibantu termasuk inseminasi buatan dan
-                            ibu pengganti, operasi janin;
+                            ibu pengganti, operasi janin;{' '}
                         </li>
                         <li>
                             Pengguguran kehamilan atau suatu konsekuensi dari
@@ -822,10 +822,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             satu dari tertanggung atau dari suatu perawatan
                             terhadap tertanggung;
                         </li>
-                        <li>
-                            Perawatan impotensi, penurunan fungsi seksual atau
-                            segala komplikasinya;
-                        </li>
+                        <li>Perawatan impotensi, penurunan fungsi seksual;</li>
                         <li>
                             Perawatan penyakit-penyakit yang menular secara
                             seksual;
@@ -839,20 +836,19 @@ export default function ProductInfoScreen({ isWebView }) {
                         </li>
                         <li>
                             Perawatan terhadap suatu kondisi medis yang timbul
-                            akibat dari infeksi{' '}
-                            <i>Human Immunodeficiency Virus</i> (HIV),{' '}
-                            <i>Acquired Immune Deficiency Syndrome</i> (AIDS),{' '}
-                            <i>AIDS Related Complexes</i>
-                            (ARC) kecuali ditentukan dalam plan pemegang polis;
+                            akibat dari infeksi Human Immunodeficiency Virus
+                            (HIV), Acquired Immune Deficiency Syndrome (AIDS),
+                            AIDS related complexes (ARC) kecuali ditentukan
+                            dalam plan pemegang polis;
                         </li>
                         <li>
                             Perawatan untuk obesitas atau semua kondisi medis
                             yang timbul atau terkait dengan obesitas, dengan
-                            cara apapun tetapi tidak terbatas pada tindakan{' '}
-                            <i>gastric banding</i> atau <i>stapling</i>,
-                            pembuangan lemak atau jaringan yang lebih dari suatu
-                            bagian tubuh baik itu dibutuhkan atau tidak karena
-                            alasan medis atau alasan psikologis;
+                            cara apapun tetapi tidak terbatas pada tindakan
+                            gastric banding atau stapling, pembuangan lemak atau
+                            jaringan yang lebih dari suatu bagian tubuh baik itu
+                            dibutuhkan atau tidak karena alasan medis atau
+                            alasan psikologis;
                         </li>
                         <li>
                             Biaya pengumpulan organ-organ donor untuk bedah
@@ -902,11 +898,11 @@ export default function ProductInfoScreen({ isWebView }) {
                             melahirkan;
                         </li>
                         <li>
-                            Vaksinasi dan pemeriksaan kesehatan rutin (
-                            <i>medical check-up</i>) atau yang bersifat
-                            mencegah, termasuk konsultasi tindak lanjut rutin,
-                            kecuali apabila diperbolehkan menurut tabel manfaat
-                            dan diterima secara tertulis oleh penanggung;
+                            Vaksinasi dan pemeriksaan kesehatan rutin (medical
+                            check-up) atau yang bersifat mencegah, termasuk
+                            konsultasi tindak lanjut rutin, kecuali apabila
+                            diperbolehkan menurut tabel manfaat dan diterima
+                            secara tertulis oleh penanggung;
                         </li>
                         <li>
                             Bedah robotik kecuali untuk prostatektomi,
@@ -917,7 +913,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             Obat-obat atau alat kesehatan rawat jalan, prostesis
                             eksternal, orthosis, peralatan medis tahan lama,
                             bantuan dan peralatan medis kecuali diizinkan oleh
-                            persyaratan rencana;
+                            persyaratan rencana atau segala komplikasinya;
                         </li>
                         <li>
                             Barang-barang keperluan pribadi umumnya, seperti
@@ -959,7 +955,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             seluncur parasut atau bermain microlighting, terjun
                             payung, bermain potholing, bermain ski jauh di
                             daerah salju atau kegiatan olahraga musim dingin
-                            lainnya yang dilakukan jauh di daerah salju;
+                            lainnya di daerah salju;
                         </li>
                         <li>
                             Perawatan-perawatan yang jelas-jelas dikecualikan
@@ -983,32 +979,30 @@ export default function ProductInfoScreen({ isWebView }) {
                         <li>
                             Klaim atau bagian dari suatu klaim yang atasnya
                             pemegang polis harus membayar kelebihan (atau beban
-                            sendiri atau co-asuransi). Dalam hal ini penanggung
+                            sendiri atau co-payment). Dalam hal ini penanggung
                             hanya membayar sisa dari klaim tersebut setelah
                             penanggung mengurangi jumlah kelebihan (atau biaya
-                            sendiri atau koasuransi) tersebut;
+                            sendiri atau co-payment) tersebut;
                         </li>
                         <li>
                             Biaya-biaya yang dibebankan oleh praktisi medis,
                             rumah sakit, laboratorium atau layanan-layanan medis
                             yang tidak wajar dan umum (reasonable and customary,
-                            R&C;
+                            R&C);
                         </li>
                         <li>
                             Biaya-biaya perawatan yang terkait dengan dan/atau
                             perbaikan atas kondisi dan/atau kelainan bawaan
                             apakah yang nyata atau tidak nyata dan/atau yang
-                            didiagnosis atau yang diketahui sejak lahir;
+                            didiagnosa atau yang diketahui sejak lahir;
                         </li>
+
                         <li>
                             Biaya-biaya untuk hal-hal yang tidak disebutkan
                             dalam tabel manfaat yang berlaku terhadap plan
                             pemegang polis;
                         </li>
-                        <li>
-                            Biaya-biaya yang dikeluarkan selama masa di mana
-                            premi belum dibayar;
-                        </li>
+
                         <li>
                             Pemeriksaan genetik, termasuk konseling yang
                             diperlukan setelah pemeriksaan genetis, bahkan jika
@@ -1017,6 +1011,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             perkembangan suatu kondisi medis atau tidak di
                             kemudian hari;
                         </li>
+
                         <li>
                             Perawatan yang diberikan kepada tertanggung oleh
                             siapapun yang memiliki kepentingan asuransi atas
@@ -1043,13 +1038,12 @@ export default function ProductInfoScreen({ isWebView }) {
                         </li>
                         <li>
                             Kriopreservasi, atau pemanenan atau penyimpanan sel
-                            punca (<i>stem cells</i>) sebagai tindakan
-                            pencegahan terhadap kemungkinan penyakit/cedera di
-                            masa depan atau implantasi atau re-implantasi sel
-                            hidup atau jaringan hidup baik autologus atau
-                            disediakan oleh donor kecuali ditentukan dalam tabel
-                            manfaat dan telah disetujui oleh kami secara
-                            tertulis;
+                            punca (stem cells) sebagai tindakan pencegahan
+                            terhadap kemungkinan penyakit/cedera di masa depan
+                            atau implantasi atau re-implantasi sel hidup atau
+                            jaringan hidup baik autologus atau disediakan oleh
+                            donor kecuali ditentukan dalam tabel manfaat dan
+                            telah disetujui oleh kami secara tertulis;
                         </li>
                     </ol>
                     <p>
