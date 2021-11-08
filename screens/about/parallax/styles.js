@@ -10,22 +10,20 @@ export default css`
         line-height: 1;
     }
 
-    .layout section {
+    section {
         width: 100%;
         height: 100vh;
-
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-
         transform: translateY(100vh);
         transition: all ${timeAnimation}s ease-in-out;
 
         z-index: 0;
     }
 
-    .layout .section-content {
+    .section-content {
         width: 100%;
         height: 100%;
 
@@ -37,14 +35,15 @@ export default css`
         color: white;
         font-size: 80px;
         font-weight: 600;
+        position: relative;
     }
 
-    .layout section.last-section {
+    section.last-section {
         display: block;
         overflow-y: auto;
     }
 
-    .layout .full-height {
+    .full-height {
         width: 100%;
         height: 100vh;
         display: flex;
@@ -52,7 +51,7 @@ export default css`
         justify-content: center;
     }
 
-    .layout .value-content {
+    .value-content {
         color: black;
         width: 100%;
         height: auto;
@@ -74,22 +73,81 @@ export default css`
         z-index: 0;
     }
 
-    .layout .s1 {
-        transform: translateY(0);
-        z-index: 4;
+    section img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
     }
 
-    .layout .s2 {
+    .section-text {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(0, -50%);
+        font-family: 'Museo', sans-serif;
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-align: left;
+        width: 42%;
+        margin: 0 12%;
+        padding: 0;
+        color: ${theme.colors['vida-white']};
+        pointer-events: none;
+    }
+
+    .first-section .section-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
+        padding: 0 12%;
+        margin: 0;
+    }
+
+    .even-section .section-text {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        width: 42%;
+        margin: 0 12%;
+        padding: 0;
+    }
+
+    .section-text > div:nth-child(2) {
+        font-size: 22px;
+        line-height: 1.36;
+        margin-top: 30px;
+    }
+
+    .section-text > div:nth-child(3) {
+        font-family: 'Inter', serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-top: 2px;
+    }
+
+    .s1 {
+        transform: translateY(0);
+        /* z-index: 4; */
+    }
+
+    /* .s2 {
         z-index: 3;
     }
 
-    .layout .s3 {
+   .s3 {
         z-index: 2;
     }
 
-    .layout .s4 {
+   .s4 {
         z-index: 1;
-    }
+    } */
     /** Vida Value start **/
     .value-wrapper {
         padding: 140px 22%;
@@ -170,6 +228,44 @@ export default css`
         margin-top: 14px;
     }
 
+    .is-mobile .section-text {
+        font-size: 24px;
+        line-height: 1.2;
+        padding: 0 16px;
+        margin: 0;
+        text-align: center;
+        top: 100px;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, 0);
+        width: 100%;
+    }
+
+    .is-mobile.first-section .section-text {
+        font-size: 40px;
+        line-height: 1.17;
+        padding: 0 16px;
+        margin: 0;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+    }
+
+    .section-text > div:nth-child(2) {
+        font-size: 20px;
+        line-height: 1.2;
+        margin-top: 30px;
+    }
+
+    .is-mobile .section-text > div:nth-child(3) {
+        font-family: 'Inter', serif;
+        font-size: 16px;
+        line-height: 1.37;
+        margin-top: 2px;
+    }
+
     /************************************* RESPONSIVE ***************************************/
 
     /* MOBILE */
@@ -213,14 +309,6 @@ export default css`
         .card-item.card-even .card-content {
             padding-right: 80px;
         }
-
-        .is-mobile .hero-vida-text {
-            font-size: 24px;
-        }
-
-        .is-mobile .hero-title {
-            font-size: 32px;
-        }
     }
 
     @media screen and (max-width: 900px) {
@@ -228,45 +316,12 @@ export default css`
         .card-item.card-even {
             flex-direction: column;
         }
-
-        .is-mobile .hero-vida-text {
-            width: 100%;
-            font-weight: 400;
-            font-size: 24px;
-            line-height: 1.43;
-            color: #f7f7f7;
-            padding: 0;
-            text-align: center;
-        }
-
-        .is-mobile .hero-title {
-            font-size: 32px;
-            line-height: 1.23;
-            text-align: center;
-            margin-top: 16px;
-        }
     }
 
     @media screen and (max-width: 768px) {
-        .hero-wrapper {
-            background-position: bottom;
-        }
-
-        .hero-vida {
-            display: block;
-        }
-
         .content-wrapper {
             padding: 56px 30px;
             position: relative;
-        }
-
-        .is-mobile .hero-text {
-            width: 100%;
-            right: auto;
-            left: 0;
-            top: 0;
-            padding: 20% 10% 0;
         }
 
         .founder-name {
@@ -354,14 +409,6 @@ export default css`
             font-weight: 400;
             font-size: 16px;
             line-height: 1.37;
-        }
-
-        .is-mobile .hero-vida-text {
-            font-size: 19px;
-        }
-
-        .is-mobile .hero-title {
-            font-size: 26px;
         }
     }
 

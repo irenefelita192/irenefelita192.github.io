@@ -8,7 +8,8 @@ import Footer from 'components/footer'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
-export default function HomeScreen({ aboutData, isDesktop }) {
+export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
+    const { heroList } = aboutData
     useEffect(() => {
         if (window) {
             window.addEventListener('scroll', handleScroll)
@@ -38,11 +39,10 @@ export default function HomeScreen({ aboutData, isDesktop }) {
     //     sectionStick.innerHTML = sectionStick.innerHTML + '<div class="stick"></div>'
     //   })
 
-    console.log('SLIDE', qty)
     body.style.overflowY = 'scroll'
     // Listening to scroll event
     const handleScroll = (e) => {
-        const sectionsQty = document.querySelectorAll('section').length
+        const sectionsQty = heroList.length
         console.log('sectionsQty', sectionsQty)
         if (startFlag) {
             const scrollDown = window.pageYOffset > initialScroll
@@ -51,19 +51,19 @@ export default function HomeScreen({ aboutData, isDesktop }) {
             // Verify that the scroll does not exceed the number of sections
             if (scrollLimit) {
                 body.style.overflowY = 'hidden' // Lock el scroll
-                console.log('window.pageYOffset', window.pageYOffset)
                 console.log('initialScroll', initialScroll)
                 if (scrollDown && qty < sectionsQty) {
-                    console.log('scrolldown qty', qty)
                     main = document.querySelector(`section.s${qty}`)
-                    next = document.querySelector(`section.s${qty + 1}`)
 
                     main.style.transform = 'translate3d(0,-100vh,0)'
+                    // if (qty !== sectionsQty) {
+                    next = document.querySelector(`section.s${qty + 1}`)
+
                     next.style.transform = 'translate3d(0,0,0)'
 
                     qty++
+                    // }
                 } else if (!scrollDown && qty > 1) {
-                    console.log('scrollup qty', qty)
                     main = document.querySelector(`section.s${qty - 1}`)
                     next = document.querySelector(`section.s${qty}`)
 
@@ -78,13 +78,11 @@ export default function HomeScreen({ aboutData, isDesktop }) {
                 // active.style.top = (62 + 30) * (qty - 1) + 'px'
             }
 
-            console.log('SLIDE', qty)
             // Wait for the scrolling to finish to reset the values
             setTimeout(() => {
-                console.log('MASUK INI')
                 startFlag = true
                 initialScroll = window.pageYOffset
-                body.style.overflowY = 'scroll' // Unlock scroll
+                if (qty !== sectionsQty) body.style.overflowY = 'scroll' // Unlock scroll
             }, TIME_OUT)
 
             startFlag = false
@@ -97,17 +95,120 @@ export default function HomeScreen({ aboutData, isDesktop }) {
     return (
         <>
             <div className="layout">
-                <section className="s1">
-                    <div className="section-content">
-                        <img
-                            src={`${assetPrefix}/images/about${
-                                isDesktop ? '' : '/mobile'
-                            }/hero.png`}
-                            alt={'hero'}
-                        />
-                    </div>
-                </section>
-                <section className="s2">
+                {heroList &&
+                    heroList.map((dt, index) => {
+                        let heroImg = ''
+                        if (isDesktop) {
+                            heroImg = `${assetDomain}${
+                                dt?.imageWebp?.url ?? ''
+                            }`
+                            if (!dt.imageWebp || !isWebpSupport) {
+                                heroImg = `${assetDomain}${
+                                    dt?.image?.url ?? ''
+                                }`
+                            }
+                        } else {
+                            heroImg = `${assetDomain}${
+                                dt?.imageMobileWebp?.url ?? ''
+                            }`
+                            if (!dt.imageMobileWebp || !isWebpSupport) {
+                                heroImg = `${assetDomain}${
+                                    dt?.imageMobile?.url ?? ''
+                                }`
+                            }
+                        }
+                        const lastSection = index + 1 == heroList.length
+                        return (
+                            <section
+                                key={dt.id}
+                                className={`s${index + 1} ${
+                                    isDesktop ? '' : 'is-mobile'
+                                } ${index == 0 ? 'first-section' : ''} ${
+                                    isDesktop && dt.isRightPosition && index > 0
+                                        ? 'even-section'
+                                        : ''
+                                } ${lastSection ? 'last-section' : ''}`}
+                            >
+                                <div
+                                    className={`section-content  ${
+                                        lastSection ? 'full-height' : ''
+                                    }`}
+                                >
+                                    <img src={heroImg} alt={'hero-img'} />
+                                    {index === 0 && (
+                                        <div className="section-text">
+                                            {dt.headline}
+                                        </div>
+                                    )}
+                                    {index !== 0 && (
+                                        <div className="section-text">
+                                            <div>{dt.headline}</div>
+                                            <div>{dt.name}</div>
+                                            <div>{dt.position}</div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {lastSection && (
+                                    <>
+                                        <div
+                                            id="value"
+                                            className="value-wrapper"
+                                        >
+                                            <div className="value-title">
+                                                {aboutData.valueTitle}
+                                            </div>
+
+                                            <div className="content-cards">
+                                                {aboutData.valueList.map(
+                                                    (dt, index) => (
+                                                        <div
+                                                            key={dt.id}
+                                                            className={`card-item ${
+                                                                (index + 1) %
+                                                                    2 ==
+                                                                0
+                                                                    ? 'card-even'
+                                                                    : 'card-odd'
+                                                            }`}
+                                                        >
+                                                            <img
+                                                                src={`${assetDomain}${
+                                                                    dt.image
+                                                                        ?.url ??
+                                                                    ''
+                                                                }`}
+                                                                alt={
+                                                                    dt.image
+                                                                        ?.alternativeText ??
+                                                                    ''
+                                                                }
+                                                            />
+
+                                                            <div className="card-content">
+                                                                <div className="card-title">
+                                                                    {dt.title}
+                                                                </div>
+
+                                                                <div className="card-desc">
+                                                                    {
+                                                                        dt.description
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                        <Footer />
+                                    </>
+                                )}
+                            </section>
+                        )
+                    })}
+
+                {/* <section className="s2">
                     <div className="section-content">
                         <img
                             src={`${assetPrefix}/images/about${
@@ -173,7 +274,7 @@ export default function HomeScreen({ aboutData, isDesktop }) {
                         </div>
                     </div>
                     <Footer />
-                </section>
+                </section> */}
             </div>
 
             <style jsx>{styles}</style>

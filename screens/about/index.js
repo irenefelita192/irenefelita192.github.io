@@ -6,6 +6,7 @@ import Loader from 'components/loader'
 import styles from './styles'
 // import Footer from 'components/footer'
 import ParallaxDesktop from './parallax'
+// import ParallaxMobile from './parallax-mobile'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -29,6 +30,10 @@ export default function HomeScreen() {
             } else {
                 setIsWebpSupport(false)
             }
+
+            if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual'
+            }
         }
         const aboutDt = await getAboutData(langId)
 
@@ -37,21 +42,21 @@ export default function HomeScreen() {
         setAboutData(aboutDt)
     }, [])
 
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
-            scrollParam = urlParams.get('pos')
-        if (aboutData && scrollParam) {
-            setTimeout(() => {
-                const offsetTop = document.getElementById(scrollParam).offsetTop
+    // useEffect(() => {
+    //     const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+    //         scrollParam = urlParams.get('pos')
+    //     if (aboutData && scrollParam) {
+    //         setTimeout(() => {
+    //             const offsetTop = document.getElementById(scrollParam).offsetTop
 
-                window.scrollTo({
-                    top: offsetTop,
-                    left: 0,
-                    behavior: 'smooth',
-                })
-            }, 500)
-        }
-    }, [aboutData])
+    //             window.scrollTo({
+    //                 top: offsetTop,
+    //                 left: 0,
+    //                 behavior: 'smooth',
+    //             })
+    //         }, 500)
+    //     }
+    // }, [aboutData])
 
     if (!aboutData) return <Loader />
 
@@ -83,10 +88,21 @@ export default function HomeScreen() {
         <>
             {aboutData && (
                 <>
+                    {/* {isDesktop && ( */}
                     <ParallaxDesktop
                         aboutData={aboutData}
                         isDesktop={isDesktop}
+                        isWebpSupport={isWebpSupport}
                     />
+                    {/* )} */}
+
+                    {/* {!isDesktop && (
+                        <ParallaxMobile
+                            aboutData={aboutData}
+                            isDesktop={isDesktop}
+                            isWebpSupport={isWebpSupport}
+                        />
+                    )} */}
 
                     {/*vision*/}
                     {/* <div
