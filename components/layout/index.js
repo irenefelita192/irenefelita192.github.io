@@ -19,14 +19,13 @@ export default function Layout({
     headerWithBg = false,
     activeId = '',
 }) {
-    const temTitle = 'Vida | A Health Coverage with Only You in Mind',
+    const temTitle = 'Vida | Healthcare Your Way',
         temDesc = 'Designed to always be with you & your loved ones. '
-    const seoTitle = `Vida | ${title}` || temTitle,
+    const seoTitle = title ? `Vida | ${title}` : temTitle,
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
     const seoImage = `https://kenalvida.com/images/logo/vida-image.jpg`
-
     return (
         <>
             <Head>
