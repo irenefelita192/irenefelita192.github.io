@@ -9,6 +9,12 @@ export default function ProductInfoScreen({ isWebView }) {
             'data:text/attachment;,' + //here is the trick
             document.getElementById('content').innerHTML
     }
+
+    const openBrowser = (url) => {
+        if (typeof JavascriptChannel !== 'undefined') {
+            JavascriptChannel.postMessage(`externalbrowser_${url}`)
+        }
+    }
     return (
         <>
             {/* <a onClick={() => download()} style={{ lineHeight: 1 }}>
@@ -1096,7 +1102,15 @@ export default function ProductInfoScreen({ isWebView }) {
                                         </a>
                                     )}
                                     {isWebView && (
-                                        <>www.lippolife.co.id/solusianda</>
+                                        <a
+                                            onClick={() => {
+                                                openBrowser(
+                                                    'https://www.lippolife.co.id/solusianda'
+                                                )
+                                            }}
+                                        >
+                                            www.lippolife.co.id/solusianda
+                                        </a>
                                     )}
                                     .
                                 </li>
@@ -1167,7 +1181,15 @@ export default function ProductInfoScreen({ isWebView }) {
                                     </a>
                                 )}
                                 {isWebView && (
-                                    <>www.lippolife.co.id/solusianda</>
+                                    <a
+                                        onClick={() => {
+                                            openBrowser(
+                                                'https://www.lippolife.co.id/solusianda'
+                                            )
+                                        }}
+                                    >
+                                        www.lippolife.co.id/solusianda
+                                    </a>
                                 )}
                                 .
                             </p>
@@ -1923,7 +1945,18 @@ export default function ProductInfoScreen({ isWebView }) {
                                     www.lippolife.co.id/solusianda
                                 </a>
                             )}
-                            {isWebView && <>www.lippolife.co.id/solusianda</>}.
+                            {isWebView && (
+                                <a
+                                    onClick={() => {
+                                        openBrowser(
+                                            'https://www.lippolife.co.id/solusianda'
+                                        )
+                                    }}
+                                >
+                                    www.lippolife.co.id/solusianda
+                                </a>
+                            )}
+                            .
                         </li>
                         <li>
                             Anda telah membaca, memahami, serta menyatakan

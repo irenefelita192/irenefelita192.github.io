@@ -21,7 +21,7 @@ export default function Privacy() {
             isWebView={isWebView}
             headerWithBg={true}
         >
-            <PrivacyScreen />
+            <PrivacyScreen isWebView={isWebView} />
         </Layout>
     )
 }

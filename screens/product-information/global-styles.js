@@ -70,6 +70,7 @@ export default css.global`
 
     thead td {
         font-weight: bold;
+        font-size: 16px;
     }
 
     tr > td:first-child {

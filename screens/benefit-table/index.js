@@ -587,24 +587,19 @@ export default function BenefitTableScreen({ isWebView }) {
                                             sebagai hasil dari kecelakaan kerja
                                             atau transfusi darah
                                         </span>
-                                    </th>
-                                    <td>
-                                        <p>
-                                            Maksimum hingga 1.000.000.000 dalam
-                                            seumur hidup
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                        <p style={{ height: '15px' }}></p>
                                         <p>
                                             Manfaat ini akan tersedia ketika
                                             tanda atau gejala muncul untuk
                                             pertama kalinya setelah keanggotaan
                                             selama 36 bulan berturut turut.
                                         </p>
-                                    </td>
+                                    </th>
                                     <td>
+                                        <p>
+                                            Maksimum hingga 1.000.000.000 dalam
+                                            seumur hidup
+                                        </p>
                                         <p>
                                             Tersedia setelah keanggotaan 36
                                             bulan berturut-turut

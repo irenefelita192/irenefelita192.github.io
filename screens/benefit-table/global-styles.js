@@ -70,6 +70,7 @@ export default css.global`
 
     thead td {
         font-weight: bold;
+        font-size: 16px;
     }
 
     tr > td:first-child {
@@ -154,7 +155,7 @@ export default css.global`
 
     ul.dash {
         list-style-type: none;
-        padding: 0;
+        padding: 10px;
     }
 
     ul.dash > li {

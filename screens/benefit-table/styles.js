@@ -24,7 +24,6 @@ export default css`
         color: #ffffff;
         font-weight: bold;
         background-color: #70a7dc;
-        font-size: 20px;
     }
 
     .th-child > td {
@@ -34,6 +33,7 @@ export default css`
 
     .th-child h4 {
         font-weight: bold;
+        font-size: 16px;
     }
     @media screen and (max-width: 1024px) {
         .wrapper {
