@@ -54,65 +54,59 @@ export default function HomeScreen({
     // Listening to scroll event
     const handleScroll = (e) => {
         const sectionsQty = heroList.length
-        console.log('sectionsQty', sectionsQty)
+
         const layout = document.getElementById('layout')
-        if (startFlag) {
-            const scrollDown = window.pageYOffset > initialScroll
-            const scrollLimit = qty >= 1 && qty <= sectionsQty
+        console.log(' window.pageYOffset', window.pageYOffset)
 
-            // Verify that the scroll does not exceed the number of sections
-            if (scrollLimit) {
-                // if (!isSafari)
+        // if (startFlag) {
+        const scrollDown = window.pageYOffset > initialScroll
+        console.log('initialScroll', initialScroll)
+        console.log('scrollDown', scrollDown)
+        //     const scrollLimit = qty >= 1 && qty <= sectionsQty
 
-                body.style.overflowY = 'hidden' // Lock el scroll
-                console.log('initialScroll', initialScroll)
-                window.scrollTo(0, 0)
-                if (scrollDown && qty < sectionsQty) {
-                    // main = document.querySelector(`section.s${qty}`)
+        //     // Verify that the scroll does not exceed the number of sections
+        //     if (scrollLimit) {
+        //         // if (!isSafari)
 
-                    // main.style.transform = 'translate3d(0,-100vh,0)'
-                    // if (qty !== sectionsQty) {
-                    // next = document.querySelector(`section.s${qty + 1}`)
-
-                    // next.style.transform = 'translate3d(0,0,0)'
-                    if (layout) {
-                        console.log('masul', layout, qty * window.innerHeight)
-                        // layout.style.transform = `translate3d(0,-${
-                        //     qty * window.innerHeight
-                        // }px,0)`
-                        window.scrollTo(0, qty * window.innerHeight)
-                    }
-                    qty++
-                    // }
-                } else if (!scrollDown && qty > 1) {
-                    main = document.querySelector(`section.s${qty - 1}`)
-                    next = document.querySelector(`section.s${qty}`)
-
-                    // main.style.transform = 'translate3d(0,0,0)'
-                    // next.style.transform = 'translate3d(0,100vh,0)'
-                    if (layout) {
-                        layout.style.transform = `translate3d(0,-${
-                            qty * window.innerHeight
-                        }px,0)`
-                        window.scrollTo(0, qty * window.innerHeight)
-                    }
-                    qty--
-                }
-
-                // Scroll progressbar
-                // const active = document.querySelector('.section-stick .stick.active')
-                // active.style.top = (62 + 30) * (qty - 1) + 'px'
+        //         body.style.overflowY = 'hidden' // Lock el scroll
+        //         console.log('initialScroll', initialScroll)
+        //         window.scrollTo(0, 0)
+        if (!scrollDown && window.pageYOffset <= 0) {
+            console.log('MASUK SINI GAAA')
+            const sliderFrame = document.getElementsByClassName('slider-frame')
+            if (sliderFrame && sliderFrame.length > 0) {
+                sliderFrame[0].style.pointerEvents = 'auto'
             }
-
-            // Wait for the scrolling to finish to reset the values
-            setTimeout(() => {
-                startFlag = true
-                initialScroll = window.pageYOffset
-                if (qty !== sectionsQty) body.style.overflowY = 'scroll' // Unlock scroll
-            }, TIME_OUT)
-
-            startFlag = false
         }
+        initialScroll = window.pageYOffset
+        //             main = document.querySelector(`section.s${qty - 1}`)
+        //             next = document.querySelector(`section.s${qty}`)
+
+        //             // main.style.transform = 'translate3d(0,0,0)'
+        //             // next.style.transform = 'translate3d(0,100vh,0)'
+        //             if (layout) {
+        //                 layout.style.transform = `translate3d(0,-${
+        //                     qty * window.innerHeight
+        //                 }px,0)`
+        //                 window.scrollTo(0, qty * window.innerHeight)
+        //             }
+        //             qty--
+        //         }
+
+        //         // Scroll progressbar
+        //         // const active = document.querySelector('.section-stick .stick.active')
+        //         // active.style.top = (62 + 30) * (qty - 1) + 'px'
+        // }
+
+        //     // Wait for the scrolling to finish to reset the values
+        // setTimeout(() => {
+        //     // startFlag = true
+        //     initialScroll = window.pageYOffset
+        //     // if (qty !== sectionsQty) body.style.overflowY = 'scroll' // Unlock scroll
+        // }, TIME_OUT)
+
+        // startFlag = false
+        // }
 
         // Keep scrollbar in the middle of the viewport
         // window.scroll(0, window.screen.height)
@@ -121,22 +115,25 @@ export default function HomeScreen({
         vertical: true,
         swiping: true,
         dragging: true,
-        enableKeyboardControls: true,
+        withoutControls: true,
     }
 
-    // const afterSlide = (slideIndex) => {
-    //     console.log('slideIndex', slideIndex)
-    //     if (slideIndex == 8) {
-
-    //     }
-    // }
+    const afterSlide = (slideIndex) => {
+        console.log('slideIndex', slideIndex)
+        if (slideIndex == 8) {
+            const sliderFrame = document.getElementsByClassName('slider-frame')
+            if (sliderFrame && sliderFrame.length > 0) {
+                sliderFrame[0].style.pointerEvents = 'none'
+            }
+        }
+    }
     return (
         <>
             <div
                 className={`layout ${isSafari ? 'is-safari' : ''}`}
                 id="layout"
             >
-                <Carousel {...settings}>
+                <Carousel {...settings} afterSlide={afterSlide}>
                     {heroList &&
                         heroList.map((dt, index) => {
                             let heroImg = ''
@@ -197,68 +194,51 @@ export default function HomeScreen({
                                         )}
                                     </div>
 
-                                    {lastSection && (
-                                        <>
-                                            <div
-                                                id="value"
-                                                className="value-wrapper"
-                                            >
-                                                <div className="value-title">
-                                                    {aboutData.valueTitle}
-                                                </div>
-
-                                                <div className="content-cards">
-                                                    {aboutData.valueList.map(
-                                                        (dt, index) => (
-                                                            <div
-                                                                key={dt.id}
-                                                                className={`card-item ${
-                                                                    (index +
-                                                                        1) %
-                                                                        2 ==
-                                                                    0
-                                                                        ? 'card-even'
-                                                                        : 'card-odd'
-                                                                }`}
-                                                            >
-                                                                <img
-                                                                    src={`${assetDomain}${
-                                                                        dt.image
-                                                                            ?.url ??
-                                                                        ''
-                                                                    }`}
-                                                                    alt={
-                                                                        dt.image
-                                                                            ?.alternativeText ??
-                                                                        ''
-                                                                    }
-                                                                />
-
-                                                                <div className="card-content">
-                                                                    <div className="card-title">
-                                                                        {
-                                                                            dt.title
-                                                                        }
-                                                                    </div>
-
-                                                                    <div className="card-desc">
-                                                                        {
-                                                                            dt.description
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    )}
-                                                </div>
-                                            </div>
-                                            <Footer />
-                                        </>
-                                    )}
+                                    {/* {lastSection && (
+                                      
+                                    )} */}
                                 </section>
                             )
                         })}
                 </Carousel>
+                <>
+                    <div id="value" className="value-wrapper">
+                        <div className="value-title">
+                            {aboutData.valueTitle}
+                        </div>
+
+                        <div className="content-cards">
+                            {aboutData.valueList.map((dt, index) => (
+                                <div
+                                    key={dt.id}
+                                    className={`card-item ${
+                                        (index + 1) % 2 == 0
+                                            ? 'card-even'
+                                            : 'card-odd'
+                                    }`}
+                                >
+                                    <img
+                                        src={`${assetDomain}${
+                                            dt.image?.url ?? ''
+                                        }`}
+                                        alt={dt.image?.alternativeText ?? ''}
+                                    />
+
+                                    <div className="card-content">
+                                        <div className="card-title">
+                                            {dt.title}
+                                        </div>
+
+                                        <div className="card-desc">
+                                            {dt.description}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <Footer />
+                </>
                 {/* <section className="s2">
                     <div className="section-content">
                         <img

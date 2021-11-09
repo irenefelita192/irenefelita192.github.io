@@ -6,7 +6,7 @@ export default css`
     .layout {
         width: 100%;
         /* height: calc(100vh * 3); */
-        touch-action: none;
+
         height: 100%;
         position: relative;
         line-height: 1;
