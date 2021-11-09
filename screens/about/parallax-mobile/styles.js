@@ -5,24 +5,12 @@ const timeAnimation = 0.6
 export default css`
     .layout {
         width: 100%;
-        height: calc(100vh * 3);
+        /* height: calc(100vh * 3); */
+        touch-action: none;
+        height: 100%;
         position: relative;
         line-height: 1;
-        /* scrollbar-width: none;
-        -ms-overflow-style: none; */
-    }
-
-    .layout-child {
-        margin-right: -50px; /* Maximum width of scrollbar */
-        padding-right: 50px; /* Maximum width of scrollbar */
-        overflow-y: scroll;
-    }
-
-    .layout::-webkit-scrollbar {
-        /* WebKit */
-        width: 0;
-        height: 0;
-        background: transparent;
+        transition: all 1000ms ease 0s;
     }
 
     .layout.is-safari {
@@ -31,14 +19,14 @@ export default css`
 
     section {
         width: 100%;
-        height: 100vh;
-        position: fixed;
-        top: 0;
+        /* height: 100vh; */
+        position: relative;
+        /* top: 0;
         left: 0;
-        right: 0;
-        transform: translateY(100vh);
-        transition: all ${timeAnimation}s ease-in-out;
-        z-index: 0;
+        right: 0; */
+        /* transform: translateY(100vh); */
+        /* transition: all ${timeAnimation}s ease-in-out; */
+        /* z-index: 0; */
     }
 
     .section-content {
@@ -63,7 +51,7 @@ export default css`
 
     .full-height {
         width: 100%;
-        height: 100vh;
+        /* height: 100vh; */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -152,7 +140,7 @@ export default css`
     }
 
     .s1 {
-        transform: translateY(0);
+        /* transform: translateY(0); */
         /* z-index: 4; */
     }
 

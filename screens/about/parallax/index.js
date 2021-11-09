@@ -8,7 +8,12 @@ import Footer from 'components/footer'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
-export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
+export default function HomeScreen({
+    aboutData,
+    isSafari,
+    isDesktop,
+    isWebpSupport,
+}) {
     const { heroList } = aboutData
     useEffect(() => {
         if (window) {
@@ -39,7 +44,7 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
     //     sectionStick.innerHTML = sectionStick.innerHTML + '<div class="stick"></div>'
     //   })
 
-    body.style.overflowY = 'scroll'
+    if (!isSafari) body.style.overflowY = 'scroll'
     // Listening to scroll event
     const handleScroll = (e) => {
         const sectionsQty = heroList.length
@@ -50,7 +55,7 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
 
             // Verify that the scroll does not exceed the number of sections
             if (scrollLimit) {
-                body.style.overflowY = 'hidden' // Lock el scroll
+                if (!isSafari) body.style.overflowY = 'hidden' // Lock el scroll
                 console.log('initialScroll', initialScroll)
                 if (scrollDown && qty < sectionsQty) {
                     main = document.querySelector(`section.s${qty}`)
@@ -82,7 +87,8 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
             setTimeout(() => {
                 startFlag = true
                 initialScroll = window.pageYOffset
-                if (qty !== sectionsQty) body.style.overflowY = 'scroll' // Unlock scroll
+                if (qty !== sectionsQty && !isSafari)
+                    body.style.overflowY = 'scroll' // Unlock scroll
             }, TIME_OUT)
 
             startFlag = false
@@ -94,7 +100,7 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
 
     return (
         <>
-            <div className="layout">
+            <div className={`layout ${isSafari ? 'is-safari' : ''}`}>
                 {heroList &&
                     heroList.map((dt, index) => {
                         let heroImg = ''
@@ -120,6 +126,7 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
                         const lastSection = index + 1 == heroList.length
                         return (
                             <section
+                                style={{ backgroundColor: '#DEB196' }}
                                 key={dt.id}
                                 className={`s${index + 1} ${
                                     isDesktop ? '' : 'is-mobile'
@@ -288,7 +295,7 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
                         margin: 0;
                         padding: 0;
                         font-family: sans-serif;
-                        overflow: hidden scroll;
+                        overflow: hidden;
                         -ms-overflow-style: none;
                     }
 

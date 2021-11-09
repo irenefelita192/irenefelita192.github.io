@@ -6,12 +6,13 @@ import Loader from 'components/loader'
 import styles from './styles'
 // import Footer from 'components/footer'
 import ParallaxDesktop from './parallax'
-// import ParallaxMobile from './parallax-mobile'
+import ParallaxMobile from './parallax-mobile'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 export default function HomeScreen() {
     const [aboutData, setAboutData] = useState(null)
+    const [isSafari, setIsSafari] = useState(false)
     const [isDesktop, setIsDesktop] = useState(true)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [heroHeight, setHeroHeight] = useState(null)
@@ -31,6 +32,11 @@ export default function HomeScreen() {
                 setIsWebpSupport(false)
             }
 
+            if (navigator.userAgent.indexOf('Chrome') != -1) {
+            } else if (navigator.userAgent.indexOf('Safari') != -1) {
+                setIsSafari(true)
+            }
+
             if (history.scrollRestoration) {
                 history.scrollRestoration = 'manual'
             }
@@ -42,21 +48,25 @@ export default function HomeScreen() {
         setAboutData(aboutDt)
     }, [])
 
-    // useEffect(() => {
-    //     const urlParams = new URLSearchParams(window?.location?.search ?? ''),
-    //         scrollParam = urlParams.get('pos')
-    //     if (aboutData && scrollParam) {
-    //         setTimeout(() => {
-    //             const offsetTop = document.getElementById(scrollParam).offsetTop
-
-    //             window.scrollTo({
-    //                 top: offsetTop,
-    //                 left: 0,
-    //                 behavior: 'smooth',
-    //             })
-    //         }, 500)
-    //     }
-    // }, [aboutData])
+    useEffect(() => {
+        // const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+        //     scrollParam = urlParams.get('pos')
+        // if (aboutData && scrollParam) {
+        //     setTimeout(() => {
+        //         const offsetTop = document.getElementById(scrollParam).offsetTop
+        //         window.scrollTo({
+        //             top: offsetTop,
+        //             left: 0,
+        //             behavior: 'smooth',
+        //         })
+        //     }, 500)
+        // }
+        // if (aboutData) {
+        //     setTimeout(() => {
+        //         setIsLoaded(true)
+        //     }, 3000)
+        // }
+    }, [aboutData])
 
     if (!aboutData) return <Loader />
 
@@ -88,21 +98,22 @@ export default function HomeScreen() {
         <>
             {aboutData && (
                 <>
-                    {/* {isDesktop && ( */}
-                    <ParallaxDesktop
-                        aboutData={aboutData}
-                        isDesktop={isDesktop}
-                        isWebpSupport={isWebpSupport}
-                    />
-                    {/* )} */}
+                    {isDesktop && (
+                        <ParallaxDesktop
+                            aboutData={aboutData}
+                            isDesktop={isDesktop}
+                            isWebpSupport={isWebpSupport}
+                            isSafari={isSafari}
+                        />
+                    )}
 
-                    {/* {!isDesktop && (
+                    {!isDesktop && (
                         <ParallaxMobile
                             aboutData={aboutData}
                             isDesktop={isDesktop}
                             isWebpSupport={isWebpSupport}
                         />
-                    )} */}
+                    )}
 
                     {/*vision*/}
                     {/* <div
