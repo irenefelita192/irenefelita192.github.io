@@ -16,6 +16,7 @@ export default function HomeScreen({
 }) {
     const { heroList } = aboutData
     useEffect(() => {
+        console.log('THIS IS DESKTOP')
         if (window) {
             window.addEventListener('scroll', handleScroll)
         }

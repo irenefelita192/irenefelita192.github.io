@@ -20,6 +20,7 @@ export default function HomeScreen({
     const [windowHeight, setWindowHeight] = useState(null)
     const [isScroll, setIsScroll] = useState(false)
     useEffect(() => {
+        console.log('THIS IS MOBILE')
         if (window) {
             setWindowHeight(window.innerHeight)
             window.addEventListener('scroll', handleScroll)
@@ -53,9 +54,6 @@ export default function HomeScreen({
     body.style.overflowY = 'scroll'
     // Listening to scroll event
     const handleScroll = (e) => {
-        const sectionsQty = heroList.length
-
-        const layout = document.getElementById('layout')
         console.log(' window.pageYOffset', window.pageYOffset)
 
         // if (startFlag) {
