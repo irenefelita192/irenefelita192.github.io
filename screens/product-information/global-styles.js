@@ -78,26 +78,6 @@ export default css.global`
         vertical-align: text-top;
     }
 
-    tr:first-child > td:first-child,
-    tr:first-child > th:first-child {
-        border-top-left-radius: 8px;
-    }
-
-    tr:first-child > td:last-child,
-    tr:first-child > th:last-child {
-        border-top-right-radius: 8px;
-    }
-
-    tr:last-child > td:first-child,
-    tr:last-child > th:first-child {
-        border-bottom-left-radius: 8px;
-    }
-
-    tr:last-child > td:last-child,
-    tr:last-child > th:last-child {
-        border-bottom-right-radius: 8px;
-    }
-
     .table-full th {
         width: 20%;
     }
@@ -121,7 +101,6 @@ export default css.global`
 
     .table-nested td:last-child {
         border-right: 0;
-        padding-right: 0;
         width: auto;
     }
 
@@ -157,6 +136,7 @@ export default css.global`
     ul.dash {
         list-style-type: none;
         padding: 0;
+        padding-left: 10px;
     }
 
     ul.dash > li {

@@ -147,7 +147,7 @@ export default function ProductInfoScreen({ isWebView }) {
                         Penanggung membayar kewajiban terhadap nasabahnya.
                     </p>
                     <h3>Risiko Lain - Lain</h3>
-                    <ul className="dash">
+                    <ul className="dash" style={{ paddingLeft: '30px' }}>
                         <li>
                             Pembatalan sepihak /ditutup oleh Penanggung apabila
                             premi tidak dibayar sampai dengan masa leluasa
@@ -1213,7 +1213,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     manfaat tunai terkait rawat inap
                                     <ul
                                         className="dash"
-                                        style={{ paddingLeft: '40px' }}
+                                        style={{ paddingLeft: '30px' }}
                                     >
                                         <li>
                                             resume medis perawatan rumah sakit
@@ -1236,7 +1236,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     klaim rawat jalan dan perawatan gigi
                                     <ul
                                         className="dash"
-                                        style={{ paddingLeft: '40px' }}
+                                        style={{ paddingLeft: '30px' }}
                                     >
                                         <li>
                                             kuitansi/bukti pembayaran asli
@@ -1858,7 +1858,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             </p>
                             <ul
                                 className="dash"
-                                style={{ paddingLeft: '40px' }}
+                                style={{ paddingLeft: '30px' }}
                             >
                                 <li>
                                     Kantor penanggung yang menerima pengaduan
@@ -1886,7 +1886,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             </p>
                             <ul
                                 className="dash"
-                                style={{ paddingLeft: '40px' }}
+                                style={{ paddingLeft: '30px' }}
                             >
                                 <li>
                                     Berita Satu Plaza, Lt. 2 Jl. Jend. Gatot
