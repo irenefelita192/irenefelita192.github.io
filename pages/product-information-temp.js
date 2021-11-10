@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import Layout from 'components/layout'
-import PrivacyScreen from 'screens/privacy'
+import ProductInfoScreen from 'screens/product-information'
 
-export default function Privacy() {
+export default function ProductInfo() {
     const [isWebView, setIsWebView] = useState(false)
     useEffect(() => {
         if (window) {
@@ -17,11 +17,11 @@ export default function Privacy() {
 
     return (
         <Layout
-            title="Privacy Policy"
+            title="Product Information"
             isWebView={isWebView}
             headerWithBg={true}
         >
-            <PrivacyScreen isWebView={isWebView} />
+            <ProductInfoScreen isWebView={isWebView} />
         </Layout>
     )
 }
