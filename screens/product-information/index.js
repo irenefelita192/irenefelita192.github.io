@@ -2009,7 +2009,9 @@ export default function ProductInfoScreen({ isWebView }) {
                 <br />
                 <br />
                 <p>Tanggal Cetak Dokumen</p>
-                <p>dd/mm/yyyy</p>
+                <p>
+                    {new Date(Date.now()).toLocaleString('en-GB').split(',')[0]}
+                </p>
             </div>
             <Footer />
             <style jsx>{styles}</style>
