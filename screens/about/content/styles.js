@@ -3,32 +3,6 @@ import css from 'styled-jsx/css'
 
 const timeAnimation = 0.6
 export default css`
-    .layout {
-        width: 100%;
-        /* height: calc(100vh * 3); */
-
-        height: 100%;
-        position: relative;
-        line-height: 1;
-        transition: all 1000ms ease 0s;
-    }
-
-    .layout.is-safari {
-        height: auto;
-    }
-
-    section {
-        width: 100%;
-        /* height: 100vh; */
-        position: relative;
-        /* top: 0;
-        left: 0;
-        right: 0; */
-        /* transform: translateY(100vh); */
-        /* transition: all ${timeAnimation}s ease-in-out; */
-        /* z-index: 0; */
-    }
-
     .section-content {
         width: 100%;
         height: 100%;
@@ -44,46 +18,14 @@ export default css`
         position: relative;
     }
 
-    section.last-section {
-        display: block;
-        overflow-y: auto;
+    .section {
+        padding: 0;
     }
 
-    .full-height {
-        width: 100%;
-        /* height: 100vh; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .value-content {
-        color: black;
-        width: 100%;
-        height: auto;
-
-        /* position: fixed;
-        top: 0;
-        left: 0;
-        right: 0; */
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        text-align: center;
-
-        font-size: 80px;
-        font-weight: 600;
-
-        z-index: 0;
-    }
-
-    section img {
-        object-fit: cover;
+    .section-content img {
         height: 100%;
         width: 100%;
-        pointer-events: none;
+        object-fit: cover;
     }
 
     .section-text {
@@ -92,13 +34,14 @@ export default css`
         right: 0;
         transform: translate(0, -50%);
         font-family: 'Museo', sans-serif;
-        font-size: 48px;
+        font-size: 52px;
         font-weight: 400;
         line-height: 1.2;
         text-align: left;
         width: 42%;
         margin: 0 12%;
         padding: 0;
+        padding-top: 60px;
         color: ${theme.colors['vida-white']};
         pointer-events: none;
     }
@@ -123,7 +66,6 @@ export default css`
         transform: translate(0, -50%);
         width: 42%;
         margin: 0 12%;
-        padding: 0;
     }
 
     .section-text > div:nth-child(2) {
@@ -139,22 +81,38 @@ export default css`
         margin-top: 2px;
     }
 
-    .s1 {
-        /* transform: translateY(0); */
-        /* z-index: 4; */
+    .is-mobile .section-text {
+        font-size: 24px;
+        line-height: 1.2;
+        padding: 0 16px;
+        margin: 0;
+        text-align: center;
+        top: 100px;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, 0);
+        width: 100%;
     }
 
-    /* .s2 {
-        z-index: 3;
+    .is-mobile.first-section .section-text {
+        font-size: 40px;
+        line-height: 1.17;
+        padding: 0 16px;
+        margin: 0;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
     }
 
-   .s3 {
-        z-index: 2;
+    .is-mobile .section-text > div:nth-child(3) {
+        font-family: 'Inter', serif;
+        font-size: 16px;
+        line-height: 1.37;
+        margin-top: 2px;
     }
 
-   .s4 {
-        z-index: 1;
-    } */
     /** Vida Value start **/
     .value-wrapper {
         padding: 140px 22%;
@@ -236,12 +194,12 @@ export default css`
     }
 
     .is-mobile .section-text {
-        font-size: 24px;
+        font-size: 36px;
         line-height: 1.2;
-        padding: 0 16px;
+        padding: 0 8%;
         margin: 0;
         text-align: center;
-        top: 100px;
+        top: 10%;
         left: 50%;
         right: auto;
         transform: translate(-50%, 0);
@@ -249,9 +207,9 @@ export default css`
     }
 
     .is-mobile.first-section .section-text {
-        font-size: 40px;
+        font-size: 60px;
         line-height: 1.17;
-        padding: 0 16px;
+        padding: 0 8%;
         margin: 0;
         text-align: center;
         top: 50%;
@@ -266,48 +224,28 @@ export default css`
         margin-top: 30px;
     }
 
+    .is-mobile .section-text > div:nth-child(2) {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
     .is-mobile .section-text > div:nth-child(3) {
         font-family: 'Inter', serif;
-        font-size: 16px;
+        font-size: 24px;
         line-height: 1.37;
         margin-top: 2px;
     }
 
-    /************************************* RESPONSIVE ***************************************/
-
     /* MOBILE */
-    @media screen and (max-width: 576px) {
-        body::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-            -webkit-appearance: none;
-        }
-
-        .layout .section-stick {
-            right: 20px;
-            bottom: 20px;
-            transform: scale(0.7);
-        }
-
-        .layout section {
-            font-size: 40px;
-        }
-
-        #author {
-            left: 20px;
-            bottom: 20px;
-            font-size: 18px;
-        }
-
-        #author svg {
-            font-size: 30px;
-        }
-    }
 
     @media screen and (max-width: 1024px) {
-        /* .card-item img {
-            width: 348px;
-        } */
+        .section-text {
+            font-size: 42px;
+        }
+
+        .first-section .section-text {
+            font-size: 42px;
+        }
 
         .card-item.card-odd .card-content {
             padding-left: 80px;
@@ -319,40 +257,29 @@ export default css`
     }
 
     @media screen and (max-width: 900px) {
-        .card-item.card-odd,
+        .value-wrapper {
+            padding: 140px 12%;
+        }
+        /* .card-item.card-odd,
         .card-item.card-even {
             flex-direction: column;
-        }
+        } */
     }
 
     @media screen and (max-width: 768px) {
-        .content-wrapper {
-            padding: 56px 30px;
-            position: relative;
-        }
-
-        .founder-name {
-            text-align: left;
-            margin-top: 16px;
-        }
-
-        .founder-title {
-            text-align: left;
-        }
-
         .card-item img {
             width: auto;
             height: auto;
             max-height: 200px;
         }
 
-        .card-item.card-odd .card-content,
+        /* .card-item.card-odd .card-content,
         .card-item.card-even .card-content {
             padding-left: 0;
             padding-right: 0;
             text-align: center;
             padding-top: 24px;
-        }
+        } */
 
         .card-item {
             margin-bottom: 88px;
@@ -372,12 +299,21 @@ export default css`
     }
 
     @media screen and (max-width: 640px) {
-        .layout .section-content:first-child {
-            background-color: #deb196;
-        }
-
         .value-wrapper {
             padding: 140px 20px;
+        }
+
+        .card-item.card-odd,
+        .card-item.card-even {
+            flex-direction: column;
+        }
+
+        .card-item.card-odd .card-content,
+        .card-item.card-even .card-content {
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 30px;
+            text-align: center;
         }
 
         .card-title {
@@ -419,20 +355,7 @@ export default css`
         }
     }
 
-    /* @media screen and (max-width: 450px) {
-        .card-title {
-            font-size: 26px;
-            line-height: 1.3;
-        }
-
-        .card-desc {
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 1.32;
-        }
-    } */
-
-    @media screen and (min-width: 400px) and (max-height: 930px) {
+    /* @media screen and (min-width: 400px) and (max-height: 930px) {
         .is-mobile .hero-text {
             padding: 22% 18px 0;
             font-size: 18px;
@@ -441,37 +364,50 @@ export default css`
         .is-mobile .hero-title {
             font-size: 24px;
         }
+    } */
+
+    @media screen and (max-width: 450px) {
+        .is-mobile .section-text {
+            font-size: 24px;
+            line-height: 1.2;
+            top: 100px;
+        }
+
+        .is-mobile.first-section .section-text {
+            font-size: 40px;
+            line-height: 1.17;
+            padding: 0 16px;
+        }
+
+        .is-mobile .section-text > div:nth-child(2) {
+            font-size: 20px;
+        }
+
+        .is-mobile .section-text > div:nth-child(3) {
+            font-size: 16px;
+        }
     }
 
-    @media screen and (max-height: 640px) {
-        .hero-wrapper {
-            background-position: center 60%;
+    @media screen and (max-height: 550px) {
+        .is-mobile .section-text {
+            font-size: 20px;
         }
 
-        .is-mobile .hero-text {
-            padding: 80px 18px 0;
+        .is-mobile.first-section .section-text {
+            font-size: 24px;
+        }
+
+        .is-mobile .section-text > div:nth-child(2) {
+            font-size: 16px;
+        }
+
+        .is-mobile .section-text > div:nth-child(3) {
             font-size: 14px;
-        }
-
-        .is-mobile .hero-title {
-            font-size: 22px;
         }
     }
 
     /* landscape */
     @media screen and (max-width: 1024px) and (max-height: 450px) {
-        .hero-wrapper {
-            background-position: bottom;
-        }
-
-        .hero-vida-text {
-            width: 100%;
-        }
-
-        .hero-title {
-            font-size: 26px;
-        }
-
         .card-item img {
             width: auto;
             height: auto;

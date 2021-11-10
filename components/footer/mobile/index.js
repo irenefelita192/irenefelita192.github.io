@@ -5,7 +5,7 @@ export default function FooterMobile({ data }) {
     return (
         <>
             {data && (
-                <footer>
+                <footer id="footer">
                     <div className="first-row">
                         {data.vidaLogo && (
                             <>

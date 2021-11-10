@@ -5,7 +5,7 @@ export default function FooterDesktop({ data }) {
     return (
         <>
             {data && (
-                <footer>
+                <footer id="footer">
                     <div className="flex">
                         <div
                             className="first-column"
