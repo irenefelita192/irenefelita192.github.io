@@ -13,15 +13,13 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 export default function AboutScreen() {
     const [aboutData, setAboutData] = useState(null)
 
-    const [isSafari, setIsSafari] = useState(false)
     const [isDesktop, setIsDesktop] = useState(true)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [heroHeight, setHeroHeight] = useState(null)
-    let headerHeight = 80
 
     useAsyncEffect(async (isMounted) => {
         let langId
-        if (process.browser) {
+        if (window) {
             langId = getCookie('lang')
             setHeroHeight(window.innerHeight)
             if (window.innerWidth < window.innerHeight) {
@@ -48,6 +46,24 @@ export default function AboutScreen() {
 
         setAboutData(aboutDt)
     }, [])
+
+    // useEffect(async () => {
+    //     if (window) {
+    //         setHeroHeight(window.innerHeight)
+    //         if (window.innerWidth < window.innerHeight) {
+    //             setIsDesktop(false)
+    //         }
+    //         if (window.Modernizr.webp) {
+    //             setIsWebpSupport(true)
+    //         } else {
+    //             setIsWebpSupport(false)
+    //         }
+
+    //         if (history.scrollRestoration) {
+    //             history.scrollRestoration = 'manual'
+    //         }
+    //     }
+    // }, [])
 
     if (!aboutData) return <Loader />
     const onLeave = (origin, destination, direction) => {
@@ -77,6 +93,7 @@ export default function AboutScreen() {
                     render={(comp) => (
                         <ReactFullpage.Wrapper>
                             <Content
+                                heroHeight={heroHeight}
                                 aboutData={aboutData}
                                 isDesktop={isDesktop}
                                 isWebpSupport={isWebpSupport}

@@ -3,8 +3,14 @@ import Footer from 'components/footer'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
-export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
+export default function HomeScreen({
+    aboutData,
+    heroHeight,
+    isDesktop,
+    isWebpSupport,
+}) {
     const { heroList, valueList } = aboutData
+
     const footerCallback = (status) => {
         const footerEl = document.getElementById('footer')
         if (footerEl) {
@@ -38,12 +44,13 @@ export default function HomeScreen({ aboutData, isDesktop, isWebpSupport }) {
                     }
                     return (
                         <div
+                            key={dt.id}
                             className={`section`}
                             data-anchor={`section-${index + 1}`}
                         >
                             <div
                                 style={{
-                                    height: '100vh',
+                                    height: `${heroHeight}px`,
                                     backgroundColor: '#DEB196',
                                 }}
                                 className={` ${
