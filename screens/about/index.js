@@ -31,11 +31,6 @@ export default function AboutScreen() {
                 setIsWebpSupport(false)
             }
 
-            if (navigator.userAgent.indexOf('Chrome') != -1) {
-            } else if (navigator.userAgent.indexOf('Safari') != -1) {
-                setIsSafari(true)
-            }
-
             if (history.scrollRestoration) {
                 history.scrollRestoration = 'manual'
             }
