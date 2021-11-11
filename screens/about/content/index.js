@@ -80,7 +80,11 @@ export default function HomeScreen({
                     )
                 })}
 
-            <div className="section" data-anchor={`section-value`}>
+            <div
+                className="section"
+                data-anchor={`section-value`}
+                style={{ backgroundColor: '#3989d7' }}
+            >
                 {valueList && (
                     <div id="value" className="value-wrapper">
                         <div className="value-title">

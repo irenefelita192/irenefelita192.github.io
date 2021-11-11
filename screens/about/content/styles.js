@@ -28,6 +28,10 @@ export default css`
         object-fit: cover;
     }
 
+    .section-content:not(.is-mobile) img {
+        -webkit-user-drag: none;
+    }
+
     .section-text {
         position: absolute;
         top: 50%;
