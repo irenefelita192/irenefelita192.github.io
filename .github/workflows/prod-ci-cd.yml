@@ -11,30 +11,51 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
+          GCS_BUCKET: cdn-d7761cd/vida-prod/vida-landing-assets
           IMAGE_NAME: gcr.io/${{ secrets.PROD_GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
         steps:
+          - name: Clone repository
+            uses: actions/checkout@v2
 
-        - name: Login
-          uses: google-github-actions/setup-gcloud@master
-          with:
-            project_id: ${{ secrets.PROD_GCP_PROJECT_ID }}
-            service_account_email: ${{ secrets.PROD_GCP_EMAIL }}
-            service_account_key: ${{ secrets.PROD_GCP_CREDENTIALS }}
+          - name: Set Node Version
+            uses: actions/setup-node@v2
+            with:
+                node-version: '15.7.0'
 
-        - name: Configure Docker
-          run: gcloud auth configure-docker --quiet
+          - name: Generate env
+            uses: canastro/copy-file-action@master
+            with:
+                source: '.env.sample'
+                target: '.env'
 
-        - name: Checkout repository
-          uses: actions/checkout@v2
+          - name: Build
+            run: |-
+                ls -a
+                yarn
+                yarn build
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
+          - name: Login
+            uses: google-github-actions/setup-gcloud@master
+            with:
+              project_id: ${{ secrets.PROD_GCP_PROJECT_ID }}
+              service_account_email: ${{ secrets.PROD_GCP_EMAIL }}
+              service_account_key: ${{ secrets.PROD_GCP_CREDENTIALS }}
 
-        # - name: Test Docker image
-        #   run: docker run $IMAGE_NAME sh -c "go test -v"
+          - name: Configure Docker
+            run: gcloud auth configure-docker --quiet
 
-        - name: Push Docker image
-          run: docker push $IMAGE_NAME
+          - name: Build Docker image
+            run: docker build . -t $IMAGE_NAME
 
-        - name: Deploy Docker image
-          run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
+          # - name: Test Docker image
+          #   run: docker run $IMAGE_NAME sh -c "go test -v"
+
+          - name: Push Docker image
+            run: docker push $IMAGE_NAME
+
+          - name: Deploy Docker image
+            run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
+
+          - name: Deploy Assets
+            run: |-
+              gsutil -m rsync -R build gs://$GCS_BUCKET
