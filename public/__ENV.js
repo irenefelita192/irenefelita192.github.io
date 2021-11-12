@@ -1,0 +1,1 @@
+window.__ENV = {"REACT_APP_ENV":"staging","REACT_APP_BASE_API":"http://localhost:1337","REACT_APP_ASSET_PREFIX":"","REACT_APP_DEFAULT_LANG":"en","REACT_APP_GA_ID":"G-3M9F7JBNZ8"};
