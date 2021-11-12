@@ -56,6 +56,13 @@ jobs:
           - name: Deploy Docker image
             run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
 
+          - name: Login
+            uses: google-github-actions/setup-gcloud@master
+            with:
+                project_id: ${{ secrets.CDN_GCP_PROJECT_ID }}
+                service_account_email: ${{ secrets.CDN_GCP_EMAIL }}
+                service_account_key: ${{ secrets.CDN_GCP_CREDENTIALS }}
+
           - name: Deploy Assets
             run: |-
               gsutil -m rsync -R build gs://$GCS_BUCKET
