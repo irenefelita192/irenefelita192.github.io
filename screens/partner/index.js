@@ -39,7 +39,7 @@ export default function Partner() {
             if (typeof gtag !== 'undefined') {
                 const gaId = process.env.config?.gaId ?? ''
                 gtag('config', `${gaId}`, {
-                    page_title: `Vida | Brochure ${
+                    page_title: `Vida | Partner ${
                         partnerData.header?.title ?? ''
                     }`,
                 })

@@ -541,6 +541,7 @@ export default css`
     }
 
     .copyright {
+        font-family: 'Inter', sans-serif;
         font-weight: 300;
         font-size: 14px;
         line-height: 1.43;
@@ -549,6 +550,14 @@ export default css`
         padding: 12px;
         text-align: center;
         box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .footer-version {
+        font-size: 8px;
+        line-height: 1;
+        margin: 0 24px 10px;
+        color: ${theme.colors.gray};
+        text-align: center;
     }
 
     @media screen and (max-width: 1360px) {

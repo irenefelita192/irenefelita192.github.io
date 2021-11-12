@@ -40,6 +40,7 @@ export default css`
     .first-column {
         width: 34%;
         padding-right: 65px;
+        position: relative;
     }
 
     .second-column {
@@ -160,6 +161,13 @@ export default css`
         font-size: 12px;
         line-height: 1.67;
         text-align: right;
+    }
+
+    .footer-version {
+        font-size: 8px;
+        line-height: 1;
+        position: absolute;
+        bottom: 0;
     }
 
     @media screen and (max-width: 1200px) {
