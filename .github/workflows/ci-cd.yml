@@ -29,11 +29,11 @@ jobs:
                 target: '.env'
 
           - name: Build
-              run: |-
-                  ls -a
-                  yarn
-                  yarn openapi:build
-                  yarn build
+            run: |-
+                ls -a
+                yarn
+                yarn openapi:build
+                yarn build
 
           - name: Login
             uses: google-github-actions/setup-gcloud@master
@@ -58,8 +58,8 @@ jobs:
             run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
 
           - name: Deploy Assets
-              run: |-
-                  gsutil -m rsync -R dist gs://$GCS_BUCKET
+            run: |-
+                gsutil -m rsync -R dist gs://$GCS_BUCKET
 
 # on:
 #     # trigger deployment on every push to main branch
