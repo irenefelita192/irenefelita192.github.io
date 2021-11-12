@@ -3,22 +3,23 @@ import { useAsyncEffect } from 'use-async-effect'
 import { getAboutData } from 'services/about'
 import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
-import styles from './styles'
-// import Footer from 'components/footer'
-import ParallaxDesktop from './parallax'
+
+import ReactFullpage from '@fullpage/react-fullpage'
+
+import Content from './content'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
-export default function HomeScreen() {
+export default function AboutScreen() {
     const [aboutData, setAboutData] = useState(null)
+
     const [isDesktop, setIsDesktop] = useState(true)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [heroHeight, setHeroHeight] = useState(null)
-    let headerHeight = 80
 
     useAsyncEffect(async (isMounted) => {
         let langId
-        if (process.browser) {
+        if (window) {
             langId = getCookie('lang')
             setHeroHeight(window.innerHeight)
             if (window.innerWidth < window.innerHeight) {
@@ -29,6 +30,10 @@ export default function HomeScreen() {
             } else {
                 setIsWebpSupport(false)
             }
+
+            if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual'
+            }
         }
         const aboutDt = await getAboutData(langId)
 
@@ -37,121 +42,61 @@ export default function HomeScreen() {
         setAboutData(aboutDt)
     }, [])
 
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
-            scrollParam = urlParams.get('pos')
-        if (aboutData && scrollParam) {
-            setTimeout(() => {
-                const offsetTop = document.getElementById(scrollParam).offsetTop
+    // useEffect(async () => {
+    //     if (window) {
+    //         setHeroHeight(window.innerHeight)
+    //         if (window.innerWidth < window.innerHeight) {
+    //             setIsDesktop(false)
+    //         }
+    //         if (window.Modernizr.webp) {
+    //             setIsWebpSupport(true)
+    //         } else {
+    //             setIsWebpSupport(false)
+    //         }
 
-                window.scrollTo({
-                    top: offsetTop,
-                    left: 0,
-                    behavior: 'smooth',
-                })
-            }, 500)
-        }
-    }, [aboutData])
+    //         if (history.scrollRestoration) {
+    //             history.scrollRestoration = 'manual'
+    //         }
+    //     }
+    // }, [])
 
     if (!aboutData) return <Loader />
-
-    let heroImg = '',
-        visionImg = '',
-        missionImg = ''
-    if (isDesktop) {
-        if (!aboutData.heroImageWebp || !isWebpSupport) {
-            heroImg = `${assetDomain}${aboutData?.heroImage?.url ?? ''}`
-        } else {
-            heroImg = `${assetDomain}${aboutData?.heroImageWebp?.url ?? ''}`
+    const onLeave = (origin, destination, direction) => {
+        let navbar = document.getElementById('navbarTop')
+        if (destination && destination.index > 0) {
+            if (navbar && navbar.classList.contains('is-trans')) {
+                navbar.classList.remove('is-trans')
+            }
+        } else if (destination && destination.index == 0) {
+            if (navbar) {
+                navbar.classList.add('is-trans')
+            }
         }
-
-        visionImg = `${assetDomain}${aboutData?.visionImage?.url ?? ''}`
-        missionImg = `${assetDomain}${aboutData?.missionImage?.url ?? ''}`
-    } else {
-        if (!aboutData.heroImageMobileWebp || !isWebpSupport) {
-            heroImg = `${assetDomain}${aboutData?.heroImageMobile?.url ?? ''}`
-        } else {
-            heroImg = `${assetDomain}${
-                aboutData?.heroImageMobileWebp?.url ?? ''
-            }`
-        }
-
-        visionImg = `${assetDomain}${aboutData?.visionImageMobile?.url ?? ''}`
-        missionImg = `${assetDomain}${aboutData?.missionImageMobile?.url ?? ''}`
     }
     return (
         <>
             {aboutData && (
-                <>
-                    <ParallaxDesktop
-                        aboutData={aboutData}
-                        isDesktop={isDesktop}
-                    />
+                <ReactFullpage
+                    navigation={false}
+                    // slidesNavigation={'false'}
 
-                    {/*vision*/}
-                    {/* <div
-                        id="vision"
-                        className="content-wrapper"
-                        style={{
-                            backgroundImage: `url(${visionImg})`,
-                            height: `${heroHeight}px`,
-                        }}
-                    >
-                        <div>{aboutData.visionTitle}</div>
-                        <div>{aboutData.visionDescription}</div>
-                    </div> */}
-
-                    {/*mission*/}
-                    {/* <div
-                        id="mission"
-                        className="content-wrapper"
-                        style={{
-                            backgroundImage: `url(${missionImg})`,
-                            height: `${heroHeight}px`,
-                        }}
-                    >
-                        <div>{aboutData.missionTitle}</div>
-                        <div>{aboutData.missionDescription}</div>
-                    </div>
-                    <div id="value" className="value-wrapper">
-                        <div className="value-title">
-                            {aboutData.valueTitle}
-                        </div>
-
-                        <div className="content-cards">
-                            {aboutData.valueList.map((dt, index) => (
-                                <div
-                                    key={dt.id}
-                                    className={`card-item ${
-                                        (index + 1) % 2 == 0
-                                            ? 'card-even'
-                                            : 'card-odd'
-                                    }`}
-                                >
-                                    <img
-                                        src={`${assetDomain}${
-                                            dt.image?.url ?? ''
-                                        }`}
-                                        alt={dt.image?.alternativeText ?? ''}
-                                    />
-
-                                    <div className="card-content">
-                                        <div className="card-title">
-                                            {dt.title}
-                                        </div>
-
-                                        <div className="card-desc">
-                                            {dt.description}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div> */}
-                </>
+                    animateAnchor={true}
+                    licenseKey={'722A8A66-15834C4B-AE7B1736-D1A2C2DE'}
+                    onLeave={onLeave}
+                    //   sectionsColor={this.state.sectionsColor}
+                    scrollOverflow={true}
+                    render={(comp) => (
+                        <ReactFullpage.Wrapper>
+                            <Content
+                                heroHeight={heroHeight}
+                                aboutData={aboutData}
+                                isDesktop={isDesktop}
+                                isWebpSupport={isWebpSupport}
+                            />
+                        </ReactFullpage.Wrapper>
+                    )}
+                />
             )}
-            {/* <Footer /> */}
-            <style jsx>{styles}</style>
         </>
     )
 }

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 export default function WebviewLayout({ children }) {
+    const gaId = process.env.config?.gaId ?? ''
     return (
         <>
             <Head>
@@ -15,6 +16,21 @@ export default function WebviewLayout({ children }) {
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1"
+                />
+                {/* Global Site Tag (gtag.js) - Google Analytics */}
+                <script
+                    async
+                    src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+          `,
+                    }}
                 />
             </Head>
             <div>{children}</div>

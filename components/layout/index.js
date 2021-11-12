@@ -19,14 +19,13 @@ export default function Layout({
     headerWithBg = false,
     activeId = '',
 }) {
-    const temTitle = ' Vida - A Health Coverage with Only You in Mind',
+    const temTitle = 'Vida | Healthcare Your Way',
         temDesc = 'Designed to always be with you & your loved ones. '
-    const seoTitle = title || temTitle,
+    const seoTitle = title ? `Vida | ${title}` : temTitle,
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
-    const seoImage = `/images/logo/vida-image.jpg`
-
+    const seoImage = `https://kenalvida.com/images/logo/vida-image.jpg`
     return (
         <>
             <Head>
@@ -68,7 +67,7 @@ export default function Layout({
                 <meta name="referrer" content="origin-when-cross-origin" />
 
                 {/*GA Google Analytics @ https://m0n.co/ga - start */}
-                <script
+                {/* <script
                     dangerouslySetInnerHTML={{
                         __html: `
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -77,6 +76,24 @@ export default function Layout({
 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 			ga('create', '${gaId}', 'auto');
 			ga('send', 'pageview');`,
+                    }}
+                /> */}
+
+                {/* Global Site Tag (gtag.js) - Google Analytics */}
+                <script
+                    async
+                    src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            // gtag('config', '${gaId}', {
+            //   page_path: window.location.pathname,
+            // });
+          `,
                     }}
                 />
 

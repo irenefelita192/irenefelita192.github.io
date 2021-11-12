@@ -5,7 +5,7 @@ import { getCookie } from 'utils/global-util'
 import FooterDesktop from './desktop'
 import FooterMobile from './mobile'
 
-export default function Footer() {
+export default function Footer({ loadedCallback }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [footerData, setFooterData] = useState(null)
 
@@ -28,6 +28,9 @@ export default function Footer() {
 
         if (!isMounted()) return
         setFooterData(footerDt)
+        if (loadedCallback) {
+            loadedCallback(true)
+        }
     }, [])
 
     return (

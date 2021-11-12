@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import Layout from 'components/layout'
-import TermsScreen from 'screens/terms'
+import BenefitTableScreen from 'screens/benefit-table'
 
-export default function TermsConditions() {
+export default function BenefitTable() {
     const [isWebView, setIsWebView] = useState(false)
     useEffect(() => {
         if (window) {
@@ -16,12 +16,8 @@ export default function TermsConditions() {
     }, [])
 
     return (
-        <Layout
-            title="Terms and Conditions"
-            isWebView={isWebView}
-            headerWithBg={true}
-        >
-            <TermsScreen isWebView={isWebView} />
+        <Layout title="Benefit Table" isWebView={isWebView} headerWithBg={true}>
+            <BenefitTableScreen isWebView={isWebView} />
         </Layout>
     )
 }

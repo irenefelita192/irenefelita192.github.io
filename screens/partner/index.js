@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useAsyncEffect } from 'use-async-effect'
 import { getPartnerCMS } from 'services/partner'
@@ -33,15 +33,24 @@ export default function Partner() {
 
         setPartnerData(partnerDt)
     }, [])
+
+    useEffect(() => {
+        if (partnerData && partnerData.header) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | Brochure ${
+                        partnerData.header?.title ?? ''
+                    }`,
+                })
+            }
+        }
+    }, [partnerData])
     if (!partnerData) return <Loader />
     return (
         <div>
             {partnerData.header && (
-                <Header
-                    title={'Our Partners'}
-                    isDesktop={isDesktop}
-                    data={partnerData.header}
-                />
+                <Header isDesktop={isDesktop} data={partnerData.header} />
             )}
 
             {isDesktop && (

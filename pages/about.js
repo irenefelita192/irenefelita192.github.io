@@ -1,22 +1,22 @@
 import Layout from 'components/layout'
-import HomeScreen from 'screens/home'
+import AboutScreen from 'screens/about'
 
-// import { getHomeData } from 'services/home'
+// import { getAboutData } from 'services/about'
 // import { getCookieLocale } from 'utils/global-util'
 // export async function getServerSideProps({ req, res }) {
 //     let langId = getCookieLocale(req, res) || ''
-//     const homeDt = await getHomeData(langId)
+//     const aboutDt = await getAboutData(langId)
 //     return {
 //         props: {
-//             data: { ...homeDt },
+//             data: { ...aboutDt },
 //         },
 //     }
 // }
 
-export default function Home({ data }) {
+export default function About() {
     return (
-        <Layout activeId="home">
-            <HomeScreen />
+        <Layout activeId="about">
+            <AboutScreen />
         </Layout>
     )
 }

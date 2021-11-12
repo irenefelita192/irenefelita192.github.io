@@ -1,11 +1,9 @@
 require('dotenv').config()
 
 const ENV = process.env.REACT_APP_ENV || 'staging'
-
 var endpointConfig = {
     baseEndpoint: process.env.BASE_API,
     assetPrefix: process.env.ASSET_PREFIX || '',
-    csWaNumber: process.env.CS_WHATSAPP_NUMBER || '',
     beEndpoint: process.env.BASE_ENDPOINT || '',
     defaultLang: process.env.DEFAULT_LANG,
     gaId: process.env.GA_ID,

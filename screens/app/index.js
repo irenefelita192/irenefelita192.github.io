@@ -54,13 +54,21 @@ export default function App() {
         if (appData && scrollParam) {
             setTimeout(() => {
                 const offsetTop = document.getElementById(scrollParam).offsetTop
-                console.log('app top', offsetTop)
                 window.scrollTo({
                     top: offsetTop,
                     left: 0,
                     behavior: 'smooth',
                 })
             }, 500)
+        }
+
+        if (appData && appData.SectionOne) {
+            if (typeof gtag !== 'undefined') {
+                const gaId = process.env.config?.gaId ?? ''
+                gtag('config', `${gaId}`, {
+                    page_title: `Vida | ${appData.SectionOne?.title ?? ''}`,
+                })
+            }
         }
     }, [appData])
 

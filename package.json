@@ -12,6 +12,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.19",
     "axios": "^0.21.0",
     "cookies": "^0.8.0",
     "dompurify": "^2.3.3",

@@ -125,7 +125,6 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
         if (scrollParam) {
             setTimeout(() => {
                 const offsetTop = document.getElementById(scrollParam).offsetTop
-                console.log('offsetTop?', offsetTop)
                 window.scrollTo({
                     top: offsetTop,
                     left: 0,

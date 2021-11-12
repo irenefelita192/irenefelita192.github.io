@@ -3,7 +3,7 @@ import BrochureScreen from 'screens/brochure'
 
 export default function Brochure() {
     return (
-        <Layout>
+        <Layout title={'Brochure'}>
             <BrochureScreen title="Brochure" />
         </Layout>
     )

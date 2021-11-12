@@ -175,13 +175,13 @@ export default css`
         }
     }
 
-    @media screen and (max-height: 630px) {
+    @media screen and (max-height: 630px) and (max-width: 1024px) {
         .hero-text {
             padding: 22% 16px 0 16px;
         }
     }
 
-    @media screen and (max-height: 640px) and (min-width: 400px) {
+    @media screen and (max-height: 640px) and (max-width: 1024px) {
         .hero-wrapper.is-mobile {
             background-position: center 70%;
         }

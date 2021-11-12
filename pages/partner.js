@@ -23,11 +23,7 @@ export default function Partner() {
     }, [])
 
     return (
-        <Layout
-            isWebView={isWebView}
-            title="Vida - Our Partners"
-            headerWithBg={true}
-        >
+        <Layout isWebView={isWebView} title="Our Partners" headerWithBg={true}>
             <PartnerScreen />
         </Layout>
     )

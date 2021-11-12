@@ -10,7 +10,7 @@ export default css`
 
     .content {
         font-family: 'Museo', sans-serif;
-        font-size: 36px;
+        font-size: 30px;
         line-height: 1.33;
         position: relative;
     }
@@ -18,6 +18,7 @@ export default css`
     .content :global(span) {
         cursor: pointer;
         transition: color 0.3s ease-in-out;
+        white-space: nowrap;
     }
 
     .animation-wrapper {
@@ -48,9 +49,14 @@ export default css`
         /* transform: translate3d(0, 144px, 0); */
     }
 
+    @media screen and (max-width: 1366px) {
+        .wrapper {
+            padding: 8%;
+        }
+    }
     @media screen and (max-width: 1180px) {
         .wrapper {
-            padding: 10%;
+            padding: 8%;
         }
 
         .content {
