@@ -11,7 +11,7 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          GCS_BUCKET: cdn.haloida.dev/vida-landing-assets/
+          GCS_BUCKET: cdn.haloida.dev/vida-landing-assets
           IMAGE_NAME: gcr.io/${{ secrets.DEV_GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
         steps:
           - name: Clone repository
@@ -58,7 +58,7 @@ jobs:
 
           - name: Deploy Assets
             run: |-
-                gsutil -m rsync -R dist gs://$GCS_BUCKET
+              gsutil -m rsync -R build gs://$GCS_BUCKET
 
 # on:
 #     # trigger deployment on every push to main branch
