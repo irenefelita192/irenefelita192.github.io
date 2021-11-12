@@ -10,7 +10,7 @@ COPY package.json yarn.lock next.config.js public ./
 COPY . ./
 # RUN yarn build
 
-RUN yarn --development
+# RUN yarn --development
 RUN ls
 
 # RUN ls ./
@@ -24,4 +24,4 @@ EXPOSE 3000
 
 ENTRYPOINT [ "yarn" ]
 
-CMD [ "dev" ]
+CMD [ "start" ]
