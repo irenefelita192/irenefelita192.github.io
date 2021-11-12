@@ -64,9 +64,9 @@ export default function FooterDesktop({ data }) {
                                 </div>
                             </div>
 
-                            <div className="footer-version">
+                            {/* <div className="footer-version">
                                 v{process.env.packageVersion}
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="second-column">

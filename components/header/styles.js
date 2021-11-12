@@ -552,13 +552,13 @@ export default css`
         box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.25);
     }
 
-    .footer-version {
+    /* .footer-version {
         font-size: 8px;
         line-height: 1;
         margin: 0 24px 10px;
         color: ${theme.colors.gray};
         text-align: center;
-    }
+    } */
 
     @media screen and (max-width: 1360px) {
         .navbar {
@@ -837,7 +837,7 @@ export default css`
 
         .tnc-link {
             font-family: 'Inter', sans-serif;
-            margin: 0 37px 24px;
+            margin: 0 24px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;

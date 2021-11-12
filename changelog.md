@@ -5,8 +5,6 @@
 -   Change CI deployment to generate env from .env.sample to handle read env from build time
 -   Change docker file to use `yarn build` then `yarn start` for production
 
--   Add version on footer (desktop) and sidebar menu bottom (mobile)
-
 ### [v0.2.0]
 
 > 2021-11-11

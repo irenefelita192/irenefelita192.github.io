@@ -375,9 +375,9 @@ export default function Header({ activeId, headerWithBg }) {
                                                     data={footerData}
                                                 />
                                             </div>
-                                            <div className="footer-version">
+                                            {/* <div className="footer-version">
                                                 v{process.env.packageVersion}
-                                            </div>
+                                            </div> */}
                                             <div className="copyright">
                                                 <span>
                                                     {footerData.copyrightText}
