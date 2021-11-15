@@ -18,7 +18,11 @@ export default function PaginationGoTo({ onClick, isDesktop, textLang }) {
             </div>
             <div className="wrapper-goto">
                 <input
-                    placeholder="page number"
+                    placeholder={
+                        textLang
+                            ? textLang['pageNumberPlaceholder']
+                            : 'page number'
+                    }
                     onChange={(e) => {
                         handleChange(e)
                     }}

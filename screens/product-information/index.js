@@ -1311,7 +1311,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     <h2>Simulasi</h2>
 
                     <h3>Data Calon Pemegang Polis</h3>
-                    <table>
+                    <table className="table-full">
                         <tbody>
                             <tr>
                                 <th>Nama Pemegang Polis</th>
@@ -1342,7 +1342,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     </table>
 
                     <h3>Data Calon Tertanggung</h3>
-                    <table>
+                    <table className="table-full">
                         <tbody>
                             <tr>
                                 <th>Nama Tertanggung</th>

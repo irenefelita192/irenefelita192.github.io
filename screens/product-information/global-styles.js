@@ -61,6 +61,7 @@ export default css.global`
 
     tbody th {
         width: 40%;
+        text-align: left !important;
     }
 
     th {
@@ -78,8 +79,9 @@ export default css.global`
         vertical-align: text-top;
     }
 
-    .table-full th {
+    .table-full tbody th {
         width: 20%;
+        text-align: left;
     }
 
     .table-nested th {
@@ -213,13 +215,14 @@ export default css.global`
         margin-right: 0;
     }
 
-    .table-flex th {
+    .table-flex tbody th {
         height: 40px;
-        text-align: center;
+        text-align: left;
     }
 
-    .table-justify th {
+    .table-justify thead th {
         width: 25%;
+        text-align: left;
     }
 
     .table-definition,
@@ -256,6 +259,10 @@ export default css.global`
     }
 
     @media screen and (max-width: 640px) {
+        .table-full tbody th {
+            width: auto;
+        }
+
         .table-fit-mobile thead td {
             width: 50%;
         }

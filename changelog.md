@@ -1,3 +1,10 @@
+### [v1.0.1]
+
+> 2021-11-15
+
+-   Fix partner page input placeholder `page number` read bahasa from strapi
+-   Fix table first column should be left aligned in safari (ios) on benefit table and product information page
+
 ### [v1.0.0]
 
 > 2021-11-12
