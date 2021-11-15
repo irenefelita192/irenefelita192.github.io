@@ -19,6 +19,7 @@ export default function Layout({
     headerWithBg = false,
     activeId = '',
 }) {
+    console.log('version', process?.env?.packageVersion ?? '')
     const temTitle = 'Vida | Healthcare Your Way',
         temDesc = 'Designed to always be with you & your loved ones. '
     const seoTitle = title ? `Vida | ${title}` : temTitle,
@@ -90,9 +91,9 @@ export default function Layout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            // gtag('config', '${gaId}', {
-            //   page_path: window.location.pathname,
-            // });
+            gtag('config', '${gaId}', {
+              page_path: window.location.pathname,
+            });
           `,
                     }}
                 />
