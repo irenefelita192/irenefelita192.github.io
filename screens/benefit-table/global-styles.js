@@ -82,8 +82,8 @@ export default css.global`
         width: 20%;
     }
 
-    .table-nested th {
-        text-align: center;
+    .table-nested tbody th {
+        text-align: left;
         // font-size: 20px;
     }
 
