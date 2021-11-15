@@ -19,6 +19,7 @@ export default function Layout({
     headerWithBg = false,
     activeId = '',
 }) {
+    console.log('version', process?.env?.packageVersion ?? '')
     const temTitle = 'Vida | Healthcare Your Way',
         temDesc = 'Designed to always be with you & your loved ones. '
     const seoTitle = title ? `Vida | ${title}` : temTitle,
