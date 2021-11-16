@@ -17,6 +17,7 @@ export default css`
         padding: 0 20%;
         background-color: #00d1c5;
         position: relative;
+        min-height: 100vh;
     }
 
     .hero-image {
@@ -379,6 +380,7 @@ export default css`
         padding: 0;
         line-height: 0;
         background-color: #f4f1ee;
+        min-height: 100vh;
     }
 
     .second-text {
