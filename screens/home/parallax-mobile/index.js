@@ -255,6 +255,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                         src={`${assetDomain}${
                             sectionOne?.familyImageMobile?.url ?? ''
                         }`}
+                        alt="family-image"
                     />
                     <div
                         id="icon-inpatient"
@@ -274,6 +275,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                                 src={`${assetDomain}${
                                     sectionOne?.inpatientIcon?.url ?? ''
                                 }`}
+                                alt="inpatient-icon"
                             />
                         </div>
                     </div>
@@ -295,6 +297,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                                 src={`${assetDomain}${
                                     sectionOne?.dentalIcon?.url ?? ''
                                 }`}
+                                alt="dental-icon"
                             />
                         </div>
                     </div>
@@ -316,6 +319,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                                 src={`${assetDomain}${
                                     sectionOne?.maternityIcon?.url ?? ''
                                 }`}
+                                alt="maternity-icon"
                             />
                         </div>
                     </div>
@@ -334,12 +338,10 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             }}
                         >
                             <img
-                                // style={{
-                                //     width: `${iconHeight.outpatient}px`,
-                                // }}
                                 src={`${assetDomain}${
                                     sectionOne?.outpatientIcon?.url ?? ''
                                 }`}
+                                alt="outpatient-icon"
                             />
                         </div>
                     </div>
@@ -367,6 +369,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                         src={`${assetDomain}${
                             sectionTwo?.backgroundImageMobile?.url ?? ''
                         }`}
+                        alt="living-room-image"
                     />
 
                     <img
@@ -375,6 +378,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                         src={`${assetDomain}${
                             sectionTwo?.familyImage?.url ?? ''
                         }`}
+                        alt="family-revolve-image"
                     />
                 </div>
             )}

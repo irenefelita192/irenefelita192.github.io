@@ -5,7 +5,7 @@ import { constant } from './constant'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
+export default function HomeScreen({ sectionOne, sectionTwo }) {
     if (!sectionOne) return <></>
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [isLandscape, setIsLandscape] = useState(false)
@@ -286,7 +286,10 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                     </div>
                 </div>
                 <div className="hero-image" id="hero-image">
-                    <img src={`${assetDomain}${familyImg}`} />
+                    <img
+                        src={`${assetDomain}${familyImg}`}
+                        alt="family-image"
+                    />
                     {/* <div id="hero-icon-all" className="hero-icon-all"> */}
                     <div
                         id="icon-inpatient"
@@ -309,6 +312,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                                 src={`${assetDomain}${
                                     sectionOne?.inpatientIcon?.url ?? ''
                                 }`}
+                                alt="inpatient-icon"
                             />
                         </div>
                     </div>
@@ -333,6 +337,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                                 src={`${assetDomain}${
                                     sectionOne?.maternityIcon?.url ?? ''
                                 }`}
+                                alt="maternity-icon"
                             />
                         </div>
                     </div>
@@ -357,6 +362,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                                 src={`${assetDomain}${
                                     sectionOne?.outpatientIcon?.url ?? ''
                                 }`}
+                                alt="outpatient-icon"
                             />
                         </div>
                     </div>
@@ -382,6 +388,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                                 src={`${assetDomain}${
                                     sectionOne?.dentalIcon?.url ?? ''
                                 }`}
+                                alt="dental-icon"
                             />
                         </div>
                     </div>
@@ -403,6 +410,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                         src={`${assetDomain}${
                             sectionTwo?.backgroundImage?.url ?? ''
                         }`}
+                        alt="living-room-image"
                     />
 
                     <img
@@ -411,6 +419,7 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                         src={`${assetDomain}${
                             sectionTwo?.familyImage?.url ?? ''
                         }`}
+                        alt="family-revolve-image"
                     />
                 </div>
             )}
