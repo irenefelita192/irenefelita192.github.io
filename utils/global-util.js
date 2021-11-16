@@ -14,9 +14,10 @@ export const getCookie = (cname) => {
     return ''
 }
 
-// export const getCookieLocale = (req, res) => {
-//     const cookies = new Cookies(req, res),
-//         locale = cookies.get('locale')
+import Cookies from 'cookies'
+export const getCookieLocale = (req, res) => {
+    const cookies = new Cookies(req, res),
+        lang = cookies.get('lang')
 
-//     return locale
-// }
+    return lang
+}

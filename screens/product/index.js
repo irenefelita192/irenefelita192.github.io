@@ -10,42 +10,48 @@ import SectionThree from './section-three'
 import OtherProducts from './other-products'
 import BannerCTA from 'components/banner-cta'
 
-export default function Product() {
-    const [productData, setProductData] = useState(null)
+export default function Product({ productData }) {
+    // const [productData, setProductData] = useState(null)
     const [isDesktop, setIsDesktop] = useState(true)
-    useAsyncEffect(async (isMounted) => {
-        let langId,
-            productName = ''
-        if (process.browser) {
-            langId = getCookie('lang')
-            const pathname = window.location.pathname,
-                productSlug = pathname.replace('/product/', '')
-            productName =
-                productSlug.lastIndexOf('/') == productSlug.length - 1
-                    ? productSlug.slice(0, productSlug.lastIndexOf('/'))
-                    : productSlug
-            if (window.innerWidth < window.innerHeight) {
-                setIsDesktop(false)
-            }
-        }
+    // useAsyncEffect(async (isMounted) => {
+    //     let langId,
+    //         productName = ''
+    //     if (process.browser) {
+    //         langId = getCookie('lang')
+    //         const pathname = window.location.pathname,
+    //             productSlug = pathname.replace('/product/', '')
+    //         productName =
+    //             productSlug.lastIndexOf('/') == productSlug.length - 1
+    //                 ? productSlug.slice(0, productSlug.lastIndexOf('/'))
+    //                 : productSlug
+    //         if (window.innerWidth < window.innerHeight) {
+    //             setIsDesktop(false)
+    //         }
+    //     }
 
-        const prdDt = await getProductData(productName, langId)
+    //     const prdDt = await getProductData(productName, langId)
 
-        if (!isMounted()) return
+    //     if (!isMounted()) return
 
-        setProductData(prdDt)
-    }, [])
+    //     setProductData(prdDt)
+    // }, [])
 
     useEffect(() => {
-        if (productData && productData.SectionOne) {
-            if (typeof gtag !== 'undefined') {
-                const gaId = process.env.config?.gaId ?? ''
-                gtag('config', `${gaId}`, {
-                    page_title: `Vida | ${productData.SectionOne?.title ?? ''}`,
-                })
-            }
+        if (window && window.innerWidth < window.innerHeight) {
+            setIsDesktop(false)
         }
-    }, [productData])
+    }, [])
+
+    // useEffect(() => {
+    //     if (productData && productData.SectionOne) {
+    //         if (typeof gtag !== 'undefined') {
+    //             const gaId = process.env.config?.gaId ?? ''
+    //             gtag('config', `${gaId}`, {
+    //                 page_title: `Vida | ${productData.SectionOne?.title ?? ''}`,
+    //             })
+    //         }
+    //     }
+    // }, [productData])
 
     if (!productData) return <Loader />
 

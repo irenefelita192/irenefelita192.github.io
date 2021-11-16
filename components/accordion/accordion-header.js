@@ -19,7 +19,7 @@ export default function AccordionHeader({ id, children, onClick }) {
             />
             <label
                 className={`accordion-label ${isOpen ? 'is-open' : ''}`}
-                for={id}
+                htmlFor={id}
             >
                 {children}
             </label>

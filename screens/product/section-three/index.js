@@ -86,7 +86,8 @@ export default function SectionThree({ data, isDesktop }) {
 
     const handleScroll = (e) => {
         let scrollTop = window.pageYOffset,
-            containerStart = document.getElementById('container').offsetTop,
+            containerStart =
+                document.getElementById('container')?.offsetTop ?? 0,
             currentScroll = scrollTop + screenHeight,
             scrollQ = currentScroll - containerStart //scroll start from outer benefit container
 
@@ -96,14 +97,16 @@ export default function SectionThree({ data, isDesktop }) {
             isScrollDown = false
         }
 
-        const groupPos = document.getElementById('benefit-group-1').offsetTop,
+        const groupPos =
+                document.getElementById('benefit-group-1')?.offsetTop ?? 0,
             groupHeight =
-                document.getElementById('benefit-group-1').offsetHeight,
+                document.getElementById('benefit-group-1')?.offsetHeight ?? 0,
             groupVisiblePos = groupPos + groupHeight / 2
 
-        const groupPos2 = document.getElementById('benefit-group-2').offsetTop,
+        const groupPos2 =
+                document.getElementById('benefit-group-2')?.offsetTop ?? 0,
             groupHeight2 =
-                document.getElementById('benefit-group-2').offsetHeight,
+                document.getElementById('benefit-group-2')?.offsetHeight ?? 0,
             groupVisiblePos2 = groupPos2 + groupHeight2 / 2
 
         //start animation when benefit group visibility on viewport meet this condiiton
@@ -114,13 +117,14 @@ export default function SectionThree({ data, isDesktop }) {
                 pPosY = benefitPos['benefit-group-1'] * 0.1,
                 pPosX = benefitPos['benefit-group-1'] * 0.05
 
-            document.getElementById(
-                'benefit-1'
-            ).style.transform = `translate3d(0,-${qPosY}px,0)`
+            const benefitEl = document.getElementById('benefit-1')
+            if (benefitEl)
+                benefitEl.style.transform = `translate3d(0,-${qPosY}px,0)`
 
-            document.getElementById(
-                'benefit-image-1'
-            ).style.transform = `translate3d(${pPosX}px,-${pPosY}px,0`
+            const benefitImgEl = document.getElementById('benefit-image-1')
+
+            if (benefitImgEl)
+                benefitImgEl.style.transform = `translate3d(${pPosX}px,-${pPosY}px,0`
         }
 
         if (scrollQ >= groupVisiblePos2) {
@@ -128,15 +132,14 @@ export default function SectionThree({ data, isDesktop }) {
             let qPosY = benefitPos['benefit-group-2'] * 0.15,
                 pPosY = benefitPos['benefit-group-2'] * 0.1,
                 pPosX = benefitPos['benefit-group-2'] * 0.05
+            const benefitEl = document.getElementById('benefit-2')
+            if (benefitEl) {
+                benefitEl.style.transform = `translate3d(0,-${qPosY}px,0)`
+            }
 
-            document.getElementById(
-                'benefit-2'
-            ).style.transform = `translate3d(0,-${qPosY}px,0)`
-
-            document.getElementById(
-                'benefit-image-2'
-            ).style.transform = `translate3d(-${pPosX}px,-${pPosY}px,0`
-            //kalau sebelah kanan position X axis nya minus
+            const benefitImgEl = document.getElementById('benefit-image-2')
+            if (benefitImgEl)
+                benefitImgEl.style.transform = `translate3d(-${pPosX}px,-${pPosY}px,0`
         }
 
         prevScroll = scrollTop
