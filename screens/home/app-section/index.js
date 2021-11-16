@@ -72,12 +72,14 @@ export default function AppSection({ data, isDesktop }) {
                             src={`${assetDomain}${
                                 data?.circleImage?.url ?? ''
                             }`}
+                            alt={'circle'}
                         />
                         <img
                             className="circle circle-after"
                             src={`${assetDomain}${
                                 data?.circleImageAfter?.url ?? ''
                             }`}
+                            alt={'circle'}
                         />
                         <img
                             className="hp-image"
@@ -90,6 +92,7 @@ export default function AppSection({ data, isDesktop }) {
                                           data?.handphoneImageMobile?.url ?? ''
                                       }`
                             }
+                            alt={'hp-image'}
                         />
                     </div>
                 </div>

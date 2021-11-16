@@ -68,7 +68,7 @@ export default function HomeScreen({ homeData }) {
 
             setTimeout(() => {
                 setIsLoaded(true)
-            }, 500)
+            }, 200)
 
             const urlParams = new URLSearchParams(
                     window?.location?.search ?? ''

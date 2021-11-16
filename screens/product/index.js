@@ -12,6 +12,7 @@ import BannerCTA from 'components/banner-cta'
 
 export default function Product({ productData }) {
     // const [productData, setProductData] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
     const [isDesktop, setIsDesktop] = useState(true)
     // useAsyncEffect(async (isMounted) => {
     //     let langId,
@@ -42,6 +43,14 @@ export default function Product({ productData }) {
         }
     }, [])
 
+    useEffect(() => {
+        if (productData) {
+            setTimeout(() => {
+                setIsLoaded(true)
+            }, 200)
+        }
+    }, [productData])
+
     // useEffect(() => {
     //     if (productData && productData.SectionOne) {
     //         if (typeof gtag !== 'undefined') {
@@ -53,7 +62,7 @@ export default function Product({ productData }) {
     //     }
     // }, [productData])
 
-    if (!productData) return <Loader />
+    if (!productData || !isLoaded) return <Loader />
 
     return (
         <>
