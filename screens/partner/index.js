@@ -14,37 +14,43 @@ const Table = dynamic(() => import('./table'), {
 })
 const TableMobile = dynamic(() => import('./table-mobile'), { ssr: false })
 
-export default function Partner() {
+export default function Partner({ partnerData }) {
     const [isDesktop, setIsDesktop] = useState(true)
-    const [partnerData, setPartnerData] = useState(null)
-    useAsyncEffect(async (isMounted) => {
-        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
-            paramLocale = urlParams.get('locale')
-        let langId
+    // const [partnerData, setPartnerData] = useState(null)
+    // useAsyncEffect(async (isMounted) => {
+    //     const urlParams = new URLSearchParams(window?.location?.search ?? ''),
+    //         paramLocale = urlParams.get('locale')
+    //     let langId
+    //     if (window) {
+    //         langId = getCookie('lang')
+    //         if (window.innerWidth < window.innerHeight) {
+    //             setIsDesktop(false)
+    //         }
+    //     }
+    //     const partnerDt = await getPartnerCMS(paramLocale || langId)
+
+    //     if (!isMounted()) return
+
+    //     setPartnerData(partnerDt)
+    // }, [])
+
+    useEffect(() => {
         if (window) {
-            langId = getCookie('lang')
             if (window.innerWidth < window.innerHeight) {
                 setIsDesktop(false)
             }
         }
-        const partnerDt = await getPartnerCMS(paramLocale || langId)
 
-        if (!isMounted()) return
-
-        setPartnerData(partnerDt)
-    }, [])
-
-    useEffect(() => {
-        if (partnerData && partnerData.header) {
-            if (typeof gtag !== 'undefined') {
-                const gaId = process.env.config?.gaId ?? ''
-                gtag('config', `${gaId}`, {
-                    page_title: `Vida | Partner ${
-                        partnerData.header?.title ?? ''
-                    }`,
-                })
-            }
-        }
+        // if (partnerData && partnerData.header) {
+        //     if (typeof gtag !== 'undefined') {
+        //         const gaId = process.env.config?.gaId ?? ''
+        //         gtag('config', `${gaId}`, {
+        //             page_title: `Vida | Partner ${
+        //                 partnerData.header?.title ?? ''
+        //             }`,
+        //         })
+        //     }
+        // }
     }, [partnerData])
     if (!partnerData) return <Loader />
     return (

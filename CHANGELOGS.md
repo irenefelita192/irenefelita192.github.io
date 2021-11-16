@@ -1,3 +1,9 @@
+### [v1.1.0]
+
+> 2021-11-16
+
+-   Read SEO title, description, and keywords from strapi for home, product, and download page
+
 ### [v1.0.1]
 
 > 2021-11-15

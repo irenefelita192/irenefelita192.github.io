@@ -12,8 +12,8 @@ import ProductSectionMobile from './product-section-mobile'
 import AppSection from './app-section'
 import BannerCTA from 'components/banner-cta'
 
-export default function HomeScreen() {
-    const [homeData, setHomeData] = useState(null)
+export default function HomeScreen({ homeData }) {
+    // const [homeData, setHomeData] = useState(null)
 
     const [isDesktop, setIsDesktop] = useState(true)
     const [isTablet, setIsTablet] = useState(false)
@@ -39,23 +39,23 @@ export default function HomeScreen() {
                 }
             }
         }
-        const homeDt = await getHomeData(langId)
+        // const homeDt = await getHomeData(langId)
 
         if (!isMounted()) return
 
-        setHomeData(homeDt)
+        // setHomeData(homeDt)
     }, [])
 
-    useEffect(() => {
-        if (homeData && homeData.SectionOne) {
-            if (typeof gtag !== 'undefined') {
-                const gaId = process.env.config?.gaId ?? ''
-                gtag('config', `${gaId}`, {
-                    page_title: `Vida | ${homeData.SectionOne?.title ?? ''}`,
-                })
-            }
-        }
-    }, [homeData])
+    // useEffect(() => {
+    //     if (homeData && homeData.SectionOne) {
+    //         if (typeof gtag !== 'undefined') {
+    //             const gaId = process.env.config?.gaId ?? ''
+    //             gtag('config', `${gaId}`, {
+    //                 page_title: `Vida | ${homeData.SectionOne?.title ?? ''}`,
+    //             })
+    //         }
+    //     }
+    // }, [homeData])
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window?.location?.search ?? ''),
