@@ -14,7 +14,7 @@ import BannerCTA from 'components/banner-cta'
 
 export default function HomeScreen({ homeData }) {
     // const [homeData, setHomeData] = useState(null)
-
+    const [isLoaded, setIsLoaded] = useState(false)
     const [isDesktop, setIsDesktop] = useState(true)
     const [isTablet, setIsTablet] = useState(false)
 
@@ -65,6 +65,11 @@ export default function HomeScreen({ homeData }) {
                     setIsTablet(true)
                 }
             }
+
+            setTimeout(() => {
+                setIsLoaded(true)
+            }, 500)
+
             const urlParams = new URLSearchParams(
                     window?.location?.search ?? ''
                 ),
@@ -87,7 +92,7 @@ export default function HomeScreen({ homeData }) {
         }
     }, [homeData, isDesktop])
 
-    if (!homeData) return <Loader />
+    if (!homeData || !isLoaded) return <Loader />
 
     return (
         <div>
