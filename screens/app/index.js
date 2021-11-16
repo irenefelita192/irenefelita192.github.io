@@ -24,6 +24,7 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 // }
 export default function App({ appData }) {
     // const [appData, setAppData] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [isDesktop, setIsDesktop] = useState(true)
@@ -45,21 +46,30 @@ export default function App({ appData }) {
 
     //     if (!isMounted()) return
 
-    //     setAppData(appDt)
+    //     setAppData(appD)
     // }, [])
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
-            scrollParam = urlParams.get('pos')
-        if (appData && scrollParam) {
+        if (appData) {
             setTimeout(() => {
-                const offsetTop = document.getElementById(scrollParam).offsetTop
-                window.scrollTo({
-                    top: offsetTop,
-                    left: 0,
-                    behavior: 'smooth',
-                })
-            }, 500)
+                setIsLoaded(true)
+            }, 200)
+
+            const urlParams = new URLSearchParams(
+                    window?.location?.search ?? ''
+                ),
+                scrollParam = urlParams.get('pos')
+            if (scrollParam) {
+                setTimeout(() => {
+                    const offsetTop =
+                        document.getElementById(scrollParam).offsetTop
+                    window.scrollTo({
+                        top: offsetTop,
+                        left: 0,
+                        behavior: 'smooth',
+                    })
+                }, 500)
+            }
         }
 
         // if (appData && appData.SectionOne) {
@@ -90,7 +100,7 @@ export default function App({ appData }) {
         }
     }, [])
 
-    if (!appData) return <Loader />
+    if (!appData || !isLoaded) return <Loader />
     const { SectionOne: heroData } = appData
     let heroImage = `${assetDomain}${heroData?.image?.url ?? ''}`
     if (isDesktop) {

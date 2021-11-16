@@ -1,3 +1,10 @@
+### [v1.1.1]
+
+> 2021-11-16
+
+-   Fix first paint pages to add time to load content
+-   Remove yoastSEOPlugin
+
 ### [v1.1.0]
 
 > 2021-11-16

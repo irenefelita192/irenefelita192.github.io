@@ -100,14 +100,14 @@ export default function Layout({
                     }}
                 />
 
-                <script
+                {/* <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
                         __html: markup
                             ? JSON.stringify(markup)
                             : JSON.stringify(yoastSEOPlugin),
                     }}
-                />
+                /> */}
 
                 <script src={`${url}/js/modernizr-custom.js`} />
 
