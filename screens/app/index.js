@@ -22,31 +22,31 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 //     imageMobileWebp: { url: '/images/app/app-hero-mobile.webp' },
 //     imageWebp: { url: '/images/app/app-hero.webp' },
 // }
-export default function App() {
-    const [appData, setAppData] = useState(null)
+export default function App({ appData }) {
+    // const [appData, setAppData] = useState(null)
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [isDesktop, setIsDesktop] = useState(true)
     let headerHeight = 80
 
-    useAsyncEffect(async (isMounted) => {
-        let langId
-        if (window) {
-            langId = getCookie('lang')
+    // useAsyncEffect(async (isMounted) => {
+    //     let langId
+    //     if (window) {
+    //         langId = getCookie('lang')
 
-            if (window.innerWidth < window.innerHeight) {
-                setIsDesktop(false)
-                // if (window.innerWidth >= 500) {
-                //     setIsTablet(true)
-                // }
-            }
-        }
-        const appDt = await getAppData(langId)
+    //         if (window.innerWidth < window.innerHeight) {
+    //             setIsDesktop(false)
+    //             // if (window.innerWidth >= 500) {
+    //             //     setIsTablet(true)
+    //             // }
+    //         }
+    //     }
+    //     const appDt = await getAppData(langId)
 
-        if (!isMounted()) return
+    //     if (!isMounted()) return
 
-        setAppData(appDt)
-    }, [])
+    //     setAppData(appDt)
+    // }, [])
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window?.location?.search ?? ''),
@@ -62,14 +62,14 @@ export default function App() {
             }, 500)
         }
 
-        if (appData && appData.SectionOne) {
-            if (typeof gtag !== 'undefined') {
-                const gaId = process.env.config?.gaId ?? ''
-                gtag('config', `${gaId}`, {
-                    page_title: `Vida | ${appData.SectionOne?.title ?? ''}`,
-                })
-            }
-        }
+        // if (appData && appData.SectionOne) {
+        //     if (typeof gtag !== 'undefined') {
+        //         const gaId = process.env.config?.gaId ?? ''
+        //         gtag('config', `${gaId}`, {
+        //             page_title: `Vida | ${appData.SectionOne?.title ?? ''}`,
+        //         })
+        //     }
+        // }
     }, [appData])
 
     useEffect(() => {

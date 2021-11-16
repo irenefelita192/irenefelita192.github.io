@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import DOMPurify from 'dompurify'
+import DOMPurify from 'isomorphic-dompurify'
 import('intersection-observer')
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',

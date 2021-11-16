@@ -8,6 +8,7 @@ const assetDomain = process.env.config?.baseEndpoint ?? '',
 export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
     if (!sectionOne) return <></>
     const [isWebpSupport, setIsWebpSupport] = useState(true)
+    const [isLandscape, setIsLandscape] = useState(false)
     const [heroHeight, setHeroHeight] = useState(0)
     const [iconHeight, setIconHeight] = useState({
         inpatient: 0,
@@ -54,6 +55,10 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
                 width: (35 / 100) * window.innerWidth,
                 height: (21 / 100) * window.innerWidth,
             })
+
+            if (window.innerWidth < 1024 && window.innerHeight < 450) {
+                setIsLandscape(true)
+            }
         }
     }, [])
 
@@ -243,23 +248,25 @@ export default function HomeScreen({ sectionOne, sectionTwo, isPortrait }) {
         familyImg = `${sectionOne?.familyImage?.url ?? ''}`
     }
 
-    if (window) {
-        if (window.innerWidth < 1024 && window.innerHeight < 450) {
-            familyImg = `${
-                sectionOne?.familyImageWebp?.formats?.medium?.url ?? ''
-            }`
-            if (!sectionOne.familyImage || !isWebpSupport) {
-                familyImg = `${
-                    sectionOne?.familyImage?.formats?.medium?.url ?? ''
-                }`
-            }
+    // if (window) {
+    //     if (window.innerWidth < 1024 && window.innerHeight < 450) {
+    //         familyImg = `${
+    //             sectionOne?.familyImageWebp?.formats?.medium?.url ?? ''
+    //         }`
+    //         if (!sectionOne.familyImage || !isWebpSupport) {
+    //             familyImg = `${
+    //                 sectionOne?.familyImage?.formats?.medium?.url ?? ''
+    //             }`
+    //         }
+    //     }
+    // }
+
+    if (isLandscape) {
+        familyImg = `${sectionOne?.familyImageWebp?.formats?.medium?.url ?? ''}`
+        if (!sectionOne.familyImage || !isWebpSupport) {
+            familyImg = `${sectionOne?.familyImage?.formats?.medium?.url ?? ''}`
         }
     }
-    // if (isPortrait) {
-    //     heroImg = header.mobileImage
-    //         ? `${assetDomain}${header.mobileImage.url}`
-    //         : ''
-    // }
 
     return (
         <>

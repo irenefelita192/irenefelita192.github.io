@@ -43,6 +43,7 @@ export default function SectionOne({ data, isDesktop }) {
             <div
                 className={`hero-wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
+                    backgroundColor: data?.bgColor ?? '',
                     height: `${heroHeight}px`,
                     backgroundImage: `url(${heroImage})`,
                 }}
