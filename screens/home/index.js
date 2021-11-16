@@ -18,33 +18,33 @@ export default function HomeScreen({ homeData }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [isTablet, setIsTablet] = useState(false)
 
-    useAsyncEffect(async (isMounted) => {
-        let langId
-        if (window) {
-            langId = getCookie('lang')
+    // useAsyncEffect(async (isMounted) => {
+    //     let langId
+    //     if (window) {
+    //         langId = getCookie('lang')
 
-            // if (
-            //     window.innerWidth < window.innerHeight ||
-            //     (window.innerHeight < 450 && window.innerWidth < 950)
-            // ) {
-            //     setIsDesktop(false)
-            //     if (window.innerWidth >= 600 && window.innerHeight > 600) {
-            //         setIsTablet(true)
-            //     }
-            // }
-            if (window.innerWidth < window.innerHeight) {
-                setIsDesktop(false)
-                if (window.innerWidth >= 500) {
-                    setIsTablet(true)
-                }
-            }
-        }
-        // const homeDt = await getHomeData(langId)
+    //         // if (
+    //         //     window.innerWidth < window.innerHeight ||
+    //         //     (window.innerHeight < 450 && window.innerWidth < 950)
+    //         // ) {
+    //         //     setIsDesktop(false)
+    //         //     if (window.innerWidth >= 600 && window.innerHeight > 600) {
+    //         //         setIsTablet(true)
+    //         //     }
+    //         // }
+    //         if (window.innerWidth < window.innerHeight) {
+    //             setIsDesktop(false)
+    //             if (window.innerWidth >= 500) {
+    //                 setIsTablet(true)
+    //             }
+    //         }
+    //     }
+    //     // const homeDt = await getHomeData(langId)
 
-        if (!isMounted()) return
+    //     if (!isMounted()) return
 
-        // setHomeData(homeDt)
-    }, [])
+    //     // setHomeData(homeDt)
+    // }, [])
 
     // useEffect(() => {
     //     if (homeData && homeData.SectionOne) {
@@ -58,21 +58,32 @@ export default function HomeScreen({ homeData }) {
     // }, [homeData])
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window?.location?.search ?? ''),
-            scrollParam = urlParams.get('pos')
+        if (homeData) {
+            if (window.innerWidth < window.innerHeight) {
+                setIsDesktop(false)
+                if (window.innerWidth >= 500) {
+                    setIsTablet(true)
+                }
+            }
+            const urlParams = new URLSearchParams(
+                    window?.location?.search ?? ''
+                ),
+                scrollParam = urlParams.get('pos')
 
-        //just non desktop only
-        //desktop scroll func is after image load
-        //inside   <ParallaxDesktop/> component
-        if (!isDesktop && homeData && scrollParam) {
-            setTimeout(() => {
-                const offsetTop = document.getElementById(scrollParam).offsetTop
-                window.scrollTo({
-                    top: offsetTop - 40,
-                    left: 0,
-                    behavior: 'smooth',
-                })
-            }, 500)
+            //just non desktop only
+            //desktop scroll func is after image load
+            //inside   <ParallaxDesktop/> component
+            if (window.innerWidth < window.innerHeight && scrollParam) {
+                setTimeout(() => {
+                    const offsetTop =
+                        document.getElementById(scrollParam).offsetTop
+                    window.scrollTo({
+                        top: offsetTop - 40,
+                        left: 0,
+                        behavior: 'smooth',
+                    })
+                }, 500)
+            }
         }
     }, [homeData, isDesktop])
 
