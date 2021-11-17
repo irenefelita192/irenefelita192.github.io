@@ -135,7 +135,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     <h2>Risiko</h2>
                     <h3>Risiko Operasional</h3>
                     <p>
-                        Suatu risiko dimana kemungkinan adanya ketidaknyamanan
+                        Suatu risiko di mana kemungkinan adanya ketidaknyamanan
                         dan/atau kerugian yang disebabkan karena tidak
                         berjalannya atau gagalnya proses internal, manusia dan
                         sistem, serta oleh peristiwa eksternal.
@@ -1489,7 +1489,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             Sebagai catatan, premi juga dapat berubah seiring
                             waktu untuk menutupi biaya manfaat kesehatan yang
                             disebabkan dengan meningkatnya biaya medis. Terdapat
-                            tiga asumsi dimana biaya medis mengalami kenaikan
+                            tiga asumsi di mana biaya medis mengalami kenaikan
                             sebesar 0%, 10%, dan 15%. Proyeksi diatas tidak
                             mewakili batas potensi perubahan premi dan kenaikan
                             lebih tinggi dari 15%.
@@ -1765,7 +1765,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     <p>
                                         Periode tertentu yang mulai dihitung
                                         sejak tanggal berlakunya polis, dan
-                                        merupakan periode dimana pemegang polis
+                                        merupakan periode di mana pemegang polis
                                         mempelajari dan memastikan bahwa isi
                                         dari polis yang diterbitkan tersebut
                                         telah sesuai dengan keinginan dan
@@ -1777,10 +1777,10 @@ export default function ProductInfoScreen({ isWebView }) {
                                     <strong>Masa tunggu </strong>
                                     <p>
                                         {' '}
-                                        Jumlah waktu dimana tertanggung memiliki
-                                        polis yang sama sebelum mereka dapat
-                                        mengklaim manfaat tersebut. Tidak ada
-                                        manfaat yang dibayarkan untuk setiap
+                                        Jumlah waktu di mana tertanggung
+                                        memiliki polis yang sama sebelum mereka
+                                        dapat mengklaim manfaat tersebut. Tidak
+                                        ada manfaat yang dibayarkan untuk setiap
                                         biaya perawatan yang dikeluarkan selama
                                         masa tunggu. Ketika masa tunggu tidak
                                         ditentukan, tidak ada masa tunggu yang
