@@ -1,3 +1,11 @@
+### [v1.1.2]
+
+> 2021-11-17
+
+-   Fix wording `dimana` to `di mana`
+-   Privacy and terms footer read seo title based on language
+-   Not Found page content based on language
+
 ### [v1.1.1]
 
 > 2021-11-16

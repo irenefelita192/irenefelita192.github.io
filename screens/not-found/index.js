@@ -1,7 +1,15 @@
 import theme from 'components/global-styles/theme'
 import Footer from 'components/footer'
 
-export default function NotFoundScreen() {
+export default function NotFoundScreen({ locale }) {
+    let title = 'Sorry, the page you were trying to view does not exist',
+        description = 'Please check the URL or go back to Home.',
+        button = 'Back to Home'
+    if (locale == 'id') {
+        title = 'Maaf, halaman yang Anda coba kunjungi tidak ada'
+        description = 'Silakan periksa URL atau kembali ke Beranda.'
+        button = 'Kembali ke Beranda'
+    }
     const handleClickButton = () => {
         const domain = window.location.origin
         window.location.href = domain
@@ -10,18 +18,14 @@ export default function NotFoundScreen() {
         <>
             <div className="container">
                 <div className="content-container">
-                    <h2 className="not-found-title">
-                        We can't find the page you're looking for.
-                    </h2>
-                    <p className="not-found-description">
-                        Please check the URL or go back to Home.
-                    </p>
+                    <h2 className="not-found-title">{title}</h2>
+                    <p className="not-found-description">{description}</p>
                     <button
                         type="button"
                         className="button"
                         onClick={handleClickButton}
                     >
-                        Back To Home
+                        {button}
                     </button>
                 </div>
             </div>

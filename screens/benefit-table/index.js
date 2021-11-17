@@ -286,7 +286,7 @@ export default function BenefitTableScreen({ isWebView }) {
                                             Manfaat ini dibayarkan untuk
                                             perawatan rawat jalan dalam waktu
                                             (30) tiga puluh hari sebelum rawat
-                                            inap, dimana perawatan rawat jalan
+                                            inap, di mana perawatan rawat jalan
                                             berhubungan dengan rawat inap.
                                         </p>
                                     </th>
@@ -671,14 +671,14 @@ export default function BenefitTableScreen({ isWebView }) {
                                             style={{ paddingLeft: '30px' }}
                                         >
                                             <li>
-                                                Evakuasi dimana fasilitas medis
+                                                Evakuasi di mana fasilitas medis
                                                 setempat tidak memadai menurut
                                                 dokter yang ditunjuk oleh
                                                 penanggung;
                                             </li>
                                             <li>
                                                 Evakuasi akan dilakukan ke
-                                                fasilitas medis terdekat dimana
+                                                fasilitas medis terdekat di mana
                                                 perawatan memadai;
                                             </li>
                                             <li>
