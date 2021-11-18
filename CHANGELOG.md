@@ -1,3 +1,9 @@
+### [v1.1.3]
+
+> 2021-11-18
+
+-   Fix set cookie language to domain (.kenalvida.com)
+
 ### [v1.1.2]
 
 > 2021-11-17
