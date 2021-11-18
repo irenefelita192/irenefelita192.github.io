@@ -34,6 +34,11 @@ export default function LangPopup({ isDesktop }) {
         if (process.browser) {
             const langId = getCookie('lang')
             if (langId) setActiveLang(langId)
+            const domain = window ? window.location.host : ''
+            if (domain.indexOf('localhost') > -1) {
+            } else {
+                document.cookie = `lang=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;`
+            }
 
             document.addEventListener('click', (evt) => {
                 const navbarLang = document.getElementById('navbarLang')

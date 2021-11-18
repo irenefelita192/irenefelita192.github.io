@@ -20,6 +20,7 @@ export default function Home({ data }) {
             activeId="home"
             title={SEO?.title ?? ''}
             description={SEO?.description ?? ''}
+            keywords={SEO?.keywords ?? ''}
         >
             <HomeScreen homeData={data} />
         </Layout>
