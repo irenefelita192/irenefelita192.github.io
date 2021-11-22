@@ -54,30 +54,31 @@ export default function NotFoundScreen({ locale }) {
                     max-width: 200px;
                 }
                 .not-found-title {
-                    font-size: 21px;
+                    font-size: 32px;
                     font-weight: 600;
                     line-height: 1.3;
                     margin: 0;
                     padding: 18px 0 0 0;
                     color: ${theme.colors.black};
                     text-align: center;
+                    font-family: 'Museo', sans-serif;
                 }
                 .not-found-description {
-                    font-size: 16px;
-                    line-height: 1.5;
-                    color: ${theme.colors['vida-gray']};
+                    font-size: 18px;
+                    line-height: 1.3;
+                    color: ${theme.colors.gray};
                     margin: 0;
                     padding: 10px;
                     text-align: center;
                 }
                 .button {
+                    font-family: 'Museo', sans-serif;
                     box-sizing: border-box;
                     position: relative;
                     margin: 38.4px 0 25.6px 0;
-                    background: ${theme.colors.gold};
-                    border: 0.1px solid ${theme.colors.gold};
-                    border-radius: 60px;
-                    color: ${theme.colors['black30']};
+                    border: 1px solid ${theme.colors['vida-green']};
+                    border-radius: 16px;
+                    color: ${theme.colors['vida-green']};
                     justify-content: center;
                     align-items: center;
                     text-align: center;
@@ -92,6 +93,26 @@ export default function NotFoundScreen({ locale }) {
                 }
                 .button:hover {
                     cursor: pointer;
+                }
+
+                @media screen and (max-width: 1024px) {
+                    .container {
+                        padding: 0 120px;
+                    }
+                }
+
+                @media screen and (max-width: 450px) {
+                    .container {
+                        padding: 0 16px;
+                    }
+
+                    .not-found-title {
+                        font-size: 30px;
+                    }
+
+                    .not-found-description {
+                        font-size: 16px;
+                    }
                 }
             `}</style>
             <Footer />
