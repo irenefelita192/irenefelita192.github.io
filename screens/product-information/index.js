@@ -214,17 +214,17 @@ export default function ProductInfoScreen({ isWebView }) {
                                         Sesuai dengan limit kamar yang dipilih
                                         tertanggung:
                                         <ul className="dash">
-                                            <li>standar dua kamar </li>
+                                            <li>standar ruang 2 bed</li>
                                             <li>
-                                                standar satu kamar atau
+                                                standar kamar 1 bed atau Rp
                                                 1.000.000
                                             </li>
                                             <li>
-                                                standar satu kamar atau
-                                                5.000.000 atau
+                                                standar kamar 1 bed atau Rp
+                                                5.000.000
                                             </li>
                                             <li>
-                                                standar satu kamar atau
+                                                standar kamar 1 bed atau Rp
                                                 10.000.000
                                             </li>
                                         </ul>
@@ -1381,7 +1381,9 @@ export default function ProductInfoScreen({ isWebView }) {
                                 </tr>
                                 <tr>
                                     <th>Kamar:</th>
-                                    <td>Standar 1 kamar atau Rp.5.000.000,-</td>
+                                    <td>
+                                        Standar kamar 1 bed atau Rp 5.000.000
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Area Pertanggungan:</th>

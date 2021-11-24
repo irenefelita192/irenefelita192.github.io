@@ -2,7 +2,7 @@
 
 > 2021-11-24
 
--   Update `Table Manfaat` accomodation cost section on room terms at /benefit-table
+-   Update `Table Manfaat` accomodation cost section on room terms at /benefit-table and /product-information
 
 ### [v1.1.4]
 
