@@ -3,6 +3,7 @@
 > 2021-11-24
 
 -   Update tnc
+-   Change back /product-information content from tnc to product info
 
 ### [v1.1.3]
 
