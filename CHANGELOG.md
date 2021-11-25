@@ -1,8 +1,12 @@
 ### [v1.1.5]
 
+> 2021-11-25
+
+-   Remove /product-information-temp
+
 > 2021-11-24
 
--   Update `Table Manfaat` accomodation cost section on room terms at /benefit-table and /product-information
+-   Content: Update `Table Manfaat` accomodation cost section on room terms at /benefit-table and /product-information
 
 ### [v1.1.4]
 
