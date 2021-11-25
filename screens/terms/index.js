@@ -1070,7 +1070,14 @@ export default function TermsScreen({ isWebView }) {
                                         otomatis untuk pembayaran premi
                                         tersebut. Pembayaran premi dinyatakan
                                         lunas apabila premi telah diterima atau
-                                        masuk dalam rekening Penanggung.
+                                        masuk dalam rekening Penanggung. Premi
+                                        untuk tertanggung berusia di bawah (18)
+                                        delapan belas tahun bergantung pada
+                                        kepemilikan polis Solusi Asuransi
+                                        Kesehatan orang tua atau wali.
+                                        Penyesuaian premi akan dilakukan apabila
+                                        status kepemilikan orang tua atau wali
+                                        tertanggung berubah.
                                     </li>
                                     <li>
                                         Keamanan dan kerahasiaan dari detail
