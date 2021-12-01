@@ -1,3 +1,10 @@
+### [v1.1.6]
+
+> 2021-12-01
+
+-   Fix bug at homepage icon animation, show scroll animation when family image is fully loaded [Issue #227](https://github.com/lippolife/vida-landing/issues/227)
+-   Update logic when selecting language: only reload page if current language is different with language that want to be selected
+
 ### [v1.1.5]
 
 > 2021-11-25

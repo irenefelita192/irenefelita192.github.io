@@ -59,6 +59,9 @@ export default function HomeScreen({ homeData }) {
 
     useEffect(() => {
         if (homeData) {
+            if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual'
+            }
             if (window.innerWidth < window.innerHeight) {
                 setIsDesktop(false)
                 if (window.innerWidth >= 500) {
