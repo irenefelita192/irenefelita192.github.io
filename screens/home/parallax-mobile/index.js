@@ -9,13 +9,13 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
     if (!sectionOne) return <></>
 
     const [heroHeight, setHeroHeight] = useState(0)
-    const [iconHeight, setIconHeight] = useState({
-        inpatient: 0,
-        maternity: 0,
-        dental: 0,
-        outpatient: 0,
-    })
-
+    // const [iconHeight, setIconHeight] = useState({
+    //     inpatient: 0,
+    //     maternity: 0,
+    //     dental: 0,
+    //     outpatient: 0,
+    // })
+    const [imgHeight, setImgHeight] = useState(0)
     const [iconWrapperSize, setIconWrapperSize] = useState({
         width: 600,
         height: 300,
@@ -35,12 +35,12 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
     useEffect(() => {
         if (window) {
             setHeroHeight(window.innerHeight)
-            setIconHeight({
-                inpatient: (7.6 / 100) * window.innerWidth,
-                maternity: (6 / 100) * window.innerWidth,
-                dental: (7.6 / 100) * window.innerWidth,
-                outpatient: (6 / 100) * window.innerWidth,
-            })
+            // setIconHeight({
+            //     inpatient: (7.6 / 100) * window.innerWidth,
+            //     maternity: (6 / 100) * window.innerWidth,
+            //     dental: (7.6 / 100) * window.innerWidth,
+            //     outpatient: (6 / 100) * window.innerWidth,
+            // })
             setIconWrapperSize({
                 width: (73 / 100) * window.innerWidth,
                 height: (50 / 100) * window.innerWidth,
@@ -50,6 +50,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
 
     useEffect(() => {
         if (window && heroHeight > 0) {
+            setImgHeight((window.innerWidth * 71) / 92)
             const secondWrapper = document.getElementById('second-wrapper')
 
             if (secondWrapper) {
@@ -261,6 +262,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                             sectionOne?.familyImageMobile?.url ?? ''
                         }`}
                         alt="family-image"
+                        style={{ minHeight: `${imgHeight}px` }}
                     />
                     <div
                         id="icon-inpatient"
