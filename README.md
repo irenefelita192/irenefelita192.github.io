@@ -5,9 +5,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can add .env.local
 
 ```
-REACT_APP_ENV=production
-BASE_API=https://strapi-y5loyvex6a-et.a.run.app
+REACT_APP_ENV=staging
+BASE_API=http://localhost:1337
+BASE_ENDPOINT=https://xxx.xxxxxx.xxx/v1
 ASSET_PREFIX=
+DEFAULT_LANG=en
+GA_ID=G-xxxxxxxxx
 ```
 
 then you can run:
@@ -21,20 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-
-## Static HTML Deployment
-
-to build from staging env (.defaultenv/staging) and export, run:
-
-### `yarn build:stag`
-
-to build from production env (.defaultenv/production) and export, run:
-
-### `yarn build:prod`
-
-
-
-## Create new microsite page
+## Create new page
 
 ### Create pages
 

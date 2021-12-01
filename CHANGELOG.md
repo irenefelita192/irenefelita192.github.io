@@ -2,7 +2,8 @@
 
 > 2021-12-01
 
--   Fix bug at homepage icon animation, show scroll animation when family image is fully loaded [Issue #227](https://github.com/lippolife/vida-landing/issues/227)
+-   Fix bug at homepage icon animation, show scroll animation only when family image on revolve section is fully loaded [Issue #227](https://github.com/lippolife/vida-landing/issues/227)
+-   Fix add min height on family image to handle icon showing before family image on first section is loaded [mobile & tablet]
 -   Update logic when selecting language: only reload page if current language is different with language that want to be selected
 
 ### [v1.1.5]
