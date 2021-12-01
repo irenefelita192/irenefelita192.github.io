@@ -69,14 +69,16 @@ export default function LangPopup({ isDesktop }) {
     }
 
     const handleChooseLang = (code) => {
-        setActiveLang(code)
-        const domain = window ? window.location.host : ''
-        if (domain.indexOf('localhost') > -1) {
-            document.cookie = `lang=${code};path=/`
-        } else {
-            document.cookie = `lang=${code};path=/;domain=.${domain}`
+        if (activeLang !== code) {
+            setActiveLang(code)
+            const domain = window ? window.location.host : ''
+            if (domain.indexOf('localhost') > -1) {
+                document.cookie = `lang=${code};path=/`
+            } else {
+                document.cookie = `lang=${code};path=/;domain=.${domain}`
+            }
+            location.reload()
         }
-        location.reload()
     }
 
     return (

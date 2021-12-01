@@ -50,7 +50,6 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
 
     useEffect(() => {
         if (window && heroHeight > 0) {
-            window.addEventListener('scroll', handleScroll)
             const secondWrapper = document.getElementById('second-wrapper')
 
             if (secondWrapper) {
@@ -58,9 +57,11 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                 const imgEl = document.querySelector(`#second-bg`)
                 const overlayImg = document.getElementById('overlay-image')
                 if (imgEl.complete) {
+                    window.addEventListener('scroll', handleScroll)
                     overlayImg.style.opacity = '1'
                 } else {
                     imgEl.onload = () => {
+                        window.addEventListener('scroll', handleScroll)
                         overlayImg.style.opacity = '1'
                     }
                 }
@@ -107,6 +108,10 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
             setTimeout(() => {
                 resetInitialAnimation()
             }, 1000)
+        }
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
         }
     }, [heroHeight])
 

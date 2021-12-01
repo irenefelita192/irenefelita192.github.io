@@ -64,7 +64,6 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
 
     useEffect(() => {
         if (window && heroHeight > 0) {
-            window.addEventListener('scroll', handleScroll)
             const secondWrapper = document.getElementById('second-wrapper')
 
             if (secondWrapper) {
@@ -97,6 +96,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                 const imgEl = document.querySelector(`#second-bg`)
                 const overlayImg = document.getElementById('overlay-image')
                 if (imgEl.complete) {
+                    window.addEventListener('scroll', handleScroll)
                     const imgHeight =
                         (imgEl.naturalHeight / imgEl.naturalWidth) *
                         window.innerWidth
@@ -105,6 +105,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                     scrollToElement()
                 } else {
                     imgEl.onload = () => {
+                        window.addEventListener('scroll', handleScroll)
                         const imgHeight =
                             (imgEl.naturalHeight / imgEl.naturalWidth) *
                             window.innerWidth
@@ -121,6 +122,10 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
             setTimeout(() => {
                 resetInitialAnimation()
             }, 1000)
+        }
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
         }
     }, [heroHeight])
 
