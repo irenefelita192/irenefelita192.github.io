@@ -29,6 +29,7 @@ export default function Promotions({
     const isWebView = query?.isWebView ?? false
     console.log('promos', promos)
     console.log('promoPage', promoPage)
+    console.log('locale', locale)
     return (
         <Layout
             isWebView={isWebView}
