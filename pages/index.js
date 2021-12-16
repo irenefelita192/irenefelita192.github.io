@@ -1,11 +1,11 @@
 import Layout from 'components/layout'
 import HomeScreen from 'screens/home'
 
-import { getHomeData } from 'services/home'
+import { getAPI } from 'services/common'
 import { getCookieLocale } from 'utils/global-util'
 export async function getServerSideProps({ req, res }) {
     let langId = getCookieLocale(req, res) || ''
-    const homeDt = await getHomeData(langId)
+    const homeDt = await getAPI('vida-home', langId)
     return {
         props: {
             data: { ...homeDt },

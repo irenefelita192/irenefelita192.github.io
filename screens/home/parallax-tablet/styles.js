@@ -400,7 +400,7 @@ export default css`
         font-size: 45px;
         line-height: 1.4;
         text-align: center;
-        color: ${theme.colors['black30']};
+        color: ${theme.colors['vida-black']};
     }
 
     .second-desc {

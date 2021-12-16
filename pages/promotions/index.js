@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
 import Layout from 'components/layout'
 import { getAPI } from 'services/common'
 import PromotionScreen from 'screens/promotions'
-
 import { getCookieLocale } from 'utils/global-util'
 
 export async function getServerSideProps({ req, res, query }) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
-import { getAboutData } from 'services/about'
+import { getAPI } from 'services/common'
 import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
 
@@ -35,7 +35,7 @@ export default function AboutScreen() {
                 history.scrollRestoration = 'manual'
             }
         }
-        const aboutDt = await getAboutData(langId)
+        const aboutDt = await getAPI('vida-about', langId)
 
         if (!isMounted()) return
 

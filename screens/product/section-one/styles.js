@@ -175,7 +175,7 @@ export default css`
         }
     }
 
-    @media screen and (max-height: 640px) and (min-width: 400px) {
+    @media screen and (max-height: 600px) and (min-width: 400px) {
         .hero-wrapper.is-mobile {
             background-position: center 70%;
         }

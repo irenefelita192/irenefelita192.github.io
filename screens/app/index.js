@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useAsyncEffect } from 'use-async-effect'
-import { getAppData } from 'services/app'
-import { getCookie } from 'utils/global-util'
+// import { useAsyncEffect } from 'use-async-effect'
+// import { getAppData } from 'services/app'
+// import { getCookie } from 'utils/global-util'
 import Footer from 'components/footer'
 import Loader from 'components/loader'
 import AppSection from './app-section'
@@ -13,22 +13,12 @@ import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 
-// const data = {
-//     title: 'Personalize Your Healthcare',
-//     description:
-//         'We make it easy to get, manage and pay for your healthcare. Our app puts all coverages at your fingertips',
-//     image: { url: '/images/app/app-hero.jpg' },
-//     imageMobile: { url: '/images/app/app-hero-mobile.jpg' },
-//     imageMobileWebp: { url: '/images/app/app-hero-mobile.webp' },
-//     imageWebp: { url: '/images/app/app-hero.webp' },
-// }
 export default function App({ appData }) {
     // const [appData, setAppData] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [isDesktop, setIsDesktop] = useState(true)
-    let headerHeight = 80
 
     // useAsyncEffect(async (isMounted) => {
     //     let langId
@@ -71,15 +61,6 @@ export default function App({ appData }) {
                 }, 500)
             }
         }
-
-        // if (appData && appData.SectionOne) {
-        //     if (typeof gtag !== 'undefined') {
-        //         const gaId = process.env.config?.gaId ?? ''
-        //         gtag('config', `${gaId}`, {
-        //             page_title: `Vida | ${appData.SectionOne?.title ?? ''}`,
-        //         })
-        //     }
-        // }
     }, [appData])
 
     useEffect(() => {
