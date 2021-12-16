@@ -29,7 +29,7 @@ export default css`
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 20px;
         width: 100%;
-        margin-bottom: 32px;
+        margin-bottom: 64px;
     }
 
     /* .promo-box-wrapper {
@@ -140,7 +140,6 @@ export default css`
         .promo-section {
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 20px;
-            margin-bottom: 32px;
         }
     }
 
@@ -148,14 +147,12 @@ export default css`
         .promo-section {
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 20px;
-            margin-bottom: 32px;
         }
     }
 
     @media screen and (max-width: 500px) {
         .promo-section {
             grid-template-columns: 1fr;
-            margin-bottom: 32px;
         }
     }
 `

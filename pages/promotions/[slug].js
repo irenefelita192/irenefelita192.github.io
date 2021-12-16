@@ -16,6 +16,7 @@ export async function getServerSideProps({ req, res, query }) {
     ])
     return {
         props: {
+            query,
             locale,
             textLang: promoPage?.textLang ?? null,
             promoDetail:
@@ -27,12 +28,11 @@ export async function getServerSideProps({ req, res, query }) {
 export default function PromoDetail({ promoDetail, textLang, locale, query }) {
     const isWebView = query?.isWebView ?? false
 
-    console.log('promoDetail', promoDetail)
-
     return (
         <Layout
             isWebView={isWebView}
-            // title={promoPage?.SEO?.title ?? ''}
+            title={promoDetail?.title ?? ''}
+            description={promoDetail?.highlight ?? ''}
             headerWithBg={true}
         >
             <PromotionDetailScreen

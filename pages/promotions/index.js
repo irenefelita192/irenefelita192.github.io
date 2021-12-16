@@ -15,7 +15,7 @@ export async function getServerSideProps({ req, res, query }) {
     ])
 
     return {
-        props: { locale, promos, categories, promoPage },
+        props: { query, locale, promos, categories, promoPage },
     }
 }
 
@@ -27,9 +27,6 @@ export default function Promotions({
     query,
 }) {
     const isWebView = query?.isWebView ?? false
-    console.log('promos', promos)
-    console.log('promoPage', promoPage)
-    console.log('locale', locale)
     return (
         <Layout
             isWebView={isWebView}
