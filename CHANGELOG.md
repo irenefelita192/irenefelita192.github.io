@@ -5,6 +5,7 @@
 -   Additional cloudrun deploy to asia-southeast1 (singapore) for drc
 -   Improvement on header desktop and mobile rerender using React.memo
 -   New promotion page at `/promotions` and `/promotions/:slug`
+-   Fix .env.sample to .env.dev.sample and .env.prod.sample and adjust on the CI workflow
 
 ### [v1.1.6]
 
