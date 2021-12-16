@@ -60,13 +60,19 @@ const PromoSection = ({ promos, textLang, locale }) => {
                                             {periodEnd}
                                         </span>
                                     </div>
-                                    <div className="promo-title">
+                                    <div
+                                        className="promo-title"
+                                        title={promo?.title ?? ''}
+                                    >
                                         {promo?.title ?? ''}
                                     </div>
                                     <div className="promo-category">
                                         {promo?.category?.title ?? ''}
                                     </div>
-                                    <div className="promo-highlight">
+                                    <div
+                                        className="promo-highlight"
+                                        title={promo?.highlight ?? ''}
+                                    >
                                         {promo?.highlight ?? ''}
                                     </div>
                                 </div>
@@ -119,8 +125,10 @@ const BannerSection = ({ banner, isWebpSupport, onClickItem }) => {
         >
             {banner.map((data, index) => {
                 let bannerImage = '',
-                    altText = ''
+                    altText = '',
+                    bgImage = ''
 
+                bgImage = `${assetDomain}${data?.backgroundImage?.url ?? ''}`
                 if (!data.imageWebp || !isWebpSupport) {
                     bannerImage = `${assetDomain}${data?.image?.url ?? ''}`
                     altText = data?.image?.alternativeText ?? ''
@@ -128,10 +136,12 @@ const BannerSection = ({ banner, isWebpSupport, onClickItem }) => {
                     bannerImage = `${assetDomain}${data?.imageWebp?.url ?? ''}`
                     altText = data?.imageWebp?.alternativeText ?? ''
                 }
+
                 return (
                     <a
                         className="banner-item"
                         key={data.id}
+                        style={{ backgroundImage: `url(${bgImage})` }}
                         // onClick={() => onClickItem(data.link)}
                     >
                         <img src={bannerImage} alt={altText} />
@@ -201,10 +211,12 @@ export default function PromotionScreen({
                         display: block;
                         width: 100%;
                         height: 100%;
+                        background-position: center;
                     }
 
                     .carousel .slide img {
-                        height: ${isPortrait ? '100px' : '100%'};
+                        height: 100%;
+                        max-height: ${isPortrait ? '100px' : '200px'};
                         object-fit: ${isPortrait ? 'cover' : 'contain'};
                     }
                 `}
