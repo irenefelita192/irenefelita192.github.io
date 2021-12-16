@@ -27,7 +27,8 @@ export default function Promotions({
     query,
 }) {
     const isWebView = query?.isWebView ?? false
-
+    console.log('promos', promos)
+    console.log('promoPage', promoPage)
     return (
         <Layout
             isWebView={isWebView}

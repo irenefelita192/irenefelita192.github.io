@@ -27,6 +27,8 @@ export async function getServerSideProps({ req, res, query }) {
 export default function PromoDetail({ promoDetail, textLang, locale, query }) {
     const isWebView = query?.isWebView ?? false
 
+    console.log('promoDetail', promoDetail)
+
     return (
         <Layout
             isWebView={isWebView}
