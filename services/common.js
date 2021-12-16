@@ -109,7 +109,8 @@ export const getAPI = async (path, locale) => {
     const response = await axios
         .get(`${endpoints}/${path}${locQs}`)
         .catch(function (error) {
-            console.error(error)
+            console.error(`Error at ${path} - ${error}`)
         })
+
     return response ? response.data : null
 }

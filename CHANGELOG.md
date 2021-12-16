@@ -2,7 +2,7 @@
 
 > 2021-12-16
 
--   additional cloudrun deploy to asia-southeast1 (singapore) for drc
+-   Additional cloudrun deploy to asia-southeast1 (singapore) for drc
 -   Improvement on header desktop and mobile rerender using React.memo
 -   New promotion page at `/promotions` and `/promotions/:slug`
 
