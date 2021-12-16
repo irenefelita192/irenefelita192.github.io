@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, memo } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
 import dynamic from 'next/dynamic'
 import { getAllHeader, getFooter } from 'services/common'
@@ -17,6 +17,126 @@ import styles from './styles'
 
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
+
+const DownloadSection = memo(({ footerData }) => {
+    return (
+        <>
+            <div className="app-section">
+                {footerData.AppStoreLink && (
+                    <a target="_blank" href={footerData?.AppStoreLink ?? ''}>
+                        <i></i>
+                        <span>iOS</span>
+                    </a>
+                )}
+                {footerData.PlayStoreLink && (
+                    <a target="_blank" href={footerData?.PlayStoreLink ?? ''}>
+                        <i></i>
+                        <span>Android</span>
+                    </a>
+                )}
+            </div>
+            <style jsx>{styles}</style>
+        </>
+    )
+})
+
+const HeaderBottom = memo(({ footerData }) => {
+    return (
+        <>
+            <div className="tnc-link">
+                {footerData.privacyTitle && (
+                    <>
+                        <a href={footerData.privacyLink}>
+                            {footerData.privacyTitle}
+                        </a>
+                        <span></span>
+                    </>
+                )}
+                {footerData.tncTitle && (
+                    <a href={footerData.tncLink}>{footerData.tncTitle}</a>
+                )}
+            </div>
+            <div className="download">
+                <DownloadButton data={footerData} />
+            </div>
+            <div className="copyright">
+                <span>{footerData.copyrightText}</span>
+            </div>
+            <style jsx>{styles}</style>
+        </>
+    )
+})
+
+const SubMenuDesktop = memo(({ menu }) => {
+    return (
+        <>
+            <div className={`navbar-link`}>
+                <span>{menu.title}</span>
+            </div>
+            <div className="submenu-wrapper">
+                <div className="submenu-inner columns">
+                    {menu.subMenus.map((subMenu) => (
+                        <a
+                            key={subMenu.id}
+                            href={subMenu.href}
+                            className="submenu-item column"
+                            style={{
+                                backgroundColor: subMenu.backgroundColor,
+                                color: subMenu.color,
+                                backgroundImage: `url(${assetDomain}${
+                                    subMenu?.bgImage?.url ?? ''
+                                })`,
+                            }}
+                        >
+                            <i
+                                style={{
+                                    borderColor: subMenu.borderColor,
+                                }}
+                            ></i>
+                            <div className="submenu-title">{subMenu.title}</div>
+                            <div className="submenu-desc">
+                                {subMenu.description}
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+            <style jsx>{styles}</style>
+        </>
+    )
+})
+
+const SubMenuMobile = memo(({ menu, handleOpenSubmenu }) => {
+    return (
+        <>
+            <Accordion>
+                <Accordion.Container>
+                    <Accordion.Header id={menu.id} onClick={handleOpenSubmenu}>
+                        <div className={`navbar-link`} href={menu.href}>
+                            <span>{menu.title}</span>
+                        </div>
+                    </Accordion.Header>
+                    {menu.subMenus && (
+                        <>
+                            <Accordion.Body>
+                                {menu.subMenus.map((subMenu) => (
+                                    <a
+                                        className="submenu-content"
+                                        href={subMenu.href}
+                                        key={subMenu.id}
+                                    >
+                                        {subMenu.title}
+                                    </a>
+                                ))}
+                            </Accordion.Body>
+                        </>
+                    )}
+                </Accordion.Container>
+            </Accordion>
+            <style jsx>{styles}</style>
+        </>
+    )
+})
 
 export default function Header({ activeId, headerWithBg }) {
     const [isDesktop, setIsDesktop] = useState(true)
@@ -134,81 +254,82 @@ export default function Header({ activeId, headerWithBg }) {
         if (navbar) navbar.classList.remove('is-trans')
     }
 
-    const renderSubMenuMobile = (menu) => {
-        return (
-            <>
-                <Accordion>
-                    <Accordion.Container>
-                        <Accordion.Header
-                            id={menu.id}
-                            onClick={handleOpenSubmenu}
-                        >
-                            <div className={`navbar-link`} href={menu.href}>
-                                <span>{menu.title}</span>
-                            </div>
-                        </Accordion.Header>
-                        {menu.subMenus && (
-                            <>
-                                <Accordion.Body>
-                                    {menu.subMenus.map((subMenu) => (
-                                        <a
-                                            className="submenu-content"
-                                            href={subMenu.href}
-                                            key={subMenu.id}
-                                        >
-                                            {subMenu.title}
-                                        </a>
-                                    ))}
-                                </Accordion.Body>
-                            </>
-                        )}
-                    </Accordion.Container>
-                </Accordion>
-                <style jsx>{styles}</style>
-            </>
-        )
-    }
+    // const renderSubMenuMobile = (menu) => {
+    //     return (
+    //         <>
+    //             <Accordion>
+    //                 <Accordion.Container>
+    //                     <Accordion.Header
+    //                         id={menu.id}
+    //                         onClick={handleOpenSubmenu}
+    //                     >
+    //                         <div className={`navbar-link`} href={menu.href}>
+    //                             <span>{menu.title}</span>
+    //                         </div>
+    //                     </Accordion.Header>
+    //                     {menu.subMenus && (
+    //                         <>
+    //                             <Accordion.Body>
+    //                                 {menu.subMenus.map((subMenu) => (
+    //                                     <a
+    //                                         className="submenu-content"
+    //                                         href={subMenu.href}
+    //                                         key={subMenu.id}
+    //                                     >
+    //                                         {subMenu.title}
+    //                                     </a>
+    //                                 ))}
+    //                             </Accordion.Body>
+    //                         </>
+    //                     )}
+    //                 </Accordion.Container>
+    //             </Accordion>
+    //             <style jsx>{styles}</style>
+    //         </>
+    //     )
+    // }
 
-    const renderSubMenuDesktop = (menu) => {
-        return (
-            <>
-                <div className={`navbar-link`}>
-                    <span>{menu.title}</span>
-                </div>
-                <div className="submenu-wrapper">
-                    <div className="submenu-inner columns">
-                        {menu.subMenus.map((subMenu) => (
-                            <a
-                                key={subMenu.id}
-                                href={subMenu.href}
-                                className="submenu-item column"
-                                style={{
-                                    backgroundColor: subMenu.backgroundColor,
-                                    color: subMenu.color,
-                                    backgroundImage: `url(${assetDomain}${
-                                        subMenu?.bgImage?.url ?? ''
-                                    })`,
-                                }}
-                            >
-                                <i
-                                    style={{
-                                        borderColor: subMenu.borderColor,
-                                    }}
-                                ></i>
-                                <div className="submenu-title">
-                                    {subMenu.title}
-                                </div>
-                                <div className="submenu-desc">
-                                    {subMenu.description}
-                                </div>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-                <style jsx>{styles}</style>
-            </>
-        )
-    }
+    // const SubMenuDesktop = memo(({ menu }) => {
+    //     console.log('submenu render')
+    //     return (
+    //         <>
+    //             <div className={`navbar-link`}>
+    //                 <span>{menu.title}</span>
+    //             </div>
+    //             <div className="submenu-wrapper">
+    //                 <div className="submenu-inner columns">
+    //                     {menu.subMenus.map((subMenu) => (
+    //                         <a
+    //                             key={subMenu.id}
+    //                             href={subMenu.href}
+    //                             className="submenu-item column"
+    //                             style={{
+    //                                 backgroundColor: subMenu.backgroundColor,
+    //                                 color: subMenu.color,
+    //                                 backgroundImage: `url(${assetDomain}${
+    //                                     subMenu?.bgImage?.url ?? ''
+    //                                 })`,
+    //                             }}
+    //                         >
+    //                             <i
+    //                                 style={{
+    //                                     borderColor: subMenu.borderColor,
+    //                                 }}
+    //                             ></i>
+    //                             <div className="submenu-title">
+    //                                 {subMenu.title}
+    //                             </div>
+    //                             <div className="submenu-desc">
+    //                                 {subMenu.description}
+    //                             </div>
+    //                         </a>
+    //                     ))}
+    //                 </div>
+    //             </div>
+    //             <style jsx>{styles}</style>
+    //         </>
+    //     )
+    // })
 
     const brandImg = `${assetPrefix}${'/images/logo/logo-Vida.svg'}`,
         brandImgWhite = `${assetPrefix}${'/images/logo/logo-Vida-white.svg'}`
@@ -313,12 +434,19 @@ export default function Header({ activeId, headerWithBg }) {
                                                             : {}
                                                     }
                                                 >
-                                                    {!isDesktop &&
-                                                        renderSubMenuMobile(dt)}
-                                                    {isDesktop &&
-                                                        renderSubMenuDesktop(
-                                                            dt
-                                                        )}
+                                                    {!isDesktop && (
+                                                        <SubMenuMobile
+                                                            menu={dt}
+                                                            handleOpenSubmenu={
+                                                                handleOpenSubmenu
+                                                            }
+                                                        />
+                                                    )}
+                                                    {isDesktop && (
+                                                        <SubMenuDesktop
+                                                            menu={dt}
+                                                        />
+                                                    )}
                                                 </div>
                                             )}
                                             {!hasSubMenu && (
@@ -344,46 +472,7 @@ export default function Header({ activeId, headerWithBg }) {
                                         <Language isDesktop={isDesktop} />
                                     </div>
                                     {footerData && (
-                                        <>
-                                            <div className="tnc-link">
-                                                {footerData.privacyTitle && (
-                                                    <>
-                                                        <a
-                                                            href={
-                                                                footerData.privacyLink
-                                                            }
-                                                        >
-                                                            {
-                                                                footerData.privacyTitle
-                                                            }
-                                                        </a>
-                                                        <span></span>
-                                                    </>
-                                                )}
-                                                {footerData.tncTitle && (
-                                                    <a
-                                                        href={
-                                                            footerData.tncLink
-                                                        }
-                                                    >
-                                                        {footerData.tncTitle}
-                                                    </a>
-                                                )}
-                                            </div>
-                                            <div className="download">
-                                                <DownloadButton
-                                                    data={footerData}
-                                                />
-                                            </div>
-                                            {/* <div className="footer-version">
-                                                v{process.env.packageVersion}
-                                            </div> */}
-                                            <div className="copyright">
-                                                <span>
-                                                    {footerData.copyrightText}
-                                                </span>
-                                            </div>
-                                        </>
+                                        <HeaderBottom footerData={footerData} />
                                     )}
                                 </div>
                             )}
@@ -391,26 +480,27 @@ export default function Header({ activeId, headerWithBg }) {
                     )}
                 </div>
                 {footerData && (
-                    <div className="app-section">
-                        {footerData.AppStoreLink && (
-                            <a
-                                target="_blank"
-                                href={footerData?.AppStoreLink ?? ''}
-                            >
-                                <i></i>
-                                <span>iOS</span>
-                            </a>
-                        )}
-                        {footerData.PlayStoreLink && (
-                            <a
-                                target="_blank"
-                                href={footerData?.PlayStoreLink ?? ''}
-                            >
-                                <i></i>
-                                <span>Android</span>
-                            </a>
-                        )}
-                    </div>
+                    <DownloadSection footerData={footerData} />
+                    // <div className="app-section">
+                    //     {footerData.AppStoreLink && (
+                    //         <a
+                    //             target="_blank"
+                    //             href={footerData?.AppStoreLink ?? ''}
+                    //         >
+                    //             <i></i>
+                    //             <span>iOS</span>
+                    //         </a>
+                    //     )}
+                    //     {footerData.PlayStoreLink && (
+                    //         <a
+                    //             target="_blank"
+                    //             href={footerData?.PlayStoreLink ?? ''}
+                    //         >
+                    //             <i></i>
+                    //             <span>Android</span>
+                    //         </a>
+                    //     )}
+                    // </div>
                 )}
             </nav>
             <style jsx>{styles}</style>

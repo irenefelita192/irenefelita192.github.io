@@ -1,3 +1,10 @@
+### [v1.2.0]
+
+> 2021-12-16
+
+-   Improvement on header desktop and mobile rerender using React.memo
+-   New promotion page at `/promotions` and `/promotions/:slug`
+
 ### [v1.1.6]
 
 > 2021-12-01

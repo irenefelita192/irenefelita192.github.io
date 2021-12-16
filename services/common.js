@@ -100,3 +100,16 @@ export const getChatButton = async () => {
         })
     return response ? response.data : null
 }
+
+export const getAPI = async (path, locale) => {
+    const nextPrefix = path.indexOf('?') > -1 ? '&' : '?'
+    const locQs = locale
+        ? `${nextPrefix}_locale=${locale}`
+        : `${nextPrefix}_locale=${defaultLang}`
+    const response = await axios
+        .get(`${endpoints}/${path}${locQs}`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}
