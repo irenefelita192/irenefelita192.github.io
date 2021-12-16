@@ -56,6 +56,10 @@ jobs:
           - name: Deploy Docker image
             run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
 
+          # additional for DRC
+          - name: Deploy Docker image ha
+            run: gcloud run deploy ${{ secrets.GCP_APP_NAME }}-ha --image $IMAGE_NAME --region asia-southeast1 --platform managed --port=3000 --allow-unauthenticated
+
           - name: Login
             uses: google-github-actions/setup-gcloud@master
             with:
