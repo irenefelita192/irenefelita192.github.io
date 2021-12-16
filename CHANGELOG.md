@@ -6,6 +6,7 @@
 -   Improvement on header desktop and mobile rerender using React.memo
 -   New promotion page at `/promotions` and `/promotions/:slug`
 -   Fix .env.sample to .env.dev.sample and .env.prod.sample and adjust on the CI workflow
+-   Refactor code: use global function to call api by path, remove redundanct color theme
 
 ### [v1.1.6]
 

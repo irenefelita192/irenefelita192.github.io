@@ -15,7 +15,7 @@ export default css`
         font-weight: 500;
         font-size: 18px;
         line-height: 1.4;
-        color: ${theme.colors.black30};
+        color: ${theme.colors['vida-black']};
         top: calc(50% - 80px);
         left: 154px;
         width: 100%;

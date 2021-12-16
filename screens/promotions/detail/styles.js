@@ -8,7 +8,7 @@ export default css`
     }
 
     .wrapper h1 {
-        color: ${theme.colors.black30};
+        color: ${theme.colors['vida-black']};
         font-family: 'Museo', sans-serif;
         font-weight: 700;
         font-size: 20px;

@@ -38,7 +38,7 @@ export default css`
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
-        color: ${theme.colors['black30']};
+        color: ${theme.colors['vida-black']};
     }
 
     .dropdown > span.selected-caret {

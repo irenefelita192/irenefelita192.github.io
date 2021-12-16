@@ -477,7 +477,7 @@ export default css`
         line-height: 1.38;
         font-weight: 400;
         margin-top: 8px;
-        color: ${theme.colors.black30};
+        color: ${theme.colors['vida-black']};
     }
 
     .navbar-item.has-dropdown.submenu-open .submenu-wrapper {
