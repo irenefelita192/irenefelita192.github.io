@@ -1,5 +1,9 @@
 ### [v1.2.0]
 
+> 2021-12-17
+
+-   Fix rounding calculation for handphone image's width at /download page
+
 > 2021-12-16
 
 -   Additional cloudrun deploy to asia-southeast1 (singapore) for drc

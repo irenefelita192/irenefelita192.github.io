@@ -17,8 +17,8 @@ export default function AppSection({ data, title, isDesktop }) {
                 heroHeightVar = null
             }
             setHeroHeight(heroHeightVar)
-            const dHeight = (68 / 100) * window.innerHeight,
-                dWidth = (48 / 100) * dHeight
+            const dHeight = Math.round((68 / 100) * window.innerHeight),
+                dWidth = Math.round((48 / 100) * dHeight)
 
             setDeviceSize({
                 deviceHeight: `${dHeight}px`,
