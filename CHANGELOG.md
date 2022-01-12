@@ -1,3 +1,9 @@
+### [v1.2.2]
+
+> 2022-01-12
+
+-   Test revert only call fileDownload web function on web (not apps webview)
+
 ### [v1.2.1]
 
 > 2022-01-12
