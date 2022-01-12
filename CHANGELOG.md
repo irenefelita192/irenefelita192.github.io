@@ -3,6 +3,7 @@
 > 2022-01-12
 
 -   Update promotion detail UI based on mock up API
+-   Remove locale when calling mock api
 
 ### [v1.2.2]
 
