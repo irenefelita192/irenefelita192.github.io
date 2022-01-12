@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect, memo } from 'react'
 import styles from './styles'
+import Accordion from 'components/accordion'
 import ReactMarkdown from 'react-markdown'
 import NotFound from 'screens/not-found'
 import { format } from 'date-fns'
@@ -17,7 +18,7 @@ export default function PromotionDetailScreen({
 }) {
     if (promoDetail) {
         useEffect(() => {
-            if (window.innerWidth > 767)
+            if (window.innerWidth > 768)
                 window.addEventListener('scroll', handleScroll)
             const infoEl = document.getElementById('info-section'),
                 promoDetailEl = document.getElementById('promo-detail')
@@ -103,6 +104,7 @@ export default function PromotionDetailScreen({
                                 {promoDetail?.description ?? ''}
                             </ReactMarkdown>
                         </div>
+                        <div className="separator"></div>
                         <div className="promo-detail-mobile">
                             <div className="promo-detail-box-mobile">
                                 <div>
@@ -133,9 +135,22 @@ export default function PromotionDetailScreen({
                             </div>
                         </div>
                         <div className={'promo-terms promo-content'}>
-                            <ReactMarkdown>
-                                {promoDetail?.terms ?? ''}
-                            </ReactMarkdown>
+                            <Accordion>
+                                <Accordion.Container>
+                                    <Accordion.Header
+                                        id={'terms'}
+                                        isArrowUpDown
+                                        defaultOpen={true}
+                                    >
+                                        <h2>Syarat dan Ketentuan</h2>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <ReactMarkdown>
+                                            {promoDetail?.terms ?? ''}
+                                        </ReactMarkdown>
+                                    </Accordion.Body>
+                                </Accordion.Container>
+                            </Accordion>
                         </div>
                     </div>
                     <div className="info-section" id="info-section">

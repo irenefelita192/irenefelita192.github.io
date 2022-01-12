@@ -32,6 +32,17 @@ export default css`
         display: block;
     }
 
+    .separator {
+        border-top: 1px solid rgba(123, 123, 123, 0.2);
+        width: calc(100% - 60px);
+        height: 1px;
+        margin: 0 30px;
+    }
+
+    .promo-image img {
+        width: 100%;
+    }
+
     .promo-detail-mobile {
         display: none;
         margin: 0 30px 0;
@@ -138,10 +149,10 @@ export default css`
         padding-left: 5px;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
         .wrapper {
             display: block;
-            padding: 32px 0;
+            padding: 0 0 32px;
         }
 
         .promo-detail-mobile {
@@ -155,8 +166,19 @@ export default css`
             border-right: none;
         }
 
-        .info-section {
+        .info-section,
+        .separator {
             display: none;
+        }
+    }
+
+    @media screen and (max-width: 430px) {
+        .promo-detail-box-mobile {
+            justify-content: space-between;
+        }
+
+        .promo-detail-box-mobile > div {
+            padding-right: 0;
         }
     }
 `

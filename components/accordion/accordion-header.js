@@ -1,8 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './styles'
 
-export default function AccordionHeader({ id, children, onClick }) {
-    const [isOpen, setIsOpen] = useState(false)
+export default function AccordionHeader({
+    id,
+    children,
+    onClick,
+    isArrowUpDown,
+    defaultOpen = false,
+}) {
+    const [isOpen, setIsOpen] = useState(defaultOpen)
+    useEffect(() => {
+        if (defaultOpen) {
+            document.getElementById(id).checked = true
+        }
+    }, [])
+
     const handleClick = () => {
         setIsOpen(document.getElementById(id).checked)
         if (onClick) {
@@ -18,7 +30,9 @@ export default function AccordionHeader({ id, children, onClick }) {
                 id={id}
             />
             <label
-                className={`accordion-label ${isOpen ? 'is-open' : ''}`}
+                className={`accordion-label ${isArrowUpDown ? 'up-down' : ''} ${
+                    isOpen ? 'is-open' : ''
+                }`}
                 htmlFor={id}
             >
                 {children}
