@@ -13,7 +13,12 @@ export const getBrochure = async () => {
 
 export const getBlob = async (url) => {
     const response = await axios
-        .get(url, { responseType: 'blob' })
+        .get(url, {
+            responseType: 'blob',
+            headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6InNlY3JldC1pZCIsInR5cCI6IkpXVCJ9.eyJFeHRlbnNpb25zIjpudWxsLCJHcm91cHMiOm51bGwsIklEIjoiQUY5QUEwIiwiTmFtZSI6IiIsImF1ZCI6WyIiXSwiZXhwIjoxNjQxOTU4NzcwLCJpYXQiOjE2NDE5NTUxNzAsIm5iZiI6MTY0MTk1NTE3MCwic3ViIjoiQUY5QUEwIn0.Os_gZQZqoz6dHBFul8UUfHMzeqsHr4eRUq5oGOcYxS8`,
+            },
+        })
         .catch(function (error) {
             console.error(error)
         })
@@ -30,5 +35,6 @@ export const getBlob = async (url) => {
     //         console.log(e)
     //     }
     // )
+
     return response ? response.data : null
 }
