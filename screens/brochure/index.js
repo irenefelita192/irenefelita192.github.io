@@ -82,17 +82,23 @@ export default function BrochureScreen() {
     }
 
     const handleDownload = async () => {
-        if (typeof JavascriptChannel !== 'undefined') {
-            JavascriptChannel.postMessage(
-                `downloadbrochure_${brochureData.data.brochureLink}`
-            )
-        } else {
-            const blob = await getBlob(brochureData.data.brochureLink)
+        const blob = await getBlob(brochureData.data.brochureLink)
 
-            if (blob) {
-                fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
+        if (blob) {
+            fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
+            if (typeof JavascriptChannel !== 'undefined') {
+                JavascriptChannel.postMessage(
+                    `downloadbrochure_${brochureData.data.brochureLink}`
+                )
             }
         }
+        //  else {
+        //     const blob = await getBlob(brochureData.data.brochureLink)
+
+        //     if (blob) {
+        //         fileDownload(blob, `${brochureData.data.brochureTitle}.pdf`)
+        //     }
+        // }
     }
 
     const handleLoadProgress = ({ loaded, total }) => {
