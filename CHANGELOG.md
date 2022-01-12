@@ -1,3 +1,9 @@
+### [v1.2.3]
+
+> 2022-01-12
+
+-   Update promotion detail UI based on mock up API
+
 ### [v1.2.2]
 
 > 2022-01-12

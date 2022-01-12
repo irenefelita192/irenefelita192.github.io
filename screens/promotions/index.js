@@ -12,18 +12,19 @@ import Footer from 'components/footer'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 const PromoSection = ({ promos, textLang, locale }) => {
+    console.log('promos', promos)
     return (
         <>
             <div className="promo-section">
                 {promos &&
                     promos.map((promo) => {
                         const periodStart = format(
-                                new Date(promo?.periodStart ?? ''),
+                                new Date(promo?.startDate * 1000 ?? null),
                                 'dd LLL',
                                 { locale: locale == 'id' ? id : en }
                             ),
                             periodEnd = format(
-                                new Date(promo?.periodEnd ?? ''),
+                                new Date(promo?.endDate * 1000 ?? null),
                                 'dd LLL yyyy',
                                 { locale: locale == 'id' ? id : en }
                             )
@@ -34,12 +35,8 @@ const PromoSection = ({ promos, textLang, locale }) => {
                                 href={`/promotions/${promo.slug}`}
                             >
                                 <img
-                                    src={`${assetDomain}${
-                                        promo?.coverImage?.url ?? ''
-                                    }`}
-                                    alt={
-                                        promo?.coverImage?.alternativeText ?? ''
-                                    }
+                                    src={`${promo?.imageUrl ?? ''}`}
+                                    alt={promo?.title ?? ''}
                                 />
                                 <div className="promo-info">
                                     {/* <div>
@@ -67,14 +64,14 @@ const PromoSection = ({ promos, textLang, locale }) => {
                                         {promo?.title ?? ''}
                                     </div>
                                     <div className="promo-category">
-                                        {promo?.category?.title ?? ''}
+                                        {promo?.category?.name ?? ''}
                                     </div>
-                                    <div
+                                    {/* <div
                                         className="promo-highlight"
                                         title={promo?.highlight ?? ''}
                                     >
                                         {promo?.highlight ?? ''}
-                                    </div>
+                                    </div> */}
                                 </div>
                             </a>
                         )
@@ -197,9 +194,9 @@ export default function PromotionScreen({
                     textLang={promoPage?.textLang ?? null}
                     locale={locale}
                 />
-                {promoPage && promoPage.faq && (
+                {/* {promoPage && promoPage.faq && (
                     <FAQ faq={promoPage.faq} title={promoPage.faqTitle} />
-                )}
+                )} */}
             </div>
             <Footer />
 
