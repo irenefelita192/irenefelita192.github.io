@@ -2,6 +2,13 @@ import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterMobile({ data }) {
+    let cpText = ''
+    if (data && data.copyrightText) {
+        cpText = data.copyrightText.replace(
+            '${curr_year}',
+            new Date().getFullYear()
+        )
+    }
     return (
         <>
             {data && (
@@ -49,8 +56,7 @@ export default function FooterMobile({ data }) {
 
                     <div className="fifth-row">
                         <div className="copyright">
-                            {data?.copyrightText ??
-                                'All Rights Reserved © 2021 Vida'}
+                            {cpText ?? 'All Rights Reserved © Vida'}
                         </div>
                     </div>
                 </footer>
