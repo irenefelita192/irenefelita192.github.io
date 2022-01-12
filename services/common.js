@@ -114,17 +114,3 @@ export const getAPI = async (path, locale) => {
 
     return response ? response.data : null
 }
-
-export const getMockAPI = async (path, locale) => {
-    const nextPrefix = path.indexOf('?') > -1 ? '&' : '?'
-    const locQs = locale
-        ? `${nextPrefix}_locale=${locale}`
-        : `${nextPrefix}_locale=${defaultLang}`
-    const response = await axios
-        .get(`https://mock-api.haloida.dev/v1/${path}${locQs}`)
-        .catch(function (error) {
-            console.error(`Error at ${path} - ${error}`)
-        })
-
-    return response ? response.data : null
-}
