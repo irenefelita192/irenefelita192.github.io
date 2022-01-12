@@ -12,7 +12,6 @@ import Footer from 'components/footer'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
 const PromoSection = ({ promos, textLang, locale }) => {
-    console.log('promos', promos)
     return (
         <>
             <div className="promo-section">
@@ -64,7 +63,8 @@ const PromoSection = ({ promos, textLang, locale }) => {
                                         {promo?.title ?? ''}
                                     </div>
                                     <div className="promo-category">
-                                        {promo?.category?.name ?? ''}
+                                        <p>Kategori</p>
+                                        <b>{promo?.category?.name ?? ''}</b>
                                     </div>
                                     {/* <div
                                         className="promo-highlight"
@@ -121,24 +121,23 @@ const BannerSection = ({ banner, isWebpSupport, onClickItem }) => {
             // renderItem={customRenderItem}
         >
             {banner.map((data, index) => {
-                let bannerImage = '',
-                    altText = '',
+                let bannerImage = `${data?.imageUrl ?? ''}`,
+                    altText = data?.title ?? '',
                     bgImage = ''
 
-                bgImage = `${assetDomain}${data?.backgroundImage?.url ?? ''}`
-                if (!data.imageWebp || !isWebpSupport) {
-                    bannerImage = `${assetDomain}${data?.image?.url ?? ''}`
-                    altText = data?.image?.alternativeText ?? ''
-                } else {
-                    bannerImage = `${assetDomain}${data?.imageWebp?.url ?? ''}`
-                    altText = data?.imageWebp?.alternativeText ?? ''
-                }
+                // if (!data.imageWebp || !isWebpSupport) {
+                //     bannerImage = `${assetDomain}${data?.image?.url ?? ''}`
+                //     altText = data?.image?.alternativeText ?? ''
+                // } else {
+                //     bannerImage = `${assetDomain}${data?.imageWebp?.url ?? ''}`
+                //     altText = data?.imageWebp?.alternativeText ?? ''
+                // }
 
                 return (
                     <a
                         className="banner-item"
                         key={data.id}
-                        style={{ backgroundImage: `url(${bgImage})` }}
+                        // style={{ backgroundImage: `url(${bgImage})` }}
                         // onClick={() => onClickItem(data.link)}
                     >
                         <img src={bannerImage} alt={altText} />
@@ -180,13 +179,18 @@ export default function PromotionScreen({
     }
     return (
         <>
-            {promoPage && promoPage.banner && promoPage.banner.length > 0 && (
+            {/* {promoPage && promoPage.banner && promoPage.banner.length > 0 && (
                 <BannerSection
                     banner={promoPage.banner}
                     isWebpSupport={isWebpSupport}
                     onClickItem={onClickItem}
                 />
-            )}
+            )} */}
+            {/* <BannerSection
+                banner={promos}
+                isWebpSupport={isWebpSupport}
+                onClickItem={onClickItem}
+            /> */}
             <div className="wrapper">
                 <h1>{promoPage?.title ?? 'Promo'}</h1>
                 <PromoSection
@@ -213,8 +217,8 @@ export default function PromotionScreen({
 
                     .carousel .slide img {
                         height: 100%;
-                        max-height: ${isPortrait ? '100px' : '200px'};
-                        object-fit: ${isPortrait ? 'cover' : 'contain'};
+                        // max-height: ${isPortrait ? '100px' : '200px'};
+                        // object-fit: ${isPortrait ? 'cover' : 'contain'};
                     }
                 `}
             </style>

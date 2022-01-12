@@ -31,6 +31,10 @@ export default css`
         transition: all 0.4s ease-in-out;
     }
 
+    .accordion-label.up-down:after {
+        transform: rotate(90deg);
+    }
+
     .accordion-content {
         max-height: 0;
         color: black;
@@ -61,6 +65,10 @@ export default css`
 
     input.dummy-checkbox:checked + .accordion-label::after {
         transform: rotate(90deg);
+    }
+
+    input.dummy-checkbox:checked + .accordion-label.up-down:after {
+        transform: rotate(-90deg);
     }
 
     input.dummy-checkbox:checked ~ .accordion-content {

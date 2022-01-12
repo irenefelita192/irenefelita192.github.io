@@ -4,6 +4,7 @@
 
 -   Update promotion detail UI based on mock up API
 -   Remove locale when calling mock api
+-   Update accordion component props to show arrow up and down and able to set default is open
 
 ### [v1.2.2]
 

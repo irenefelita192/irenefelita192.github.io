@@ -84,6 +84,11 @@ export default css`
     .promo-category {
         /* min-height: 18px; */
         margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .promo-category p {
+        font-size: 12px;
     }
 
     .promo-time {
@@ -103,47 +108,14 @@ export default css`
         margin-right: 5px;
     }
 
-    .promo-highlight {
-        color: ${theme.colors['vida-black']};
-        max-height: 34px;
-        font-size: 13px;
-        line-height: 1.3;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-
-    :global(.accordions) {
-        margin-bottom: 16px;
-    }
-
-    :global(.accordion-label) {
-        line-height: 1.3;
-        padding: 16px;
-        background-color: rgb(248, 248, 248);
-        border-radius: 4px;
-        font-family: 'Museo', sans-serif;
-        font-size: 12px;
-        color: ${theme.colors['vida-black']};
-    }
-
-    .faq-content {
-        color: ${theme.colors['vida-black']};
-        font-size: 12px;
-        padding: 10px 0;
-        line-height: 1.3;
-    }
-
-    @media screen and (max-width: 768px) {
+    /* @media screen and (max-width: 900px) {
         .promo-section {
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 20px;
         }
-    }
+    } */
 
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 900px) {
         .promo-section {
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 20px;
