@@ -155,8 +155,7 @@ export default function FooterDesktop({ data }) {
                             )}
                         </div>
                         <div className="copyright">
-                            {data?.copyrightText ??
-                                'All Rights Reserved © 2021 Vida'}
+                            {data.cpText ?? 'All Rights Reserved © Vida'}
                         </div>
                     </div>
                 </footer>

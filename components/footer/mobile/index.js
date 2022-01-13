@@ -49,8 +49,7 @@ export default function FooterMobile({ data }) {
 
                     <div className="fifth-row">
                         <div className="copyright">
-                            {data?.copyrightText ??
-                                'All Rights Reserved © 2021 Vida'}
+                            {data.cpText ?? 'All Rights Reserved © Vida'}
                         </div>
                     </div>
                 </footer>
