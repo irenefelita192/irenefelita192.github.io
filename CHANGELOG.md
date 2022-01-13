@@ -6,6 +6,7 @@
 -   Remove locale when calling mock api
 -   Update accordion component props to show arrow up and down and able to set default is open
 -   Fix show current year at footer copyright by replacing variable from strapi data
+-   Separate brochure download function for web and apps webview
 
 ### [v1.2.2]
 
