@@ -27,7 +27,14 @@ export default function Footer({ loadedCallback }) {
         const footerDt = await getFooter(paramLocale || langId)
 
         if (!isMounted()) return
-        setFooterData(footerDt)
+        let cpText = ''
+        if (footerDt && footerDt.copyrightText) {
+            cpText = footerDt.copyrightText.replace(
+                '${curr_year}',
+                new Date().getFullYear()
+            )
+        }
+        setFooterData({ ...footerDt, cpText })
         if (loadedCallback) {
             loadedCallback(true)
         }

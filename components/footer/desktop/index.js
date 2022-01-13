@@ -2,14 +2,6 @@ import styles from './styles'
 import Language from 'components/lang'
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterDesktop({ data }) {
-    let cpText = ''
-    if (data && data.copyrightText) {
-        cpText = data.copyrightText.replace(
-            '${curr_year}',
-            new Date().getFullYear()
-        )
-    }
-
     return (
         <>
             {data && (
@@ -163,7 +155,7 @@ export default function FooterDesktop({ data }) {
                             )}
                         </div>
                         <div className="copyright">
-                            {cpText ?? 'All Rights Reserved © Vida'}
+                            {data.cpText ?? 'All Rights Reserved © Vida'}
                         </div>
                     </div>
                 </footer>
