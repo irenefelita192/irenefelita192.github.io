@@ -48,7 +48,7 @@ export default css`
         width: 45%;
         height: auto;
         border-radius: 0 10px 10px 0;
-        background-color: #108e87;
+        background-color: ${theme.colors['vida-dark-green']};
     }
 
     .selected-caret > i {

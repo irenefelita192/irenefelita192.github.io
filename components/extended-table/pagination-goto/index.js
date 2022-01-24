@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 import styles from './styles'
-export default function PaginationGoTo({ onClick, isDesktop, textLang }) {
-    const [inputVal, setInputVal] = useState('')
+export default function PaginationGoTo({
+    onClick,
+    value = '',
+    isDesktop,
+    textLang,
+}) {
+    const [inputVal, setInputVal] = useState(value)
     const handleGoTo = () => {
         if (onClick) {
             onClick(inputVal)

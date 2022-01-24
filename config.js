@@ -7,7 +7,9 @@ var endpointConfig = {
     beEndpoint: process.env.BASE_ENDPOINT || '',
     defaultLang: process.env.DEFAULT_LANG,
     gaId: process.env.GA_ID,
+    fwuid: process.env.FWUID,
 }
+
 // const options = {
 //     development: {
 //         endpoints: {
