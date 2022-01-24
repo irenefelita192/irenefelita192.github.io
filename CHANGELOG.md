@@ -1,4 +1,8 @@
-### [v1.2.3]
+### [v1.2.0]
+
+> 2022-01-25
+
+-   New partner page using AXA Api and backup old partner page
 
 > 2022-01-12
 
@@ -6,21 +10,7 @@
 -   Remove locale when calling mock api
 -   Update accordion component props to show arrow up and down and able to set default is open
 -   Fix show current year at footer copyright by replacing variable from strapi data
--   Separate brochure download function for web and apps webview
-
-### [v1.2.2]
-
-> 2022-01-12
-
--   Test revert only call fileDownload web function on web (not apps webview)
-
-### [v1.2.1]
-
-> 2022-01-12
-
--   Test only call fileDownload web function on web (not apps webview)
-
-### [v1.2.0]
+-   Enhancement: separate brochure download function for web and apps webview
 
 > 2021-12-17
 
