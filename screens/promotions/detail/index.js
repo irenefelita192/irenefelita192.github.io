@@ -91,12 +91,14 @@ export default function PromotionDetailScreen({
             <>
                 <div className="wrapper">
                     <div className="main-section" id="main-section">
-                        <div className={'promo-image'}>
-                            <img
-                                src={promoDetail?.imageUrl ?? ''}
-                                alt={promoDetail?.title ?? ''}
-                            />
-                        </div>
+                        {promoDetail && promoDetail.imageUrl && (
+                            <div className={'promo-image'}>
+                                <img
+                                    src={promoDetail?.imageUrl ?? ''}
+                                    alt={promoDetail?.title ?? ''}
+                                />
+                            </div>
+                        )}
                         <h1>{promoDetail?.title ?? 'Promo'}</h1>
 
                         <div className={'promo-desc promo-content'}>

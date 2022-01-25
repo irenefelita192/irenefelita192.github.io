@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
 import Layout from 'components/layout'
-import { getAPI, getMockAPI } from 'services/common'
+import { getAPI, getAPIBackend } from 'services/common'
 import PromotionDetailScreen from 'screens/promotions/detail'
 
 import { getCookieLocale } from 'utils/global-util'
 
 export async function getServerSideProps({ req, res, query }) {
     let langId = getCookieLocale(req, res) || '',
-        slug = query?.slug ?? '',
+        id = query?.id ?? '',
         locale = query?.locale ?? langId
     // const promoDetail = await getAPI(`vida-promos?slug=${slug}`, locale)
+    console.log('ID PROMO', id)
     const [promoDetail, promoPage] = await Promise.all([
         // getAPI(`vida-promos?slug=${slug}`, locale),
-        getMockAPI('promos/1'),
+        // getMockAPI(`promos/${id}`),
+        getAPIBackend(`promos/${id}`),
         getAPI('vida-promo-page', locale),
     ])
     return {
@@ -47,7 +49,7 @@ export default function PromoDetail({ promoDetail, textLang, locale, query }) {
         startDate: 1610618148,
         endDate: 1617618148,
         rules: '{"id":12345,"name":"John Doe"}\n',
-        slug: 'lorem-ipsum',
+        // slug: 'lorem-ipsum',
         status: 0,
         meta: {
             isActive: true,
@@ -64,7 +66,7 @@ export default function PromoDetail({ promoDetail, textLang, locale, query }) {
             headerWithBg={true}
         >
             <PromotionDetailScreen
-                promoDetail={promoDetailMock}
+                promoDetail={promoDetail}
                 locale={locale}
                 textLang={textLang}
             />

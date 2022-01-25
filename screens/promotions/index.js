@@ -31,12 +31,14 @@ const PromoSection = ({ promos, textLang, locale }) => {
                             <a
                                 key={promo.id}
                                 className="promo-box"
-                                href={`/promotions/${promo.slug}`}
+                                href={`/promotions/${promo.id}`}
                             >
-                                <img
-                                    src={`${promo?.imageUrl ?? ''}`}
-                                    alt={promo?.title ?? ''}
-                                />
+                                {promo && promo.imageUrl && (
+                                    <img
+                                        src={`${promo?.imageUrl ?? ''}`}
+                                        alt={promo?.title ?? ''}
+                                    />
+                                )}
                                 <div className="promo-info">
                                     {/* <div>
                                         {periodStart} - {periodEnd}
@@ -62,10 +64,12 @@ const PromoSection = ({ promos, textLang, locale }) => {
                                     >
                                         {promo?.title ?? ''}
                                     </div>
-                                    <div className="promo-category">
-                                        <p>Kategori</p>
-                                        <b>{promo?.category?.name ?? ''}</b>
-                                    </div>
+                                    {promo && promo.category && (
+                                        <div className="promo-category">
+                                            <p>Kategori</p>
+                                            <b>{promo?.category?.name ?? ''}</b>
+                                        </div>
+                                    )}
                                     {/* <div
                                         className="promo-highlight"
                                         title={promo?.highlight ?? ''}
@@ -151,7 +155,7 @@ const BannerSection = ({ banner, isWebpSupport, onClickItem }) => {
 export default function PromotionScreen({
     promos,
     locale,
-    categories,
+    // categories,
     promoPage,
 }) {
     const [isWebpSupport, setIsWebpSupport] = useState(true)
