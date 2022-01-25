@@ -41,4 +41,8 @@ export default css.global`
         line-height: 1.43;
         color: #076a64;
     }
+
+    .react-bootstrap-table table .field-link {
+        color: ${theme.colors['vida-green']};
+    }
 `

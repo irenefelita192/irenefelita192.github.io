@@ -304,6 +304,9 @@ export default function TablePartner({
                                                                 ]
                                                             }
                                                             target="_blank"
+                                                            className={
+                                                                'field-link'
+                                                            }
                                                         >
                                                             {col
                                                                 ?.formatExtraData
