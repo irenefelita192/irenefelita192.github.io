@@ -3,10 +3,14 @@ import Select from 'react-select'
 import _debounce from 'lodash/debounce'
 import { getLocationSuggestion, getLocationGeocode } from 'services/partner'
 import styles from './styles'
+
+const IndicatorsContainer = () => <></>
 export default function SearchLocation({
     onSelectValue,
     sessionToken,
     textLang,
+    placeholder,
+    isDesktop,
 }) {
     const [selectedOption, setSelectedOption] = useState('')
     const [options, setOptions] = useState(null)
@@ -93,9 +97,15 @@ export default function SearchLocation({
                 onChange={handleChange}
                 onInputChange={handleInputChange}
                 options={options || []}
-                className={'search-select-container'}
+                className={`search-select-container ${
+                    isDesktop ? '' : 'is-mobile'
+                }`}
                 styles={customStyles}
                 noOptionsMessage={() => textLang['noOptions'] || ''}
+                components={{
+                    IndicatorsContainer: IndicatorsContainer,
+                }}
+                placeholder={placeholder}
             />
             <style jsx global>
                 {styles}

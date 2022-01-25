@@ -108,6 +108,7 @@ export default function AXASearch({
                         <SearchInput
                             placeholder={selectedOpt?.placeholder ?? ''}
                             onSearch={handleSearch}
+                            isDesktop={isDesktop}
                         />
                     )}
                     {selectedOpt &&
@@ -121,6 +122,8 @@ export default function AXASearch({
                                     }
                                     onSelectValue={handleSearch}
                                     textLang={textLang}
+                                    placeholder={selectedOpt?.placeholder ?? ''}
+                                    isDesktop={isDesktop}
                                 />
                             </>
                         )}
@@ -130,6 +133,8 @@ export default function AXASearch({
                                 onSelectValue={handleSearch}
                                 sessionToken={sessionToken}
                                 textLang={textLang}
+                                placeholder={selectedOpt?.placeholder ?? ''}
+                                isDesktop={isDesktop}
                             />
                         </>
                     )}

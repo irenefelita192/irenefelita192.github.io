@@ -55,12 +55,18 @@ export default css`
     }
 
     .dropdown-options > span.selected-caret {
-        display: flex;
+        /* display: flex;
         align-items: center;
-        justify-content: end;
+        justify-content: center;
         width: 45%;
         height: auto;
+        border-radius: 0 10px 10px 0; */
+        width: 20px;
+        height: 20px;
         border-radius: 0 10px 10px 0;
+        position: absolute;
+        right: 0;
+        top: 18px;
     }
 
     .selected-caret > i {
@@ -90,5 +96,9 @@ export default css`
     .search-wrapper.is-mobile {
         width: 100%;
         margin-top: 16px;
+    }
+
+    .search-wrapper.is-mobile .dropdown-options {
+        width: 35%;
     }
 `
