@@ -58,7 +58,7 @@ export default function TablePartner({
 
     function linkFormatter(cell, row, rowIndex, formatExtraData) {
         return (
-            <a href={cell} target="_blank">
+            <a href={cell} target="_blank" className={'field-link'}>
                 {formatExtraData.linkText}
             </a>
         )

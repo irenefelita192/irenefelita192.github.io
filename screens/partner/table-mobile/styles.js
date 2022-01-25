@@ -55,6 +55,10 @@ export default css`
         height: 40px;
     }
 
+    .table-data .field-link {
+        color: ${theme.colors['vida-green']};
+    }
+
     .top-table-wrapper {
         display: flex;
         align-items: end;
