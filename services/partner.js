@@ -1,10 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 
-import { get } from 'axios'
+import { get, post } from 'axios'
+// const rootCas = require('ssl-root-cas').create()
+
+// rootCas.addFile(path.resolve(__dirname, 'intermediate.pem'))
+// const httpsAgent = new https.Agent({ ca: rootCas })
 
 const endpoints = process.env.config?.beEndpoint ?? '',
     cmsEndpoints = process.env.config?.baseEndpoint ?? '',
-    defaultLang = process.env.config?.defaultLang ?? 'id'
+    defaultLang = process.env.config?.defaultLang ?? 'id',
+    fwuid = process.env.config?.fwuid ?? '7FPkrq_-upw5gdD4giTZpg'
 
 export const getPartnerCMS = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
@@ -14,6 +19,167 @@ export const getPartnerCMS = async (locale) => {
         }
     )
     return response ? response.data : null
+}
+
+export const getAXAPartnerCMS = async (locale) => {
+    const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
+    const response = await get(
+        `${cmsEndpoints}/vida-axa-partner${locQs}`
+    ).catch(function (error) {
+        console.error(error)
+    })
+    return response ? response.data : null
+}
+
+export const getProviderList = async ({
+    offset,
+    latitude,
+    longitude,
+    providerName,
+    providerType,
+    specialities,
+    country = 'Indonesia',
+}) => {
+    const selCountry = country || 'Indonesia'
+    var bodyFormData = new URLSearchParams()
+    bodyFormData.append(
+        'message',
+        `{"actions":[{"id":"","descriptor":"apex://ProviderSearchByLocationController/ACTION$getProvidersWithOffset","callingDescriptor":"markup://c:searchResultListDisplay","params":{"offset":"${offset}","country":"${selCountry}","PartnerId":"AXA_MEM_01","latitude":"${latitude}","longitude":"${longitude}","providerNamefilter":"${providerName}","providerTypefilter":"${providerType}","specialitiesfilter":"${specialities}"},"storable":true}]}`
+    )
+    bodyFormData.append(
+        'aura.context',
+        `{"mode":"PROD","fwuid":"${fwuid}","app":"siteforce:communityApp","loaded":{"APPLICATION@markup://siteforce:communityApp":"B78_-aNM4IDOksLJusJF3g"},"dn":[],"globals":{},"uad":false}`
+    )
+    bodyFormData.append('aura.pageURI', undefined)
+    bodyFormData.append('aura.token', undefined)
+
+    const response = await post(
+        // `https://select.axaglobalhealthcare.com/s/sfsites/aura?other.ProviderSearchByLocation.getPartnerMapType=1&other.ProviderSearchByLocation.getProvidersWithOffset=1`,
+        `https://api.haloida.dev/v1/hospitals/axa-aura?r=11&other.ProviderSearchByLocation.getProvidersWithOffset=1`,
+        bodyFormData,
+
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }
+    ).catch(function (error) {
+        console.error('masuk sini?', error)
+    })
+
+    let value = null,
+        flattenList = [],
+        totalData = 0,
+        offsetFrom = 0,
+        offsetTo = 0,
+        providerTypeList = null,
+        specialitiesList = null
+    if (response && response.data) {
+        const { actions } = response.data
+        if (actions && actions.length > 0) {
+            value = actions[0]?.returnValue ?? null
+        }
+
+        if (value && value.length > 0) {
+            value.map((dt, index) => {
+                if (index == 0) {
+                    totalData = dt.totalSearchResults
+                    offsetFrom = dt.offsetFrom
+                    offsetTo = dt.offsetTo
+                    providerTypeList =
+                        dt.availableProviderTypesInSelectedCountry
+                    specialitiesList = dt.availableSpecialitiesInSelectedCountry
+                }
+                dt.directionsURLlink = `<a href='${dt.directionsURL}'>Get Directions</a>`
+                flattenList.push(flattenObject(dt))
+            })
+        }
+    }
+
+    const data = {
+        flattenList,
+        list: value,
+        totalData,
+        offsetFrom,
+        offsetTo,
+        providerTypeList,
+        specialitiesList,
+    }
+    return data
+}
+
+export const getLocationSuggestion = async ({ text, sessionToken }) => {
+    var bodyFormData = new URLSearchParams()
+    bodyFormData.append(
+        'message',
+        `{"actions":[{"id":"","descriptor":"apex://ProviderSearchByLocationController/ACTION$getAddressSet","callingDescriptor":"UNKNOWN","params":{"SearchText":"${text}","sessionToken":"${sessionToken}"}}]}`
+    )
+    bodyFormData.append(
+        'aura.context',
+        `{"mode":"PROD","fwuid":"${fwuid}","app":"siteforce:communityApp","loaded":{"APPLICATION@markup://siteforce:communityApp":"B78_-aNM4IDOksLJusJF3g"},"dn":[],"globals":{},"uad":false}`
+    )
+    bodyFormData.append('aura.pageURI', undefined)
+    bodyFormData.append('aura.token', undefined)
+
+    const response = await post(
+        `https://api.haloida.dev/v1/hospitals/axa-aura?r=14&other.ProviderSearchByLocation.getAddressSet=1`,
+        bodyFormData,
+
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }
+    ).catch(function (error) {
+        console.error('Error getLocationSuggestion', error)
+    })
+
+    let value = null
+    if (response && response.data) {
+        const { actions } = response.data
+        if (actions && actions.length > 0) {
+            value = actions[0]?.returnValue ?? null
+        }
+    }
+
+    return value
+}
+
+export const getLocationGeocode = async ({ placeId, sessionToken }) => {
+    var bodyFormData = new URLSearchParams()
+    bodyFormData.append(
+        'message',
+        `{"actions":[{"id":"","descriptor":"apex://ProviderSearchByLocationController/ACTION$getAddressDetailsByPlaceId","callingDescriptor":"markup://c:searchLocationAtHomePage","params":{"PlaceID":"${placeId}","sessionToken":"${sessionToken}"}}]}`
+    )
+    bodyFormData.append(
+        'aura.context',
+        `{"mode":"PROD","fwuid":"${fwuid}","app":"siteforce:communityApp","loaded":{"APPLICATION@markup://siteforce:communityApp":"B78_-aNM4IDOksLJusJF3g"},"dn":[],"globals":{},"uad":false}`
+    )
+    bodyFormData.append('aura.pageURI', undefined)
+    bodyFormData.append('aura.token', undefined)
+
+    const response = await post(
+        `https://api.haloida.dev/v1/hospitals/axa-aura?r=14&other.ProviderSearchByLocation.getAddressDetailsByPlaceId=1`,
+        bodyFormData,
+
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }
+    ).catch(function (error) {
+        console.error('Error getLocationSuggestion', error)
+    })
+
+    let value = null
+    if (response && response.data) {
+        const { actions } = response.data
+        if (actions && actions.length > 0) {
+            value = actions[0]?.returnValue ?? null
+        }
+    }
+
+    return value
 }
 
 const flattenObject = (ob) => {

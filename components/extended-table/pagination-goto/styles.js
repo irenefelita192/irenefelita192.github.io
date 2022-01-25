@@ -38,7 +38,7 @@ export default css`
     .wrapper-goto > button {
         width: 32%;
         padding: 10px 13px;
-        background-color: #108e87;
+        background-color: ${theme.colors['vida-dark-green']};
         border: 0;
         outline: 0;
         box-shadow: none;

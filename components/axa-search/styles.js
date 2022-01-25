@@ -27,32 +27,25 @@ export default css`
         line-height: 1.37;
     }
 
-    .search-box > input {
-        background: #fbfbfb;
-        padding: 10px 40px 10px 13px;
-        outline: 0;
+    /* .search-btn {
+        background-color: ${theme.colors['vida-dark-green']};
+        color: ${theme.colors.white};
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.43;
+        cursor: pointer;
+        box-shadow: none;
         border: 0;
-        width: 75%;
-        border-radius: 0 11px 11px 0;
-    }
-
-    .search-box > i {
-        position: absolute;
-        top: 50%;
-        right: 14px;
-        transform: translate(0, -50%);
-        display: block;
-        width: 20px;
-        height: 20px;
-        background-image: url(${assetPrefix}/images/partner/search-icon.svg);
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
+        outline: 0;
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: 10px;
+    } */
 
     .dropdown-options {
         background-color: ${theme.colors['vida-dark-green']};
         padding: 10px;
-        width: 25%;
+        width: 30%;
         border-radius: 11px 0 0 11px;
         color: ${theme.colors.white};
         font-weight: 600;
