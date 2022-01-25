@@ -124,3 +124,14 @@ export const getMockAPI = async (path) => {
 
     return response ? response.data : null
 }
+
+const beEndpoint = process.env.config?.beEndpoint ?? ''
+export const getAPIBackend = async (path) => {
+    const response = await axios
+        .get(`${beEndpoint}/${path}`)
+        .catch(function (error) {
+            console.error(`Error at ${path} - ${error}`)
+        })
+
+    return response ? response.data : null
+}
