@@ -142,13 +142,13 @@ export default function TablePartner({
     const getDataList = async ({
         limit_page = sizePerPage,
         page = currPage,
-        country = 'Indonesia',
         searchValue = searchObj[selectedOpt?.id ?? ''] || '',
         selectedOption = selectedOpt,
     }) => {
         let searchVal = searchValue,
             lat = userPosition.lat,
-            lng = userPosition.long
+            lng = userPosition.long,
+            country = 'Indonesia'
         if (searchVal) {
             if (selectedOption.id == 'specialities') {
                 searchVal = ''
@@ -159,6 +159,7 @@ export default function TablePartner({
             } else if (selectedOption.id == 'location') {
                 lat = searchVal?.lat ?? userPosition.lat
                 lng = searchVal?.lng ?? userPosition.long
+                country = searchVal?.country ?? 'Indonesia'
             }
         }
         setDataSliced(null)
@@ -182,30 +183,15 @@ export default function TablePartner({
         initSearchList(opt)
     }
 
-    const onSearch = async (value, opt = null, country) => {
+    const onSearch = async (value, opt = null) => {
         setCurrPage(1)
         setSearchObj({ [opt.id]: value })
-        processSearch(value, opt, country)
+        processSearch(value, opt)
     }
 
-    const processSearch = _debounce(async (value, opt, country) => {
-        let searchVal = value,
-            lat = userPosition.lat,
-            lng = userPosition.long
-        if (opt.id == 'specialities') {
-            searchVal = ''
-            value &&
-                value.map((val, index) => {
-                    searchVal += index == 0 ? val.value : `,${val.value}`
-                })
-        } else if (opt.id == 'location') {
-            lat = searchVal?.lat ?? userPosition.lat
-            lng = searchVal?.lng ?? userPosition.long
-        }
-
+    const processSearch = _debounce(async (value, opt) => {
         const data = await getDataList({
             page: 1,
-            country,
             searchValue: value,
             selectedOption: opt,
         })

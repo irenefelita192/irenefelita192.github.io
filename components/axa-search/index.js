@@ -64,9 +64,9 @@ export default function AXASearch({
         }
     }
 
-    const handleSearch = (value, country = '') => {
+    const handleSearch = (value) => {
         if (onSearch) {
-            onSearch(value, selectedOpt, country)
+            onSearch(value, selectedOpt)
         }
     }
     return (
