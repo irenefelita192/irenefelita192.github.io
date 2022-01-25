@@ -6,4 +6,8 @@ export default css.global`
         width: 68%;
         border: 0;
     }
+
+    .search-select-container.is-mobile {
+        width: 62%;
+    }
 `

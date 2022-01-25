@@ -353,7 +353,7 @@ export default function TablePartner({
                     />
                 )}
 
-                {partnerFlatList && partnerFlatList.length > 0 && (
+                {dataSliced && dataSliced.length > 0 && (
                     <div className={`pagination-wrapper`}>
                         <PaginationTotal
                             from={pageIndex?.startPage ?? 0}

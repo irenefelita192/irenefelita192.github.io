@@ -3,7 +3,7 @@ const assetPrefix = process.env.config?.assetPrefix ?? ''
 export default css`
     .search-input {
         background: #fbfbfb;
-        padding: 10px 40px 10px 13px;
+        padding: 10px 10px 10px 13px;
         outline: 0;
         border: 0;
         width: 75%;
@@ -21,5 +21,9 @@ export default css`
         background-image: url(${assetPrefix}/images/partner/search-icon.svg);
         background-size: contain;
         background-repeat: no-repeat;
+    }
+
+    .search-input.is-mobile {
+        width: 65%;
     }
 `

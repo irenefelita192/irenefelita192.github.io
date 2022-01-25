@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import _debounce from 'lodash/debounce'
 import styles from './styles'
 
-export default function Search({ onSearch, placeholder }) {
+export default function Search({ onSearch, placeholder, isDesktop }) {
     const [inputVal, setInputVal] = useState('')
 
     const handleChangeInput = (e) => {
@@ -25,9 +25,9 @@ export default function Search({ onSearch, placeholder }) {
                     handleChangeInput(e)
                 }}
                 value={inputVal}
-                className="search-input"
+                className={`search-input ${isDesktop ? '' : 'is-mobile'}`}
             />
-            <i />
+            {/* <i /> */}
 
             <style jsx>{styles}</style>
         </>
