@@ -24,9 +24,12 @@ export default function SearchLocation({
                 country = addressComp.find(
                     (addr) => addr.types && addr.types.includes('country')
                 )
+            if (geocode) {
+                geocode.country = country?.long_name ?? 'Indonesia'
+            }
 
             if (onSelectValue) {
-                onSelectValue(geocode, country?.long_name ?? '')
+                onSelectValue(geocode)
             }
         })
     }
@@ -92,7 +95,7 @@ export default function SearchLocation({
                 options={options || []}
                 className={'search-select-container'}
                 styles={customStyles}
-                noOptionsMessage={() => textLang['noOptions']}
+                noOptionsMessage={() => textLang['noOptions'] || ''}
             />
             <style jsx global>
                 {styles}
