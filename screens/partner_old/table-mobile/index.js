@@ -164,7 +164,7 @@ export default function TablePartner({
     }
 
     const onGoToClick = async (pageNumber) => {
-        if (pageNumber <= totalPage) {
+        if (pageNumber && pageNumber <= totalPage) {
             setCurrPage(pageNumber)
             const data = await getDataList({
                 page: pageNumber,

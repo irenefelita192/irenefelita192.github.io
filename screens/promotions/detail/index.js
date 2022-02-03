@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect, memo } from 'react'
 import styles from './styles'
-import Accordion from 'components/accordion'
+import Collapsible from '../collapsible'
 import ReactMarkdown from 'react-markdown'
 import NotFound from 'screens/not-found'
 import { format } from 'date-fns'
@@ -35,6 +35,7 @@ export default function PromotionDetailScreen({
                 document.removeEventListener('click', () => {})
             }
         }, [])
+
         let lastScrollTop = 0
         const handleScroll = (e) => {
             let scrollTop = window.pageYOffset,
@@ -99,7 +100,9 @@ export default function PromotionDetailScreen({
                                 />
                             </div>
                         )}
-                        <h1>{promoDetail?.title ?? 'Promo'}</h1>
+                        <div className="title">
+                            {promoDetail?.title ?? 'Promo'}
+                        </div>
 
                         <div className={'promo-desc promo-content'}>
                             <ReactMarkdown>
@@ -110,16 +113,25 @@ export default function PromotionDetailScreen({
                         <div className="promo-detail-mobile">
                             <div className="promo-detail-box-mobile">
                                 <div>
-                                    {/* {textLang
-                                    ? textLang['promo-period']
-                                    : 'Promo period'} */}
-                                    <p>Periode Promo</p>
-                                    <p>Kategori</p>
-                                    <p>Kode Promo</p>
+                                    <p>
+                                        {textLang
+                                            ? textLang['promo-period']
+                                            : 'Promo period'}
+                                    </p>
+                                    <p>
+                                        {' '}
+                                        {textLang
+                                            ? textLang['category']
+                                            : 'Category'}
+                                    </p>
+                                    <p>
+                                        {' '}
+                                        {textLang
+                                            ? textLang['promo-code']
+                                            : 'Promo Code'}
+                                    </p>
                                 </div>
                                 <div>
-                                    {/* {textLang ? textLang['category'] : 'Category'}:{' '} */}
-
                                     <p>
                                         <b>
                                             {periodStart} - {periodEnd}
@@ -136,7 +148,16 @@ export default function PromotionDetailScreen({
                                 </div>
                             </div>
                         </div>
-                        <div className={'promo-terms promo-content'}>
+                        <div
+                            className={'promo-terms promo-content'}
+                            id="promo-content"
+                        >
+                            <Collapsible title={'Syarat dan Ketentuan'}>
+                                <ReactMarkdown>
+                                    {promoDetail?.terms ?? ''}
+                                </ReactMarkdown>
+                            </Collapsible>
+                            {/* 
                             <Accordion>
                                 <Accordion.Container>
                                     <Accordion.Header
@@ -146,36 +167,52 @@ export default function PromotionDetailScreen({
                                     >
                                         <h2>Syarat dan Ketentuan</h2>
                                     </Accordion.Header>
-                                    <Accordion.Body>
+                                    <Accordion.Body doubleHeight>
                                         <ReactMarkdown>
                                             {promoDetail?.terms ?? ''}
                                         </ReactMarkdown>
                                     </Accordion.Body>
                                 </Accordion.Container>
-                            </Accordion>
+                            </Accordion> */}
                         </div>
                     </div>
                     <div className="info-section" id="info-section">
                         <div className="promo-detail" id="promo-detail">
-                            <div>Info Promo</div>
+                            <div>
+                                {textLang
+                                    ? textLang['promo-info']
+                                    : 'Promo Info'}
+                            </div>
                             <div className="promo-box">
                                 <div>
                                     {/* {textLang
                                         ? textLang['promo-period']
                                         : 'Promo period'} */}
-                                    <p>Periode Promo</p>
+                                    <p>
+                                        {textLang
+                                            ? textLang['promo-period']
+                                            : 'Promo Period'}
+                                    </p>
                                     <b>
                                         {periodStart} - {periodEnd}
                                     </b>
                                 </div>
                                 <div>
                                     {/* {textLang ? textLang['category'] : 'Category'}:{' '} */}
-                                    <p>Kategori</p>
+                                    <p>
+                                        {textLang
+                                            ? textLang['category']
+                                            : 'Category'}
+                                    </p>
                                     <b>{promoDetail?.category?.name ?? ''}</b>
                                 </div>
                             </div>
                             <div>
-                                <p>Kode Promo</p>
+                                <p>
+                                    {textLang
+                                        ? textLang['promo-code']
+                                        : 'Promo Code'}
+                                </p>
                                 <b>{promoDetail?.code ?? ''}</b>
                             </div>
                         </div>
