@@ -9,12 +9,21 @@ export default css`
         background-color: ${theme.colors['light-sand']};
     }
 
-    .wrapper h1 {
+    .promo-content :global(h1) {
+        color: ${theme.colors['vida-black']};
+        font-family: 'Museo', sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .wrapper .title {
         color: ${theme.colors['vida-black']};
         font-family: 'Museo', sans-serif;
         font-weight: 700;
         font-size: 20px;
-        margin: 40px 30px 10px;
+        margin: 40px 30px 0;
     }
 
     .main-section {
@@ -134,8 +143,8 @@ export default css`
         padding: 10px 0;
     }
 
-    .promo-content :global(p) {
-        padding-bottom: 10px;
+    .promo-content :global(ol > li > ol) {
+        padding-top: 10px;
         font-size: 14px;
     }
 

@@ -66,7 +66,12 @@ const PromoSection = ({ promos, textLang, locale }) => {
                                     </div>
                                     {promo && promo.category && (
                                         <div className="promo-category">
-                                            <p>Kategori</p>
+                                            <p>
+                                                {' '}
+                                                {textLang
+                                                    ? textLang['category']
+                                                    : 'Category'}{' '}
+                                            </p>
                                             <b>{promo?.category?.name ?? ''}</b>
                                         </div>
                                     )}
