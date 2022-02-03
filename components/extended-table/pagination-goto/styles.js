@@ -32,7 +32,7 @@ export default css`
         font-weight: 500;
         font-size: 14px;
         line-height: 1.43;
-        color: #6b7280;
+        /* color: #6b7280; */
     }
 
     .wrapper-goto > button {
