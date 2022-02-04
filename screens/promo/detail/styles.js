@@ -158,6 +158,17 @@ export default css`
         padding-left: 5px;
     }
 
+    .promo-content :global(ul) {
+        font-size: 14px;
+        list-style: disc;
+        margin-left: 25px;
+    }
+
+    .promo-content :global(ul > li) {
+        margin: 0 0 10px;
+        padding-left: 5px;
+    }
+
     @media screen and (max-width: 768px) {
         .wrapper {
             display: block;
