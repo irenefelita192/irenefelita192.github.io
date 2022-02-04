@@ -20,7 +20,7 @@
 
 -   Additional cloudrun deploy to asia-southeast1 (singapore) for drc
 -   Improvement on header desktop and mobile rerender using React.memo
--   New promotion page at `/promotions` and `/promotions/:slug`
+-   New promotion page at `/promo` and `/promo/:slug`
 -   Fix .env.sample to .env.dev.sample and .env.prod.sample and adjust on the CI workflow
 -   Refactor code: use global function to call api by path, remove redundanct color theme
 

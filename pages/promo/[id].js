@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
 import Layout from 'components/layout'
 import { getAPI, getAPIBackend } from 'services/common'
-import PromotionDetailScreen from 'screens/promotions/detail'
+import PromotionDetailScreen from 'screens/promo/detail'
 
 import { getCookieLocale } from 'utils/global-util'
 
