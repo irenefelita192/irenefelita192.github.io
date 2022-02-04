@@ -1,6 +1,6 @@
 import Layout from 'components/layout'
 import { getAPI, getAPIBackend } from 'services/common'
-import PromotionScreen from 'screens/promotions'
+import PromotionScreen from 'screens/promo'
 import { getCookieLocale } from 'utils/global-util'
 
 export async function getServerSideProps({ req, res, query }) {

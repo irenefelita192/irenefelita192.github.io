@@ -31,7 +31,7 @@ const PromoSection = ({ promos, textLang, locale }) => {
                             <a
                                 key={promo.id}
                                 className="promo-box"
-                                href={`/promotions/${promo.id}`}
+                                href={`/promo/${promo.id}`}
                             >
                                 {promo && promo.imageUrl && (
                                     <img

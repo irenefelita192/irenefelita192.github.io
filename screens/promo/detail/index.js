@@ -152,7 +152,13 @@ export default function PromotionDetailScreen({
                             className={'promo-terms promo-content'}
                             id="promo-content"
                         >
-                            <Collapsible title={'Syarat dan Ketentuan'}>
+                            <Collapsible
+                                title={
+                                    textLang
+                                        ? textLang['terms-condition']
+                                        : 'Syarat dan Ketentuan'
+                                }
+                            >
                                 <ReactMarkdown>
                                     {promoDetail?.terms ?? ''}
                                 </ReactMarkdown>
