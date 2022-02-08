@@ -169,6 +169,10 @@ export default css`
         padding-left: 5px;
     }
 
+    .promo-content :global(code) {
+        background-color: transparent;
+    }
+
     @media screen and (max-width: 768px) {
         .wrapper {
             display: block;

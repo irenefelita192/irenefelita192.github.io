@@ -2,11 +2,15 @@
 
 > 2022-01-25
 
+-   Revert partner axa page to partner with backend api
+
+> 2022-01-25
+
 -   New partner page using AXA Api and backup old partner page
 
 > 2022-01-12
 
--   Update promotion detail UI based on mock up API
+-   Update promo detail page UI based on mock up API
 -   Remove locale when calling mock api
 -   Update accordion component props to show arrow up and down and able to set default is open
 -   Fix show current year at footer copyright by replacing variable from strapi data
