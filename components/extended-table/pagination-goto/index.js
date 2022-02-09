@@ -6,7 +6,11 @@ export default function PaginationGoTo({
     isDesktop,
     textLang,
 }) {
-    const [inputVal, setInputVal] = useState(value)
+    const [inputVal, setInputVal] = useState('')
+    useEffect(() => {
+        setInputVal(value)
+    }, [value])
+
     const handleGoTo = () => {
         if (onClick) {
             onClick(inputVal)

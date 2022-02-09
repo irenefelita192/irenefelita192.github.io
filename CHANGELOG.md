@@ -1,5 +1,12 @@
 ### [v1.2.0]
 
+> 2022-02-09
+
+-   Add `reset / x button` on search box at partner page
+-   Reset `go to` page input text when re-loading data to first page
+-   Fix search partner when changing from City/Province/Country option to Name search option
+-   Show `loading` and `no data` info on mobile partner table
+
 > 2022-01-25
 
 -   Revert partner axa page to partner with backend api

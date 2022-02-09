@@ -22,6 +22,9 @@ export default css`
         width: 175px;
         position: relative;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .wrapper-goto > input {

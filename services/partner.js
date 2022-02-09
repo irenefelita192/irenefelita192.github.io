@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import { get, post } from 'axios'
+import axios from 'axios'
 // const rootCas = require('ssl-root-cas').create()
 
 // rootCas.addFile(path.resolve(__dirname, 'intermediate.pem'))
@@ -13,21 +13,21 @@ const endpoints = process.env.config?.beEndpoint ?? '',
 
 export const getPartnerCMS = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
-    const response = await get(`${cmsEndpoints}/vida-partner${locQs}`).catch(
-        function (error) {
+    const response = await axios
+        .get(`${cmsEndpoints}/vida-partner${locQs}`)
+        .catch(function (error) {
             console.error(error)
-        }
-    )
+        })
     return response ? response.data : null
 }
 
 export const getAXAPartnerCMS = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
-    const response = await get(
-        `${cmsEndpoints}/vida-axa-partner${locQs}`
-    ).catch(function (error) {
-        console.error(error)
-    })
+    const response = await axios
+        .get(`${cmsEndpoints}/vida-axa-partner${locQs}`)
+        .catch(function (error) {
+            console.error(error)
+        })
     return response ? response.data : null
 }
 
@@ -53,19 +53,21 @@ export const getProviderList = async ({
     bodyFormData.append('aura.pageURI', undefined)
     bodyFormData.append('aura.token', undefined)
 
-    const response = await post(
-        // `https://select.axaglobalhealthcare.com/s/sfsites/aura?other.ProviderSearchByLocation.getPartnerMapType=1&other.ProviderSearchByLocation.getProvidersWithOffset=1`,
-        `https://api.haloida.dev/v1/hospitals/axa-aura?r=11&other.ProviderSearchByLocation.getProvidersWithOffset=1`,
-        bodyFormData,
+    const response = await axios
+        .post(
+            // `https://select.axaglobalhealthcare.com/s/sfsites/aura?other.ProviderSearchByLocation.getPartnerMapType=1&other.ProviderSearchByLocation.getProvidersWithOffset=1`,
+            `https://api.haloida.dev/v1/hospitals/axa-aura?r=11&other.ProviderSearchByLocation.getProvidersWithOffset=1`,
+            bodyFormData,
 
-        {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-    ).catch(function (error) {
-        console.error('masuk sini?', error)
-    })
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            }
+        )
+        .catch(function (error) {
+            console.error('masuk sini?', error)
+        })
 
     let value = null,
         flattenList = [],
@@ -121,18 +123,20 @@ export const getLocationSuggestion = async ({ text, sessionToken }) => {
     bodyFormData.append('aura.pageURI', undefined)
     bodyFormData.append('aura.token', undefined)
 
-    const response = await post(
-        `https://api.haloida.dev/v1/hospitals/axa-aura?r=14&other.ProviderSearchByLocation.getAddressSet=1`,
-        bodyFormData,
+    const response = await axios
+        .post(
+            `https://api.haloida.dev/v1/hospitals/axa-aura?r=14&other.ProviderSearchByLocation.getAddressSet=1`,
+            bodyFormData,
 
-        {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-    ).catch(function (error) {
-        console.error('Error getLocationSuggestion', error)
-    })
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            }
+        )
+        .catch(function (error) {
+            console.error('Error getLocationSuggestion', error)
+        })
 
     let value = null
     if (response && response.data) {
@@ -158,18 +162,20 @@ export const getLocationGeocode = async ({ placeId, sessionToken }) => {
     bodyFormData.append('aura.pageURI', undefined)
     bodyFormData.append('aura.token', undefined)
 
-    const response = await post(
-        `https://api.haloida.dev/v1/hospitals/axa-aura?r=14&other.ProviderSearchByLocation.getAddressDetailsByPlaceId=1`,
-        bodyFormData,
+    const response = await axios
+        .post(
+            `https://api.haloida.dev/v1/hospitals/axa-aura?r=14&other.ProviderSearchByLocation.getAddressDetailsByPlaceId=1`,
+            bodyFormData,
 
-        {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-    ).catch(function (error) {
-        console.error('Error getLocationSuggestion', error)
-    })
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            }
+        )
+        .catch(function (error) {
+            console.error('Error getLocationSuggestion', error)
+        })
 
     let value = null
     if (response && response.data) {
@@ -204,13 +210,15 @@ const flattenObject = (ob) => {
 
 const getDataCount = async ({ qsSearch, qsSource }) => {
     const qsSearchFinal = qsSearch ? `&${qsSearch}` : ''
-    const response = await get(
-        `${endpoints}${qsSource}?getcount=true${qsSearchFinal}`
-    ).catch(function (error) {
-        console.error(error)
-    })
+    const response = await axios
+        .get(`${endpoints}${qsSource}?getcount=true${qsSearchFinal}`)
+        .catch(function (error) {
+            console.error(error)
+        })
     return response?.data?.count ?? null
 }
+
+let tokenSource
 
 export const getPartnerData = async ({
     limit,
@@ -221,6 +229,12 @@ export const getPartnerData = async ({
     source = '/hospitals',
     param,
 }) => {
+    if (typeof tokenSource !== typeof undefined) {
+        tokenSource.cancel('Operation canceled due to new request.')
+    }
+
+    tokenSource = axios.CancelToken.source()
+
     const offset = (page - 1) * limit,
         qsPaging = `?limit=${limit}&offset=${offset}`,
         qsSearch =
@@ -236,11 +250,13 @@ export const getPartnerData = async ({
         qsSource,
     })
 
-    const response = await get(
-        `${endpoints}${qsSource}${qsPaging}${qsSearch}&sort=${sort}`
-    ).catch(function (error) {
-        console.error(error)
-    })
+    const response = await axios
+        .get(`${endpoints}${qsSource}${qsPaging}${qsSearch}&sort=${sort}`, {
+            cancelToken: tokenSource.token,
+        })
+        .catch(function (error) {
+            console.error(error)
+        })
     let flattenList = []
     response &&
         response.data &&
@@ -252,17 +268,19 @@ export const getPartnerData = async ({
         flattenList,
         list: response?.data ?? null,
         totalData,
+        searchfieldDt: searchfield,
+        searchkeyDt: searchkey,
     }
 
     return data
 }
 
 export const getSearchMaster = async ({ source }) => {
-    const response = await get(`${endpoints}/${source}`).catch(function (
-        error
-    ) {
-        console.error(error)
-    })
+    const response = await axios
+        .get(`${endpoints}/${source}`)
+        .catch(function (error) {
+            console.error(error)
+        })
 
     return response?.data ?? null
 }

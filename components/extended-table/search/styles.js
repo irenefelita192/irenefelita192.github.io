@@ -29,7 +29,7 @@ export default css`
 
     .search-box > input {
         background: #fbfbfb;
-        padding: 10px 40px 10px 13px;
+        padding: 10px 80px 10px 13px;
         outline: 0;
         border: 0;
         width: 75%;
@@ -49,6 +49,28 @@ export default css`
         background-repeat: no-repeat;
     }
 
+    .search-box > div.reset {
+        position: absolute;
+        top: 50%;
+        right: 60px;
+        transform: translate(0, -50%);
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-image: url(${assetPrefix}/images/partner/reset-icon.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .search-box > div.reset:after {
+        content: '';
+        border-right: 1px solid #c9c9c9;
+        height: 18px;
+        display: block;
+        margin-right: -14px;
+    }
+
     .dropdown-options {
         background-color: ${theme.colors['vida-dark-green']};
         padding: 10px;
@@ -62,12 +84,19 @@ export default css`
     }
 
     .dropdown-options > span.selected-caret {
-        display: flex;
+        /* display: flex;
         align-items: center;
         justify-content: end;
         width: 45%;
         height: auto;
+        border-radius: 0 10px 10px 0; */
+
+        width: 20px;
+        height: 20px;
         border-radius: 0 10px 10px 0;
+        position: absolute;
+        right: 0;
+        top: 18px;
     }
 
     .selected-caret > i {
@@ -97,5 +126,13 @@ export default css`
     .search-wrapper.is-mobile {
         width: 100%;
         margin-top: 16px;
+    }
+
+    .search-wrapper.is-mobile .dropdown-options {
+        width: 35%;
+    }
+
+    .is-mobile .dropdown-search-list {
+        width: 69%;
     }
 `

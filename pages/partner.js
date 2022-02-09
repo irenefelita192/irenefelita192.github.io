@@ -1,5 +1,5 @@
 import Layout from 'components/layout'
-import PartnerScreen from 'screens/partner_old'
+import PartnerScreen from 'screens/partner'
 
 import { getPartnerCMS } from 'services/partner'
 import { getCookieLocale } from 'utils/global-util'
@@ -33,7 +33,7 @@ export default function Partner({ data, query }) {
 // import { useEffect, useState } from 'react'
 // import Layout from 'components/layout'
 
-// import PartnerScreen from 'screens/partner'
+// import PartnerScreen from 'screens/partnerAxa'
 
 // import { getAXAPartnerCMS } from 'services/partner'
 // import { getCookieLocale } from 'utils/global-util'

@@ -1,38 +1,40 @@
+// import paginationFactory from 'react-bootstrap-table2-paginator'
+// import ToolkitProvider from 'react-bootstrap-table2-toolkit'
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import { useAsyncEffect } from 'use-async-effect'
+// import { useParams, useHistory } from 'react-router-dom'
 
 import _debounce from 'lodash/debounce'
+import _size from 'lodash/size'
 import _reduce from 'lodash/reduce'
-import { getProviderList } from 'services/partner'
+
+import { getPartnerData } from '../../../services/partner'
+import { getCookie } from '../../../utils/global-util'
 
 import PaginationPanel from '../../../components/extended-table/pagination-panel'
 import PaginationSize from '../../../components/extended-table/pagination-size'
 import PaginationTotal from '../../../components/extended-table/pagination-total'
 import PaginationGoTo from '../../../components/extended-table/pagination-goto'
-import AXASearch from '../../../components/axa-search'
+import Search from '../../../components/extended-table/search'
+// // import Search from '@components/ExtendedTable/Search'
+// import ButtonLoader from '@components/ButtonLoader'
+// import Dropdown from '@components/Dropdown'
 
 import styles from './styles.js'
 import globalStyles from './global-styles'
 
-const LIMIT = 100
 export default function TablePartner({
     columns,
     pageSizes,
     searchOpt,
     textLang,
-    userPosition,
-    sessionToken,
 }) {
     const [partnerData, setPartnerData] = useState({})
-    const [dataSliced, setDataSliced] = useState(null)
-
     const {
         list: partnerList,
         flattenList: partnerFlatList,
         totalData,
-        offsetFrom,
-        providerTypeList,
-        specialitiesList,
+        isLoading = true,
     } = partnerData
 
     const [sizePerPage, setSizePerPage] = useState(
@@ -41,54 +43,23 @@ export default function TablePartner({
     const [totalPage, setTotalPage] = useState(null)
     const [pageIndex, setPageIndex] = useState(null)
     const [currPage, setCurrPage] = useState(1)
-    const [gotoPage, setGotoPage] = useState()
-    const [selectedOpt, setSelectedOpt] = useState(
-        searchOpt ? searchOpt[0] : null
-    )
-    const [searchObj, setSearchObj] = useState({
-        [searchOpt ? searchOpt[0].id : '']: '',
-    })
-    const [searchInitData, setSearchInitData] = useState()
+    const [goToPage, setGoToPage] = useState('')
+    const [searchObj, setSearchObj] = useState(searchOpt ? searchOpt[0] : null)
 
-    useAsyncEffect(
-        async (isMounted) => {
-            if (userPosition) {
-                const data = await getDataList({ limit: 10, page: 1 })
-
-                if (!isMounted()) return
-
-                setPartnerData(data)
-            }
-        },
-        [userPosition]
-    )
-
-    const initSearchList = (opt) => {
-        let searchInitDt = null
-
-        if (opt && opt.id == 'specialities') {
-            searchInitDt =
-                specialitiesList &&
-                specialitiesList.map((dt) => ({
-                    ...dt,
-                    value: dt.label,
-                }))
-        } else if (opt && opt.id == 'providerType') {
-            searchInitDt =
-                providerTypeList &&
-                providerTypeList.map((dt) => ({
-                    ...dt,
-                    label: textLang[dt.label] || dt.label,
-                }))
+    useAsyncEffect(async (isMounted) => {
+        let langId
+        if (window) {
+            langId = getCookie('lang')
         }
-        setSearchInitData(searchInitDt)
-    }
+        const data = await getDataList({ limit: 10, page: 1 })
+
+        if (!isMounted()) return
+
+        setPartnerData({ ...data, isLoading: false })
+    }, [])
 
     useEffect(() => {
         if (partnerData) {
-            sliceDataPerPage(currPage, sizePerPage)
-            if (!searchInitData) initSearchList(selectedOpt)
-
             const totalPage = Math.ceil(totalData / sizePerPage)
             setTotalPage(totalPage)
             setPageIndex(getPageIndex(totalData, sizePerPage, currPage))
@@ -104,151 +75,85 @@ export default function TablePartner({
     }
 
     const getDataList = async ({
-        limit_page = sizePerPage,
+        limit = sizePerPage,
         page = currPage,
-        searchValue = searchObj[selectedOpt?.id ?? ''] || '',
-        selectedOption = selectedOpt,
+        source = searchObj?.source ?? '/hospitals',
+        param = searchObj?.param ?? '',
+        searchkey = searchObj?.key ?? '',
+        searchfield = searchObj?.field ?? '',
     }) => {
-        let searchVal = searchValue,
-            lat = userPosition.lat,
-            lng = userPosition.long,
-            country = 'Indonesia'
-        if (searchVal) {
-            if (selectedOption.id == 'specialities') {
-                searchVal = ''
-                searchValue &&
-                    searchValue.map((val, index) => {
-                        searchVal += index == 0 ? val.value : `,${val.value}`
-                    })
-            } else if (selectedOption.id == 'location') {
-                lat = searchVal?.lat ?? userPosition.lat
-                lng = searchVal?.lng ?? userPosition.long
-                country = searchVal?.country ?? 'Indonesia'
-            }
-        }
-        setDataSliced(null)
-        const partnerDt = await getProviderList({
-            offset: Math.floor((page - 1) / (LIMIT / limit_page)) * LIMIT,
-            latitude: lat,
-            longitude: lng,
-            providerName: selectedOption.id == 'name' ? searchVal : '',
-            providerType:
-                selectedOption.id == 'providerType' ? searchVal.value : '',
-            specialities: selectedOption.id == 'specialities' ? searchVal : '',
-            country,
+        setPartnerData({ isLoading: true })
+        const partnerData = await getPartnerData({
+            limit,
+            page,
+            sort: 'asc',
+            source: param ? source : '/hospitals',
+            param,
+            searchkey,
+            searchfield,
         })
+        return partnerData
+    }
+    const onSearch = async (value, opt = null) => {
+        setCurrPage(1)
+        const selOpt = opt || searchObj
 
-        return partnerDt
+        setGoToPage('')
+        if (selOpt && selOpt.master) {
+            const data = await getDataList({
+                page: 1,
+                source: value ? selOpt.dataSource : '/hospitals',
+                param: value,
+                searchfield: '',
+                key: '',
+            })
+            setSearchObj({
+                ...selOpt,
+                source: selOpt.dataSource,
+                param: value,
+                field: '',
+                key: '',
+            })
+            setPartnerData({ ...data, isLoading: false })
+        } else {
+            processSearch(value, selOpt)
+        }
     }
 
     const onSelectSearch = (opt) => {
-        setSearchObj({ [opt.id]: '' })
-        setSelectedOpt(opt)
-        initSearchList(opt)
-    }
-
-    const onSearch = async (value, opt = null) => {
-        setCurrPage(1)
-        setSearchObj({ [opt.id]: value })
-        processSearch(value, opt)
+        setSearchObj(opt)
     }
 
     const processSearch = _debounce(async (value, opt) => {
+        // console.log('key:', key, ' field:', field)
+        setSearchObj({
+            ...searchObj,
+            source: '/hospitals',
+            param: '',
+            field: opt.id,
+            key: value,
+        })
         const data = await getDataList({
             page: 1,
-            searchValue: value,
-            selectedOption: opt,
+            searchfield: opt.id,
+            searchkey: value,
+            param: '',
         })
-        setPartnerData(data)
+
+        setPartnerData({ ...data, isLoading: false })
     }, 500)
-
-    const sliceDataPerPage = (currentPage, sizePerPage) => {
-        // console.log('partnerFlatList', partnerFlatList)
-        if (partnerFlatList && partnerFlatList.length > 0) {
-            let calcCurrentPage = currentPage
-
-            if (currentPage * sizePerPage > LIMIT) {
-                calcCurrentPage = currentPage % (LIMIT / sizePerPage)
-                /* example
-                    currentPage = 14, sizePerPage = 10
-                    calcCurrentPage = 4
-                */
-                if (calcCurrentPage == 0) {
-                    calcCurrentPage = LIMIT / sizePerPage
-                    /* example
-                    currentPage = 30, sizePerPage = 10
-                    calcCurrentPage = LIMIT / sizePerPage = 10
-
-                    currentPage = 4, sizePerPage = 50
-                    calcCurrentPage = LIMIT / sizePerPage = 2
-                    */
-                }
-            }
-
-            let sliceEnd = calcCurrentPage * sizePerPage
-            if (partnerFlatList.length < calcCurrentPage * sizePerPage) {
-                sliceEnd = partnerFlatList.length
-            }
-            const dtSliced = partnerFlatList.slice(
-                (calcCurrentPage - 1) * sizePerPage,
-                sliceEnd
-            )
-
-            setDataSliced(dtSliced)
-        } else {
-            setDataSliced(null)
-        }
-    }
-
-    const getCurrentOffsetFrom = (currentPage, sizePerPage) => {
-        return Math.floor(currentPage / (LIMIT / sizePerPage)) * LIMIT + 1
-    }
 
     const onPageChange = async (page) => {
         //click page navigation
+        // console.log('page', page)
+        // console.log('onPageChange search', searchObj)
         const currentPage = page.selected + 1
         setCurrPage(currentPage)
-        setPageIndex(getPageIndex(totalData, sizePerPage, currentPage))
-        const divCurrPage =
-            currentPage % (LIMIT / sizePerPage) == 0
-                ? currentPage - 1
-                : currentPage
-        const currPageOffsetFrom = getCurrentOffsetFrom(
-            divCurrPage,
-            sizePerPage
-        )
-        if (currPageOffsetFrom !== offsetFrom) {
-            const data = await getDataList({
-                page: currentPage,
-            })
-            setPartnerData(data)
-        } else {
-            sliceDataPerPage(currentPage, sizePerPage)
-        }
-    }
-
-    const onGoToClick = async (pageNumber) => {
-        if (pageNumber <= totalPage) {
-            setCurrPage(pageNumber)
-            setPageIndex(getPageIndex(totalData, sizePerPage, pageNumber))
-            const divCurrPage =
-                pageNumber % (LIMIT / sizePerPage) == 0
-                    ? pageNumber - 1
-                    : pageNumber
-            const currPageOffsetFrom = getCurrentOffsetFrom(
-                divCurrPage,
-                sizePerPage
-            )
-
-            if (currPageOffsetFrom !== offsetFrom) {
-                const data = await getDataList({
-                    page: pageNumber,
-                })
-                setPartnerData(data)
-            } else {
-                sliceDataPerPage(pageNumber, sizePerPage)
-            }
-        }
+        setGoToPage('')
+        const data = await getDataList({
+            page: currentPage,
+        })
+        setPartnerData({ ...data, isLoading: false })
     }
 
     const onSizePerPageChange = async (sizePerPage) => {
@@ -256,28 +161,34 @@ export default function TablePartner({
         /* SET DARI PAGE 1 LAGI */
         setSizePerPage(sizePerPage)
         setCurrPage(1)
-        setGotoPage('')
+        setGoToPage('')
         const data = await getDataList({
             limit: sizePerPage,
             page: 1,
         })
-        setPartnerData(data)
+        setPartnerData({ ...data, isLoading: false })
+    }
+
+    const onGoToClick = async (pageNumber) => {
+        if (pageNumber && pageNumber <= totalPage) {
+            setCurrPage(pageNumber)
+            setGoToPage(pageNumber)
+            const data = await getDataList({
+                page: pageNumber,
+            })
+            setPartnerData({ ...data, isLoading: false })
+        }
     }
 
     const renderTableList = () => {
         return (
-            dataSliced &&
-            dataSliced.map((dt) => {
+            partnerFlatList &&
+            partnerFlatList.map((dt) => {
                 return (
-                    <div className="table-item" key={dt.providerId}>
-                        <div className="table-header">{dt.providerName}</div>
+                    <div className="table-item" key={dt.id}>
+                        <div className="table-header">{dt.name}</div>
                         {columns &&
                             columns.map((col) => {
-                                let value = dt[col.dataField]
-                                if (col.fieldFormat == 'lang') {
-                                    value = textLang[value]
-                                }
-
                                 if (!col.isDesktopOnly) {
                                     return (
                                         <div
@@ -289,33 +200,14 @@ export default function TablePartner({
                                             </div>
                                             {col.canScroll && (
                                                 <div className="table-data can-scroll">
-                                                    <div>{value}</div>
+                                                    <div>
+                                                        {dt[col.dataField]}
+                                                    </div>
                                                 </div>
                                             )}
                                             {!col.canScroll && (
                                                 <div className="table-data">
-                                                    {col.fieldFormat ==
-                                                        'link' && (
-                                                        <a
-                                                            href={
-                                                                dt[
-                                                                    col
-                                                                        .dataField
-                                                                ]
-                                                            }
-                                                            target="_blank"
-                                                            className={
-                                                                'field-link'
-                                                            }
-                                                        >
-                                                            {col
-                                                                ?.formatExtraData
-                                                                ?.linkText ??
-                                                                ''}
-                                                        </a>
-                                                    )}
-                                                    {col.fieldFormat !=
-                                                        'link' && value}
+                                                    {dt[col.dataField]}
                                                 </div>
                                             )}
                                         </div>
@@ -345,33 +237,33 @@ export default function TablePartner({
                         onClick={onGoToClick}
                         isDesktop={false}
                         textLang={textLang}
-                        value={gotoPage}
+                        value={goToPage}
                     />
-                    <AXASearch
+                    <Search
                         onSelect={onSelectSearch}
                         onSearch={onSearch}
                         options={searchOpt}
                         isDesktop={false}
-                        options={searchOpt}
-                        initialData={searchInitData}
-                        sessionToken={sessionToken}
-                        textLang={textLang}
                     />
                 </div>
-                {dataSliced && partnerData.totalData > 0 && (
-                    <div className="table-wrapper">{renderTableList()}</div>
-                )}
-                {!dataSliced && partnerData.totalData !== 0 && (
-                    <div style={{ textAlign: 'center' }}>
+                {partnerFlatList &&
+                    partnerFlatList.length > 0 &&
+                    !isLoading && (
+                        <div className="table-wrapper">{renderTableList()}</div>
+                    )}
+                {isLoading && (
+                    <div className={'table-empty-placeholder'}>
                         <i>{textLang['loading']}</i>
                     </div>
                 )}
-                {!dataSliced && partnerData.totalData === 0 && (
-                    <div style={{ textAlign: 'center' }}>
-                        {textLang['noData']}
-                    </div>
-                )}
-                {dataSliced && partnerData.totalData > 0 && (
+                {(!partnerFlatList ||
+                    (partnerFlatList && partnerFlatList.length == 0)) &&
+                    !isLoading && (
+                        <div className={'table-empty-placeholder'}>
+                            {textLang['noData']}
+                        </div>
+                    )}
+                {partnerFlatList && partnerFlatList.length > 0 && (
                     <div className={`pagination-wrapper`}>
                         <PaginationTotal
                             from={pageIndex?.startPage ?? 0}
