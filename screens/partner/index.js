@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+// import { useAsyncEffect } from 'use-async-effect'
+// import { getPartnerCMS } from 'services/partner'
+// import { getCookie } from 'utils/global-util'
 import Loader from 'components/loader'
 import Header from './header'
 import Footer from 'components/footer'
 // import Table from './table'
 // import TableMobile from './table-mobile'
+
 const Table = dynamic(() => import('./table'), {
     ssr: false,
 })
 const TableMobile = dynamic(() => import('./table-mobile'), { ssr: false })
 
-export default function Partner({ cmsData, userPosition, sessionToken }) {
+export default function Partner({ partnerData }) {
     const [isDesktop, setIsDesktop] = useState(true)
     // const [partnerData, setPartnerData] = useState(null)
     // useAsyncEffect(async (isMounted) => {
@@ -36,7 +40,7 @@ export default function Partner({ cmsData, userPosition, sessionToken }) {
                 setIsDesktop(false)
             }
         }
-        // console.log('cmsData', cmsData)
+
         // if (partnerData && partnerData.header) {
         //     if (typeof gtag !== 'undefined') {
         //         const gaId = process.env.config?.gaId ?? ''
@@ -47,32 +51,28 @@ export default function Partner({ cmsData, userPosition, sessionToken }) {
         //         })
         //     }
         // }
-    }, [cmsData])
-    if (!cmsData) return <Loader />
+    }, [partnerData])
+    if (!partnerData) return <Loader />
     return (
         <div>
-            {cmsData.header && (
-                <Header isDesktop={isDesktop} data={cmsData.header} />
+            {partnerData.header && (
+                <Header isDesktop={isDesktop} data={partnerData.header} />
             )}
 
             {isDesktop && (
                 <Table
-                    userPosition={userPosition}
-                    columns={cmsData.columns}
-                    pageSizes={cmsData.pageSizes}
-                    searchOpt={cmsData.searchOptions}
-                    textLang={cmsData.textLang}
-                    sessionToken={sessionToken}
+                    columns={partnerData.columns}
+                    pageSizes={partnerData.pageSizes}
+                    searchOpt={partnerData.searchOptions}
+                    textLang={partnerData.textLang}
                 />
             )}
             {!isDesktop && (
                 <TableMobile
-                    userPosition={userPosition}
-                    columns={cmsData.columns}
-                    pageSizes={cmsData.pageSizes}
-                    searchOpt={cmsData.searchOptions}
-                    textLang={cmsData.textLang}
-                    sessionToken={sessionToken}
+                    columns={partnerData.columns}
+                    pageSizes={partnerData.pageSizes}
+                    searchOpt={partnerData.searchOptions}
+                    textLang={partnerData.textLang}
                 />
             )}
             <Footer />

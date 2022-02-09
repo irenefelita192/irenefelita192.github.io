@@ -52,11 +52,24 @@ export default function Search({ onSearch, onSelect, isDesktop, options }) {
                 }
             } else {
                 setIsPopUpSearch(false)
+                if (!value) {
+                    onSearch('', selectedOpt)
+                }
             }
         } else {
             if (onSearch) {
-                onSearch(e.target.value)
+                onSearch(e.target.value, selectedOpt)
             }
+        }
+    }
+
+    const resetSearch = () => {
+        setInputVal('')
+        if (isPopUpSearch) {
+            setIsPopUpSearch(false)
+        }
+        if (onSearch) {
+            onSearch('', selectedOpt)
         }
     }
 
@@ -97,7 +110,7 @@ export default function Search({ onSearch, onSelect, isDesktop, options }) {
         setInputVal(dt[selectedOpt.masterName])
         setIsPopUpSearch(false)
         if (onSearch) {
-            onSearch(dt[selectedOpt.masterId])
+            onSearch(dt[selectedOpt.masterId], selectedOpt)
         }
     }
     return (
@@ -142,6 +155,9 @@ export default function Search({ onSearch, onSelect, isDesktop, options }) {
                     onBlur={() => handleOnBlur()}
                     value={inputVal}
                 />
+                {inputVal && (
+                    <div onClick={() => resetSearch()} className="reset" />
+                )}
                 <i />
             </div>
             {searchList && isPopUpSearch && (
