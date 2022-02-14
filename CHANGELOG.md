@@ -4,7 +4,7 @@
 
 -   Hide promo page temporary
 
-    > 2022-02-09
+> 2022-02-09
 
 -   Add `reset / x button` on search box at partner page
 -   Reset `go to` page input text when re-loading data to first page
