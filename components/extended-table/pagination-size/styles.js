@@ -16,7 +16,8 @@ export default css`
 
     .dropdown-page-size {
         background: #fbfbfb;
-        border: 0.6px solid #6b6b6b;
+        /* border: 0.6px solid #6b6b6b; */
+        box-shadow: 0 0 0 0.6px #6b6b6b;
         box-sizing: border-box;
         border-radius: 12px;
         width: 115px;
@@ -47,7 +48,7 @@ export default css`
         justify-content: center;
         width: 45%;
         height: auto;
-        border-radius: 0 10px 10px 0;
+        border-radius: 0 12px 12px 0;
         background-color: ${theme.colors['vida-dark-green']};
     }
 

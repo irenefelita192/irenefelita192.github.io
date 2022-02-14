@@ -16,7 +16,8 @@ export default css`
 
     .wrapper-goto {
         background: #fbfbfb;
-        border: 0.6px solid #6b6b6b;
+        /* border: 0.6px solid #6b6b6b; */
+        box-shadow: 0 0 0 0.6px #6b6b6b;
         box-sizing: border-box;
         border-radius: 12px;
         width: 175px;

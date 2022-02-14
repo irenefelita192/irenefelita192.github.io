@@ -4,6 +4,8 @@
 
 -   Hide promo page temporary
 -   Change CI login from google-github-actions/setup-gcloud@master to google-github-actions/setup-gcloud@v0
+-   Fix styling on partner page : search/filter, pagination on mobile show less pages
+-   Fix showing current year on mobile burger menu footer
 
 > 2022-02-09
 
