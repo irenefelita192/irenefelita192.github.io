@@ -33,7 +33,7 @@ jobs:
                   yarn build
 
             - name: Login
-              uses: google-github-actions/setup-gcloud@master
+              uses: google-github-actions/setup-gcloud@v0
               with:
                   project_id: ${{ secrets.PROD_GCP_PROJECT_ID }}
                   service_account_email: ${{ secrets.PROD_GCP_EMAIL }}
