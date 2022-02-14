@@ -17,8 +17,8 @@ export default function PaginationPanel({
                 breakLabel={'...'}
                 breakClassName={'page-item-break'}
                 pageCount={totalPage}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={isDesktop ? 5 : 3}
+                marginPagesDisplayed={isDesktop ? 2 : 1}
+                pageRangeDisplayed={isDesktop ? 5 : 1}
                 onPageChange={onPageChange}
                 containerClassName={'pagination my-0 pagination-sm'}
                 activeClassName={'active'}
