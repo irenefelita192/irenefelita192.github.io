@@ -41,6 +41,13 @@ const DownloadSection = memo(({ footerData }) => {
 })
 
 const HeaderBottom = memo(({ footerData }) => {
+    let cpText = ''
+    if (footerData && footerData.copyrightText) {
+        cpText = footerData.copyrightText.replace(
+            '${curr_year}',
+            new Date().getFullYear()
+        )
+    }
     return (
         <>
             <div className="tnc-link">
@@ -60,7 +67,7 @@ const HeaderBottom = memo(({ footerData }) => {
                 <DownloadButton data={footerData} />
             </div>
             <div className="copyright">
-                <span>{footerData.copyrightText}</span>
+                <span>{cpText}</span>
             </div>
             <style jsx>{styles}</style>
         </>
