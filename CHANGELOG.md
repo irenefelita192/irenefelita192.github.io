@@ -3,6 +3,7 @@
 > 2022-02-14
 
 -   Hide promo page temporary
+-   Change CI login from google-github-actions/setup-gcloud@master to google-github-actions/setup-gcloud@v0
 
 > 2022-02-09
 
