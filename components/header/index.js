@@ -366,11 +366,11 @@ export default function Header({ activeId, headerWithBg }) {
                         }`}
                         href="/"
                     >
-                        <img src={brandImg} alt="vida-logo" />
+                        <img src={brandImg} alt="Vida" />
                         <img
                             src={brandImgWhite}
                             className="is-white"
-                            alt="vida-logo"
+                            alt="Vida"
                         />
                     </a>
 

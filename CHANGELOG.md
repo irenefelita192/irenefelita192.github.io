@@ -1,3 +1,10 @@
+### [v1.2.1]
+
+> 2022-03-11
+
+-   Remove prefix word `Vida |` from default when reading meta title from strapi
+-   Change alt name for logo form `vida-logo` to `Vida` to fix mobile serp
+
 ### [v1.2.0]
 
 > 2022-02-14
