@@ -22,7 +22,7 @@ export default function Layout({
     console.log('version', process?.env?.packageVersion ?? '')
     const temTitle = 'Vida | Healthcare Your Way',
         temDesc = 'Designed to always be with you & your loved ones. '
-    const seoTitle = title ? `Vida | ${title}` : temTitle,
+    const seoTitle = title ? title : temTitle,
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
@@ -385,7 +385,7 @@ export default function Layout({
                 <div className={'noscript-wrapper'}>
                     <div className={'noscript-header'}>
                         <img
-                            alt="LippoLife"
+                            alt="Vida"
                             src={seoImage}
                             className={'noscript-logo'}
                         />
