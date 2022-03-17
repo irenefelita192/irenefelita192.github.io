@@ -1,3 +1,9 @@
+### [v1.3.0]
+
+> 2022-03-17
+
+-   Add social media links at footer
+
 ### [v1.2.1]
 
 > 2022-03-11

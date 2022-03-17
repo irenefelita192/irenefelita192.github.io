@@ -97,15 +97,25 @@ export default css`
 
     .third-row {
         padding: 0 12px;
-        margin-top: 34px;
+        margin-top: 24px;
     }
 
-    .third-row :global(.accordion-label) {
-        height: 52px;
+    .social-media-text {
+        font-size: 13px;
+        line-height: 1.27;
+        padding-bottom: 12px;
+        text-align: center;
     }
 
-    .third-row :global(.accordion-content) {
-        border-bottom: 1px solid #eaeaea;
+    .social-media-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .social-media-link {
+        width: 40px;
+        height: auto;
+        margin: 0 10px;
     }
 
     .download {

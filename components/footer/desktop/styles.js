@@ -47,6 +47,7 @@ export default css`
         width: 66%;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
     }
 
     .footer-menu {
@@ -104,6 +105,28 @@ export default css`
     .ojk-logo img {
         width: auto;
         height: 100%;
+    }
+
+    .third-row {
+        line-height: 1;
+        padding-top: 34px;
+    }
+
+    .social-media-text {
+        font-size: 13px;
+        line-height: 1.27;
+        padding: 0 0 12px 20px;
+    }
+
+    .social-media-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-media-link {
+        width: 40px;
+        height: auto;
+        margin-right: 10px;
     }
 
     .download {
