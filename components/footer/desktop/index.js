@@ -63,6 +63,36 @@ export default function FooterDesktop({ data }) {
                                     </div>
                                 </div>
                             </div>
+                            {data.socialMedia && data.socialMedia.length > 0 && (
+                                <div className="third-row">
+                                    {data.socialMediaTitle && (
+                                        <div className="social-media-text">
+                                            {data.socialMediaTitle}
+                                        </div>
+                                    )}
+                                    <div className="social-media-group">
+                                        {data.socialMedia.map((socMed) => (
+                                            <a
+                                                key={socMed.id}
+                                                href={socMed.url}
+                                                target="_blank"
+                                                className="social-media-link"
+                                            >
+                                                <img
+                                                    src={`${assetDomain}${
+                                                        socMed.icon?.url ?? ''
+                                                    }`}
+                                                    alt={
+                                                        socMed.icon
+                                                            ?.alternativeText ??
+                                                        ''
+                                                    }
+                                                />
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
 
                             {/* <div className="footer-version">
                                 v{process.env.packageVersion}
