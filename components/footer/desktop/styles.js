@@ -124,7 +124,7 @@ export default css`
     }
 
     .social-media-link {
-        width: 40px;
+        width: 30px;
         height: auto;
         margin-right: 10px;
     }
