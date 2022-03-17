@@ -7,17 +7,15 @@ export default function FooterDesktop({ data }) {
             {data && (
                 <footer id="footer">
                     <div className="flex">
-                        <div
-                            className="first-column"
-                            onClick={() => {
-                                window.location.href = '/'
-                            }}
-                        >
+                        <div className="first-column">
                             <div className="first-row">
                                 {data.vidaLogo && (
                                     <>
                                         <div className="vida-logo">
                                             <img
+                                                onClick={() => {
+                                                    window.location.href = '/'
+                                                }}
                                                 src={`${assetDomain}${data.vidaLogo.url}`}
                                                 alt={
                                                     data.vidaLogo

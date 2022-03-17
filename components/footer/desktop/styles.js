@@ -66,6 +66,7 @@ export default css`
     .vida-logo img {
         width: auto;
         height: 100%;
+        cursor: pointer;
     }
 
     .first-row .text {
