@@ -1,7 +1,8 @@
 import styles from './styles'
 import Language from 'components/lang'
+import { validUrlWithParam } from 'utils/url'
 const assetDomain = process.env.config?.baseEndpoint ?? ''
-export default function FooterDesktop({ data }) {
+export default function FooterDesktop({ data, searchParam }) {
     return (
         <>
             {data && (
@@ -128,7 +129,13 @@ export default function FooterDesktop({ data }) {
                             </div>
                             <div className="download">
                                 {data.AppStoreLink && (
-                                    <a target="_blank" href={data.AppStoreLink}>
+                                    <a
+                                        target="_blank"
+                                        href={validUrlWithParam(
+                                            data.AppStoreLink,
+                                            searchParam
+                                        )}
+                                    >
                                         <img
                                             src={`${assetDomain}${
                                                 data.AppStoreIcon?.url ?? ''
@@ -143,7 +150,10 @@ export default function FooterDesktop({ data }) {
                                 {data.PlayStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={data.PlayStoreLink}
+                                        href={validUrlWithParam(
+                                            data.PlayStoreLink,
+                                            searchParam
+                                        )}
                                     >
                                         <img
                                             src={`${assetDomain}${

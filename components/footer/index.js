@@ -8,6 +8,7 @@ import FooterMobile from './mobile'
 export default function Footer({ loadedCallback }) {
     const [isDesktop, setIsDesktop] = useState(true)
     const [footerData, setFooterData] = useState(null)
+    const [searchParam, setSearchParam] = useState('')
 
     useAsyncEffect(async (isMounted) => {
         let langId, paramLocale
@@ -23,6 +24,8 @@ export default function Footer({ loadedCallback }) {
             } else {
                 setIsDesktop(true)
             }
+
+            setSearchParam(window.location.search)
         }
         const footerDt = await getFooter(paramLocale || langId)
 
@@ -43,7 +46,9 @@ export default function Footer({ loadedCallback }) {
     return (
         <>
             {!isDesktop && <FooterMobile data={footerData} />}
-            {isDesktop && <FooterDesktop data={footerData} />}
+            {isDesktop && (
+                <FooterDesktop data={footerData} searchParam={searchParam} />
+            )}
         </>
     )
 }
