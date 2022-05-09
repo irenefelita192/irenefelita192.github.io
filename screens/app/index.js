@@ -19,6 +19,7 @@ export default function App({ appData }) {
     const [heroHeight, setHeroHeight] = useState(0)
     const [isWebpSupport, setIsWebpSupport] = useState(true)
     const [isDesktop, setIsDesktop] = useState(true)
+    const [searchParam, setSearchParam] = useState('')
 
     // useAsyncEffect(async (isMounted) => {
     //     let langId
@@ -74,6 +75,8 @@ export default function App({ appData }) {
             } else {
                 setIsWebpSupport(false)
             }
+
+            setSearchParam(window.location.search)
         }
 
         return () => {
@@ -84,17 +87,21 @@ export default function App({ appData }) {
     if (!appData || !isLoaded) return <Loader />
     const { SectionOne: heroData } = appData
     let heroImage = `${assetDomain}${heroData?.image?.url ?? ''}`
-    if (isDesktop) {
-        if (!heroData.imageWebp || !isWebpSupport) {
-            heroImage = `${assetDomain}${heroData?.image?.url ?? ''}`
+    if (heroData) {
+        if (isDesktop) {
+            if (!heroData.imageWebp || !isWebpSupport) {
+                heroImage = `${assetDomain}${heroData?.image?.url ?? ''}`
+            } else {
+                heroImage = `${assetDomain}${heroData?.imageWebp?.url ?? ''}`
+            }
         } else {
-            heroImage = `${assetDomain}${heroData?.imageWebp?.url ?? ''}`
-        }
-    } else {
-        if (!heroData.imageMobileWebp || !isWebpSupport) {
-            heroImage = `${assetDomain}${heroData?.imageMobile?.url ?? ''}`
-        } else {
-            heroImage = `${assetDomain}${heroData?.imageMobileWebp?.url ?? ''}`
+            if (!heroData.imageMobileWebp || !isWebpSupport) {
+                heroImage = `${assetDomain}${heroData?.imageMobile?.url ?? ''}`
+            } else {
+                heroImage = `${assetDomain}${
+                    heroData?.imageMobileWebp?.url ?? ''
+                }`
+            }
         }
     }
     return (
@@ -151,7 +158,11 @@ export default function App({ appData }) {
                 </>
             )}
             {appData.BottomBanner && (
-                <BannerCTA data={appData.BottomBanner} isDesktop={isDesktop} />
+                <BannerCTA
+                    data={appData.BottomBanner}
+                    isDesktop={isDesktop}
+                    searchParam={searchParam}
+                />
             )}
 
             <Footer />

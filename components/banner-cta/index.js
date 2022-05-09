@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
+import { validUrlWithParam } from 'utils/url'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
-export default function BannerCTA({ data, isProduct, isDesktop }) {
+export default function BannerCTA({ data, isProduct, isDesktop, searchParam }) {
     const [isIos, setIsIos] = useState(false)
 
     useEffect(() => {
@@ -38,7 +39,13 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                         {isDesktop && (
                             <div className="download-link">
                                 {data.AppStoreLink && (
-                                    <a target="_blank" href={data.AppStoreLink}>
+                                    <a
+                                        target="_blank"
+                                        href={validUrlWithParam(
+                                            data.AppStoreLink,
+                                            searchParam
+                                        )}
+                                    >
                                         <img
                                             src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
                                             alt={'app-store'}
@@ -48,7 +55,10 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                                 {data.PlayStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={data.PlayStoreLink}
+                                        href={validUrlWithParam(
+                                            data.PlayStoreLink,
+                                            searchParam
+                                        )}
                                     >
                                         <img
                                             src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}
@@ -61,7 +71,13 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                         {!isDesktop && (
                             <div className="download-link">
                                 {isIos && data.AppStoreLink && (
-                                    <a target="_blank" href={data.AppStoreLink}>
+                                    <a
+                                        target="_blank"
+                                        href={validUrlWithParam(
+                                            data.AppStoreLink,
+                                            searchParam
+                                        )}
+                                    >
                                         <img
                                             src={`${assetPrefix}/images/banner-bottom/app-store-icon.png`}
                                             alt={'app-store'}
@@ -71,7 +87,10 @@ export default function BannerCTA({ data, isProduct, isDesktop }) {
                                 {!isIos && data.PlayStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={data.PlayStoreLink}
+                                        href={validUrlWithParam(
+                                            data.PlayStoreLink,
+                                            searchParam
+                                        )}
                                     >
                                         <img
                                             src={`${assetPrefix}/images/banner-bottom/google-play-icon.png`}

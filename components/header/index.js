@@ -3,6 +3,7 @@ import { useAsyncEffect } from 'use-async-effect'
 import dynamic from 'next/dynamic'
 import { getAllHeader, getFooter } from 'services/common'
 import { getCookie } from 'utils/global-util'
+import { validUrlWithParam } from 'utils/url'
 import Accordion from 'components/accordion'
 
 // import DownloadButton from 'components/download-button'
@@ -18,18 +19,30 @@ import styles from './styles'
 const assetPrefix = process.env.config?.assetPrefix ?? '',
     assetDomain = process.env.config?.baseEndpoint ?? ''
 
-const DownloadSection = memo(({ footerData }) => {
+const DownloadSection = memo(({ footerData, searchParam }) => {
     return (
         <>
             <div className="app-section">
                 {footerData.AppStoreLink && (
-                    <a target="_blank" href={footerData?.AppStoreLink ?? ''}>
+                    <a
+                        target="_blank"
+                        href={validUrlWithParam(
+                            footerData?.AppStoreLink ?? '',
+                            searchParam
+                        )}
+                    >
                         <i></i>
                         <span>iOS</span>
                     </a>
                 )}
                 {footerData.PlayStoreLink && (
-                    <a target="_blank" href={footerData?.PlayStoreLink ?? ''}>
+                    <a
+                        target="_blank"
+                        href={validUrlWithParam(
+                            footerData?.PlayStoreLink ?? '',
+                            searchParam
+                        )}
+                    >
                         <i></i>
                         <span>Android</span>
                     </a>
@@ -40,7 +53,7 @@ const DownloadSection = memo(({ footerData }) => {
     )
 })
 
-const HeaderBottom = memo(({ footerData }) => {
+const HeaderBottom = memo(({ footerData, searchParam }) => {
     let cpText = ''
     if (footerData && footerData.copyrightText) {
         cpText = footerData.copyrightText.replace(
@@ -64,7 +77,7 @@ const HeaderBottom = memo(({ footerData }) => {
                 )}
             </div>
             <div className="download">
-                <DownloadButton data={footerData} />
+                <DownloadButton searchParam={searchParam} data={footerData} />
             </div>
             <div className="copyright">
                 <span>{cpText}</span>
@@ -155,6 +168,7 @@ export default function Header({ activeId, headerWithBg }) {
 
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false)
     const [mobileMenuHeight, setMobileMenuHeight] = useState(0)
+    const [searchParam, setSearchParam] = useState('')
 
     let navbar = null,
         headerHeight = 80
@@ -200,6 +214,10 @@ export default function Header({ activeId, headerWithBg }) {
                 // setIsMenuActive(false)
                 // This is a click outside.
             })
+
+            if (window) {
+                setSearchParam(window.location.search)
+            }
         }
 
         return () => {
@@ -479,7 +497,10 @@ export default function Header({ activeId, headerWithBg }) {
                                         <Language isDesktop={isDesktop} />
                                     </div>
                                     {footerData && (
-                                        <HeaderBottom footerData={footerData} />
+                                        <HeaderBottom
+                                            footerData={footerData}
+                                            searchParam={searchParam}
+                                        />
                                     )}
                                 </div>
                             )}
@@ -487,7 +508,10 @@ export default function Header({ activeId, headerWithBg }) {
                     )}
                 </div>
                 {footerData && (
-                    <DownloadSection footerData={footerData} />
+                    <DownloadSection
+                        footerData={footerData}
+                        searchParam={searchParam}
+                    />
                     // <div className="app-section">
                     //     {footerData.AppStoreLink && (
                     //         <a
