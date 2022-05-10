@@ -26,6 +26,6 @@ export const validUrlWithUTM = (url, param, isIos = false) => {
         }
     }
 
-    console.log('finalUrl', finalUrl)
+    // console.log('finalUrl', finalUrl)
     return finalUrl
 }
