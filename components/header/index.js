@@ -3,7 +3,7 @@ import { useAsyncEffect } from 'use-async-effect'
 import dynamic from 'next/dynamic'
 import { getAllHeader, getFooter } from 'services/common'
 import { getCookie } from 'utils/global-util'
-import { validUrlWithParam } from 'utils/url'
+import { validUrlWithUTM } from 'utils/url'
 import Accordion from 'components/accordion'
 
 // import DownloadButton from 'components/download-button'
@@ -26,9 +26,10 @@ const DownloadSection = memo(({ footerData, searchParam }) => {
                 {footerData.AppStoreLink && (
                     <a
                         target="_blank"
-                        href={validUrlWithParam(
+                        href={validUrlWithUTM(
                             footerData?.AppStoreLink ?? '',
-                            searchParam
+                            searchParam,
+                            true
                         )}
                     >
                         <i></i>
@@ -38,7 +39,7 @@ const DownloadSection = memo(({ footerData, searchParam }) => {
                 {footerData.PlayStoreLink && (
                     <a
                         target="_blank"
-                        href={validUrlWithParam(
+                        href={validUrlWithUTM(
                             footerData?.PlayStoreLink ?? '',
                             searchParam
                         )}

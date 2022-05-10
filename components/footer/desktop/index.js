@@ -1,6 +1,6 @@
 import styles from './styles'
 import Language from 'components/lang'
-import { validUrlWithParam } from 'utils/url'
+import { validUrlWithUTM } from 'utils/url'
 const assetDomain = process.env.config?.baseEndpoint ?? ''
 export default function FooterDesktop({ data, searchParam }) {
     return (
@@ -131,9 +131,10 @@ export default function FooterDesktop({ data, searchParam }) {
                                 {data.AppStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={validUrlWithParam(
+                                        href={validUrlWithUTM(
                                             data.AppStoreLink,
-                                            searchParam
+                                            searchParam,
+                                            true
                                         )}
                                     >
                                         <img
@@ -150,7 +151,7 @@ export default function FooterDesktop({ data, searchParam }) {
                                 {data.PlayStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={validUrlWithParam(
+                                        href={validUrlWithUTM(
                                             data.PlayStoreLink,
                                             searchParam
                                         )}

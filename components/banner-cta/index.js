@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { validUrlWithParam } from 'utils/url'
+import { validUrlWithUTM } from 'utils/url'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? '',
@@ -41,9 +41,10 @@ export default function BannerCTA({ data, isProduct, isDesktop, searchParam }) {
                                 {data.AppStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={validUrlWithParam(
+                                        href={validUrlWithUTM(
                                             data.AppStoreLink,
-                                            searchParam
+                                            searchParam,
+                                            true
                                         )}
                                     >
                                         <img
@@ -55,7 +56,7 @@ export default function BannerCTA({ data, isProduct, isDesktop, searchParam }) {
                                 {data.PlayStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={validUrlWithParam(
+                                        href={validUrlWithUTM(
                                             data.PlayStoreLink,
                                             searchParam
                                         )}
@@ -73,9 +74,10 @@ export default function BannerCTA({ data, isProduct, isDesktop, searchParam }) {
                                 {isIos && data.AppStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={validUrlWithParam(
+                                        href={validUrlWithUTM(
                                             data.AppStoreLink,
-                                            searchParam
+                                            searchParam,
+                                            true
                                         )}
                                     >
                                         <img
@@ -87,7 +89,7 @@ export default function BannerCTA({ data, isProduct, isDesktop, searchParam }) {
                                 {!isIos && data.PlayStoreLink && (
                                     <a
                                         target="_blank"
-                                        href={validUrlWithParam(
+                                        href={validUrlWithUTM(
                                             data.PlayStoreLink,
                                             searchParam
                                         )}
