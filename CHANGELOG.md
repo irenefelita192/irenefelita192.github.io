@@ -2,7 +2,7 @@
 
 > 2022-05-09
 
--   On download page, if url has param like utm_source, utm_medium, utm_campaign, then when click on download button, user will be redirected to App Store or Play Store along with the utm param
+-   On download page, if url has param like utm_source, utm_medium, utm_campaign, then when click on download button, user will be redirected to App Store or Play Store along with the utm param (PRD - P025)
 
 -   Re-add promo page
 

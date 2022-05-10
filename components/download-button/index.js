@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { validUrlWithParam } from 'utils/url'
+import { validUrlWithUTM } from 'utils/url'
 import styles from './styles'
 
 const assetDomain = process.env.config?.baseEndpoint ?? ''
@@ -20,7 +20,7 @@ export default function DownloadButton({ data, searchParam }) {
                 <a
                     className="download-link"
                     target="_blank"
-                    href={validUrlWithParam(data.AppStoreLink, searchParam)}
+                    href={validUrlWithUTM(data.AppStoreLink, searchParam, true)}
                 >
                     <img
                         src={`${assetDomain}${data.AppStoreIcon?.url ?? ''}`}
@@ -32,7 +32,7 @@ export default function DownloadButton({ data, searchParam }) {
                 <a
                     className="download-link"
                     target="_blank"
-                    href={validUrlWithParam(data.PlayStoreLink, searchParam)}
+                    href={validUrlWithUTM(data.PlayStoreLink, searchParam)}
                 >
                     <img
                         src={`${assetDomain}${data.PlayStoreIcon?.url ?? ''}`}
