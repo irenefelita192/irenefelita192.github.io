@@ -78,7 +78,9 @@ export default function App({ appData }) {
             }
 
             const searchCookie = getCookie('_sp')
-            let param = searchParam ? searchParam : searchCookie
+            let param = window.location.search
+                ? window.location.search
+                : searchCookie
             setSearchParam(param)
         }
 
