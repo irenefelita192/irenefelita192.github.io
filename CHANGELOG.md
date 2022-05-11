@@ -2,7 +2,7 @@
 
 > 2022-05-09
 
--   On download page, if url has param like utm_source, utm_medium, utm_campaign, then when click on download button, user will be redirected to App Store or Play Store along with the utm param (PRD - P025)
+-   On download page, if url has param like utm_source, utm_medium, utm_campaign, then when click on download button, user will be redirected to App Store or Play Store along with the utm param (PRD - P025). Then save to cookie when there is utm, so everytime user navigate within vida page and click download, the utm will always be passed.
 
 -   Re-add promo page
 

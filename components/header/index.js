@@ -55,6 +55,7 @@ const DownloadSection = memo(({ footerData, searchParam }) => {
 })
 
 const HeaderBottom = memo(({ footerData, searchParam }) => {
+    /* mobile sidebar */
     let cpText = ''
     if (footerData && footerData.copyrightText) {
         cpText = footerData.copyrightText.replace(
@@ -217,7 +218,9 @@ export default function Header({ activeId, headerWithBg }) {
             })
 
             if (window) {
-                setSearchParam(window.location.search)
+                const searchCookie = getCookie('_sp')
+                let param = searchParam ? searchParam : searchCookie
+                setSearchParam(param)
             }
         }
 

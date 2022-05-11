@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
 import yoastSEOPlugin from '../yoastSEOPlugin.json'
 import Header from 'components/header'
@@ -27,6 +28,23 @@ export default function Layout({
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
     const seoImage = `https://kenalvida.com/images/logo/vida-image.jpg`
+
+    useEffect(() => {
+        const searchParam = window.location.search
+        const domain = window ? window.location.host : ''
+        if (searchParam) {
+            if (domain.indexOf('localhost') > -1) {
+                document.cookie = `_sp=${searchParam};path=/`
+            } else {
+                document.cookie = `_sp=${searchParam};path=/;domain=.${domain}`
+            }
+        }
+        // } else {
+        //     document.cookie =
+        //         '_sp=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+        // }
+    }, [])
+
     return (
         <>
             <Head>
