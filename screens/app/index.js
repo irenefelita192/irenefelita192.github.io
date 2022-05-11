@@ -9,6 +9,7 @@ import AppSectionMobile from './app-section-mobile'
 import ProductSection from './product-section'
 import ProductSectionMobile from './product-section-mobile'
 import BannerCTA from 'components/banner-cta'
+import { getCookie } from 'utils/global-util'
 import styles from './styles'
 const assetDomain = process.env.config?.baseEndpoint ?? '',
     assetPrefix = process.env.config?.assetPrefix ?? ''
@@ -76,7 +77,9 @@ export default function App({ appData }) {
                 setIsWebpSupport(false)
             }
 
-            setSearchParam(window.location.search)
+            const searchCookie = getCookie('_sp')
+            let param = searchParam ? searchParam : searchCookie
+            setSearchParam(param)
         }
 
         return () => {

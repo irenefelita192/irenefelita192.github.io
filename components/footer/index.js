@@ -25,7 +25,9 @@ export default function Footer({ loadedCallback }) {
                 setIsDesktop(true)
             }
 
-            setSearchParam(window.location.search)
+            const searchCookie = getCookie('_sp')
+            let param = searchParam ? searchParam : searchCookie
+            setSearchParam(param)
         }
         const footerDt = await getFooter(paramLocale || langId)
 
