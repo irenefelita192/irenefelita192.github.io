@@ -22,19 +22,31 @@ export async function getServerSideProps({ req, res, query }) {
             locale,
             textLang: promoPage?.textLang ?? null,
             promoDetail,
+            promoPage,
             // promoDetail:
             //     promoDetail && promoDetail.length > 0 ? promoDetail[0] : null,
         },
     }
 }
 
-export default function PromoDetail({ promoDetail, textLang, locale, query }) {
+export default function PromoDetail({
+    promoDetail,
+    textLang,
+    locale,
+    query,
+    promoPage,
+}) {
     const isWebView = query?.isWebView ?? false
+    const { SEO } = promoPage
     return (
         <Layout
             isWebView={isWebView}
-            title={promoDetail?.title ?? ''}
-            description={promoDetail?.highlight ?? ''}
+            title={`${promoDetail?.title ?? ''} | ${SEO?.title ?? ''}`}
+            description={`${promoDetail?.title ?? ''} | ${
+                SEO?.description ?? ''
+            }`}
+            keywords={SEO?.keywords ?? ''}
+            image={promoDetail?.imageUrl ?? ''}
             headerWithBg={true}
         >
             <PromotionDetailScreen
