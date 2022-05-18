@@ -19,6 +19,7 @@ export default function Layout({
     markup,
     headerWithBg = false,
     activeId = '',
+    image = '',
 }) {
     console.log('version', process?.env?.packageVersion ?? '')
     const temTitle = 'Vida | Healthcare Your Way',
@@ -27,7 +28,9 @@ export default function Layout({
         seoDesc = description || temDesc
     const url = process.env.config?.assetPrefix ?? '',
         gaId = process.env.config?.gaId ?? ''
-    const seoImage = `https://kenalvida.com/images/logo/vida-image.jpg`
+    const seoImage = image
+        ? image
+        : `https://kenalvida.com/images/logo/vida-image.jpg`
 
     useEffect(() => {
         const searchParam = window.location.search
@@ -74,6 +77,8 @@ export default function Layout({
                 <meta property="og:title" content={seoTitle} />
                 <meta property="og:description" content={seoDesc} />
                 <meta property="og:image" content={seoImage} />
+                {/* <meta property="og:image:width" content="200" />
+                <meta property="og:image:height" content="200" /> */}
                 <meta property="og:url" content={url} />
                 <meta property="og:type" content={type} />
 

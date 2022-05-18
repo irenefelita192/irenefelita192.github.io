@@ -27,8 +27,15 @@ export default function Promotions({
     query,
 }) {
     const isWebView = query?.isWebView ?? false
+    const { SEO } = promoPage
     return (
-        <Layout isWebView={isWebView} title={'Promo'} headerWithBg={true}>
+        <Layout
+            isWebView={isWebView}
+            title={SEO?.title ?? ''}
+            description={SEO?.description ?? ''}
+            keywords={SEO?.keywords ?? ''}
+            headerWithBg={true}
+        >
             <PromotionScreen
                 promos={promos}
                 // categories={categories}

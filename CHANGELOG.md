@@ -1,3 +1,10 @@
+### [v1.4.1]
+
+> 2022-05-17
+
+-   Fix promo page SEO. Add promo image as seo image for /promo/id, but use vida logo image for /promo
+-   Fix logo image for seo image facebook by changing size to 200x200
+
 ### [v1.4.0]
 
 > 2022-05-09
