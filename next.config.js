@@ -17,7 +17,99 @@ module.exports = {
     async headers() {
         return [
             {
-                source: '/(.*)',
+                source: '/((?!privacy|benefit-table|brochure\\W)\\S+)',
+                headers: [
+                    {
+                        key: 'X-XSS-Protection',
+                        value: '1; mode=block',
+                    },
+                    {
+                        key: 'X-Content-Type-Options',
+                        value: 'nosniff',
+                    },
+                    {
+                        key: 'X-Download-Options',
+                        value: 'noopen',
+                    },
+                    {
+                        key: 'Cache-Control',
+                        value: 'no-store',
+                    },
+                    {
+                        key: 'X-Frame-Options',
+                        value: 'SAMEORIGIN',
+                    },
+                ],
+            },
+            {
+                source: '/',
+                headers: [
+                    {
+                        key: 'X-XSS-Protection',
+                        value: '1; mode=block',
+                    },
+                    {
+                        key: 'X-Content-Type-Options',
+                        value: 'nosniff',
+                    },
+                    {
+                        key: 'X-Download-Options',
+                        value: 'noopen',
+                    },
+                    {
+                        key: 'Cache-Control',
+                        value: 'no-store',
+                    },
+                    {
+                        key: 'X-Frame-Options',
+                        value: 'SAMEORIGIN',
+                    },
+                ],
+            },
+            {
+                source: '/brochure',
+                headers: [
+                    {
+                        key: 'X-XSS-Protection',
+                        value: '1; mode=block',
+                    },
+                    {
+                        key: 'X-Content-Type-Options',
+                        value: 'nosniff',
+                    },
+                    {
+                        key: 'X-Download-Options',
+                        value: 'noopen',
+                    },
+                    {
+                        key: 'Cache-Control',
+                        value: 'no-store',
+                    },
+                ],
+            },
+            {
+                source: '/benefit-table',
+                headers: [
+                    {
+                        key: 'X-XSS-Protection',
+                        value: '1; mode=block',
+                    },
+                    {
+                        key: 'X-Content-Type-Options',
+                        value: 'nosniff',
+                    },
+                    {
+                        key: 'X-Download-Options',
+                        value: 'noopen',
+                    },
+                    {
+                        key: 'Cache-Control',
+                        value: 'no-store',
+                    },
+                ],
+            },
+            {
+                source: '/privacy',
                 headers: [
                     {
                         key: 'X-XSS-Protection',
