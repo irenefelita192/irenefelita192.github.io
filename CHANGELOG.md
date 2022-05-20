@@ -1,3 +1,9 @@
+### [v1.5.0]
+
+> 2022-05-20
+
+-   Set X-Frame-Options to SAMEORIGIN to prevent vida web is emebeded in iframe, except for /brochure, /benefit-table, and /privacy which is currently used in apps as iframe
+
 ### [v1.4.1]
 
 > 2022-05-17
