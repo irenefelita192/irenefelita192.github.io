@@ -7,8 +7,8 @@ export default function PaginationTotal({
     textLang,
 }) {
     return (
-        <>
-            <div className={`pagination-total ${isDesktop ? '' : 'is-mobile'}`}>
+        <div className={`pagination-total`}>
+            <div className={`pagination-total__desc`}>
                 {textLang ? textLang['showing'] : 'Showing'}{' '}
                 <b>
                     {from} {textLang ? textLang['to'] : 'to'} {to}
@@ -16,7 +16,8 @@ export default function PaginationTotal({
                 {textLang ? textLang['of'] : 'of'} {size}{' '}
                 {textLang ? textLang['entries'] : 'entries'}
             </div>
+            <div className={`pagination-total__note ${isDesktop ? '' : 'is-mobile'}`}>{textLang['notes']}</div>
             <style jsx>{styles}</style>
-        </>
+        </div>
     )
 }
