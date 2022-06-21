@@ -263,6 +263,7 @@ export default function TablePartner({
                             {textLang['noData']}
                         </div>
                     )}
+                <div className={'table-notes'}>{textLang['notes']}</div>
                 {partnerFlatList && partnerFlatList.length > 0 && (
                     <div className={`pagination-wrapper`}>
                         <PaginationTotal
