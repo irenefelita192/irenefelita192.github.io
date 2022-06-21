@@ -63,6 +63,14 @@ export default css`
         flex-wrap: wrap;
     }
 
+    .table-notes {
+        text-align: center;
+        font-weight: normal;
+        font-size: 12px;
+        color: ${theme.colors.gray};
+        margin-bottom: 40px;
+    }
+
     .pagination-wrapper {
         display: flex;
         flex-direction: column;

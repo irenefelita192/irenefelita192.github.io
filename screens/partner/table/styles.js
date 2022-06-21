@@ -8,7 +8,7 @@ export default css`
 
     .pagination-wrapper {
         border-top: 1px solid #c9c9c9;
-        margin-top: 24px;
+        margin-top: 40px;
         padding: 22px 0;
         display: flex;
         justify-content: space-between;
@@ -20,5 +20,12 @@ export default css`
         align-items: end;
         line-height: 1.43;
         margin-bottom: 23px;
+    }
+
+    .table-notes {
+        margin-top: 16px;
+        font-size: 15px;
+        line-height: 1;
+        color: ${theme.colors.gray};
     }
 `
