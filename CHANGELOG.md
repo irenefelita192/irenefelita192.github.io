@@ -1,3 +1,10 @@
+### [v1.6.0]
+
+> 2022-06-21
+
+-   Add discalimer / notes "Subject to change. Please contact us for more detail and assistance." at partner page
+-   change "our partner" to "partner hospital" at footer
+
 ### [v1.5.0]
 
 > 2022-05-20
