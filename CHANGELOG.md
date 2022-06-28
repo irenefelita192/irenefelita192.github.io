@@ -3,6 +3,7 @@
 > 2022-06-28
 
 -   If user go to /get-app page (by url or by qr), on mobile browser if url has param like utm_source, utm_medium, utm_campaign, then user will be redirected to App Store or Play Store along with the utm param (related PRD - P025). If on desktop then will be redirected to home page. Also save to cookie (desktop and mobile) when there is utm, so everytime user navigate within vida page and click download, the utm will always be passed.
+-   Tidy the look for no javacsript info
 
 ### [v1.6.0]
 
