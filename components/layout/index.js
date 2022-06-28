@@ -334,72 +334,75 @@ export default function Layout({
 
                     .noscript-wrapper {
                         position: fixed;
-                        top: 0;
+                        top: 10%;
                         width: 100%;
                         height: 100vh;
                         z-index: 102;
+                        padding: 0 5rem;
                         background-color: #FFFFFF;
                     }
 
                     .noscript-header {
-                        display: flex;
-                        height: 80px;
+                        max-width: 700px;
+                        margin: 0 auto;
                     }
 
                     .noscript-logo {
-                        display: inline-block;
-                        width: 15rem;
-                        margin: auto;
+                        display: block;
+                        width: 6rem;
+                        padding: 1rem 0;
                     }
 
                     .noscript-content-wrapper {
                         display: flex;
                         flex-direction: column;
                         height: 100%;
-                        margin-top: 15%;
+                        max-width: 700px;
+                        margin: 0 auto;
                         color: #2b2b2b;
                     }
 
                     .noscript-content-wrapper .headline {
-                        font-size: 2.1rem;
+                        font-family: 'Museo', sans-serif;
+                        font-size: 1.5rem;
                         font-weight: 600;
                         line-height: 1.3;
                         margin: 0;
-                        padding: 1.8rem 0 0 0;
+                        padding: 0.8rem 0 0;
                         color: #2b2b2b;
-                        margin: 0 1.6rem;
-                        text-align: center;
                     }
 
                     .noscript-content-wrapper .subheadline {
-                        font-size: 1.6rem;
+                        font-size: 1.2rem;
                         line-height: 1.5;
                         color: #2b2b2b;
                         margin: 0;
-                        padding: 0.8rem 5rem 0;
-                        text-align: center;
+                        padding: 0.5rem 0 0;
+                    }
+
+                    .noscript-content-wrapper .subheadline > p {
+                        font-size: 1rem;
                     }
 
                     @media screen and (max-width: 640px) {
-                        .noscript-header {
-                            height: 52px;
-                            align-items: center;
-                            justify-content: center;
+                        .noscript-wrapper {
+                            top: 10%;
+                            padding: 0 2rem;
                         }
 
                         .noscript-logo {
-                            width: 120px;
-                            margin: auto 16px;
+                            width: 5rem;
+                            margin: 0;
                         }
 
                         .noscript-content-wrapper .headline {
-                        font-size: 1.8rem;
-                        padding: 28.8px 0 0 0;
-                        margin: 0 24px;
+                            font-size: 1.5rem;
+                            margin: 0;
+                            padding: 0;
                         }
 
                         .noscript-content-wrapper .subheadline {
-                        font-size: 1.4rem;
+                            font-size: 1.2rem;
                         }
                     }
                     `,
@@ -414,22 +417,26 @@ export default function Layout({
                         />
                     </div>
                     <div className={'noscript-content-wrapper'}>
-                        <h2 className={'headline'}>
+                        <div className={'headline'}>
                             Anda belum mengaktifkan javascript di dalam browser
-                        </h2>
+                        </div>
                         <p className={'subheadline'}>
-                            <a
-                                style={{
-                                    textDecoration: 'none',
-                                    color: '#1f93ff',
-                                }}
-                                href="https://www.enablejavascript.io"
-                                target="_blank"
-                            >
-                                Aktifkan
-                            </a>{' '}
-                            javascript untuk bisa mengakses website
+                            Silakan aktifkan Javascript browser Anda.
                         </p>
+                        <div className={'subheadline'}>
+                            Jika Anda menggunakan Chrome pada Android:
+                            <p>
+                                Buka Chrome Browser &#8594; Settings &#8594;
+                                Site Settings &#8594; JavaScript &#8594; Enable
+                            </p>
+                        </div>
+                        <div className={'subheadline'}>
+                            Jika Anda menggunakan Safari pada iOS:
+                            <p>
+                                Buka Settings &#8594; Safari &#8594; Advanced
+                                &#8594; Javascript &#8594; Enable
+                            </p>
+                        </div>
                     </div>
                 </div>
             </noscript>
