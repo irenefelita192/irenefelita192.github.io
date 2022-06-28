@@ -1,4 +1,3 @@
-import Layout from 'components/layout'
 import { useEffect, useState } from 'react'
 import { getFooter } from 'services/common'
 import { validUrlWithUTM } from 'utils/url'
@@ -17,8 +16,6 @@ export async function getServerSideProps({ req, res, query }) {
 }
 
 export default function GetApp({ data }) {
-    console.log('footerdata', data)
-
     function redirectApp(searchParam) {
         let ios = false,
             isDesktop = true
@@ -49,12 +46,13 @@ export default function GetApp({ data }) {
             } else if (!ios) {
                 const playStoreLink =
                     data && data.PlayStoreLink
-                        ? validUrlWithUTM(
-                              `https://play.app.goo.gl/?link=${data.PlayStoreLink}`,
-                              searchParam
-                          )
+                        ? validUrlWithUTM(data.PlayStoreLink, searchParam)
                         : 'https://kenalvida.com/'
                 // console.log('playStoreLink', playStoreLink)
+                // validUrlWithUTM(
+                //     `https://play.app.goo.gl/?link=${data.PlayStoreLink}`,
+                //     searchParam
+                // )
                 window.location.href = playStoreLink
             }
         }
