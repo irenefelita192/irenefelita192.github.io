@@ -382,6 +382,7 @@ export default function Layout({
 
                     .noscript-content-wrapper .subheadline > p {
                         font-size: 1rem;
+                        color: #666666;
                     }
 
                     @media screen and (max-width: 640px) {
@@ -418,11 +419,8 @@ export default function Layout({
                     </div>
                     <div className={'noscript-content-wrapper'}>
                         <div className={'headline'}>
-                            Anda belum mengaktifkan javascript di dalam browser
-                        </div>
-                        <p className={'subheadline'}>
                             Silakan aktifkan Javascript browser Anda.
-                        </p>
+                        </div>
                         <div className={'subheadline'}>
                             Jika Anda menggunakan Chrome pada Android:
                             <p>
