@@ -368,7 +368,7 @@ export default function Layout({
                         font-weight: 600;
                         line-height: 1.3;
                         margin: 0;
-                        padding: 0.8rem 0 0;
+                        padding: 0 0 0.5rem;
                         color: #2b2b2b;
                     }
 
@@ -377,12 +377,12 @@ export default function Layout({
                         line-height: 1.5;
                         color: #2b2b2b;
                         margin: 0;
-                        padding: 0.5rem 0 0;
+                        padding: 1rem 0 0;
                     }
 
                     .noscript-content-wrapper .subheadline > p {
                         font-size: 1rem;
-                        color: #666666;
+                        color: #858585;
                     }
 
                     @media screen and (max-width: 640px) {
@@ -399,7 +399,7 @@ export default function Layout({
                         .noscript-content-wrapper .headline {
                             font-size: 1.5rem;
                             margin: 0;
-                            padding: 0;
+                            padding: 0 0 0.5rem;
                         }
 
                         .noscript-content-wrapper .subheadline {
