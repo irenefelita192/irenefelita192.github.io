@@ -1,3 +1,9 @@
+### [v1.8.0]
+
+> 2022-08-02
+
+-   Update partner page api from /hopitals to /hospitals/partner
+
 ### [v1.7.0]
 
 > 2022-06-28

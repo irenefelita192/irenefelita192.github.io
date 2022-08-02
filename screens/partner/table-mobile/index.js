@@ -46,6 +46,7 @@ export default function TablePartner({
     const [goToPage, setGoToPage] = useState('')
     const [searchObj, setSearchObj] = useState(searchOpt ? searchOpt[0] : null)
 
+    const originalSource = '/hospitals/partner'
     useAsyncEffect(async (isMounted) => {
         let langId
         if (window) {
@@ -77,7 +78,7 @@ export default function TablePartner({
     const getDataList = async ({
         limit = sizePerPage,
         page = currPage,
-        source = searchObj?.source ?? '/hospitals',
+        source = searchObj?.source ?? originalSource,
         param = searchObj?.param ?? '',
         searchkey = searchObj?.key ?? '',
         searchfield = searchObj?.field ?? '',
@@ -87,7 +88,7 @@ export default function TablePartner({
             limit,
             page,
             sort: 'asc',
-            source: param ? source : '/hospitals',
+            source: param ? source : originalSource,
             param,
             searchkey,
             searchfield,
@@ -102,7 +103,7 @@ export default function TablePartner({
         if (selOpt && selOpt.master) {
             const data = await getDataList({
                 page: 1,
-                source: value ? selOpt.dataSource : '/hospitals',
+                source: value ? selOpt.dataSource : originalSource,
                 param: value,
                 searchfield: '',
                 key: '',
@@ -128,7 +129,7 @@ export default function TablePartner({
         // console.log('key:', key, ' field:', field)
         setSearchObj({
             ...searchObj,
-            source: '/hospitals',
+            source: originalSource,
             param: '',
             field: opt.id,
             key: value,
