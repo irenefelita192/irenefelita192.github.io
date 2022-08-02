@@ -226,7 +226,7 @@ export const getPartnerData = async ({
     searchfield = '',
     searchkey = '',
     sort,
-    source = '/hospitals',
+    source = '/hospitals/partner',
     param,
 }) => {
     if (typeof tokenSource !== typeof undefined) {
