@@ -14,10 +14,10 @@ const endpoints = process.env.config?.beEndpoint ?? '',
 export const getPartnerCMS = async (locale) => {
     const locQs = locale ? `?_locale=${locale}` : `?_locale=${defaultLang}`
     const response = await axios
-        .get(`${cmsEndpoints}/vida-partner${locQs}`)
-        .catch(function (error) {
-            console.error(error)
-        })
+    .get(`${cmsEndpoints}/vida-partner${locQs}`)
+    .catch(function (error) {
+        console.error(error)
+    })
     return response ? response.data : null
 }
 
@@ -261,6 +261,17 @@ export const getPartnerData = async ({
     response &&
         response.data &&
         response.data.map((dt) => {
+
+            // add attribute for cashless service column
+            dt.cashless = ''
+            if (dt.isCashlessIp && dt.isCashlessOp) {
+                dt.cashless = 'Inpatient, Outpatient'
+            } else if (dt.isCashlessIp && !dt.isCashlessOp) {
+                dt.cashless = 'Inpatient'
+            } else if (!dt.isCashlessIp && dt.isCashlessOp) {
+                dt.cashless = 'Outpatient'
+            }
+
             flattenList.push(flattenObject(dt))
         })
 

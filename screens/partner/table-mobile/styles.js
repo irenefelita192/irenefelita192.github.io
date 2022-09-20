@@ -42,6 +42,7 @@ export default css`
         line-height: 1.86;
         color: ${theme.colors.black};
         min-width: 30%;
+        max-width: 30%;
     }
 
     .table-data.can-scroll {
