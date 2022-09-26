@@ -90,6 +90,7 @@ export default function TablePartner({
             param,
             searchkey,
             searchfield,
+            textLang: textLang
         })
         return partnerData
     }

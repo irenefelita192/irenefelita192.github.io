@@ -228,6 +228,7 @@ export const getPartnerData = async ({
     sort,
     source = '/hospitals/partner',
     param,
+    textLang
 }) => {
     if (typeof tokenSource !== typeof undefined) {
         tokenSource.cancel('Operation canceled due to new request.')
@@ -261,15 +262,14 @@ export const getPartnerData = async ({
     response &&
         response.data &&
         response.data.map((dt) => {
-
             // add attribute for cashless service column
             dt.cashless = ''
             if (dt.isCashlessIp && dt.isCashlessOp) {
-                dt.cashless = 'Inpatient, Outpatient'
+                dt.cashless = `${textLang?.inpatient}, ${textLang?.outpatient}`
             } else if (dt.isCashlessIp && !dt.isCashlessOp) {
-                dt.cashless = 'Inpatient'
+                dt.cashless = textLang?.inpatient ?? ''
             } else if (!dt.isCashlessIp && dt.isCashlessOp) {
-                dt.cashless = 'Outpatient'
+                dt.cashless = textLang?.outpatient ?? ''
             }
 
             flattenList.push(flattenObject(dt))
