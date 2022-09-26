@@ -1,3 +1,8 @@
+### [v1.9.0]
+
+> 2022-09-26
+
+-   Replace email column in provider list with cashless service (IP and or OP) at page partner
 ### [v1.8.0]
 
 > 2022-08-02
