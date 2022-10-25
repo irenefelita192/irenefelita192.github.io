@@ -13,7 +13,7 @@
     "@fullpage/react-fullpage": "^0.1.19",
     "axios": "^0.27.2",
     "cookies": "^0.8.0",
-    "date-fns": "^2.27.0",
+    "date-fns": "^2.29.3",
     "dotenv": "^8.2.0",
     "emotion": "^9.2.12",
     "env-cmd": "^10.1.0",
