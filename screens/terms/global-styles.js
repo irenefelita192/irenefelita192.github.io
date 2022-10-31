@@ -18,8 +18,6 @@ export default css.global`
         counter-reset: list-upper-alpha;
         padding: 10px 0 0 10px;
         list-style-type: none;
-        *list-style-type: upper-alpha;
-        /*Conditional hack for ie7*/
     }
 
     .wrapper > ol > li {
@@ -38,8 +36,6 @@ export default css.global`
         counter-reset: list-decimal;
         padding-left: 18px;
         list-style-type: none;
-        *list-style-type: decimal;
-        /*Conditional hack for ie7*/
     }
 
     .wrapper > ol > li > ol > li {
@@ -60,8 +56,6 @@ export default css.global`
         counter-reset: list-lower-alpha;
         padding-left: 0;
         list-style-type: none;
-        *list-style-type: lower-alpha;
-        /*Conditional hack for ie7*/
     }
 
     .wrapper > ol > li > ol > li > ol > li {
@@ -82,8 +76,6 @@ export default css.global`
         counter-reset: list-decimal;
         padding-left: 0;
         list-style-type: none;
-        *list-style-type: decimal;
-        /*Conditional hack for ie7*/
     }
 
     .wrapper > ol > li > ol > li > ol > li > ol > li {
@@ -104,8 +96,6 @@ export default css.global`
         counter-reset: list-alpha;
         padding-left: 0;
         list-style-type: none;
-        *list-style-type: lower-alpha;
-        /*Conditional hack for ie7*/
     }
 
     .wrapper > ol > li > ol > li > ol > li > ol > li > ol > li {

@@ -3,9 +3,10 @@ import Head from 'next/head'
 import yoastSEOPlugin from '../yoastSEOPlugin.json'
 import Header from 'components/header'
 import ChatButton from 'components/chat-button'
-import normalizeCss from 'normalize.css'
-import styles from './styles'
-import globalStyles from '../global-styles/global-styles'
+import theme from 'components/global-styles/theme'
+// import normalizeCss from 'normalize.css'
+// import styles from './styles'
+// import globalStyles from '../global-styles/global-styles'
 
 export default function Layout({
     isWebView = false,
@@ -307,14 +308,109 @@ export default function Layout({
                     type="font/otf"
                 />
             </Head>
-            <style jsx global>
+            {/* <style jsx global>
                 {normalizeCss}
-            </style>
+            </style> */}
             <style jsx global>
-                {styles}
-            </style>
-            <style jsx global>
-                {globalStyles}
+                {`
+                    * {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    @font-face {
+                        font-family: 'Museo';
+                        src: url('${url}/fonts/Museo300-Regular-webfont.woff2')
+                                format('woff2'),
+                            url('${url}/fonts/Museo300-Regular-webfont.woff')
+                                format('woff'),
+                            url('${url}/fonts/Museo300-Regular.otf')
+                                format('opentype');
+                        font-weight: 300;
+                        font-style: normal;
+                    }
+                    @font-face {
+                        font-family: 'Museo';
+                        src: url('${url}/fonts/Museo300-Italic-webfont.woff2')
+                                format('woff2'),
+                            url('${url}/fonts/Museo300-Italic-webfont.woff')
+                                format('woff'),
+                            url('${url}/fonts/Museo300-Italic.otf')
+                                format('opentype');
+                        font-weight: 300;
+                        font-style: italic;
+                    }
+                    @font-face {
+                        font-family: 'Museo';
+                        src: url('${url}/fonts/Museo500-Regular-webfont.woff2')
+                                format('woff2'),
+                            url('${url}/fonts/Museo500-Regular-webfont.woff')
+                                format('woff'),
+                            url('${url}/fonts/Museo500-Regular.otf')
+                                format('opentype');
+                        font-weight: 500;
+                        font-style: normal;
+                    }
+                    @font-face {
+                        font-family: 'Museo';
+                        src: url('${url}/fonts/Museo500-Italic-webfont.woff2')
+                                format('woff2'),
+                            url('${url}/fonts/Museo500-Italic-webfont.woff')
+                                format('woff'),
+                            url('${url}/fonts/Museo500-Italic.otf')
+                                format('opentype');
+                        font-weight: 500;
+                        font-style: italic;
+                    }
+                    @font-face {
+                        font-family: 'Museo';
+                        src: url('${url}/fonts/Museo700-Regular-webfont.woff2')
+                                format('woff2'),
+                            url('${url}/fonts/Museo700-Regular-webfont.woff')
+                                format('woff'),
+                            url('${url}/fonts/Museo700-Regular.otf')
+                                format('opentype');
+                        font-weight: 700;
+                        font-style: normal;
+                    }
+                    @font-face {
+                        font-family: 'Museo';
+                        src: url('${url}/fonts/Museo700-Italic-webfont.woff2')
+                                format('woff2'),
+                            url('${url}/fonts/Museo700-Italic-webfont.woff')
+                                format('woff'),
+                            url('${url}/fonts/Museo700-Italic.otf')
+                                format('opentype');
+                        font-weight: 700;
+                        font-style: italic;
+                    }
+
+                    body {
+                        font-family: 'Inter', sans-serif;
+                        color: ${theme.colors.black};
+                        scroll-behavior: smooth;
+                        overflow-x: hidden;
+                        line-height: 0;
+                    }
+
+                    .children-wrapper {
+                        margin-top: 0;
+                    }
+
+                    .children-wrapper.with-bg {
+                        margin-top: 80px;
+                    }
+
+                    .children-wrapper .wrapper {
+                        min-height: 48vh;
+                    }
+
+                    @media screen and (max-width: 1024px) {
+                        .children-wrapper .wrapper {
+                            min-height: 60vh;
+                        }
+                    }
+                `}
             </style>
 
             {!isWebView && (
