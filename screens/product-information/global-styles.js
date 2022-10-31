@@ -155,8 +155,6 @@ export default css.global`
         counter-reset: list-upper-alpha;
         padding-left: 25px;
         list-style-type: none;
-        *list-style-type: upper-alpha;
-        /*Conditional hack for ie7*/
     }
 
     #conditions > ol > li {
@@ -186,8 +184,6 @@ export default css.global`
         counter-reset: list-decimal;
         padding-left: 0;
         list-style-type: none;
-        *list-style-type: decimal;
-        /*Conditional hack for ie7*/
     }
 
     #conditions > ol > li > ol > li {
@@ -238,8 +234,6 @@ export default css.global`
         counter-reset: list-upper-alpha;
         padding-left: 25px;
         list-style-type: none;
-        *list-style-type: upper-alpha;
-        /*Conditional hack for ie7*/
     }
 
     .list-upper-alpha > li {
