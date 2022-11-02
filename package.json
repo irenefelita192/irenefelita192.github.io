@@ -18,7 +18,7 @@
     "emotion": "^9.2.12",
     "env-cmd": "^10.1.0",
     "intersection-observer": "^0.12.2",
-    "isomorphic-dompurify": "^0.22.0",
+    "isomorphic-dompurify": "^0.23.0",
     "js-file-download": "^0.4.12",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
