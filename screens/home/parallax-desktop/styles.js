@@ -84,11 +84,11 @@ export default css`
     }
 
     .hero-icon--maternity.revolve > div {
-        animation: 80s revolve-maternity 1s linear infinite;
+        animation: 80s revolve-maternity 0.5s linear infinite;
     }
 
     .hero-icon--maternity.revolve {
-        animation: 80s zIndex-maternity 1s linear infinite;
+        animation: 80s zIndex-maternity 0.5s linear infinite;
         /* animation: 80s revolve-maternity 0.5s linear infinite; */
     }
 
@@ -110,16 +110,41 @@ export default css`
     }
 
     .hero-icon--outpatient.revolve > div {
-        animation: 80s revolve-op 1s linear infinite;
+        animation: 80s revolve-op 0.5s linear infinite;
     }
 
     .hero-icon--outpatient.revolve {
         animation: 80s zIndex-op 1s linear infinite;
-        /* animation: 80s revolve-maternity 0.5s linear infinite; */
     }
 
     .hero-icon--outpatient.revolve img {
         animation: float-outpatient 10s linear infinite;
+    }
+
+    /* hemat */
+    .hero-icon--hemat.animate {
+        animation: popout-hemat 0.5s ease-in forwards;
+    }
+
+    .hero-icon--hemat > div {
+        right: ${constant.hRight}%;
+        top: ${constant.hTop}%;
+        position: absolute;
+        text-align: right;
+        animation: float-hemat 10s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve > div {
+        animation: 80s revolve-hemat 1s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve {
+        animation: 80s zIndex-hemat 1s linear infinite;
+        /* animation: 80s revolve-maternity 0.5s linear infinite; */
+    }
+
+    .hero-icon--hemat.revolve img {
+        animation: float-hemat 10s linear infinite;
     }
 
     /* dental */
@@ -150,7 +175,8 @@ export default css`
     .hero-icon--inpatient,
     .hero-icon--outpatient,
     .hero-icon--maternity,
-    .hero-icon--dental {
+    .hero-icon--dental,
+    .hero-icon--hemat {
         opacity: 1;
     }
 
@@ -178,6 +204,18 @@ export default css`
     }
 
     @keyframes popout-outpatient {
+        0% {
+            opacity: 0.2;
+            transform: translate(0, 5%) scale(0.3);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+    }
+
+    @keyframes popout-hemat {
         0% {
             opacity: 0.2;
             transform: translate(0, 5%) scale(0.3);
@@ -277,6 +315,25 @@ export default css`
         }
     }
 
+    @keyframes float-hemat {
+        0% {
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
+        }
+        50% {
+            transform-origin: right;
+            transform: translate(0, 5px) scale(0.85) rotate(15deg);
+        }
+        70% {
+            transform-origin: right;
+            transform: translate(-10px, 15px) scale(0.95) rotate(5deg);
+        }
+        100% {
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
+        }
+    }
+
     .hero-icon img {
         width: 100%;
         height: auto;
@@ -285,6 +342,7 @@ export default css`
     .hero-text {
         position: absolute;
         top: 12%;
+        z-index: 6;
     }
 
     .hero-title h1 {
@@ -403,17 +461,23 @@ export default css`
             z-index: 4;
         }
 
-        25% {
-            transform: translate(5%, 85%);
-        }
-
-        50% {
-            transform: translate(85%, 80%);
+        20% {
+            transform: translate(-11%, 94%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(87%, -5%);
+        40% {
+            transform: translate(47%, 104%);
+            z-index: 4;
+        }
+
+        60% {
+            transform: translate(80%, 45%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(69%, -22%);
             z-index: 2;
         }
 
@@ -427,15 +491,19 @@ export default css`
         0% {
             z-index: 4;
         }
-        25% {
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 2;
         }
 
@@ -449,18 +517,23 @@ export default css`
             transform: translate(0, 0);
             z-index: 2;
         }
-        25% {
-            transform: translate(-75%, 15%);
+        20% {
+            transform: translate(-79%, 15%);
             z-index: 4;
         }
 
-        50% {
-            transform: translate(-80%, 95%);
+        40% {
+            transform: translate(-80%, 111%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(2%, 80%);
+        60% {
+            transform: translate(-24%, 120%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(15%, 63%);
             z-index: 4;
         }
 
@@ -474,15 +547,19 @@ export default css`
         0% {
             z-index: 2;
         }
-        25% {
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 4;
         }
 
@@ -496,18 +573,24 @@ export default css`
             transform: translate(0, 0);
             z-index: 2;
         }
-        25% {
-            transform: translate(-5%, -85%);
+
+        20% {
+            transform: translate(-5%, -76%);
             z-index: 2;
         }
 
-        50% {
-            transform: translate(-78%, -85%);
+        40% {
+            transform: translate(-70%, -60%);
+            z-index: 2;
+        }
+
+        60% {
+            transform: translate(-85%, 38%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(-85%, 5%);
+        80% {
+            transform: translate(-21%, 48%);
             z-index: 4;
         }
 
@@ -521,15 +604,78 @@ export default css`
         0% {
             z-index: 2;
         }
-        25% {
+
+        20% {
             z-index: 2;
         }
 
-        50% {
+        40% {
+            z-index: 2;
+        }
+
+        60% {
             z-index: 4;
         }
 
-        75% {
+        80% {
+            z-index: 4;
+        }
+
+        100% {
+            z-index: 4;
+        }
+    }
+
+    @keyframes revolve-hemat {
+        0% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+
+        20% {
+            transform: translate(35%, -55%);
+            z-index: 4;
+        }
+
+        40% {
+            transform: translate(22%, -120%);
+            z-index: 2;
+        }
+
+        60% {
+            transform: translate(-45%, -105%);
+            z-index: 2;
+        }
+
+        80% {
+            transform: translate(-57%, -9%);
+            z-index: 4;
+        }
+
+        100% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+    }
+
+    @keyframes zIndex-hemat {
+        0% {
+            z-index: 4;
+        }
+
+        20% {
+            z-index: 4;
+        }
+
+        40% {
+            z-index: 2;
+        }
+
+        60% {
+            z-index: 2;
+        }
+
+        80% {
             z-index: 4;
         }
 
