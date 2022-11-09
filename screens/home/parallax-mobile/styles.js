@@ -34,7 +34,7 @@ export default css`
     .hero-icon {
         position: absolute;
         transform: translate(0, 0);
-        top: -15%;
+        top: -18%;
         left: 0;
         width: 300px;
         height: 200px;
@@ -47,14 +47,16 @@ export default css`
     .hero-icon--inpatient.animate,
     .hero-icon--outpatient.animate,
     .hero-icon--maternity.animate,
-    .hero-icon--dental.animate {
+    .hero-icon--dental.animate,
+    .hero-icon--hemat.animate {
         opacity: 0;
     }
 
     .hero-icon--inpatient,
     .hero-icon--outpatient,
     .hero-icon--maternity,
-    .hero-icon--dental {
+    .hero-icon--dental,
+    .hero-icon--hemat {
         opacity: 1;
     }
 
@@ -80,11 +82,11 @@ export default css`
     }
 
     .hero-icon--inpatient.revolve > div {
-        animation: 80s revolve-ip 0.5s linear infinite;
+        animation: 20s revolve-ip 1s linear infinite;
     }
 
     .hero-icon--inpatient.revolve {
-        animation: 80s zIndex-ip 0.5s linear infinite;
+        animation: 20s zIndex-ip 1s linear infinite;
     }
 
     .hero-icon--inpatient.revolve img {
@@ -110,11 +112,11 @@ export default css`
     }
 
     .hero-icon--maternity.revolve > div {
-        animation: 80s revolve-maternity 1s linear infinite;
+        animation: 20s revolve-maternity 1s linear infinite;
     }
 
     .hero-icon--maternity.revolve {
-        animation: 80s zIndex-maternity 1s linear infinite;
+        animation: 20s zIndex-maternity 1s linear infinite;
     }
 
     .hero-icon--maternity.revolve img {
@@ -140,15 +142,45 @@ export default css`
     }
 
     .hero-icon--outpatient.revolve > div {
-        animation: 80s revolve-op 1s linear infinite;
+        animation: 20s revolve-op 1s linear infinite;
     }
 
     .hero-icon--outpatient.revolve {
-        animation: 80s zIndex-op 1s linear infinite;
+        animation: 20s zIndex-op 1s linear infinite;
     }
 
     .hero-icon--outpatient.revolve img {
         animation: float-outpatient 10s linear infinite;
+    }
+
+    /* hemat */
+    .hero-icon--hemat {
+        top: 0;
+        left: -44%;
+    }
+
+    .hero-icon--hemat.animate {
+        animation: 0.4s popout-hemat 0.2s ease-in forwards;
+    }
+
+    .hero-icon--hemat > div {
+        top: ${constant.hTop}%;
+        right: ${constant.hRight}%;
+        position: absolute;
+        text-align: right;
+        animation: float-hemat 10s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve > div {
+        animation: 20s revolve-hemat 1s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve {
+        animation: 20s zIndex-hemat 1s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve img {
+        animation: float-hemat 10s linear infinite;
     }
 
     /* dental */
@@ -165,11 +197,11 @@ export default css`
     }
 
     .hero-icon--dental.revolve > div {
-        animation: 80s revolve-dental 1s linear infinite;
+        animation: 20s revolve-dental 1s linear infinite;
     }
 
     .hero-icon--dental.revolve {
-        animation: 80s zIndex-dental 1s linear infinite;
+        animation: 20s zIndex-dental 1s linear infinite;
     }
 
     .hero-icon--dental.revolve img {
@@ -211,6 +243,18 @@ export default css`
         }
     }
 
+    @keyframes popout-hemat {
+        0% {
+            opacity: 0.2;
+            transform: translate(0, 5%) scale(0.3);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+    }
+
     @keyframes popout-dental {
         0% {
             opacity: 0.2;
@@ -230,7 +274,7 @@ export default css`
         }
         30% {
             transform-origin: left;
-            transform: translate(2px, 2px) scale(1.1) rotate(10deg);
+            transform: translate(6px, 2px) scale(1.1) rotate(5deg);
         }
         70% {
             transform-origin: left;
@@ -249,11 +293,30 @@ export default css`
         }
         20% {
             transform-origin: right;
-            transform: translate(15px, 0) scale(1) rotate(-10deg);
+            transform: translate(15px, 0) scale(1) rotate(-15deg);
         }
         60% {
             transform-origin: right;
-            transform: translate(15px, 0) scale(1) rotate(-10deg);
+            transform: translate(15px, 0) scale(1.1) rotate(-15deg);
+        }
+        100% {
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
+        }
+    }
+
+    @keyframes float-hemat {
+        0% {
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
+        }
+        20% {
+            transform-origin: right;
+            transform: translate(5px, -2px) scale(1) rotate(-5deg);
+        }
+        60% {
+            transform-origin: right;
+            transform: translate(10px, 0) scale(0.95) rotate(-15deg);
         }
         100% {
             transform-origin: right;
@@ -287,11 +350,11 @@ export default css`
         }
         50% {
             transform-origin: right;
-            transform: translate(0, 0) scale(1.15) rotate(15deg);
+            transform: translate(5px, -5px) scale(1.08) rotate(-16deg);
         }
         70% {
             transform-origin: right;
-            transform: translate(5px, -0) scale(1.08) rotate(5deg);
+            transform: translate(5px, 0) scale(1.1) rotate(-5deg);
         }
         100% {
             transform-origin: right;
@@ -432,17 +495,23 @@ export default css`
             z-index: 4;
         }
 
-        25% {
-            transform: translate(5%, 85%);
-        }
-
-        50% {
-            transform: translate(85%, 80%);
+        20% {
+            transform: translate(-6%, 64%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(87%, -5%);
+        40% {
+            transform: translate(49%, 96%);
+            z-index: 4;
+        }
+
+        60% {
+            transform: translate(89%, 61%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(78%, -4%);
             z-index: 2;
         }
 
@@ -456,15 +525,20 @@ export default css`
         0% {
             z-index: 4;
         }
-        25% {
+
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 2;
         }
 
@@ -478,18 +552,24 @@ export default css`
             transform: translate(0, 0);
             z-index: 2;
         }
-        25% {
-            transform: translate(-75%, 15%);
+
+        20% {
+            transform: translate(-75%, 5%);
+            z-index: 2;
+        }
+
+        40% {
+            transform: translate(-87%, 84%);
             z-index: 4;
         }
 
-        50% {
-            transform: translate(-80%, 95%);
+        60% {
+            transform: translate(-31%, 102%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(2%, 80%);
+        80% {
+            transform: translate(8%, 73%);
             z-index: 4;
         }
 
@@ -503,15 +583,24 @@ export default css`
         0% {
             z-index: 2;
         }
-        25% {
+
+        20% {
+            z-index: 2;
+        }
+
+        22% {
             z-index: 4;
         }
 
-        50% {
+        40% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 4;
         }
 
@@ -520,23 +609,91 @@ export default css`
         }
     }
 
+    @keyframes revolve-hemat {
+        0% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+
+        20% {
+            transform: translate(39%, -31%);
+            z-index: 4;
+        }
+
+        40% {
+            transform: translate(29%, -100%);
+            z-index: 2;
+        }
+
+        60% {
+            transform: translate(-51%, -96%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(-56%, -18%);
+            z-index: 4;
+        }
+
+        100% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+    }
+
+    @keyframes zIndex-hemat {
+        0% {
+            z-index: 4;
+        }
+
+        20% {
+            z-index: 4;
+        }
+
+        40% {
+            z-index: 2;
+        }
+
+        60% {
+            z-index: 2;
+        }
+
+        62% {
+            z-index: 4;
+        }
+
+        80% {
+            z-index: 4;
+        }
+
+        100% {
+            z-index: 4;
+        }
+    }
+
     @keyframes revolve-op {
         0% {
             transform: translate(0, 0);
             z-index: 2;
         }
-        25% {
-            transform: translate(-5%, -85%);
+
+        20% {
+            transform: translate(-10%, -67%);
             z-index: 2;
         }
 
-        50% {
-            transform: translate(-78%, -85%);
+        40% {
+            transform: translate(-89%, -62%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(-85%, 5%);
+        60% {
+            transform: translate(-94%, 26%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(-43%, 34%);
             z-index: 4;
         }
 
@@ -550,15 +707,24 @@ export default css`
         0% {
             z-index: 2;
         }
-        25% {
+
+        20% {
             z-index: 2;
         }
 
-        50% {
+        40% {
+            z-index: 2;
+        }
+
+        42% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 4;
         }
 
@@ -572,19 +738,25 @@ export default css`
             transform: translate(0, 0);
             z-index: 4;
         }
-        25% {
-            transform: translate(85%, -5%);
+
+        20% {
+            transform: translate(48%, 20%);
             z-index: 4;
         }
 
-        50% {
-            transform: translate(88%, -90%);
+        40% {
+            transform: translate(93%, -5%);
+            z-index: 4;
+        }
+
+        60% {
+            transform: translate(85%, -70%);
             z-index: 2;
         }
 
-        75% {
-            transform: translate(5%, -85%);
-            z-index: 2;
+        80% {
+            transform: translate(6%, -60%);
+            z-index: 4;
         }
 
         100% {
@@ -597,16 +769,25 @@ export default css`
         0% {
             z-index: 4;
         }
-        25% {
+
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
+            z-index: 4;
+        }
+
+        60% {
             z-index: 2;
         }
 
-        75% {
+        80% {
             z-index: 2;
+        }
+
+        82% {
+            z-index: 4;
         }
 
         100% {
