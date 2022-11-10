@@ -1,8 +1,16 @@
+### [v1.10.0]
+
+> 2022-11-09
+
+-   Add icon vida hemat / critical illness at home page desktop, mobile, and tablet
+-   Add benefit table page for vida hemat
+
 ### [v1.9.0]
 
 > 2022-09-26
 
 -   Replace email column in provider list with cashless service (IP and or OP) at page partner
+
 ### [v1.8.0]
 
 > 2022-08-02

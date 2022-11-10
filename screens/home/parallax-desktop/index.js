@@ -15,6 +15,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
         maternity: 0,
         dental: 0,
         outpatient: 0,
+        hemat: 0,
     })
 
     const [iconWrapperSize, setIconWrapperSize] = useState({
@@ -29,6 +30,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
         animatePosX = 0,
         animatePosY = 0,
         animateRightPosX = 0,
+        animeMiddlePosX = 0,
         animateScale = 1,
         calcY = 0.3
 
@@ -50,6 +52,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                 maternity: (6 / 100) * window.innerWidth,
                 dental: (7.6 / 100) * window.innerWidth,
                 outpatient: (6 / 100) * window.innerWidth,
+                hemat: (6.2 / 100) * window.innerWidth,
             })
             setIconWrapperSize({
                 width: (35 / 100) * window.innerWidth,
@@ -163,9 +166,11 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                     dental = document.getElementById('icon-dental'),
                     maternity = document.getElementById('icon-maternity'),
                     outpatient = document.getElementById('icon-outpatient'),
+                    hemat = document.getElementById('icon-hemat'),
                     outpatientDiv = document.querySelector(
                         '#icon-outpatient > div'
                     ),
+                    hematDiv = document.querySelector('#icon-hemat > div'),
                     heroImage = document.getElementById('hero-image')
 
                 if (!inpatientTopView) {
@@ -175,6 +180,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                     animatePosX = calcScrollTop * 0.035
                     animatePosY = calcScrollTop * calcY
                     animateRightPosX = calcScrollTop * 0.05
+                    // animeMiddlePosX = calcScrollTop * 0.08,
                     animateScale = 1 - calcScrollTop * 0.0002
                 }
                 let inpatientTop = inpatientTopView + scrollTop
@@ -182,6 +188,7 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                 const posX = scrollTop * 0.035,
                     posY = scrollTop * calcY,
                     rightPosX = scrollTop * 0.05,
+                    // middlePosX = scrollTop * 0.08,
                     scale = 1 - scrollTop * 0.0002,
                     opRightPos = constant.opRight - scrollTop * 0.021
 
@@ -191,52 +198,67 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                         dental.classList.remove('revolve')
                         maternity.classList.remove('revolve')
                         outpatient.classList.remove('revolve')
+                        hemat.classList.remove('revolve')
                     } else {
                         inpatient.style.transition = `transform 0.1s linear`
                         dental.style.transition = `transform 0.1s linear`
                         maternity.style.transition = `transform 0.1s linear`
                         outpatient.style.transition = `transform 0.1s linear`
+                        hemat.style.transition = `transform 0.1s linear`
                     }
                     inpatient.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
                     dental.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
-                    maternity.style.transform = `translate( ${rightPosX}%, ${posY}%) scale(${scale})`
+                    maternity.style.transform = `translate( ${rightPosX}%, ${
+                        posY - 0.05
+                    }%) scale(${scale})`
                     outpatient.style.transform = `translate( ${rightPosX}%, ${posY}%) scale(${scale})`
+                    hemat.style.transform = `translate( ${
+                        rightPosX + 0.5
+                    }%, ${posY}%) scale(${scale})`
                     outpatientDiv.style.right = `${opRightPos}%`
                 } else if (stickyPosTop > 0) {
                     if (inpatient.classList.contains('revolve')) {
                     } else {
                         inpatient.style.transition = `all 0.5s ease-in`
                         inpatient.style.transform = `translate( ${
-                            animatePosX + 10
-                        }%, ${animatePosY + 70}%) scale(${animateScale})`
+                            animatePosX + 15
+                        }%, ${animatePosY + 75}%) scale(${animateScale})`
                         inpatient.classList.add('revolve')
 
                         dental.style.transition = `all 0.5s ease-in`
                         dental.style.transform = `translate( ${
                             animatePosX + 10
-                        }%, ${animatePosY + 85}%) scale(${animateScale})`
+                        }%, ${animatePosY + 95}%) scale(${animateScale})`
 
                         dental.classList.add('revolve')
 
                         maternity.style.transition = `all 0.5s ease-in`
                         maternity.style.transform = `translate( ${
-                            animateRightPosX + 8
-                        }%, ${animatePosY + 55}%) scale(${animateScale})`
+                            animateRightPosX + 10
+                        }%, ${animatePosY + 58}%) scale(${animateScale})`
 
                         maternity.classList.add('revolve')
 
                         outpatient.style.transition = `all 0.5s ease-in`
                         outpatient.style.transform = `translate( ${
                             animateRightPosX + 8
-                        }%, ${animatePosY + 90}%) scale(${animateScale})`
+                        }%, ${animatePosY + 75}%) scale(${animateScale})`
 
                         outpatient.classList.add('revolve')
+
+                        hemat.style.transition = `all 0.5s ease-in`
+                        hemat.style.transform = `translate( ${
+                            animateRightPosX + 15
+                        }%, ${animatePosY + 85}%) scale(${animateScale})`
+
+                        hemat.classList.add('revolve')
                     }
                 } else {
                     inpatient.classList.remove('revolve')
                     dental.classList.remove('revolve')
                     maternity.classList.remove('revolve')
                     outpatient.classList.remove('revolve')
+                    hemat.classList.remove('revolve')
                 }
             }, 100)
         }
@@ -368,6 +390,32 @@ export default function HomeScreen({ sectionOne, sectionTwo }) {
                                     sectionOne?.outpatientIcon?.url ?? ''
                                 }`}
                                 alt="outpatient-icon"
+                            />
+                        </div>
+                    </div>
+
+                    <div
+                        id="icon-hemat"
+                        className={'hero-icon hero-icon--hemat animate'}
+                        style={{
+                            width: `${iconWrapperSize.width}px`,
+                            height: `${iconWrapperSize.height}px`,
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
+                            <img
+                                style={{
+                                    width: `${iconHeight.hemat}px`,
+                                }}
+                                src={`${assetDomain}${
+                                    sectionOne?.hematIcon?.url ?? ''
+                                }`}
+                                alt="hemat-icon"
                             />
                         </div>
                     </div>

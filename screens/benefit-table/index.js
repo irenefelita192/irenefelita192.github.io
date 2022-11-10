@@ -99,7 +99,7 @@ export default function BenefitTableScreen({ isWebView }) {
                                     </td>
                                 </tr>
                                 <tr className="th-child">
-                                    <td colspan="2">
+                                    <td colSpan="2">
                                         <h4>
                                             Perawatan rawat inap dan rawat
                                             harian
@@ -265,7 +265,7 @@ export default function BenefitTableScreen({ isWebView }) {
                                 </tr>
 
                                 <tr className="th-child">
-                                    <td colspan="2">
+                                    <td colSpan="2">
                                         <h4>
                                             Perawatan sebelum dan sesudah rawat
                                             inap (sebagai bagian dari rawat
@@ -412,7 +412,7 @@ export default function BenefitTableScreen({ isWebView }) {
                                     </td>
                                 </tr>
                                 <tr className="th-child">
-                                    <td colspan="2">
+                                    <td colSpan="2">
                                         <h4>Perawatan rawat jalan</h4>
                                     </td>
                                 </tr>
@@ -652,7 +652,7 @@ export default function BenefitTableScreen({ isWebView }) {
                                     </td>
                                 </tr>
                                 <tr className="th-child">
-                                    <td colspan="2">
+                                    <td colSpan="2">
                                         <h4>Evakuasi darurat dan repatriasi</h4>
                                     </td>
                                 </tr>

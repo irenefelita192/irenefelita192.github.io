@@ -29,6 +29,8 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
         calcY = 80,
         mCalcX = 15,
         mCalcY = 85,
+        hCalcX = 15,
+        hCalcY = 85,
         oCalcX = 17,
         oCalcY = 85
 
@@ -43,7 +45,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
             // })
             setIconWrapperSize({
                 width: (73 / 100) * window.innerWidth,
-                height: (50 / 100) * window.innerWidth,
+                height: (60 / 100) * window.innerWidth,
             })
         }
     }, [])
@@ -68,17 +70,20 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                 }
 
                 stickyPosTop = secondPosTop + (50 / 100) * window.innerHeight
-
-                if (window.innerWidth / window.innerHeight > 0.65) {
+                const windowRatio = window.innerWidth / window.innerHeight
+                console.log('windowRatio', windowRatio)
+                if (windowRatio > 0.65) {
                     stickyPosTop =
                         secondPosTop + (20 / 100) * window.innerHeight
                     mCalcX = 22
-                    mCalcY = 80
+                    mCalcY = 60
                     calcX = 10
-                    calcY = 80
+                    calcY = 60
+                    hCalcX = 5
+                    hCalcY = 90
                     oCalcX = 35
-                    oCalcY = 80
-                } else if (window.innerWidth / window.innerHeight > 0.55) {
+                    oCalcY = 60
+                } else if (windowRatio > 0.55) {
                     stickyPosTop =
                         secondPosTop + (45 / 100) * window.innerHeight
                     mCalcX = 17
@@ -86,23 +91,45 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     calcX = 10
                     calcY = 80
                     oCalcY = 80
-                } else if (window.innerWidth / window.innerHeight > 0.5) {
+                } else if (windowRatio > 0.48) {
                     stickyPosTop =
                         secondPosTop + (45 / 100) * window.innerHeight
-                    mCalcX = 17
-                    mCalcY = 50
-                    calcX = 10
-                    calcY = 50
+
+                    mCalcX = 20
+                    mCalcY = 75
+                    calcX = 6
+                    calcY = 60
+                    oCalcX = 19
                     oCalcY = 50
+                    hCalcX = 10
+                    hCalcY = 85
+                    if (window.innerHeight > 780) {
+                        mCalcX = 8
+                        mCalcY = 28
+                        calcX = 6
+                        calcY = 20
+                        oCalcX = 13
+                        oCalcY = 10
+                        hCalcX = 6
+                        hCalcY = 35
+                    }
+
+                    // mCalcX = 17
+                    // mCalcY = 50
+                    // calcX = 10
+                    // calcY = 50
+                    // oCalcY = 50
                 } else {
                     stickyPosTop =
-                        secondPosTop + (58 / 100) * window.innerHeight
-                    mCalcX = 5
-                    mCalcY = 68
-                    calcX = 5
-                    calcY = 65
-                    oCalcX = 5
-                    oCalcY = 68
+                        secondPosTop + (45 / 100) * window.innerHeight
+                    mCalcX = 2
+                    mCalcY = 35
+                    calcX = 3
+                    calcY = 38
+                    hCalcX = 5
+                    hCalcY = 48
+                    oCalcX = 10
+                    oCalcY = 18
                 }
             }
 
@@ -130,6 +157,8 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
         animateScale = 0,
         mAnimatePosX = 0,
         mAnimatePosY = 0,
+        hAnimatePosX = 0,
+        hAnimatePosY = 0,
         oAnimatePosX = 0,
         oAnimatePosY = 0
 
@@ -145,6 +174,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     dental = document.getElementById('icon-dental'),
                     maternity = document.getElementById('icon-maternity'),
                     outpatient = document.getElementById('icon-outpatient'),
+                    hemat = document.getElementById('icon-hemat'),
                     outpatientDiv = document.querySelector(
                         '#icon-outpatient > div'
                     ),
@@ -154,11 +184,13 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     inpatientTopView = inpatient.offsetTop + heroImage.offsetTop
                     const calcScrollTop = stickyPosTop - inpatientTopView
                     animatePosX = calcScrollTop * 0.018
-                    animatePosY = calcScrollTop * 0.4
-                    dAnimatePosX = calcScrollTop * 0.018
-                    dAnimatePosY = calcScrollTop * 0.4
+                    animatePosY = calcScrollTop * 0.41
+                    dAnimatePosX = calcScrollTop * 0.012
+                    dAnimatePosY = calcScrollTop * 0.38
                     mAnimatePosX = calcScrollTop * 0.09
                     mAnimatePosY = calcScrollTop * 0.38
+                    hAnimatePosX = calcScrollTop * 0.05
+                    hAnimatePosY = calcScrollTop * 0.45
                     oAnimatePosX = calcScrollTop * 0.08
                     oAnimatePosY = calcScrollTop * 0.41
 
@@ -168,11 +200,13 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                 let inpatientTop = inpatientTopView + scrollTop
 
                 const posX = scrollTop * 0.018,
-                    posY = scrollTop * 0.4,
-                    dPosX = scrollTop * 0.018,
-                    dPosY = scrollTop * 0.4,
+                    posY = scrollTop * 0.41,
+                    dPosX = scrollTop * 0.012,
+                    dPosY = scrollTop * 0.38,
                     mPosX = scrollTop * 0.09,
                     mPosY = scrollTop * 0.38,
+                    hPosX = scrollTop * 0.05,
+                    hPosY = scrollTop * 0.45,
                     oPosX = scrollTop * 0.08,
                     oPosY = scrollTop * 0.41,
                     scale = 1 - scrollTop * 0.0002,
@@ -184,15 +218,18 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                         dental.classList.remove('revolve')
                         maternity.classList.remove('revolve')
                         outpatient.classList.remove('revolve')
+                        hemat.classList.remove('revolve')
                     } else {
                         inpatient.style.transition = `transform 0.1s linear`
                         dental.style.transition = `transform 0.1s linear`
                         maternity.style.transition = `transform 0.1s linear`
                         outpatient.style.transition = `transform 0.1s linear`
+                        hemat.style.transition = `transform 0.1s linear`
                     }
                     inpatient.style.transform = `translate( ${posX}%, ${posY}%) scale(${scale})`
                     dental.style.transform = `translate( ${dPosX}%, ${dPosY}%) scale(${scale})`
                     maternity.style.transform = `translate( ${mPosX}%, ${mPosY}%) scale(${scale})`
+                    hemat.style.transform = `translate( ${hPosX}%, ${hPosY}%) scale(${scale})`
                     outpatient.style.transform = `translate( ${oPosX}%, ${oPosY}%) scale(${scale})`
                     outpatientDiv.style.right = `${opRightPos}%`
                 } else if (stickyPosTop > 0) {
@@ -217,6 +254,13 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                         }%, ${mAnimatePosY + mCalcY}%) scale(${animateScale})`
 
                         maternity.classList.add('revolve')
+
+                        hemat.style.transition = `all 0.5s ease-in`
+                        hemat.style.transform = `translate( ${
+                            hAnimatePosX + hCalcX
+                        }%, ${hAnimatePosY + hCalcY}%) scale(${animateScale})`
+
+                        hemat.classList.add('revolve')
 
                         outpatient.style.transition = `all 0.5s ease-in`
                         outpatient.style.transform = `translate( ${
@@ -327,6 +371,28 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                                     sectionOne?.maternityIcon?.url ?? ''
                                 }`}
                                 alt="maternity-icon"
+                            />
+                        </div>
+                    </div>
+                    <div
+                        id="icon-hemat"
+                        className={'hero-icon hero-icon--hemat animate'}
+                        style={{
+                            width: `${iconWrapperSize.width}px`,
+                            height: `${iconWrapperSize.height}px`,
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: `${iconWrapperSize.width}px`,
+                                height: `${iconWrapperSize.height}px`,
+                            }}
+                        >
+                            <img
+                                src={`${assetDomain}${
+                                    sectionOne?.hematIcon?.url ?? ''
+                                }`}
+                                alt="hemat-icon"
                             />
                         </div>
                     </div>
