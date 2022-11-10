@@ -25,7 +25,7 @@ export default function BenefitTableScreen({ isWebView }) {
                             <thead>
                                 <tr>
                                     <td style={{ width: '60%' }}>Manfaat</td>
-                                    <td>Plan B,C,D,E</td>
+                                    <td>Plan P, Q</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,13 +86,11 @@ export default function BenefitTableScreen({ isWebView }) {
                                         <u>Biaya akomodasi harian</u>
                                         <p>
                                             Manfaat ini membayarkan{' '}
-                                            <strong>biaya</strong>
-                                            akomodasi sesuai dengan tipe dan
-                                            limit kamar, ketika dirawat sebagai
-                                            pasien <strong>
-                                                rawat inap
-                                            </strong>{' '}
-                                            atau rawat harian.
+                                            <strong>biaya</strong> akomodasi
+                                            sesuai dengan tipe dan limit kamar,
+                                            ketika dirawat sebagai pasien{' '}
+                                            <strong>rawat inap</strong> atau
+                                            rawat harian.
                                         </p>
                                     </th>
 
@@ -193,11 +191,9 @@ export default function BenefitTableScreen({ isWebView }) {
                                         <p>
                                             <strong>Biaya</strong> yang
                                             dikenakan oleh dokter{' '}
-                                            <strong>spesialis</strong>
-                                            untuk <strong>
-                                                kunjungan
-                                            </strong>{' '}
-                                            pasien <strong>rawat inap</strong>.
+                                            <strong>spesialis</strong> untuk{' '}
+                                            <strong>kunjungan</strong> pasien{' '}
+                                            <strong>rawat inap</strong>.
                                         </p>
                                     </th>
                                     <td>
@@ -335,7 +331,10 @@ export default function BenefitTableScreen({ isWebView }) {
                                 </td>
                                 <td>
                                     <div>100.000 per konsultasi </div>
-                                    <div>Max 3x konsultasi per tahun(****)</div>
+                                    <div>
+                                        Max 3x konsultasi per{' '}
+                                        <strong>tahun(****)</strong>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -356,8 +355,8 @@ export default function BenefitTableScreen({ isWebView }) {
                             hari), dengan maksimum 12 bulan (dengan catatan
                             pembayaran terus menerus dilakukan terhadap premi
                             yang terkait). Maksimum 1x konsultasi per hari. Pada
-                            saat ulang tahun polis (bulan ke - 13), manfaat akan
-                            diulang dari 1x konsultasi.
+                            saat ulang <strong>tahun polis</strong> (bulan ke -
+                            13), manfaat akan diulang dari 1x konsultasi.
                         </div>
                         <div>
                             (**) Obat yang diresepkan berlaku sesuai ketentuan
