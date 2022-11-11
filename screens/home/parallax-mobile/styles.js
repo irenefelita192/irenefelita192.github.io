@@ -82,11 +82,11 @@ export default css`
     }
 
     .hero-icon--inpatient.revolve > div {
-        animation: 20s revolve-ip 1s linear infinite;
+        animation: 80s revolve-ip 1s linear infinite;
     }
 
     .hero-icon--inpatient.revolve {
-        animation: 20s zIndex-ip 1s linear infinite;
+        animation: 80s zIndex-ip 1s linear infinite;
     }
 
     .hero-icon--inpatient.revolve img {
@@ -112,11 +112,11 @@ export default css`
     }
 
     .hero-icon--maternity.revolve > div {
-        animation: 20s revolve-maternity 1s linear infinite;
+        animation: 80s revolve-maternity 1s linear infinite;
     }
 
     .hero-icon--maternity.revolve {
-        animation: 20s zIndex-maternity 1s linear infinite;
+        animation: 80s zIndex-maternity 1s linear infinite;
     }
 
     .hero-icon--maternity.revolve img {
@@ -142,11 +142,11 @@ export default css`
     }
 
     .hero-icon--outpatient.revolve > div {
-        animation: 20s revolve-op 1s linear infinite;
+        animation: 80s revolve-op 1s linear infinite;
     }
 
     .hero-icon--outpatient.revolve {
-        animation: 20s zIndex-op 1s linear infinite;
+        animation: 80s zIndex-op 1s linear infinite;
     }
 
     .hero-icon--outpatient.revolve img {
@@ -172,11 +172,11 @@ export default css`
     }
 
     .hero-icon--hemat.revolve > div {
-        animation: 20s revolve-hemat 1s linear infinite;
+        animation: 80s revolve-hemat 1s linear infinite;
     }
 
     .hero-icon--hemat.revolve {
-        animation: 20s zIndex-hemat 1s linear infinite;
+        animation: 80s zIndex-hemat 1s linear infinite;
     }
 
     .hero-icon--hemat.revolve img {
@@ -197,11 +197,11 @@ export default css`
     }
 
     .hero-icon--dental.revolve > div {
-        animation: 20s revolve-dental 1s linear infinite;
+        animation: 80s revolve-dental 1s linear infinite;
     }
 
     .hero-icon--dental.revolve {
-        animation: 20s zIndex-dental 1s linear infinite;
+        animation: 80s zIndex-dental 1s linear infinite;
     }
 
     .hero-icon--dental.revolve img {
