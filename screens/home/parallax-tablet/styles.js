@@ -45,6 +45,7 @@ export default css`
     .hero-icon--inpatient.animate,
     .hero-icon--outpatient.animate,
     .hero-icon--maternity.animate,
+    .hero-icon--hemat.animate,
     .hero-icon--dental.animate {
         opacity: 0;
     }
@@ -52,6 +53,7 @@ export default css`
     .hero-icon--inpatient,
     .hero-icon--outpatient,
     .hero-icon--maternity,
+    .hero-icon--hemat,
     .hero-icon--dental {
         opacity: 1;
     }
@@ -78,11 +80,11 @@ export default css`
     }
 
     .hero-icon--inpatient.revolve > div {
-        animation: 80s revolve-ip 0.5s linear infinite;
+        animation: 80s revolve-ip 1s linear infinite;
     }
 
     .hero-icon--inpatient.revolve {
-        animation: 80s zIndex-ip 0.5s linear infinite;
+        animation: 80s zIndex-ip 1s linear infinite;
     }
 
     .hero-icon--inpatient.revolve img {
@@ -149,6 +151,36 @@ export default css`
         animation: float-outpatient 10s linear infinite;
     }
 
+    /* hemat */
+    .hero-icon--hemat {
+        top: 0;
+        left: -44%;
+    }
+
+    .hero-icon--hemat.animate {
+        animation: 0.4s popout-hemat 0.2s ease-in forwards;
+    }
+
+    .hero-icon--hemat > div {
+        top: ${constant.hTop}%;
+        right: ${constant.hRight}%;
+        position: absolute;
+        text-align: right;
+        animation: float-hemat 10s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve > div {
+        animation: 80s revolve-hemat 1s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve {
+        animation: 80s zIndex-hemat 1s linear infinite;
+    }
+
+    .hero-icon--hemat.revolve img {
+        animation: float-hemat 10s linear infinite;
+    }
+
     /* dental */
     .hero-icon--dental.animate {
         transform-origin: left;
@@ -198,6 +230,18 @@ export default css`
     }
 
     @keyframes popout-outpatient {
+        0% {
+            opacity: 0.2;
+            transform: translate(0, 5%) scale(0.3);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+    }
+
+    @keyframes popout-hemat {
         0% {
             opacity: 0.2;
             transform: translate(0, 5%) scale(0.3);
@@ -285,11 +329,30 @@ export default css`
         }
         50% {
             transform-origin: right;
-            transform: translate(0, 0) scale(1.15) rotate(15deg);
+            transform: translate(-20px, 30px) scale(1.15) rotate(15deg);
         }
         70% {
             transform-origin: right;
-            transform: translate(5px, -0) scale(1.08) rotate(5deg);
+            transform: translate(0, 0) scale(1.08) rotate(5deg);
+        }
+        100% {
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
+        }
+    }
+
+    @keyframes float-hemat {
+        0% {
+            transform-origin: right;
+            transform: translate(0, 0) scale(1) rotate(0);
+        }
+        50% {
+            transform-origin: right;
+            transform: translate(10px, -30px) scale(0.9) rotate(-15deg);
+        }
+        70% {
+            transform-origin: right;
+            transform: translate(0, -10px) scale(0.88) rotate(-5deg);
         }
         100% {
             transform-origin: right;
@@ -447,17 +510,24 @@ export default css`
             z-index: 4;
         }
 
-        25% {
-            transform: translate(5%, 85%);
-        }
-
-        50% {
-            transform: translate(85%, 80%);
+        20% {
+            transform: translate(0%, 79%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(87%, -5%);
+        40% {
+            transform: translate(53%, 96%);
+            z-index: 4;
+        }
+
+        60% {
+            transform: translate(96%, 78%);
+
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(88%, 3%);
             z-index: 2;
         }
 
@@ -471,15 +541,20 @@ export default css`
         0% {
             z-index: 4;
         }
-        25% {
+
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 2;
         }
 
@@ -493,18 +568,24 @@ export default css`
             transform: translate(0, 0);
             z-index: 2;
         }
-        25% {
-            transform: translate(-75%, 15%);
+
+        20% {
+            transform: translate(-86%, 2%);
             z-index: 4;
         }
 
-        50% {
-            transform: translate(-80%, 95%);
+        40% {
+            transform: translate(-86%, 83%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(2%, 80%);
+        60% {
+            transform: translate(-39%, 95%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(8%, 80%);
             z-index: 4;
         }
 
@@ -518,15 +599,20 @@ export default css`
         0% {
             z-index: 2;
         }
-        25% {
+
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 4;
         }
 
@@ -538,20 +624,26 @@ export default css`
     @keyframes revolve-op {
         0% {
             transform: translate(0, 0);
-            z-index: 2;
-        }
-        25% {
-            transform: translate(-5%, -85%);
-            z-index: 2;
-        }
-
-        50% {
-            transform: translate(-78%, -85%);
             z-index: 4;
         }
 
-        75% {
-            transform: translate(-85%, 5%);
+        20% {
+            transform: translate(-4%, -76%);
+            z-index: 2;
+        }
+
+        40% {
+            transform: translate(-91%, -79%);
+            z-index: 4;
+        }
+
+        60% {
+            transform: translate(-94%, 5%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(-46%, 16%);
             z-index: 4;
         }
 
@@ -565,15 +657,82 @@ export default css`
         0% {
             z-index: 2;
         }
-        25% {
+
+        20% {
             z-index: 2;
         }
 
-        50% {
+        40% {
+            z-index: 2;
+        }
+
+        42% {
             z-index: 4;
         }
 
-        75% {
+        60% {
+            z-index: 4;
+        }
+
+        80% {
+            z-index: 4;
+        }
+
+        100% {
+            z-index: 4;
+        }
+    }
+
+    @keyframes revolve-hemat {
+        0% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+
+        20% {
+            transform: translate(45%, -20%);
+            z-index: 4;
+        }
+
+        40% {
+            transform: translate(38%, -95%);
+            z-index: 2;
+        }
+
+        60% {
+            transform: translate(-52%, -95%);
+            z-index: 4;
+        }
+
+        80% {
+            transform: translate(-49%, -18%);
+            z-index: 4;
+        }
+
+        100% {
+            transform: translate(0, 0);
+            z-index: 4;
+        }
+    }
+
+    @keyframes zIndex-hemat {
+        0% {
+            z-index: 4;
+        }
+
+        20% {
+            z-index: 4;
+        }
+
+        40% {
+            z-index: 2;
+        }
+
+        60% {
+            z-index: 4;
+        }
+
+        80% {
             z-index: 4;
         }
 
@@ -587,19 +746,25 @@ export default css`
             transform: translate(0, 0);
             z-index: 4;
         }
-        25% {
-            transform: translate(85%, -5%);
+
+        20% {
+            transform: translate(52%, 16%);
             z-index: 4;
         }
 
-        50% {
-            transform: translate(88%, -90%);
+        40% {
+            transform: translate(96%, 0%);
+            z-index: 4;
+        }
+
+        60% {
+            transform: translate(88%, -77%);
             z-index: 2;
         }
 
-        75% {
-            transform: translate(5%, -85%);
-            z-index: 2;
+        80% {
+            transform: translate(3%, -76%);
+            z-index: 4;
         }
 
         100% {
@@ -612,16 +777,21 @@ export default css`
         0% {
             z-index: 4;
         }
-        25% {
+
+        20% {
             z-index: 4;
         }
 
-        50% {
+        40% {
+            z-index: 4;
+        }
+
+        60% {
             z-index: 2;
         }
 
-        75% {
-            z-index: 2;
+        80% {
+            z-index: 4;
         }
 
         100% {

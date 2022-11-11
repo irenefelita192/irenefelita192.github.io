@@ -71,7 +71,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
 
                 stickyPosTop = secondPosTop + (50 / 100) * window.innerHeight
                 const windowRatio = window.innerWidth / window.innerHeight
-                console.log('windowRatio', windowRatio)
+
                 if (windowRatio > 0.65) {
                     stickyPosTop =
                         secondPosTop + (20 / 100) * window.innerHeight
@@ -119,7 +119,7 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     // calcX = 10
                     // calcY = 50
                     // oCalcY = 50
-                } else {
+                } else if (windowRatio > 0.43) {
                     stickyPosTop =
                         secondPosTop + (45 / 100) * window.innerHeight
                     mCalcX = 2
@@ -130,6 +130,17 @@ export default function ParallaxMobile({ sectionOne, sectionTwo }) {
                     hCalcY = 48
                     oCalcX = 10
                     oCalcY = 18
+                } else {
+                    stickyPosTop =
+                        secondPosTop + (45 / 100) * window.innerHeight
+                    mCalcX = 2
+                    mCalcY = 68
+                    calcX = 3
+                    calcY = 65
+                    hCalcX = 5
+                    hCalcY = 60
+                    oCalcX = 10
+                    oCalcY = 55
                 }
             }
 
