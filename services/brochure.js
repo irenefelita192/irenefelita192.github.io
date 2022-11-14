@@ -11,6 +11,15 @@ export const getBrochure = async () => {
     return response ? response.data : null
 }
 
+export const getBrochureHemat = async () => {
+    const response = await axios
+        .get(`${endpoints}/vida-brochure-hemat`)
+        .catch(function (error) {
+            console.error(error)
+        })
+    return response ? response.data : null
+}
+
 export const getBlob = async (url) => {
     const response = await axios
         .get(url, {

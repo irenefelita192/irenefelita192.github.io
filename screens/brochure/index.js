@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Document, Page } from 'react-pdf'
 import { useAsyncEffect } from 'use-async-effect'
-import { getBrochure, getBlob } from 'services/brochure'
+import { getBrochure, getBrochureHemat, getBlob } from 'services/brochure'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import Loader from 'components/loader'
 import styles from './styles'
@@ -25,7 +25,7 @@ import fileDownload from 'js-file-download'
 // }}>Download Image</button>
 
 /* for android webview */
-export default function BrochureScreen() {
+export default function BrochureScreen({ hemat = false }) {
     const [numPages, setNumPages] = useState(null)
     const [pdfLoadSuccess, setPdfLoadSuccess] = useState(false)
     const [progressPercent, setProgressPercent] = useState(0)
@@ -37,7 +37,7 @@ export default function BrochureScreen() {
     })
 
     useAsyncEffect(async (isMounted) => {
-        const brc = await getBrochure()
+        const brc = hemat ? await getBrochureHemat() : await getBrochure() 
 
         if (!isMounted()) return
 

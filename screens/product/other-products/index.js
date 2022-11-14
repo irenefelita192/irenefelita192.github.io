@@ -17,7 +17,6 @@ export default function OtherProducts({ data, title, isDesktop }) {
                 setIsWebpSupport(false)
             }
         }
-
         return () => {
             document.removeEventListener('click', () => {})
         }

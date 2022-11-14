@@ -1,5 +1,10 @@
 ### [v1.10.0]
 
+> 2022-11-14
+
+-   Add vida brochure hemat
+-   Add critical illness page for desktop and mobile
+
 > 2022-11-09
 
 -   Add icon vida hemat / critical illness at home page desktop, mobile, and tablet
