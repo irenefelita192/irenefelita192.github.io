@@ -2,6 +2,7 @@ import styles from './styles'
 import globalStyles from './global-styles'
 
 import Footer from 'components/footer'
+import { getAge } from 'utils/data-util'
 
 export default function ProductInfoScreen({ isWebView }) {
     const download = () => {
@@ -1331,7 +1332,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             <tr>
                                 <th>Usia</th>
                                 <td>:</td>
-                                <td>40 tahun</td>
+                                <td>{getAge('01/01/1981')} tahun</td>
                             </tr>
                             <tr>
                                 <th>Mata Uang Polis</th>
@@ -1362,7 +1363,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             <tr>
                                 <th>Usia Masuk</th>
                                 <td>:</td>
-                                <td>40 tahun</td>
+                                <td>{getAge('01/01/1981')} tahun</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1891,9 +1892,9 @@ export default function ProductInfoScreen({ isWebView }) {
                                 style={{ paddingLeft: '30px' }}
                             >
                                 <li>
-                                    Berita Satu Plaza, Lt. 2 Jl. Jend. Gatot
-                                    Subroto Kav. 35-36, Jakarta Selatan - 12950,
-                                    Indonesia.
+                                    Lippo Kuningan, Lt. 17 Floor Unit E. Jl. HR.
+                                    Rasuna Said Kav. B12, Jakarta Selatan –
+                                    12920, Indonesia.
                                 </li>
                                 <li>
                                     E-mail:{' '}
