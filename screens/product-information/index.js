@@ -2,7 +2,6 @@ import styles from './styles'
 import globalStyles from './global-styles'
 
 import Footer from 'components/footer'
-import { getAge } from 'utils/data-util'
 
 export default function ProductInfoScreen({ isWebView }) {
     const download = () => {
@@ -1332,7 +1331,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             <tr>
                                 <th>Usia</th>
                                 <td>:</td>
-                                <td>{getAge('01/01/1981')} tahun</td>
+                                <td>41 tahun</td>
                             </tr>
                             <tr>
                                 <th>Mata Uang Polis</th>
@@ -1363,7 +1362,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             <tr>
                                 <th>Usia Masuk</th>
                                 <td>:</td>
-                                <td>{getAge('01/01/1981')} tahun</td>
+                                <td>41 tahun</td>
                             </tr>
                         </tbody>
                     </table>

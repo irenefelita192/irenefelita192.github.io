@@ -3,7 +3,6 @@
 > 2022-11-15
 
 -   Add /product-information-economical (RIPLAY UMUM)
--   Change static age info into current age info at /product-information-economical and /product-information
 
     > 2022-11-14
 
