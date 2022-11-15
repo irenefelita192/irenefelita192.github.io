@@ -3,6 +3,7 @@
 > 2022-11-15
 
 -   Add /product-information-economical (RIPLAY UMUM)
+-   Change company address at /product-information to Lippo Kuningan
 
     > 2022-11-14
 

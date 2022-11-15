@@ -596,8 +596,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             dilakukan;
                         </li>
                         <li>
-                            Kehamilan atau kelahiran anak (persalinan) normal,
-                            kontrol pra dan pasca melahirkan, operasi sesar dan
+                            Kontrol pra dan pasca melahirkan, operasi sesar dan
                             komplikasinya kecuali apabila hal ini jelas-jelas
                             termasuk dalam tabel manfaat pemegang polis;
                         </li>
@@ -622,7 +621,10 @@ export default function ProductInfoScreen({ isWebView }) {
                             satu dari tertanggung atau dari suatu perawatan
                             terhadap tertanggung;
                         </li>
-                        <li>Perawatan impotensi, penurunan fungsi seksual;</li>
+                        <li>
+                            Perawatan impotensi, penurunan fungsi seksual atau
+                            segala komplikasinya;
+                        </li>
                         <li>
                             Perawatan penyakit-penyakit yang menular secara
                             seksual;
@@ -712,8 +714,7 @@ export default function ProductInfoScreen({ isWebView }) {
                         <li>
                             Obat-obat atau alat kesehatan rawat jalan, prostesis
                             eksternal, orthosis, peralatan medis tahan lama,
-                            bantuan dan peralatan medis kecuali diizinkan oleh
-                            persyaratan rencana atau segala komplikasinya;
+                            bantuan dan peralatan medis;
                         </li>
                         <li>
                             Barang-barang keperluan pribadi umumnya, seperti
@@ -748,14 +749,14 @@ export default function ProductInfoScreen({ isWebView }) {
                             pesawat yang tidak berlisensi atau sebagai siswa
                             belajar, bela diri, panjat bebas, mendaki gunung
                             dengan atau tanpa tali, bermain scuba diving sampai
-                            pada kedalaman lebih dari 10 meter, menelusuri medan
-                            berat sampai pada ketinggian di atas 2.500 (dua ribu
-                            lima ratus) meter, bermain bungee jumping,
-                            canyoning, bermain seluncur gantung, bermain
-                            seluncur parasut atau bermain microlighting, terjun
-                            payung, bermain potholing, bermain ski jauh di
-                            daerah salju atau kegiatan olahraga musim dingin
-                            lainnya di daerah salju;
+                            pada kedalaman lebih dari (10) sepuluh meter,
+                            menelusuri medan berat sampai pada ketinggian di
+                            atas (2.500) dua ribu lima ratus meter, bermain
+                            bungee jumping, canyoning, bermain seluncur gantung,
+                            bermain seluncur parasut atau bermain microlighting,
+                            terjun payung, bermain potholing, bermain ski jauh
+                            di daerah salju atau kegiatan olahraga musim dingin
+                            lainnya yang dilakukan jauh di daerah salju;
                         </li>
                         <li>
                             Perawatan-perawatan yang jelas-jelas dikecualikan
@@ -779,10 +780,10 @@ export default function ProductInfoScreen({ isWebView }) {
                         <li>
                             Klaim atau bagian dari suatu klaim yang atasnya
                             pemegang polis harus membayar kelebihan (atau beban
-                            sendiri atau co-payment). Dalam hal ini penanggung
+                            sendiri atau koasuransi). Dalam hal ini penanggung
                             hanya membayar sisa dari klaim tersebut setelah
                             penanggung mengurangi jumlah kelebihan (atau biaya
-                            sendiri atau co-payment) tersebut;
+                            sendiri atau koasuransi) tersebut;
                         </li>
                         <li>
                             Biaya-biaya yang dibebankan oleh praktisi medis,
@@ -794,7 +795,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             Biaya-biaya perawatan yang terkait dengan dan/atau
                             perbaikan atas kondisi dan/atau kelainan bawaan
                             apakah yang nyata atau tidak nyata dan/atau yang
-                            didiagnosa atau yang diketahui sejak lahir;
+                            didiagnosis atau yang diketahui sejak lahir;
                         </li>
 
                         <li>
@@ -802,7 +803,10 @@ export default function ProductInfoScreen({ isWebView }) {
                             dalam tabel manfaat yang berlaku terhadap plan
                             pemegang polis;
                         </li>
-
+                        <li>
+                            Biaya-biaya yang dikeluarkan selama masa di mana
+                            premi belum dibayar;
+                        </li>
                         <li>
                             Pemeriksaan genetik, termasuk konseling yang
                             diperlukan setelah pemeriksaan genetis, bahkan jika
@@ -818,23 +822,24 @@ export default function ProductInfoScreen({ isWebView }) {
                             diri tertanggung atau pemegang polis;
                         </li>
                         <li>
-                            Pemeliharaan kehidupan buatan selama lebih dari enam
-                            puluh (60) hari terus menerus, jika tertanggung
-                            dalam keadaan vegetatif yang persisten dan hanya
-                            dipertahankan hidup dengan alat ventilasi medis
-                            seperti ventilator mekanik; Perawatan sementara
-                            tinggal di rumah sakit selama lebih dari enam puluh
-                            (60) hari terus menerus untuk kerusakan neurologis
-                            permanen atau jika tertanggung berada dalam keadaan
-                            vegetatif persisten, yang didefinisikan sebagai
-                            kondisi tidak responsif yang mendalam, tanpa tanda
-                            kesadaran atau fungsi pikiran, bahkan jika orang
-                            tersebut dapat membuka mata dan bernafas tanpa
-                            bantuan, dan orang tersebut tidak ada respons untuk
-                            menanggapi rangsangan seperti memanggil namanya atau
-                            menyentuh. Keadaan ini harus bertahan setidaknya
-                            selama empat (4) minggu tanpa ada tanda-tanda
-                            perbaikan atau tidak mungkin ada pemulihan;
+                            Pemeliharaan kehidupan buatan selama lebih dari (60)
+                            enam puluh hari kalender terus menerus, jika
+                            tertanggung dalam keadaan vegetatif yang persisten
+                            dan hanya dipertahankan hidup dengan alat ventilasi
+                            medis seperti ventilator mekanik; Perawatan
+                            sementara tinggal di rumah sakit selama lebih dari
+                            (60) enam puluh hari kalender terus menerus untuk
+                            kerusakan neurologis permanen atau jika tertanggung
+                            berada dalam keadaan vegetatif persisten, yang
+                            didefinisikan sebagai kondisi tidak responsif yang
+                            mendalam, tanpa tanda kesadaran atau fungsi pikiran,
+                            bahkan jika orang tersebut dapat membuka mata dan
+                            bernafas tanpa bantuan, dan orang tersebut tidak ada
+                            respons untuk menanggapi rangsangan seperti
+                            memanggil namanya atau menyentuh. Keadaan ini harus
+                            bertahan setidaknya selama (4) empat minggu tanpa
+                            ada tanda-tanda perbaikan atau tidak mungkin ada
+                            pemulihan;
                         </li>
                         <li>
                             Kriopreservasi, atau pemanenan atau penyimpanan sel
@@ -1005,16 +1010,17 @@ export default function ProductInfoScreen({ isWebView }) {
                                 </li>
                                 <li>
                                     Dokumen yang diperlukan untuk pengajuan
-                                    klaim rawat inap atau rawat harian dan
-                                    manfaat tunai terkait rawat inap
+                                    klaim rawat inap atau rawat harian:
                                     <ul
                                         className="dash"
                                         style={{ paddingLeft: '30px' }}
                                     >
                                         <li>
-                                            resume medis perawatan rumah sakit
-                                            yang ditandatangani oleh praktisi
-                                            medis yang merawat tertanggung,
+                                            resume medis perawatan Rumah sakit
+                                            yang ditanda tangani oleh{' '}
+                                            <strong>praktisi medis</strong> yang
+                                            merawat <strong>tertanggung</strong>
+                                            ,
                                         </li>
                                         <li>
                                             kuitansi/bukti pembayaran asli
@@ -1029,31 +1035,42 @@ export default function ProductInfoScreen({ isWebView }) {
 
                                 <li>
                                     Dokumen yang diperlukan untuk pengajuan
-                                    klaim rawat jalan dan perawatan gigi
+                                    klaim rawat jalan:
                                     <ul
                                         className="dash"
                                         style={{ paddingLeft: '30px' }}
                                     >
                                         <li>
+                                            resume medis perawatan Rumah sakit
+                                            yang ditanda tangani oleh{' '}
+                                            <strong>praktisi medis</strong> yang
+                                            merawat <strong>tertanggung</strong>
+                                            , terkait klaim rawat inap.
+                                        </li>
+                                        <li>
                                             kuitansi/bukti pembayaran asli
-                                            dengan perincian biaya dari setiap
+                                            dengan perincian biaya dari setiap –
                                             jenis layanan yang diberikan,
                                         </li>
                                         <li>
-                                            hasil diagnosa praktisi medis, dan
-                                            salinan resep dokter apabila sudah
-                                            membeli obat.
+                                            hasil diagnosis{' '}
+                                            <strong>praktisi medis</strong>, dan
+                                            salinan{' '}
+                                            <strong>resep dokter</strong>{' '}
+                                            apabila sudah membeli obat,
                                         </li>
                                         <li>
                                             hasil laboratorium dan pemeriksaan
-                                            penunjang (jika ada).
+                                            penunjang (jika ada)
                                         </li>
                                     </ul>
                                     Hal ini harus diajukan untuk setiap
-                                    kunjungan yang dilakukan apakah itu ke
-                                    praktisi medis, rumah sakit, klinik,
-                                    farmasi, klinik diagnosa ataukah tempat lain
-                                    yang memberi layanan kesehatan.
+                                    <strong>kunjungan</strong> yang dilakukan
+                                    apakah itu ke
+                                    <strong>praktisi medis</strong>,{' '}
+                                    <strong>rumah sakit</strong>, klinik,
+                                    farmasi, klinik diagnosis ataukah tempat
+                                    lain yang memberi layanan kesehatan.
                                 </li>
 
                                 <li>
@@ -1067,7 +1084,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             <h4>
                                 <u>Tata cara pembayaran klaim</u>
                             </h4>
-                            <p>
+                            <p style={{ paddingBottom: '8px' }}>
                                 Penanggung akan menginformasikan hasil dari
                                 proses klaim secepatnya setelah dokumen-dokumen
                                 yang dibutuhkan sebagaimana yang diatur dalam
@@ -1077,7 +1094,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                 dapat dibayarkan dengan memperhatikan ketentuan
                                 polis.
                             </p>
-                            <p>
+                            <p style={{ paddingBottom: '8px' }}>
                                 Untuk klaim-klaim penggantian biaya, penanggung
                                 akan membayarkan klaim-klaim yang diajukan dalam
                                 waktu (14) empat belas hari kerja sejak dokumen
@@ -1254,17 +1271,17 @@ export default function ProductInfoScreen({ isWebView }) {
                         <table className="table-justify">
                             <thead>
                                 <tr>
-                                    <th>Total premi tahun ke-1</th>
+                                    <th>Total premi tahun ke 1</th>
                                     <th>
-                                        Proyeksi total premi tahun ke-2 - Rendah
+                                        Proyeksi total premi tahun ke 2 - Rendah
                                         (0%)
                                     </th>
                                     <th>
-                                        Proyeksi total premi tahun ke-2 - Sedang
+                                        Proyeksi total premi tahun ke 2 - Sedang
                                         (10%)
                                     </th>
                                     <th>
-                                        Proyeksi total premi tahun ke-2 - Tinggi
+                                        Proyeksi total premi tahun ke 2 - Tinggi
                                         (15%)
                                     </th>
                                 </tr>
@@ -1286,7 +1303,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             Sebagai catatan, premi juga dapat berubah seiring
                             waktu untuk menutupi biaya manfaat kesehatan yang
                             disebabkan dengan meningkatnya biaya medis. Terdapat
-                            tiga asumsi di mana biaya medis mengalami kenaikan
+                            tiga asumsi dimana biaya medis mengalami kenaikan
                             sebesar 0%, 10%, dan 15%. Proyeksi diatas tidak
                             mewakili batas potensi perubahan premi dan kenaikan
                             lebih tinggi dari 15%.
@@ -1295,11 +1312,10 @@ export default function ProductInfoScreen({ isWebView }) {
 
                     <h3>Ilustrasi manfaat (dalam rupiah)</h3>
                     <p style={{ paddingBottom: '10px' }}>
-                        Tertanggung Tuan A membeli plan rawat inap B09 dan plan
-                        rawat jalan O06 dengan detail manfaat sesuai tabel
-                        manfaat polis. Tertanggung Tuan A menjalani rawat inap
-                        selama (7) tujuh hari dengan perincian biaya sebagai
-                        berikut.
+                        Tertanggung Tuan A membeli plan rawat inap A dengan
+                        detail manfaat sesuai tabel manfaat polis. Tertanggung
+                        Tuan A menjalani rawat inap selama (7) tujuh hari dengan
+                        perincian biaya sebagai berikut.
                     </p>
 
                     <div className="table-overflow">
@@ -1600,20 +1616,6 @@ export default function ProductInfoScreen({ isWebView }) {
                                         selama (30) tiga puluh hari kalender
                                         sejak ulang tahun polis, di mana selama
                                         masa tersebut polis tetap berlaku.
-                                    </p>
-                                </li>
-
-                                <li>
-                                    <strong>Co-payment </strong>
-                                    <p>
-                                        {' '}
-                                        Bagian dari biaya perawatan dan/atau
-                                        pengobatan yang memenuhi syarat yang
-                                        harus dibayar oleh pemegang polis. Tabel
-                                        manfaat dan/atau polis memiliki
-                                        informasi persentase pembayaran bersama
-                                        (co-payment) yang telah pemegang polis
-                                        pilih di awal periode polis.
                                     </p>
                                 </li>
                             </ol>
