@@ -4,8 +4,9 @@
 
 -   Add /product-information-economical (RIPLAY UMUM)
 -   Change company address at /product-information to Lippo Kuningan
+-   add styling product section two for left text
 
-    > 2022-11-14
+> 2022-11-14
 
 -   Add vida brochure hemat
 -   Add critical illness page for desktop and mobile

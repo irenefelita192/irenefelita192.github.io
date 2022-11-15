@@ -60,6 +60,10 @@ export default css`
         color: ${theme.colors['vida-white']};
     }
 
+    .hero-text.left {
+        left: 135px;
+    }
+
     .hero-text h2 {
         font-family: 'Museo', sans-serif;
         font-style: normal;
@@ -214,6 +218,10 @@ export default css`
             font-size: 33px;
         }
 
+        .hero-text.left {
+            left: 0;
+        }
+
         .hero-text h2 {
             font-size: 42px;
         }
@@ -302,6 +310,10 @@ export default css`
             font-size: 18px;
             line-height: 1.2;
             text-align: center;
+        }
+
+        .hero-text.left {
+            left: 0;
         }
 
         .hero-text h2 {
