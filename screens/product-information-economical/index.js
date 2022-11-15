@@ -1074,6 +1074,36 @@ export default function ProductInfoScreen({ isWebView }) {
                                 </li>
 
                                 <li>
+                                    Dokumen yang diperlukan untuk pengajuan
+                                    klaim manfaat tunai penyakit kritis:
+                                    <ul
+                                        className="dash"
+                                        style={{ paddingLeft: '30px' }}
+                                    >
+                                        <li>
+                                            Dokumen seperti pengajuan klaim
+                                            rawat inap atau rawat harian,
+                                        </li>
+                                        <li>
+                                            memberikan salinan (fotokopi)
+                                            laporan medis dan/atau penunjang
+                                            medis lainnya sesuai dengan dokumen
+                                            yang diperlukan pada definisi
+                                            manfaat penyakit kritis yang
+                                            diderita oleh{' '}
+                                            <strong>tertanggung</strong> sesuai
+                                            yang tercantum pada ketentuan polis.
+                                        </li>
+                                    </ul>
+                                    Hal ini harus diajukan untuk setiap{' '}
+                                    <strong>kunjungan</strong> yang dilakukan
+                                    apakah itu ke{' '}
+                                    <strong>praktisi medis</strong>,{' '}
+                                    <strong>rumah sakit</strong>, klinik,
+                                    farmasi, klinik diagnosis ataukah tempat
+                                    lain yang memberi layanan kesehatan.
+                                </li>
+                                <li>
                                     Kelengkapan dokumen untuk pengajuan
                                     pembayaran manfaat lainnya dan ketentuan
                                     kebijakan penggantian biaya diatur lebih
