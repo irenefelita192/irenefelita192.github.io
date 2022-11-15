@@ -1064,9 +1064,9 @@ export default function ProductInfoScreen({ isWebView }) {
                                             penunjang (jika ada)
                                         </li>
                                     </ul>
-                                    Hal ini harus diajukan untuk setiap
+                                    Hal ini harus diajukan untuk setiap{' '}
                                     <strong>kunjungan</strong> yang dilakukan
-                                    apakah itu ke
+                                    apakah itu ke{' '}
                                     <strong>praktisi medis</strong>,{' '}
                                     <strong>rumah sakit</strong>, klinik,
                                     farmasi, klinik diagnosis ataukah tempat
