@@ -214,7 +214,7 @@ export default function SectionThree({ data, isDesktop }) {
                                     </div>
 
                                     <div className={`b-text`} id={`b-${q.num}`}>
-                                        <h3>{q.title}</h3>
+                                        <h3 style={{ color: q.color ? q.color : '' }}>{q.title}</h3>
                                         <div>{q.description}</div>
                                     </div>
                                 </div>
