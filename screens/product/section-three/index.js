@@ -185,7 +185,7 @@ export default function SectionThree({ data, isDesktop }) {
                                             className={`benefit-text`}
                                             id={`benefit-${q.num}`}
                                         >
-                                            <h3>{q.title}</h3>
+                                            <h3 style={{ color: q.color ? q.color : '' }}>{q.title}</h3>
                                             <div>{q.description}</div>
                                         </div>
                                     </div>
