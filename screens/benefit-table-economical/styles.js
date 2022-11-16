@@ -58,7 +58,17 @@ export default css`
     }
 
     .appendix h4 {
+        font-size: 13px;
         padding: 32px 0 16px;
+    }
+
+    .appendix table {
+        font-size: 12px;
+    }
+
+    .appendix table td {
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
 
     @media screen and (max-width: 1024px) {
