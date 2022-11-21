@@ -73,7 +73,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             <tr>
                                 <th>Usia Masuk Tertanggung</th>
                                 <td>:</td>
-                                <td>6 Bulan - 60 Tahun</td>
+                                <td>1 - 60 Tahun</td>
                             </tr>
                             <tr>
                                 <th>Masa Pembayaran Premi</th>
@@ -101,7 +101,7 @@ export default function ProductInfoScreen({ isWebView }) {
                                     <p>
                                         Manfaat Tambahan:
                                         <br />
-                                        Rp600.000,- hingga Rp200.000.000,-
+                                        Rp1.050.000,- hingga Rp200.000.000,-
                                     </p>
                                 </td>
                             </tr>
@@ -419,7 +419,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     </div>
                     <div className="note">
                         <div>
-                            (*) Usia masuk <strong>tertanggung</strong> 17-44{' '}
+                            (*) Usia masuk <strong>tertanggung</strong> 18-45{' '}
                             <strong>tahun</strong>
                         </div>
                     </div>
@@ -566,7 +566,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     </table>
                     <div className="note">
                         <div>
-                            (*) Usia masuk <strong>tertanggung</strong> 17-59{' '}
+                            (*) Usia masuk <strong>tertanggung</strong> 18-60{' '}
                             <strong>tahun</strong>
                         </div>
                         <div>
@@ -872,11 +872,13 @@ export default function ProductInfoScreen({ isWebView }) {
                                     Usia masuk pemegang polis : 18 - 60 tahun
                                 </li>
                                 <li>
-                                    Usia masuk tertanggung : 6 bulan - 60 tahun
+                                    Usia masuk tertanggung : 1 - 60 tahun
                                 </li>
                                 <li>
-                                    Spesifik untuk manfaat penyakit kritis, usia
-                                    masuk tertanggung 17-59 tahun
+                                    Spesifik untuk manfaat persalinan, usia masuk tertanggung 18 - 45 tahun
+                                </li>
+                                <li>
+                                    Spesifik untuk manfaat penyakit kritis, usia masuk tertanggung 18 - 60 tahun
                                 </li>
                             </ol>
                         </li>
@@ -1272,12 +1274,12 @@ export default function ProductInfoScreen({ isWebView }) {
                             <tr>
                                 <th>Total Premi Bulanan*</th>
                                 <td>:</td>
-                                <td>Rp. 255.700,-</td>
+                                <td>Rp. 249.500,-</td>
                             </tr>
                             <tr>
                                 <th>Total Premi Tahunan*</th>
                                 <td>:</td>
-                                <td>Rp. 3.068.400,-</td>
+                                <td>Rp. 2.994.000,-</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1318,7 +1320,7 @@ export default function ProductInfoScreen({ isWebView }) {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>3.068.400</td>
+                                    <td>2.994.000</td>
                                     <td>3.068.400</td>
                                     <td>3.375.240</td>
                                     <td>3.528.660</td>
