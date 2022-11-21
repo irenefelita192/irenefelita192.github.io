@@ -269,7 +269,7 @@ export default function BenefitTableScreen({ isWebView }) {
                             <strong>plan</strong> dapat dilihat pada Lampiran 1
                         </div>
                         <div>
-                            (**) Usia masuk <strong>tertanggung</strong> 17-44{' '}
+                            (**) Usia masuk <strong>tertanggung</strong> 18-45{' '}
                             <strong>tahun</strong>
                         </div>
                     </div>
@@ -416,7 +416,7 @@ export default function BenefitTableScreen({ isWebView }) {
                     </table>
                     <div className="note">
                         <div>
-                            (*) Usia masuk <strong>tertanggung</strong> 17-59{' '}
+                            (*) Usia masuk <strong>tertanggung</strong> 18-60{' '}
                             <strong>tahun</strong>
                         </div>
                         <div>
