@@ -1,3 +1,9 @@
+### [v1.11.0]
+
+> 2022-12-06
+
+-   Add detail syarat dan ketentuan mendapatkan santunan penyakit kritis at page /terms-critical-illness
+-   fix wording riplay umum hemat at /product-information-economical
 ### [v1.10.0]
 
 > 2022-11-15

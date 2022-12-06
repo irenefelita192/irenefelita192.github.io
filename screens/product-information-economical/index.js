@@ -805,7 +805,7 @@ export default function ProductInfoScreen({ isWebView }) {
                         </li>
                         <li>
                             Biaya-biaya yang dikeluarkan selama masa di mana
-                            premi belum dibayar;
+                            premi belum dibayar(pembayaran klaim akan ditunda sampai dengan setelah premi dibayarkan);
                         </li>
                         <li>
                             Pemeriksaan genetik, termasuk konseling yang
@@ -1838,8 +1838,7 @@ export default function ProductInfoScreen({ isWebView }) {
                     </ol>
                 </section>
                 <p style={{ paddingTop: '60px' }}>
-                    PT LIPPO LIFE ASSURANCE terdaftar dan diawasi oleh Otoritas
-                    Jasa Keuangan
+                    PT LIPPO LIFE ASSURANCE adalah perusahaan Asuransi Jiwa di Indonesia yang berizin dan diawasi oleh Otoritas Jasa Keuangan.
                 </p>
                 <br />
                 <br />
