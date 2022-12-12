@@ -49,6 +49,11 @@ export default css`
             padding: 57px 72px 100px 72px;
             min-height: 48vh;
         }
+
+        .webview {
+            padding-top: 0 !important;
+            margin-top: -20px !important;
+        }
     }
 
     @media screen and (max-width: 640px) {
@@ -59,6 +64,11 @@ export default css`
         .wrapper {
             padding: 42px;
             min-height: 0;
+        }
+
+        .webview {
+            padding-top: 0 !important;
+            margin-top: -20px !important;
         }
 
         .table-overflow {

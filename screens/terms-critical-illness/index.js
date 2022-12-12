@@ -2,7 +2,7 @@ import styles from './styles'
 import globalStyles from './global-styles'
 import Footer from 'components/footer'
 
-export default function TermsCriticalIllness({ isWebView }) {
+export default function TermsCriticalIllness({ isWebView = '' }) {
     const download = () => {
         document.location =
             'data:text/attachment;,' + //here is the trick
@@ -20,12 +20,12 @@ export default function TermsCriticalIllness({ isWebView }) {
             {/* <a onClick={() => download()} style={{ lineHeight: 1 }}>
                 DOWNLOAD
             </a> */}
-            <div id="content" className="wrapper">
+            <div id="content" className={isWebView ? "wrapper webview" : "wrapper" }>
                 <section
                     className="table-nested"
-                    style={{ 'page-break-before': 'always' }}
+                    style={{ pageBreakBefore: 'always' }}
                 >
-                    <h2>Detal Manfaat untuk mendapatkan Santunan Penyakit Kritis</h2>
+                    <h2>Detail Manfaat untuk mendapatkan Santunan Penyakit Kritis</h2>
                     <p>Sehubungan dengan plan <strong>tertanggung</strong>,  jika <strong>tertanggung</strong> terdiagnosa salah satu dari penyakit kritis yang dijelaskan dalam tabel di bawah ini setelah masa tunggu selama (30) tiga puluh hari dengan masa bertahan hidup selama 14 hari sejak <strong>tertanggung</strong> didiagnosa menderita salah satu dari penyakit kritis dibawah, dan selama masa pertanggungan asuransi, maka <strong>tertanggung</strong> akan dibayarkan manfaat asuransi sebesar uang pertanggungan sesuai dengan plan <strong>tertanggung</strong>.</p>
                     <br></br>
                     <p>Silakan merujuk ke <strong>tabel manfaat</strong> yang memuat penjelasan dan/atau kriteria yang harus dipenuhi apabila suatu klaim hendak diajukan. Kondisi Penyakit Kritis yang ditanggung adalah seperti yang tercantum dalam tabel di bawah ini.</p>
