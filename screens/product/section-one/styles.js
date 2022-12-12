@@ -16,7 +16,7 @@ export default css`
         font-size: 18px;
         line-height: 1.4;
         color: ${theme.colors['vida-white']};
-        top: calc(50% - 80px);
+        top: calc(46% - 80px);
         left: 154px;
         width: 100%;
     }

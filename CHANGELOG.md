@@ -1,5 +1,11 @@
 ### [v1.10.0]
 
+> 2022-12-12
+
+-   fix styling product section one
+-   add spoptlight description product section two
+-   fix term critical illness page
+
 > 2022-12-06
 
 -   Add detail syarat dan ketentuan mendapatkan santunan penyakit kritis at page /terms-critical-illness
