@@ -25,14 +25,10 @@ export default function TermsCriticalIllness({ isWebView }) {
                     className="table-nested"
                     style={{ 'page-break-before': 'always' }}
                 >
-                    <h2>
-                        Syarat dan Ketentuan untuk Mendapatkan Santunan Penyakit Kritis
-                    </h2>
+                    <h2>Detal Manfaat untuk mendapatkan Santunan Penyakit Kritis</h2>
                     <p>Sehubungan dengan plan <strong>tertanggung</strong>,  jika <strong>tertanggung</strong> terdiagnosa salah satu dari penyakit kritis yang dijelaskan dalam tabel di bawah ini setelah masa tunggu selama (30) tiga puluh hari dengan masa bertahan hidup selama 14 hari sejak <strong>tertanggung</strong> didiagnosa menderita salah satu dari penyakit kritis dibawah, dan selama masa pertanggungan asuransi, maka <strong>tertanggung</strong> akan dibayarkan manfaat asuransi sebesar uang pertanggungan sesuai dengan plan <strong>tertanggung</strong>.</p>
                     <br></br>
                     <p>Silakan merujuk ke <strong>tabel manfaat</strong> yang memuat penjelasan dan/atau kriteria yang harus dipenuhi apabila suatu klaim hendak diajukan. Kondisi Penyakit Kritis yang ditanggung adalah seperti yang tercantum dalam tabel di bawah ini.</p>
-                    <br></br>
-                    <p>Silakan merujuk ke Pasal 15 tentang Pengecualian dan Pembatasan Kebijakan ini.</p>
                     <br></br>
                     <div>
                         <table>
@@ -212,6 +208,7 @@ export default function TermsCriticalIllness({ isWebView }) {
                         </table>
                     </div>
                 </section>
+                <p style={{ marginTop: '10px' }}>Untuk pengecualian dan pembatasan pemegang polis mohon dapat melihat <strong>detail syarat dan ketentuan polis</strong>.</p>
             </div>
             <Footer />
             <style jsx>{styles}</style>

@@ -3,7 +3,7 @@ import css from 'styled-jsx/css'
 
 export default css`
     .card-wrapper {
-        padding: 64px 12%;
+        padding: 64px 50px;
         line-height: 1;
     }
 

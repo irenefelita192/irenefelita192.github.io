@@ -10,7 +10,9 @@ export default function SectionOne({ data, isDesktop }) {
 
     useEffect(() => {
         if (window) {
-            setHeroHeight(window.innerHeight)
+            // img resolusi 2880 / 1800
+            const calHeight = window.innerWidth > window.innerHeight ? window.innerWidth * 0.625 : window.innerHeight
+            setHeroHeight(calHeight)
             if (window.Modernizr.webp) {
                 setIsWebpSupport(true)
             } else {

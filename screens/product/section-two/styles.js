@@ -96,6 +96,13 @@ export default css`
         width: auto;
     }
 
+    .spotlight-desc {
+        color: #FCFCFC;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
     @media screen and (max-width: 1024px) {
         .highlight-wrapper {
             font-size: 32px;
