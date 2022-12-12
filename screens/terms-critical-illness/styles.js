@@ -68,7 +68,7 @@ export default css`
 
         .webview {
             padding-top: 0 !important;
-            margin-top: -20px !important;
+            margin-top: -44px !important;
         }
 
         .table-overflow {
