@@ -68,7 +68,7 @@ export default function SectionTwo({ data, isDesktop }) {
                 <div
                     className={`hero-text ${
                         data.extraImage ? 'with-image' : ''
-                    } ${data?.isLeftText && isDesktop ? 'left' : ''}`}
+                    } ${data?.isLeftText && isDesktop ? 'left' : ''} ${data?.spotlightDescription && !isDesktop ? 'spotlight' : ''}`}
                 >
                     <h2 style={{ color: data.color }}>{data?.title ?? ''}</h2>
                     {data?.spotlightDescription && <div className="spotlight-desc">{data?.spotlightDescription}</div>}

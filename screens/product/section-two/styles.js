@@ -232,6 +232,10 @@ export default css`
         .hero-text h2 {
             font-size: 42px;
         }
+
+        .spotlight-desc {
+            font-size: 33px;
+        }
     }
 
     @media screen and (max-width: 768px) {
@@ -265,6 +269,10 @@ export default css`
             font-size: 12px;
             width: 35%;
             right: 7%;
+        }
+
+        .spotlight-desc {
+            font-size: 18px;
         }
     }
 
@@ -317,6 +325,11 @@ export default css`
             font-size: 18px;
             line-height: 1.2;
             text-align: center;
+        }
+
+        .hero-text.spotlight {
+            padding: 0 20px;
+            top: 12%;
         }
 
         .hero-text.left {
