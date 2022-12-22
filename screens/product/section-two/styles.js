@@ -359,4 +359,16 @@ export default css`
             right: auto;
         }
     }
+
+    @media screen and (max-width: 390px) {
+        .highlight-wrapper {
+            height: 240px;
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        .highlight-wrapper {
+            height: 260px;
+        }
+    }
 `

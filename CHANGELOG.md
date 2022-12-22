@@ -1,5 +1,9 @@
 ### [v1.10.0]
 
+> 2022-12-22
+
+-   fix styling product and apps page
+
 > 2022-12-12
 
 -   fix styling product section one
