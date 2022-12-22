@@ -76,6 +76,12 @@ export default css`
         transition: opacity 0.3s ease-in-out;
     }
 
+    @media screen and (max-width: 1440px) {
+        .card-title {
+            font-size: 22px;
+        }
+    }
+
     @media screen and (max-width: 1024px) {
         .card-wrapper {
             padding: 80px 35px 48px;

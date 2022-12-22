@@ -39,6 +39,12 @@ export default css`
         background-position: bottom;
     }
 
+    @media screen and (max-width: 1440px) {
+        .hero-text h1 {
+            width: 47%;
+        }
+    }
+
     @media screen and (max-width: 1024px) {
         .hero-text {
             position: relative;

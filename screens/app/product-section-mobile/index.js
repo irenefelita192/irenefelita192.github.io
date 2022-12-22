@@ -190,10 +190,15 @@ export default function ProductSection({ data, content, isDesktop }) {
                 id="protection"
                 className={`wrapper ${isDesktop ? '' : 'is-mobile'}`}
                 style={{
-                    height: heroHeight ? `${heroHeight}px` : 'auto',
+                    height: 'auto',
                 }}
             >
-                <div className="animation-wrapper">
+                <div 
+                    className="animation-wrapper"
+                    style={{
+                        height: heroHeight ? `${heroHeight}px` : 'auto',
+                    }}
+                >
                     <div className="video-wrapper">
                         {!canAutoplay && (
                             <div
