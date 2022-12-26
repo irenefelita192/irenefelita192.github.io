@@ -428,6 +428,7 @@ export default function BenefitTableScreen({ isWebView }) {
                 </section>
                 <section className="appendix">
                     <h3>Lampiran 1 – Area Perlindungan</h3>
+                    <h4>Daftar 514 Kota / Kabupaten di Indonesia:</h4>
                     <table>
                         <tbody>
                             <tr>
