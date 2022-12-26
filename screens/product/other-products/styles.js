@@ -82,6 +82,12 @@ export default css`
         }
     }
 
+    @media screen and (max-width: 1368px) {
+        .card-title {
+            font-size: 21px;
+        }
+    }
+
     @media screen and (max-width: 1024px) {
         .card-wrapper {
             padding: 80px 35px 48px;
