@@ -1,3 +1,10 @@
+### [v1.10.1]
+
+> 2022-12-29
+
+-   fix styling icon product at bottom of product page (desktop and mobile)
+-   fix icon animation and position (home page) for samsung galaxy note 9
+
 ### [v1.10.0]
 
 > 2022-12-22

@@ -29,7 +29,7 @@ export default css`
         height: 232px;
         margin-right: 20px;
         border-radius: 18px;
-        padding: 29px;
+        padding: 20px;
         text-transform: none;
         background-repeat: no-repeat;
         background-size: contain;
@@ -140,7 +140,7 @@ export default css`
         }
 
         .card-box {
-            padding: 33px;
+            padding: 16px 16px 32px 24px;
             max-width: 520px;
             margin: 0 auto 40px;
         }
@@ -150,11 +150,12 @@ export default css`
         }
 
         .card-title {
-            font-size: 44px;
+            font-size: 30px;
+            padding-top: 8px;
         }
 
         .card-desc {
-            font-size: 24px;
+            font-size: 18px;
             padding-top: 12px;
         }
     }
@@ -171,23 +172,23 @@ export default css`
             margin: 0 auto 40px;
         }
 
-        .card-image {
-            height: 58px;
-        }
+        /* .card-image {
+            height: 56px;
+        } */
 
-        .card-title {
+        /* .card-title {
             font-size: 39px;
         }
 
         .card-desc {
             font-size: 24px;
             padding-top: 12px;
-        }
+        } */
     }
 
     @media screen and (max-width: 640px) {
         .card-wrapper > div:first-child {
-            font-size: 32px;
+            font-size: 27px;
             max-width: 380px;
             margin: 0 auto;
         }
@@ -198,30 +199,7 @@ export default css`
         }
 
         .card-image {
-            height: 44px;
-        }
-
-        .card-title {
-            font-size: 30px;
-        }
-
-        .card-desc {
-            font-size: 18px;
-        }
-    }
-
-    @media screen and (max-width: 450px) {
-        .card-wrapper > div:first-child {
-            font-size: 27px;
-            line-height: 1.34;
-        }
-
-        .card-box {
-            margin-bottom: 20px;
-        }
-
-        .card-image {
-            height: 40px;
+            height: 56px;
         }
 
         .card-title {
@@ -231,5 +209,28 @@ export default css`
         .card-desc {
             font-size: 16px;
         }
+    }
+
+    @media screen and (max-width: 450px) {
+        .card-wrapper > div:first-child {
+            font-size: 27px;
+            line-height: 1.34;
+        }
+
+        /* .card-box {
+            margin-bottom: 20px;
+        } */
+
+        /* .card-image {
+            height: 40px;
+        }
+
+        .card-title {
+            font-size: 26px;
+        }
+
+        .card-desc {
+            font-size: 16px;
+        } */
     }
 `

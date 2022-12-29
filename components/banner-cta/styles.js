@@ -5,7 +5,7 @@ export default css`
     /*banner Section - start*/
     .banner-section {
         background-color: #f3ebe4;
-        padding: 80px 19%;
+        padding: 80px 18%;
         min-height: 250px;
         display: flex;
         flex-direction: column;
