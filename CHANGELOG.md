@@ -1,3 +1,9 @@
+### [v1.10.2]
+
+> 2023-01-16
+
+-   update `@fullpage/react-fullpage` to version 0.1.26
+
 ### [v1.10.1]
 
 > 2022-12-29
