@@ -111,6 +111,10 @@ export default function BrochureScreen({ hemat = false }) {
     const handleLoadProgress = ({ loaded, total }) => {
         if (loaded <= total) setProgressPercent((loaded / total) * 100)
     }
+
+    const handleLoadSuccess = (isSuccess) => {
+        setPdfLoadSuccess(isSuccess)
+    }
     // const dataDummy = 'Solusi Asuransi Kesehatan_v2.pdf'
     return (
         <div>
@@ -141,7 +145,6 @@ export default function BrochureScreen({ hemat = false }) {
                                 </a>
                             </div>
                         )}
-                        <PDFViewer />
 
                         <TransformWrapper
                             initialScale={1}
@@ -151,7 +154,19 @@ export default function BrochureScreen({ hemat = false }) {
                             {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                                 <>
                                     <TransformComponent>
-                                        <Document
+                                        <PDFViewer
+                                            fileUrl={
+                                                brochureData.data.brochureLink
+                                            }
+                                            handleLoadProgress={
+                                                handleLoadProgress
+                                            }
+                                            handleLoadSuccess={
+                                                handleLoadSuccess
+                                            }
+                                            windowWidth={windowWidth}
+                                        />
+                                        {/* <Document
                                             loading=""
                                             file={
                                                 brochureData.data.brochureLink
@@ -178,7 +193,7 @@ export default function BrochureScreen({ hemat = false }) {
                                                         pageNumber={pageNumber}
                                                     />
                                                 ))}
-                                        </Document>
+                                        </Document> */}
                                     </TransformComponent>
                                 </>
                             )}
