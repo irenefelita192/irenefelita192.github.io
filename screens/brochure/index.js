@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Document, Page } from 'react-pdf'
+import { Document, Page, pdfjs } from 'react-pdf'
 import { useAsyncEffect } from 'use-async-effect'
 import { getBrochure, getBrochureHemat, getBlob } from 'services/brochure'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
@@ -8,6 +8,14 @@ import styles from './styles'
 import globalStyles from './global-styles'
 import fileDownload from 'js-file-download'
 
+import dynamic from 'next/dynamic'
+
+const PDFViewer = dynamic(() => import('components/pdf-viewer'), {
+    ssr: false,
+})
+
+// import workerSrc from 'utils/pdf-worker'
+// pdfjs.GlobalWorkerOptions.workerSrc = workerSrc
 // ...
 
 // handleDownload = (url, filename) => {
@@ -37,7 +45,7 @@ export default function BrochureScreen({ hemat = false }) {
     })
 
     useAsyncEffect(async (isMounted) => {
-        const brc = hemat ? await getBrochureHemat() : await getBrochure() 
+        const brc = hemat ? await getBrochureHemat() : await getBrochure()
 
         if (!isMounted()) return
 
@@ -133,6 +141,7 @@ export default function BrochureScreen({ hemat = false }) {
                                 </a>
                             </div>
                         )}
+                        <PDFViewer />
 
                         <TransformWrapper
                             initialScale={1}
