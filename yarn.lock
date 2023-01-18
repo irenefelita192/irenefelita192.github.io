@@ -54,14 +54,6 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/polyfill@^7.2.5":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.12.1.tgz#1f2d6371d1261bbd961f3c5d5909150e12d0bd96"
-  integrity sha512-X0pi0V6gxLi6lFZpGmeNa4zxtwEmCs42isWLNjZZDE0Y8yVfgu0T2OAHlzBbdYlqbW/YXVvoBHpATEM+goCj8g==
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.12.0", "@babel/runtime@^7.13.10", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.7":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
@@ -265,14 +257,6 @@
   integrity sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==
   dependencies:
     "@floating-ui/core" "^1.0.5"
-
-"@fullpage/react-fullpage@0.1.26":
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/@fullpage/react-fullpage/-/react-fullpage-0.1.26.tgz#8772a748d1d544181c1f9349630fc9ec48b50fc7"
-  integrity sha512-gUdUusnQzyk9gej4PuY4iSJHvG1yckK1cu8mW0dTj3Y1Z6dH+AUDVllfxZS48pmDLbiLQq++0bW6D0VPkqutfQ==
-  dependencies:
-    "@babel/polyfill" "^7.2.5"
-    fullpage.js "^4.0.9"
 
 "@next/env@12.3.4":
   version "12.3.4"
@@ -623,11 +607,6 @@ cookies@^0.8.0:
     depd "~2.0.0"
     keygrip "~1.1.0"
 
-core-js@^2.6.5:
-  version "2.6.12"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
-  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
-
 cosmiconfig@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-6.0.0.tgz#da4fee853c52f6b1e6935f41c1a2fc50bd4a9982"
@@ -894,11 +873,6 @@ form-data@^4.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
-
-fullpage.js@^4.0.9:
-  version "4.0.15"
-  resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-4.0.15.tgz#dee9ba9b658bc42a35f794ae2297c492d7c7bb2c"
-  integrity sha512-OKyGyIY4Qlz47AmnYoJ9Kn2XzOyAufTSgkQqa+K2RENeTbmUoctFDX/Ox1LOdacsUNsYKvnty1lrKKYJNEB2Pw==
 
 function-bind@^1.1.1:
   version "1.1.1"

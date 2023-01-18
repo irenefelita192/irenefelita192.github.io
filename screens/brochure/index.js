@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Document, Page, pdfjs } from 'react-pdf'
 import { useAsyncEffect } from 'use-async-effect'
 import { getBrochure, getBrochureHemat, getBlob } from 'services/brochure'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
