@@ -3,7 +3,7 @@
 > 2023-01-16
 
 -   remove `@fullpage/react-fullpage` since has snyk license issue (about page not used yet)
--   upgrade react-pdf (brochure page), react-select (in axa page not used yet), react-responsive-carousel (download page and promo page) , and next version
+-   upgrade react-pdf (brochure page), react-select (in axa page not used yet), react-responsive-carousel (download page and promo page), query-string (for url with utm), isomorphic-dompurify (/download page section three) and next version
 
 ### [v1.10.1]
 
