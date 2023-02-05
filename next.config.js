@@ -3,7 +3,6 @@ const config = require('./config')
 module.exports = {
     assetPrefix: '/',
     // assetPrefix: 'file:///Users/irene/Documents/kids-project/out/',
-    basePath: '/',
     distDir: 'build',
     trailingSlash: true,
     env: {
