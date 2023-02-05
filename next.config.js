@@ -1,9 +1,9 @@
 const config = require('./config')
 
 module.exports = {
-    assetPrefix: '/irenefelita192.github.io/',
+    assetPrefix: '/',
     // assetPrefix: 'file:///Users/irene/Documents/kids-project/out/',
-    basePath: '/irenefelita192.github.io',
+    basePath: '/',
     distDir: 'build',
     trailingSlash: true,
     env: {
