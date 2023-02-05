@@ -14,9 +14,9 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          # update the Node version to meet your needs
-          node-version: 16
-          cache: npm
+            # update the Node version to meet your needs
+            node-version: 16
+            cache: npm
 
       - name: Build
         run: |-
@@ -28,5 +28,5 @@ jobs:
         # https://github.com/JamesIves/github-pages-deploy-action
         uses: JamesIves/github-pages-deploy-action@4.4.0 
         with:
-          branch: gh-pages
-          folder: out
+            branch: gh-pages
+            folder: out
