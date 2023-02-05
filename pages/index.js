@@ -1,8 +1,8 @@
 import Layout from 'components/layout'
 
-export default function Home({ data }) {
-    function changeHair() {
-        document.getElementById('girl-hair').style.fill = 'red'
+export default function Home() {
+    function changeHair(color) {
+        document.getElementById('girl-hair').style.fill = color || '#f75842'
     }
     return (
         <Layout>
@@ -605,8 +605,9 @@ export default function Home({ data }) {
                 </svg>
             </div>
             <div>Color Picker</div>
-
-            <button onClick={() => changeHair()}>Red</button>
+            <button onClick={() => changeHair()}>Reset</button>
+            <button onClick={() => changeHair('red')}>Red</button>
+            <button onClick={() => changeHair('blue')}>Blue</button>
         </Layout>
     )
 }

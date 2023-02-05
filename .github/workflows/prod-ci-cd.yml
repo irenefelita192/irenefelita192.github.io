@@ -1,70 +1,32 @@
-name: docs-push-to-pages
+name: Node.js CI
 
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [ main ]
 
 jobs:
-    deploy:
-        name: Setup Gcloud Account
-        runs-on: ubuntu-latest
-        env:
-            GCS_BUCKET: cdn-d7761cd/vida-prod/vida-landing-assets
-            IMAGE_NAME: gcr.io/${{ secrets.PROD_GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
-        steps:
-            - name: Clone repository
-              uses: actions/checkout@v2
+  build:
+		
+    runs-on: ubuntu-latest
 
-            - name: Set Node Version
-              uses: actions/setup-node@v2
-              with:
-                  node-version: '15.7.0'
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Generate env
-              uses: canastro/copy-file-action@master
-              with:
-                  source: '.env.prod.sample'
-                  target: '.env'
+      - uses: actions/setup-node@v2
+        with:
+          # update the Node version to meet your needs
+          node-version: 16
+          cache: npm
 
-            - name: Build
-              run: |-
-                  ls -a
-                  yarn
-                  yarn build
+      - name: Build
+        run: |-
+            ls -a
+            yarn
+            yarn build
 
-            - name: Login
-              uses: google-github-actions/setup-gcloud@v0
-              with:
-                  project_id: ${{ secrets.PROD_GCP_PROJECT_ID }}
-                  service_account_email: ${{ secrets.PROD_GCP_EMAIL }}
-                  service_account_key: ${{ secrets.PROD_GCP_CREDENTIALS }}
-
-            - name: Configure Docker
-              run: gcloud auth configure-docker --quiet
-
-            - name: Build Docker image
-              run: docker build . -t $IMAGE_NAME
-
-            # - name: Test Docker image
-            #   run: docker run $IMAGE_NAME sh -c "go test -v"
-
-            - name: Push Docker image
-              run: docker push $IMAGE_NAME
-
-            - name: Deploy Docker image
-              run: gcloud run deploy ${{ secrets.GCP_APP_NAME }} --image $IMAGE_NAME --region asia-southeast2 --platform managed --port=3000 --allow-unauthenticated
-
-            # additional for DRC
-            - name: Deploy Docker image ha
-              run: gcloud run deploy ${{ secrets.GCP_APP_NAME }}-ha --image $IMAGE_NAME --region asia-southeast1 --platform managed --port=3000 --allow-unauthenticated
-
-            - name: Login
-              uses: google-github-actions/setup-gcloud@v0
-              with:
-                  project_id: ${{ secrets.CDN_GCP_PROJECT_ID }}
-                  service_account_email: ${{ secrets.CDN_GCP_EMAIL }}
-                  service_account_key: ${{ secrets.CDN_GCP_CREDENTIALS }}
-
-            - name: Deploy Assets
-              run: |-
-                  gsutil -m rsync -R build gs://$GCS_BUCKET
+      - name: Deploy
+        # https://github.com/JamesIves/github-pages-deploy-action
+        uses: JamesIves/github-pages-deploy-action@4.4.0 
+        with:
+          branch: gh-pages
+          folder: out
