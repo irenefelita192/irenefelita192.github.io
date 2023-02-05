@@ -1,6 +1,0 @@
-REACT_APP_ENV=production
-BASE_API=https://strapi-rqqq74ig4a-et.a.run.app
-BASE_ENDPOINT=https://api.haloida.dev/v1
-ASSET_PREFIX=https://kenalvida.com
-CS_WHATSAPP_NUMBER=62859106967962
-DEFAULT_LANG=en

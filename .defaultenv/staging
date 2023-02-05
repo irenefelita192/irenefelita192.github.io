@@ -1,6 +1,0 @@
-REACT_APP_ENV=staging
-BASE_API=https://strapi-y5loyvex6a-et.a.run.app
-BASE_ENDPOINT=https://api.haloida.dev/v1
-ASSET_PREFIX=http://haloida.dev
-CS_WHATSAPP_NUMBER=62859106967962
-DEFAULT_LANG=en
