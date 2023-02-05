@@ -61,12 +61,9 @@ export default function Layout({
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
-                <meta
-                    name="keywords"
-                    content={keywords ? keywords : `${seoDesc}`}
-                />
-                <meta name="description" content={seoDesc} />
-                <title>{seoTitle}</title>
+                <meta name="keywords" content={'Kids Project'} />
+                <meta name="description" content={'Kids Project'} />
+                <title>Kids Project</title>
 
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
