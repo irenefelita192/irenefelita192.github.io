@@ -3,7 +3,7 @@ import Head from 'next/head'
 // import theme from 'components/global-styles/theme'
 // import normalizeCss from 'normalize.css'
 // import styles from './styles'
-// import globalStyles from '../global-styles/global-styles'
+import globalStyles from './styles'
 
 export default function Layout({
     isWebView = false,
@@ -20,12 +20,7 @@ export default function Layout({
     image = '',
 }) {
     console.log('version', process?.env?.packageVersion ?? '')
-    const temTitle = 'Vida | Healthcare Your Way',
-        temDesc = 'Designed to always be with you & your loved ones. '
-    const seoTitle = title ? title : temTitle,
-        seoDesc = description || temDesc
-    const url = process.env.config?.assetPrefix ?? '',
-        gaId = process.env.config?.gaId ?? ''
+
     const seoImage = image
         ? image
         : `https://kenalvida.com/images/logo/vida-image.jpg`
@@ -67,6 +62,23 @@ export default function Layout({
 
                 <meta name="robots" content="index, follow" />
                 <meta name="googlebot" content="index,follow" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link
+                    rel="preconnect"
+                    href="https://fonts.gstatic.com"
+                    crossOrigin
+                />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+                    rel="stylesheet"
+                />
+
+                <link
+                    rel="shortcut icon"
+                    href="/images/sun.png"
+                    type="image/x-icon"
+                />
+                <link rel="icon" href="/images/sun.png" type="image/x-icon" />
             </Head>
 
             <div
@@ -74,7 +86,9 @@ export default function Layout({
             >
                 {children}
             </div>
-
+            <style jsx global>
+                {globalStyles}
+            </style>
             <noscript>
                 <style
                     id="noscript-blank-page"
