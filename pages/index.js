@@ -2120,7 +2120,13 @@ export default function Home() {
                 <div className="picker-wrapper">
                     <h1>Pick Color</h1>
 
-                    <h3>Hair</h3>
+                    <div className="title-container">
+                        <h3>Hair</h3>
+                        <img
+                            src="/images/hair.png"
+                            style={{ height: '60px' }}
+                        />
+                    </div>
                     <div className="card-wrapper">
                         <div
                             className="card brown"
@@ -2140,7 +2146,13 @@ export default function Home() {
                         ></div>
                     </div>
 
-                    <h3>Dress</h3>
+                    <div className="title-container">
+                        <h3>Dress</h3>
+                        <img
+                            src="/images/dress.png"
+                            style={{ height: '60px' }}
+                        />
+                    </div>
                     <div className="card-wrapper">
                         <div
                             className="card red"
@@ -2160,7 +2172,10 @@ export default function Home() {
                         ></div>
                     </div>
 
-                    <h3>Bag</h3>
+                    <div className="title-container">
+                        <h3>Bag</h3>
+                        <img src="/images/bag.png" style={{ height: '60px' }} />
+                    </div>
                     <div className="card-wrapper">
                         <div
                             className="card red"
@@ -2180,7 +2195,13 @@ export default function Home() {
                         ></div>
                     </div>
 
-                    <h3>Shoe</h3>
+                    <div className="title-container">
+                        <h3>Shoes</h3>
+                        <img
+                            src="/images/shoes.png"
+                            style={{ height: '60px' }}
+                        />
+                    </div>
                     <div className="card-wrapper">
                         <div
                             className="card black"
@@ -2245,7 +2266,7 @@ export default function Home() {
                 }
 
                 .picker-wrapper {
-                    padding: 2rem;
+                    padding: 0.5rem 2rem 2rem;
                 }
 
                 .card-wrapper {
@@ -2332,6 +2353,16 @@ export default function Home() {
                 h3 {
                     margin-top: 2.5rem;
                     font-size: 1.5rem;
+                }
+
+                .title-container {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .title-container img {
+                    margin-top: 0.5rem;
+                    margin-left: 12px;
                 }
                 //rambut
                 /* transform: rotate(350deg) translate(-4px, 0px);
